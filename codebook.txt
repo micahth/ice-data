@@ -1,0 +1,674 @@
+Deportation Data Project
+
+Analysis
+Data 
+Documentation 
+Tools 
+News
+About
+Related 
+Support DDP
+Documentation
+Data guide
+By agency
+ICE: Immigration and Customs Enforcement
+FAQ
+Core data
+Detention facilities
+Field offices
+Documents
+CBP: Customs and Border Protection
+EOIR: Executive Office for Immigration Review (Immigration Courts)
+EOUSA: Executive Office for United States Attorneys (Immigration Prosecutions)
+All agency documentation
+Freedom of Information Act requests
+On this page
+Data structure
+Data processing
+Arrests, detainer requests, and detention stints
+Detention stays
+Arrests joined with detention stays
+Inspect code
+Tables
+Fields (variables) in latest data release
+Documentation
+By agency
+ICE: Immigration and Customs Enforcement
+Core data
+ICE core data codebook
+Authors
+Affiliations
+Graeme Blair
+
+University of California–Los Angeles
+
+David Hausman
+
+University of California–Berkeley School of Law
+
+Phil Neff
+
+University of Washington Center for Human Rights
+
+Published
+December 10, 2025
+
+Modified
+July 6, 2026
+
+We provide a codebook for the main ICE data tables and fields. The codebook is a work in progress; there are many things we do not understand in the data, and some of our educated guesses here may be mistaken. We will continue to update the codebook as we learn more, and we welcome feedback and corrections.
+
+This codebook reproduces parts of a preprint article that describes the ICE data we have posted.
+
+Data structure
+In the arrests, detainers, encounters, and removals tables, each row represents a single enforcement action taken by ICE for a particular noncitizen. In some cases, noncitizens appear more than once in the data, because some are arrested, encountered, or removed more than once (if they are removed and reenter the country).
+
+The detentions table is more complex. Each row in the original ICE detentions data represents a single “stint” in detention at a particular detention center. Most noncitizens have only one stint per stay in detention, but some are transferred between detention centers during a single stay.
+
+To illustrate the data structure of the detentions table, we take two noncitizens as examples:
+
+Noncitizen A is detained from March 19 to March 21. They have a single stint in Otero County Processing Center. They have one stay and one stint within the stay.
+Noncitizen B is detained once, from June 6 to August 9, but during their stay in detention they are transferred between three facilities. They have a first stint at the Los Angeles ICE hold room (“LOS CUST CASE”) from June 6 to June 7, then they are transferred to Adelanto ICE Processing Center and held there from June 7 to July 25, and finally they are transferred to Desert View Annex and held there from July 25 to August 9. Noncitizen B has one stay with three stints.
+These two citizens’ stays in ICE detention would be represented in the stint level dataset provided by ICE like this:
+
+Noncitizen ID	Stint ID	Stay dates	Stint dates	Detention facility
+Book-in	Book-out	Book-in	Book-out
+Stay 1	A	1	Mar. 19	Mar. 21	Mar. 19	Mar. 21	OTERO CO PROCESSING CENTER
+Stay 2	B	1	Jun. 6	Aug. 9	Jun. 6	Jun. 7	LOS CUST CASE
+B	2	Jun. 6	Aug. 9	Jun. 7	Jul. 25	ADELANTO ICE PROCESSING CENTER
+B	3	Jun. 6	Aug. 9	Jul. 25	Aug. 9	DESERT VIEW ANNEX
+The Deportation Data Project provides a processed version of the detentions data at the stay level. The two citizens’ stays in ICE detention would be represented in the stay level dataset like this, as two rows:
+
+Noncitizen ID	Stay dates	# of Stints
+Book-in	Book-out
+Stay 1	A	Mar. 19	Mar. 21	1
+Stay 2	B	Jun. 6	Aug. 9	3
+Data processing
+We post four datasets that are minimally-processed versions of original ICE data to simplify analysis: arrests, detentions at both the stay and stint level, and detainer requests. The stay-level detention dataset is the most heavily processed of these, while the others involve only adding a variable to flag duplicates and renaming variables for clarity.
+
+Arrests, detainer requests, and detention stints
+We post data with minimal changes to facilitate analysis using standard tools, including R, Python, Stata, SPSS, and Excel. We do not add or drop any rows.
+
+For these minimally processed datasets, we make the following changes:
+
+Add flag for likely duplicates. We add an indicator for rows that are possibly or likely duplicates. For arrests, we flag those within 24 hours of each other for the same noncitizen with the duplicate_episode_first variable, which is TRUE for the first arrest in each such set (an arrest episode) and FALSE for the rest. For detainers, we flag rows with the same noncitizen ID and request date, because there is no time information. Analysts can use this flag to drop likely duplicates if desired. In some rare cases, these may reflect multiple enforcement actions within a 24-hour period. Most reflect duplicates recorded for administrative reasons, such as when a record is corrected after initial entry.
+Drop blank or fully redacted columns. The column names can be found in the raw data, also available on the ICE data page.
+Convert date-time fields to date when there is no time information. In some cases, date fields appear to have time information but every time is recorded as “00:00:00”. For ease of analysis, we convert these to date-only fields, dropping the time information.
+Add an arrest date variable. The column is simple the date portion of the arrest date-time field, to facilitate analysis that does not require time information.
+Fill in state We create a new variable called apprehension_state_filled_in that uses the toa_current_duty_site field to fill in missing apprehension_state values.
+In a few cases, variable names are shortened to enable saving in Stata or SPSS format.
+
+Detention stays
+The detentions data are provided by ICE in a more complex format than the other tables. Our goal in posting this simplified dataset is to make analysis of ICE detention data more straightforward. In the original ICE data, there is a row for every book-in to a particular detention center, but most questions about detention concern what ICE calls an individual’s “stay” in detention — a single period of detention for a single person that often includes transfers between detention centers.
+
+We create a dataset that has a single row for each stay in detention, preserving most (but not all) of the information in the original dataset. Note that individuals can also have more than one stay in detention if they are released and later detained again; in that case, this dataset includes a row for each stay, and those repeated stays are (anonymously) identifiable by the unique IDs in the data, which correspond to individuals’ A-numbers.
+
+We describe those steps in general terms here:
+
+Drop duplicate stints. We first identify duplicate detention stints in the data–stints with the same book-in date/time at the same detention center. There are a few thousand of these, a small number relative to the full dataset of over 1.3 million records. Nearly all of these reflect duplicated stints where an individual’s “initial bond set amount” changed. In order to eliminate these duplicates, we created a new variable called “lowest initial bond set amount” that reflects the lowest initial bond amount associated with a given stint.
+Keep data from last stint. Then we preserve only the last stint in each stay. For most fields, this does not cause any loss of information because values in these fields (e.g. final order date, most serious conviction, and citizenship country) typically do not change within detention stays.
+Join data from first, last, and longest stint. Finally, we add back in limited information from the stint level: for the first stint, the last stint, and the longest stint, we include the book-in date, book-out date, and detention facility. If a stay includes only one stint, then these are all identical.
+Arrests joined with detention stays
+The arrests and detention stays datasets share a common anonymized noncitizen identifier (unique_identifier), making it possible to link each arrest with its associated detention stay, if any. We post a version of the arrests dataset that includes this subsequent detention information, saving users the step of merging/joining the two tables, and allowing exploration of both in a single tool. This dataset is similar to (but not identical with) the dataset that we use in our report on the first year of the second Trump administration. (We publish the code for both if users want to compare.) The dataset has one row per arrest and subsequent detention stay (the same row count as the arrests dataset, but with duplicates dropped). Where the detention and arrests tables have overlapping information (i.e. on nationality), we use the information from the detentions table unless an arrest did not result in detention, in which case we use the information from the arrests table.
+
+It’s important to note that there are many detention stays that start without an ICE arrest (most often at the border, with a CBP arrest), and those detention stays are not included here. For that reason, if your focus is on detention rather than on ICE arrests and their consequences, we recommend using the detention stays and/or stints dataset.
+
+We match arrests to detention stays as follows:
+
+Remove duplicate arrests by restricting to the first arrest per arrest episode. Among arrests for the same noncitizen, we consider only the first arrest in any set of arrests separated by 24 hours or less. We call these sets arrest episodes (flagged the duplicate_episode_first flag in the arrests dataset).
+Window around the stay book-in. For each stay, we keep arrests of the same noncitizen with apprehension date-times between five days before and ten days after the stay’s book-in date-time. This is an imperfect way to identify which detention stay is associated with an arrest, but we think it works most of the time.
+Pick the closest. When more than one arrest falls in the 15-day window around the start of a detention stay, we keep the one with the smallest absolute time difference from the stay book-in. This affects just over a thousand arrests, and we think it eliminates most mismatches between arrests and stays
+Keep all arrests, including those without a detention stay. Because some arrests result in swift release, with no book-in to detention, we keep all arrests, not just those linked with a detention stay. We add a has_detention variable that is TRUE when a matching detention stay was found and FALSE otherwise.
+Fill in state As in the arrests data, we create a new variable called apprehension_state_filled_in that uses the toa_current_duty_site field to fill in missing apprehension_state values.
+Reading columns from left to right, those from the arrests table come first (all columns before the has_detention column). The exception is for arrests that did not result in detention (i.e. has_detention is `FALSE’); those rows draw columns only from the arrest table.
+
+Inspect code
+Dataset
+Code
+Arrests
+Detainer requests
+Detention stints
+Detention stays
+Arrests joined with detention stays
+Tables
+We describe the main ICE data tables below.
+
+Name
+Description
+Administrative arrests
+Records every time ICE arrests someone, whether or not that arrest results in a decision to detain the person.
+Detainers
+Records all requests to state, county, and municipal jails and prisons either for a person to be held on a detainer or for a notification of release date and time. A detainer is a request to a local jail to hold someone for 48 hours beyond when they otherwise would be released so that ICE can make an arrest in the jail while the individual remains detained.
+Detention facilities
+Records the location and characteristics of each facility where ICE detained noncitizens since January 1, 2025.
+Detention stays (simplified version of detentions created by the Deportation Data Project)
+Simplifies the original detentions table by providing one row for each stay in detention--that is, for a period in detention not interrupted by any release. (In the original detentions table, there is a row for each book-in to a new detention center.) Individuals may also be detained more than once and therefore have more than one "stay" in detention; those individuals have multiple rows (one for each stay) in this dataset. This simpler version of the detentions data loses some information about stints in particular detention centers.
+Detentions
+Records each detention from book-in to book-out at a given detention center for a given individual; most individuals have more than one row in the table because they are transferred between detention centers. Individuals may also be detained more than once and therefore have more than one "stay" in detention. We explain further in the relevant field definitions.
+Encounters
+Records every time ICE Enforcement and Removal Operations encounters a person, i.e. considers whether to take enforcement action against a person. This need not mean a physical encounter. Most notably, every time ICE processes a match between FBI book-in information (i.e. to a jail or prison) and ICE database information, that match is logged as an ICE encounter. Generally, if an individual appears in the detainers or arrests table, that individual should appear in this table. An individual might appear in the removals or detentions tables without appearing in the encounters data if Customs and Border Protection initially encounters the person. This is both the largest and the sparsest of the tables, and in many cases, encounters lack a unique ID because the individual lacked an A number (A numbers are generally only given to people with immigrant visas or when they are processed for deportation proceedings).
+Removals
+Records every deportation that ICE conducts, with a row for each individual deportation. An individual only has more than one row if that individual was deported more than once. Note that expulsions may occur directly at the border, by CBP, without involving ICE.
+Fields (variables) in latest data release
+We describe the fields (a.k.a. variables or columns) in the latest ICE data release below. The table includes the name of each field, a description, and the type of data in the field (e.g., string, numeric, date). Expanding a row will show an indicator for whether the field is available in each table and the proportion missing.
+
+Search
+Name
+Description
+Type
+Aggravated Felony (Yes/no)
+A flag indicating that ICE believes a person has an aggravated felony conviction; we are unsure whether this field is being used.
+Binary
+Apprehension AOR
+Area of Responsibility (ICE field office) which conducted the arrest. See https://www.ice.gov/contact/field-offices for details on areas of responsibility.
+Text
+Apprehension County
+County of arrest.
+Text
+Apprehension Criminality
+This takes three values, corresponding to whether an individual has at least one criminal conviction, no criminal convictions but at least one criminal charge, or no charges or convictions ("other immigration violator")
+Text
+Apprehension Date
+Date of arrest.
+Date
+Apprehension Method
+This describes how the arrest took place, with the most important distinction being between arrests that take place in prisons and jails and arrests that take place elsewhere.
+Text
+Apprehension Site Landmark
+Either an actual location or an ICE division associated with an arrest. See https://uwchr.github.io/ice-enforce/landmarks.html for details.
+Text
+Apprehension State
+State of arrest.
+Text
+Biometric Match (Yes/no)
+We are unsure what exactly this means.
+Binary
+Birth Country
+Country of birth of noncitizen.
+Text
+Birth Year
+Birth year.
+Numeric
+Bond Posted Amount
+Amount in USD of the bond that was posted.
+Numeric
+Bond Posted Date
+Date that bond was posted to be released from detention.
+Date
+Book In Criminality
+This takes three values, corresponding to whether an individual has at least one criminal conviction, no criminal convictions but at least one criminal charge, or no charges or convictions ("other immigration violator").
+Text
+Book In Date Time
+This field marks the beginning of an individual's time in a particular detention center.
+Date
+Book In Date Time First
+This field marks the beginning of an individual's time in the first detention center of their stay in detention (processed data only).
+Date
+Book In Date Time Last
+This field marks the beginning of an individual's time in the last detention center of their stay in detention (processed data only).
+Date
+Book In Date Time Longest
+This field marks the beginning of an individual's time in the detention center in which they spent the longest period during their stay in detention (processed data only).
+Date
+Book Out Date Time First
+This field marks the end of an individual's time in the first detention center of their stay in detention (processed data only). Note that the field that this draws from in the original data is called "detention book out date time."
+Date
+Book Out Date Time Last
+This field marks the end of an individual's time in the last detention center of their stay in detention (processed data only). Note that the field that this draws from in the original data is called "detention book out date time."
+Date
+Book Out Date Time Longest
+This field marks the end of an individual's time in the detention center in which they spent the longest period during their stay in detention (processed data only). Note that the field that this draws from in the original data is called "detention book out date time."
+Date
+Case Category
+This field includes combined information on case type and status. See https://journals.sagepub.com/doi/epdf/10.1177/233150241500300402 pp. 335-36 for descriptions of the values.
+Text
+Case Status
+Includes some information about case type and status, most likely as of the date that the data was extracted.
+Text
+Case Threat Level
+We believe this stands for removal case threat level based on conviction; sometimes this field is also called case threat level. We believe that these levels correspond to the three levels laid out in a 2011 ICE memorandum (https://www.ice.gov/doclib/news/releases/2011/110302washingtondc.pdf): "• Level 1 offenders: aliens convicted of 'aggravated felonies,' as defined in § 101(a)(43) of the Immigration and Nationality Act, or two or more crimes each punishable by more than one year, commonly referred to as 'felonies'; • Level 2 offenders: aliens convicted of any felony or three or more crimes each punishable by less than one year, commonly referred to as 'misdemeanors'; and • Level 3 offenders: aliens convicted of crimes punishable by less than one year." *Note that when this field is missing, that is meaningful because it indicates that ICE has no record of a criminal conviction.*
+Text
+Citizenship Country
+Country of citizenship of noncitizen.
+Text
+Criminal Street Gang (Yes/no)
+We are unsure what this means.
+Binary
+Departed Date
+Date of actual departure or deportation from the United States.
+Date
+Departure Country
+Country to which the individual was deported.
+Text
+Deportation Ordered (Yes/no)
+Indicates whether the individual was ordered removed; where possible, we would rely on the final order date field instead.
+Binary
+Detainer Lift Reason
+Reason detainer lifted. The key information here concerns whether the person was booked into immigration detention as a result of the detainer or the detainer was lifted for a different reason (for example, ICE decided not to pursue the case or the jail declined to honor the detainer).
+Text
+Detainer Prep Threat Level
+This is similar to the conviction-based threat level used in the other tables, but it appears to depend on predictions that pending criminal charges will result in convictions, so many people are categorized as posing a threat (from 1 to 3) without actually having a conviction at the time of detainer issuance. *Note that when this field is missing, that is meaningful because it indicates that ICE has no record of and likely does not predict a criminal conviction.*
+Text
+Detainer Prepare Date
+Date on which detainer was issued/sent to the receiving jail/prison.
+Date
+Detainer Prepared Criminality
+This takes three values, corresponding to whether an individual has at least one criminal conviction, no criminal convictions but at least one criminal charge, or no charges or convictions ("other immigration violator").
+Text
+Detainer Type
+Indicates whether the detainer asked the receiving facility to detain a person for additional time or to provide ICE with a notification of the planned release date. We are unsure how reliable this field is.
+Text
+Detention Book Out Date Time
+This field marks the end of an individual's time in a particular detention center. It is blank/missing where the individual was still detained in that detention center when the data was extracted.
+Date
+Detention Facility
+Note that this field means different things in the detainers and detentions data. In the detainers data, this is the name of the jail or prison to which ICE made a detainer request, where a person was being held on criminal grounds (either pretrial or when serving a sentence). In the detentions data, this is the name of the immigration detention facility in which ICE was holding the person (on immigration grounds).
+Text
+Detention Facility Code
+Short alphabetic code for detention facility, sometimes known as DETLOC. Note that this field means different things in the detainers and detention data; see detention facility field description.
+Text
+Detention Facility Code
+ICE internal code for detention facility
+Text
+Detention Facility Code First
+Code of the first detention facility that an individual was booked into in a given stay (processed data only).
+Text
+Detention Facility Code Last
+Code of the last detention facility that an individual was booked into in a given stay (processed data only).
+Text
+Detention Facility Code Longest
+Code of the detention facility in which the individual spent the longest period during that stay in detention (processed data only).
+Text
+Detention Facility Codes All
+Codes of all the detention facilities that an individual was booked into during a given stay, in chronological order (processed data only).
+Text
+Detention Facility First
+Name of the first detention facility that an individual was booked into in a given stay (processed data only)
+Text
+Detention Facility Last
+Name of the last detention facility that an individual was booked into in a given stay (processed data only).
+Text
+Detention Facility Longest
+Name of the detention facility in which the individual spent the longest period during that stay in detention (processed data only).
+Text
+Detention Release Reason
+This field provides the reason for release from a given detention center--most commonly transfer to another detention center.
+Text
+Entry Date
+Date of most recent entry into the United States.
+Date
+Entry Status
+We are unsure how this field is used.
+Text
+Ethnicity
+Essentially operates as a flag for hispanic ethnicity.
+Text
+Facility AOR
+The area of responsibility or field office responsible for the area in which the jail/prison receiving the detainer is located. See https://www.ice.gov/contact/field-offices for details on field offices.
+Text
+Facility City
+City in which the jail/prison that receives the detainer request is located. Note that this indicates a facility holding someone on criminal grounds (either pretrial or when serving a sentence); it is therefore not the same as the detention facility field in the detentions data, which indicates the facility in which ICE was detaining someone on immigration grounds.
+Text
+Facility State
+State of the jail/prison receiving the detainer request.
+Text
+Federal Interest (Yes/no)
+Unknown.
+Binary
+Felon
+A flag indicating that ICE believes a person has an aggravated felony conviction; we are unsure whether this field is being used.
+Binary
+Final Charge
+This is an ICE description of the ground of deportability of inadmissiblity with which the noncitizen is charged; it corresponds to the final charge section field, which contains the section of the Immigration and Nationality Act creating that charge.
+Text
+Final Order (Yes/no)
+This indicates whether an individual has a final order of removal, which means an order of removal that was either affirmed on appeal or not appealed, or that was issued without the involvement of an immigration judge (for example, in expedited removal). See also the final order date field.
+Binary
+Final Order Date
+Date of the final order of removal, which means an order of removal that was either affirmed on appeal or not appealed, or that was issued without the involvement of an immigration judge (for example, in expedited removal).
+Date
+Final Program
+The program associated with the arrest (not necessarily performed by ICE), which might also be described as the category of arrest. The values show the range of these categories, but key examples are the criminal alien program, which involves arrests in prisons and jails, the 287(g) program, which involves collaboration with a local agency, and border patrol.
+Text
+Final Program Group
+Always ICE in encounters and arrests; in removals and detentions we would expect it often to be CBP.
+Text
+Gender
+ICE determination of gender of individual.
+Text
+Illegal Entry (Yes/no)
+Unknown.
+Binary
+Illegal Reentry (Yes/no)
+Unknown.
+Binary
+Immigration Fraud (Yes/no)
+Unknown.
+Binary
+Initial Bond Set Amount
+Amount in USD of the bond set by either ICE or the immigration judge, but more likely the immigration judge because ICE sets bond relatively rarely.
+Numeric
+MSC Charge Code
+The National Crime Information Center code corresponding to the "Most Serious Criminal Conviction" description.
+Text
+MSC Charge Date
+The date of the charge for the conviction described in "Most Serious Criminal Conviction".
+Date
+MSC Conviction Date
+The date of "Most Serious Criminal Conviction" (see description of that field).
+Date
+MSC Sentence Days
+Close to a quarter of people with convictions recorded nonetheless lack any entry in the sentence days, months or years field; as a result, we urge caution in interpreting these fields.
+Numeric
+MSC Sentence Months
+Close to a quarter of people with convictions recorded nonetheless lack any entry in the sentence days, months or years field; as a result, we urge caution in interpreting these fields.
+Numeric
+MSC Sentence Years
+Close to a quarter of people with convictions recorded nonetheless lack any entry in the sentence days, months or years field; as a result, we urge caution in interpreting these fields.
+Numeric
+Marital Status
+Marital status.
+Text
+Most Serious Conviction (MSC) Charge
+The most serious criminal conviction that ICE has recorded for the individual. These appear to be standardized crime descriptions, likely drawn from the National Crime Information Center.
+Text
+Multiple Prior MISD (Yes/no)
+Unknown.
+Binary
+N Stays
+Number of stays for a given Unique ID (processed data only).
+Numeric
+N Stints
+Number of stints in a given stay (processed data only).
+Numeric
+Order to Show Cause Served (Yes/no)
+Whether a Notice to Appear (formerly called Order to Show Cause) was issued.
+Binary
+Order to Show Cause Served Date
+Date of Notice to Appear (formerly called Order to Show Cause).
+Date
+Other Removal Reason
+Unknown.
+Text
+Other Removal Reason (Yes/no)
+Unknown.
+Binary
+Port of Departure
+Final place person left from.
+Text
+Prior Felony (Yes/no)
+Unknown.
+Binary
+Processing Disposition
+We are unsure how to understand the values in this field, especially in relation to case category.
+Text
+Religion
+ICE determination of religion.
+Text
+Resume Custody (Yes/no)
+Unknown.
+Binary
+Significant Risk (Yes/no)
+Unknown.
+Binary
+Statements Made (Yes/no)
+Close to a quarter of entries are missing; use caution.
+Binary
+Stay Book In Date Time
+This field marks the beginning of a stay in detention--that is, an individual's full period in detention from book-in to book-out, regardless of the number of transfers.
+Date
+Stay Book Out Date
+This field marks the end of a stay in detention--that is, an individual's full period in detention from book-in to book-out, regardless of the number of transfers. Because this field marks the end of a full stay, transfer should not be a possible value, though there may be data errors.
+Date
+Stay Book Out Date Time
+This field marks the end of a stay in detention--that is, an individual's full period in detention from book-in to book-out, regardless of the number of transfers. When this field is blank, the individual was still detained as of the date of extraction.
+Date
+Stay ID
+Numeric ID assigned to a stay; stays are defined by the combination of a given Unique ID and stay book in date (processed data only).
+Numeric
+Stay Release Reason
+This field provides the reason for release from the last detention center in an individual's stay. It should not be "transfer," since it marks the end of a stay--that is, an individual's full period in detention from book-in to book-out, regardless of the number of transfers. If missing, that should indicate that an individual remained detained as of the date of data extraction.
+Text
+Time of Apprehension Case Category
+This field includes combined information on case type and status, here as of the time of apprehension. See https://journals.sagepub.com/doi/epdf/10.1177/233150241500300402 pp. 335-36 for descriptions of the values.
+Text
+Time of Apprehension Current Program
+The program associated with the arrest (not necessarily performed by ICE), which might also be described as the category of arrest. Key examples are the criminal alien program, which involves arrests in prisons and jails, the 287(g) program, which involves collaboration with a local agency, and border patrol.
+Text
+Unique Identifier
+Anonymized unique individual identifier based on Alien Registration Number (A-number). A-numbers are assigned to noncitizens by ICE or USCIS; undocumented noncitizens who have not interacted with the U.S. government, as well as people on nonimmigrant visas (i.e. people who do not intend to remain in the United States) typically do not have A-numbers.
+Text
+Unlawful Attempt (Yes/no)
+Unknown.
+Binary
+Unlawful Entry (Yes/no)
+Unknown.
+Binary
+Violent Misdemeanor (Yes/no)
+Unknown.
+Binary
+Visa (Yes/no)
+Unknown.
+Binary
+Fields (variables) in previous data releases
+We also provide a table of fields (a.k.a. variables or columns) that were available in previous ICE data releases but are not included in the most recent data. This table includes the name of each field, a description, and the type of data in the field (e.g., string, numeric, date).
+
+Search
+Name
+Description
+Type
+Active investigation (Yes/No)
+​
+Binary
+Address
+Street address of detention facility
+Text
+Age at removal
+​
+Numeric
+Anonymized Identifier
+Unique identifying number assigned to noncitizens; undocumented noncitizens who have not interacted with the U.S. government, as well as people on nonimmigrant visas (i.e. people who do not intend to remain in the United States) typically do not have A-numbers.
+Numeric
+Apprehension State Filled In
+State of arrest. This equals apprehension state whenever apprehension state is filled in. When apprehension state is missing, we fill this in using the state listed in the TOA Current Duty Site field.
+Text
+Apprehension State Original
+This is identical to Apprehension State. We rename this field in the processed arrests dataset in order to distinguish it from the field in which we fill in missing apprehension state values.
+Text
+Area of responsibility
+Area of Responsibility (ICE field office). See https://www.ice.gov/contact/field-offices for details.
+Text
+Arrest warrant served (Yes/No)
+We are unsure what this means.
+Binary
+Bd
+Unknown.
+Date
+Case Category Time of Arrest
+This field includes combined information on case type and status. See https://journals.sagepub.com/doi/epdf/10.1177/233150241500300402 pp. 335-36 for descriptions of the values. Recorded at time of arrest.
+Text
+Case Criminality
+This takes three values, corresponding to whether an individual has at least one criminal conviction, no criminal convictions but at least one criminal charge, or no charges or convictions ("other immigration violator").
+Text
+City
+City of detention facility
+Text
+County
+County of detention facility, identified based on latitude and longitude
+Text
+County Fips Code
+Federal Information Processing Standard (FIPS) two-digit code for county of detention facility, identified based on latitude and longitude
+Numeric
+Detainer lift reason code
+Code corresponding to detainer lift reason.
+Text
+Detention Facility Code Alt
+Alternative code used by ICE for the same detention facility
+Text
+Docket AOR
+Area of Responsibility (ICE field office). See https://www.ice.gov/contact/field-offices for details. Our best guess is that this indicates the arresting field office rather than the field office covering the port of departure.
+Text
+Encounter Criminality
+This takes three values, corresponding to whether an individual has at least one criminal conviction, no criminal convictions but at least one criminal charge, or no charges or convictions ("other immigration violator")
+Text
+Event Date
+Date of encounter.
+Date
+Event Landmark
+Either an actual location or an ICE division associated with an arrest. See https://uwchr.github.io/ice-enforce/landmarks.html for details.
+Text
+Event Type
+The event type roughly tracks the "Apprehension method" field in the arrests data, though many encounters do not result in arrests.
+Text
+Federal Court Circuit Habeas
+Federal circuit court of appeals with jurisdiction over the detention facility, relevant for writs of habeas corpus
+Text
+Federal Court District Habeas
+Federal district court with jurisdiction over the detention facility, relevant for writs of habeas corpus
+Text
+Field Office
+ICE field office with responsibility for the detention facility
+Text
+Final Charge Code
+This is an ICE code that corresponds to the section of the Immigration and Nationality Act noted in the final charge section field. We believe that the final charge section field is more commonly useful because it can be cross-referenced with the Immigration and Nationality Act.
+Text
+Final Charge Section Code
+This refers to the section of the Immigration and Nationality Act that describes the ground of inadmissibility or deportability under which the government is pursuing removal.
+Text
+Final Program Code
+The code for the program associated with the arrest (not necessarily performed by ICE), which might also be described as the category of arrest. The values show the range of these categories, but key examples are the criminal alien program, which involves arrests in prisons and jails, the 287(g) program, which involves collaboration with a local agency, and border patrol.
+Text
+Has Detention
+In the joined arrests/detentions data, indicates that an arrest is matched with a corresponding detention stay.
+Binary
+Known or suspected gang member (yes/no)
+This designation is known to be unreliable.
+Binary
+Known or suspected terrorist (yes/no)
+This designation is known to be unreliable.
+Binary
+Latest Arrest Program Current
+We are unsure why this is often missing and would recommend relying on the final program field instead.
+Text
+Latest Arrest Program Current Code
+We are unsure why this is often missing and would recommend relying on the final program field instead.
+Text
+Latest Person Apprehension Date
+Date of most recent arrest.
+Date
+Latitude
+Latitude of location of detention facility based on address
+Numeric
+Lead Event Type
+Unknown.
+Text
+Lead Source
+Unknown.
+Text
+Longitude
+Longitude of location of detention facility based on address
+Numeric
+Lpr (yes/no)
+Legal permanent resident status, "Yes"/"No".
+Binary
+MSC Criminal Charge Status
+"Most Serious Criminal Conviction" status; nearly always "Convicted", otherwise "Pending".
+Text
+MSC Criminal Charge Status Code
+Unknown.
+Text
+MSC NCIC Charge Code
+The National Crime Information Center code corresponding to the "Most Serious Criminal Conviction" description.
+Text
+Male Female
+Genders of noncitizens held at facility, coded by ICE
+Text
+Most Serious Conviction Charge
+The most serious criminal conviction that ICE has recorded for the individual. These appear to be standardized crime descriptions, likely drawn from the National Crime Information Center.
+Text
+Most recent prior departed date
+Date of the most recent prior removal, if any. We are unsure whether missingness indicates the absence of a prior removal or simply the lack of data.
+Date
+Most serious conviction msc ch
+The most serious criminal conviction that ICE has recorded for the individual. These appear to be standardized crime descriptions, likely drawn from the National Crime Information Center.
+Text
+Msc crime class
+Unknown.
+Text
+Name
+Name of detention facility
+Text
+Notify release request (Yes/No)
+Indicates whether ICE asked the jail/prison to notify it of the individual's release date and time.
+Binary
+Operation
+Indicates when arrests are part of a named operation.
+Text
+Over Under 72
+Whether noncitizens can be held for over 72 hours or only for fewer than 72 hours, coded by ICE
+Text
+Prior Deport (Yes/no)
+This is indicator for whether an individual was previously removed. Any individual who was previously removed necessarily has a final order of removal.
+Binary
+Prior removal reinstate (yes/no)
+Indicates whether an individual is in reinstatement of removal proceedings (i.e. was previously removed from the United States and later arrested).
+Binary
+Prior removal reinstate date
+We are unsure what this date means.
+Date
+Race
+ICE determination of race.
+Text
+Responsible AOR
+Area of Responsibility (ICE field office). See https://www.ice.gov/contact/field-offices for details on areas of responsibility.
+Text
+Responsible Site
+We believe that this typically indicates the docket control office, which is a sub-office within an area of responsibility; we do not know more details. Some discussion of docket control offices is available here: https://www.ice.gov/doclib/foia/dro_policy_memos/09684drofieldpolicymanual.pdf.
+Text
+Responsible site / docket control office
+We believe that this typically indicates the docket control office, which is a sub-office within an area of responsibility; we do not know more details. Some discussion of docket control offices is available here: https://www.ice.gov/doclib/foia/dro_policy_memos/09684drofieldpolicymanual.pdf
+Text
+Site / docket control office
+We believe that this typically indicates the docket control office, which is a sub-office within an area of responsibility; we do not know more details. Some discussion of docket control offices is available here: https://www.ice.gov/doclib/foia/dro_policy_memos/09684drofieldpolicymanual.pdf
+Text
+State
+State of detention facility
+Text
+State Fips Code
+Federal Information Processing Standard (FIPS) two-digit code for state of detention facility
+Numeric
+Stint ID
+Numeric ID assigned to each row in the detentions data (processed data only).
+Numeric
+TOA Current Duty Site
+We believe this indicates the ICE administrative entity responsible at the time of arrest.
+Text
+Threat level
+This field does not appear to be used consistently in the encounters table.
+Text
+Type
+ICE-determined type of facility
+Text
+Type Detailed
+ICE-determined sub-type of facility
+Text
+Zip
+ZIP code of detention facility
+Text
+Citation
+BibTeX citation:
+@article{blair2025,
+  author = {Blair, Graeme and Hausman, David and Neff, Phil},
+  title = {Immigration and Customs Enforcement Individual-Level Data: An
+    Introduction},
+  date = {2025-12-10},
+  url = {https://deportationdata.org/docs/ice/ice-data-preprint.pdf},
+  langid = {en}
+}
+
+For attribution, please cite this work as:
+Blair, Graeme, David Hausman, and Phil Neff. 2025. Immigration and Customs Enforcement Individual-Level Data: An Introduction. accepted, December 10. https://deportationdata.org/docs/ice/ice-data-preprint.pdf.
+ 
+Licensed CC-0 (no rights reserved)
+
+ 
