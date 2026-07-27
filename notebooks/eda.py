@@ -29,6 +29,13 @@ def find_col(df, *candidates):
             return c
     return None
 
+def parse_date(series):
+    """Parse a date series and strip timezone info so subtraction works."""
+    s = pd.to_datetime(series, errors="coerce")
+    if hasattr(s.dt, "tz") and s.dt.tz is not None:
+        s = s.dt.tz_localize(None)
+    return s
+
 # ---------------------------------------------------------------------------
 # Load detention stays (sheet 1)
 # ---------------------------------------------------------------------------
@@ -46,9 +53,9 @@ col_facility = find_col(df, "detention_facility_longest", "detention_facility", 
 col_gender   = find_col(df, "gender", "sex")
 
 if col_book_in:
-    df[col_book_in] = pd.to_datetime(df[col_book_in], errors="coerce")
+    df[col_book_in] = parse_date(df[col_book_in])
 if col_book_out:
-    df[col_book_out] = pd.to_datetime(df[col_book_out], errors="coerce")
+    df[col_book_out] = parse_date(df[col_book_out])
 
 if col_book_in and col_book_out:
     df["stay_days"] = (df[col_book_out] - df[col_book_in]).dt.days
@@ -166,7 +173,7 @@ try:
     arr.columns = [c.strip().lower().replace(" ", "_") for c in arr.columns]
     col_date = find_col(arr, "apprehension_date", "arrest_date", "apprehension_date_time")
     if col_date:
-        arr[col_date] = pd.to_datetime(arr[col_date], errors="coerce")
+        arr[col_date] = parse_date(arr[col_date])
         monthly = arr.groupby(arr[col_date].dt.to_period("M")).size()
         monthly.index = monthly.index.astype(str)
         idx = list(monthly.index)
