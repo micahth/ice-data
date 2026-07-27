@@ -1,6 +1,6 @@
 """
 ICE Detention Data — Exploratory Data Analysis
-Run from the repo root: python notebooks/eda.py
+Run from the repo root: py notebooks\\eda.py
 Figures are saved to notebooks/figures/
 """
 
@@ -33,7 +33,7 @@ def find_col(df, *candidates):
 # Load detention stays (sheet 1)
 # ---------------------------------------------------------------------------
 print("\n=== Loading detention stays (sheet 1) ===")
-df = pd.read_csv("detention-stays (sheet 1) 7-24-2026.csv", low_memory=False)
+df = pd.read_csv("detention-stays (sheet 1) 7-24-2026.csv", low_memory=False, encoding="latin-1")
 df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
 print(f"  Shape: {df.shape}")
 
@@ -162,7 +162,7 @@ if col_facility:
 # ---------------------------------------------------------------------------
 print("\n=== Section 7: Monthly Arrests ===")
 try:
-    arr = pd.read_csv("arrests-latest 7-24-2026.csv", low_memory=False)
+    arr = pd.read_csv("arrests-latest 7-24-2026.csv", low_memory=False, encoding="latin-1")
     arr.columns = [c.strip().lower().replace(" ", "_") for c in arr.columns]
     col_date = find_col(arr, "apprehension_date", "arrest_date", "apprehension_date_time")
     if col_date:
