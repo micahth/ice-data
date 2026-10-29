@@ -12,6 +12,7 @@
 | Stay length | Days from book-in to book-out for released stays (median, mean, p90), filtered to 0–1,825 days |
 | Bond posted rate | % of stays with an initial bond amount that also have a bond-posted amount/date |
 | Release reason mix | Share of book-outs by grouped `stay_release_reason`, by month and administration |
+| Mean days per arrest | Mean stay length over closed stays plus never-detained arrests counted as 0 days (open stays excluded) |
 | Still-detained cohort | Stays with no book-out date: count, time in, criminality, country, facility |
 
 Administration periods: Biden = 2021-01-20 to 2025-01-19; Trump 2nd = 2025-01-20 onward.
@@ -27,6 +28,8 @@ Group sizes (n) are printed in the script output; groups with n < 50 are flagged
 | % of arrests detained | 61.3% | 90.0% |
 | % of arrests ending in a recorded removal | 40.6% | 64.9% |
 | % of detained with a book-out date | 99.6% | 85.8% |
+| Mean days per arrest, never-detained = 0 | 29.7 | 32.8 |
+| Mean days, detained only (closed stays, by arrest date) | 48.5 | 37.1 |
 | Median stay, released (days, by book-in period) | 29.1 | 21.2 |
 | % of releases that are "Removed" | 55.0% | 83.8% |
 | % of releases that are Order of Recognizance / Paroled | 12.7% / 20.7% | 1.9% / 0.5% |
@@ -79,6 +82,17 @@ book-in in the data (2026-03-11), the **median open stay is 59.5 days** (194 day
 extraction date). By criminality: 43.4% Other Immigration Violator, 29.2% pending charges, 27.5% convicted. Top countries: Mexico 12,315 (19.9%), Guatemala 6,086,
 Honduras 5,238, Venezuela 4,979, Cuba 4,493. Largest facilities: Stewart (2,084), Florida
 Soft-Sided South (2,054), Moshannon Valley (1,839), Adelanto (1,613).
+
+### 7. Counting never-detained arrests as 0 days: mean falls to 31.3 days, and the administrations flip
+Across all 705,285 arrests, the mean is **31.3 days (median 9.8)** versus **41.5 days (median 21.9)** among
+detained people only. By arrest date: Biden **29.7 days** (detained-only 48.5) vs. Trump 2nd **32.8 days**
+(detained-only 37.1). People are held for shorter stays under Trump 2nd, but far more arrests lead to
+detention (90.0% vs. 61.3%), so the average per arrest is slightly *higher*. Medians differ much more
+(0.3 vs. 16.8 days) because under Biden over 38% of arrests had no detention at all. Method: closed stays of 0-1,825 days
+plus never-detained arrests at 0; 50,524 detained arrests with no book-out (49,810 Trump 2nd) are excluded,
+so the Trump 2nd figure is biased downward (those open cases would raise it). Figure: `release_avg_days_per_arrest.png`.
+An update on the newer Sept 2026 data (arrests through 2026-08-06) gives a similar picture: 32.9 days overall; Biden 30.4; Trump 2nd 34.4
+(detained-only 42.2 / 49.5 / 39.1), with 57,997 open stays excluded.
 
 ---
 
@@ -138,6 +152,7 @@ case mix, and record-keeping. Nothing here establishes cause.
 | `release_bond_equity_country.png` | Median bond vs. posted rate by country |
 | `release_bond_by_criminality.png` | Bond-posted rate by criminality |
 | `release_reason_mix_over_time.png` | Monthly 100% stacked area of release reasons with administration lines |
+| `release_avg_days_per_arrest.png` | Mean days: detained only vs. per arrest incl. never-detained |
 | `release_still_detained.png` | Open-stay cohort: time in, criminality, country |
 
 ---

@@ -258,6 +258,43 @@ ax.legend()
 plt.tight_layout()
 savefig("release_funnel_stages.png")
 
+# ---------------------------------------------------------------------------
+# Section 1b — Average detention length per ARREST (never-detained counted as 0 days)
+# ---------------------------------------------------------------------------
+print("\n=== Section 1b: Average days in detention per arrest (never detained = 0) ===")
+j_days = (joined["book_out"] - joined["book_in"]).dt.total_seconds() / 86400
+closed = joined["has_detention"] & j_days.between(0, MAX_PLAUSIBLE_DAYS)
+never = ~joined["has_detention"]
+print(f"  Population: closed stays (0-{MAX_PLAUSIBLE_DAYS}d) + never-detained arrests; "
+      f"detained arrests with no book-out (still open) are EXCLUDED (unknown length).")
+rows = []
+for label, m in [("All", pd.Series(True, index=joined.index)),
+                 ("Biden", joined["admin"] == "Biden"),
+                 ("Trump 2nd", joined["admin"] == "Trump 2nd")]:
+    d_closed = j_days[m & closed]
+    pool = np.concatenate([d_closed.values, np.zeros(int((m & never).sum()))])
+    rows.append({"group": label, "arrests": int(m.sum()),
+                 "never_detained": int((m & never).sum()),
+                 "open_excluded": int((m & joined["has_detention"] & ~closed).sum()),
+                 "mean_detained_only": round(d_closed.mean(), 1),
+                 "median_detained_only": round(d_closed.median(), 1),
+                 "mean_incl_never_detained": round(pool.mean(), 1),
+                 "median_incl_never_detained": round(float(np.median(pool)), 1)})
+avg_arrest = pd.DataFrame(rows).set_index("group")
+print(avg_arrest.to_string())
+
+fig, ax = plt.subplots(figsize=(9, 5))
+x = np.arange(len(avg_arrest))
+ax.bar(x - 0.2, avg_arrest["mean_detained_only"], 0.4, label="Detained only", color="steelblue")
+ax.bar(x + 0.2, avg_arrest["mean_incl_never_detained"], 0.4,
+       label="Incl. never-detained (0 days)", color="firebrick")
+ax.set_xticks(x)
+ax.set_xticklabels(avg_arrest.index)
+ax.set(ylabel="Mean days", title="Mean detention length: detained only vs. per arrest")
+ax.legend()
+plt.tight_layout()
+savefig("release_avg_days_per_arrest.png")
+
 del joined, det, rr
 
 # ===========================================================================
