@@ -2,14 +2,18 @@
 Analysis #5 — "Who Gets Out?"  Release & Bond Equity Analysis
 ICE detention data (Deportation Data Project), extracted 7/24/2026.
 
-Run from the repo root:  python notebooks/analysis_05_release_outcomes.py
-Figures are saved to notebooks/figures/
+Run from the repo root:
+    python notebooks/analysis_05_release_outcomes.py            # 7/24/2026 CSV extract
+    python notebooks/analysis_05_release_outcomes.py updated    # newer parquet data in data_updated/
+                                                                # (fetch with notebooks/fetch_latest_data.py)
+Figures are saved to notebooks/figures/ (or notebooks/figures_updated/ for "updated").
 
 Memory-safe: every CSV is read in chunks with a column subset; only the
 reduced frame is kept in memory. All results are descriptive (no causal claims).
 """
 
 import os
+import sys
 import matplotlib
 matplotlib.use("Agg")  # headless — no display needed
 
@@ -19,13 +23,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.set_theme(style="whitegrid")
-FIGURES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "figures")
+HERE = os.path.dirname(os.path.abspath(__file__))
+UPDATED = len(sys.argv) > 1 and sys.argv[1] == "updated"
+FIGURES = os.path.join(HERE, "figures_updated" if UPDATED else "figures")
 os.makedirs(FIGURES, exist_ok=True)
 
 # ---------------------------------------------------------------------------
 # Constants / analysis parameters
 # ---------------------------------------------------------------------------
-EXTRACT_DATE = pd.Timestamp("2026-07-24")     # data extraction date
+EXTRACT_DATE = pd.Timestamp("2026-07-24")     # data extraction date (re-derived for "updated")
 BIDEN_START = pd.Timestamp("2021-01-20")      # administration boundaries
 TRUMP2_START = pd.Timestamp("2025-01-20")
 MAX_PLAUSIBLE_DAYS = 1825                     # released stays: keep 0..5 years
@@ -33,9 +39,13 @@ SMALL_N = 50                                  # groups below this are "unreliabl
 CHUNKSIZE = 500_000
 ENC = "latin-1"
 
-JOINED = "joined-arrests-detention-stays-latest 7-24-2026.csv"
-STAYS = ["detention-stays (sheet 1) 7-24-2026.csv",
-         "detention-stays (sheet 2) 7-24-2026.csv"]
+if UPDATED:
+    JOINED = os.path.join(HERE, "..", "data_updated", "joined-arrests-detention-stays-latest.parquet")
+    STAYS = [os.path.join(HERE, "..", "data_updated", "detention-stays-latest.parquet")]
+else:
+    JOINED = "joined-arrests-detention-stays-latest 7-24-2026.csv"
+    STAYS = ["detention-stays (sheet 1) 7-24-2026.csv",
+             "detention-stays (sheet 2) 7-24-2026.csv"]
 
 
 def savefig(name):
@@ -74,23 +84,29 @@ def read_subset(path, wanted, date_cols=()):
     Text columns become categoricals to keep memory low.
     Returns a DataFrame with canonical column names.
     """
-    header = pd.read_csv(path, nrows=0, encoding=ENC)
-    header.columns = [c.strip().lower().replace(" ", "_") for c in header.columns]
+    is_parquet = path.endswith(".parquet")
+    if is_parquet:
+        import pyarrow.parquet as pq
+        pf = pq.ParquetFile(path)
+        raw_header = pf.schema_arrow.names
+    else:
+        raw_header = pd.read_csv(path, nrows=0, encoding=ENC).columns
+    raw_names = {raw.strip().lower().replace(" ", "_"): raw for raw in raw_header}
     mapping = {}
     for canon, cands in wanted.items():
-        col = find_col(header, *cands)
+        col = next((c for c in cands if c in raw_names), None)
         if col is not None:
             mapping[canon] = col
-    raw_names = {}
-    raw_header = pd.read_csv(path, nrows=0, encoding=ENC).columns
-    for raw in raw_header:
-        raw_names[raw.strip().lower().replace(" ", "_")] = raw
     usecols = [raw_names[v] for v in mapping.values()]
     inv = {raw_names[v]: k for k, v in mapping.items()}
 
+    if is_parquet:
+        chunks = (b.to_pandas() for b in pf.iter_batches(batch_size=CHUNKSIZE, columns=usecols))
+    else:
+        chunks = pd.read_csv(path, usecols=usecols, chunksize=CHUNKSIZE,
+                             encoding=ENC, low_memory=False)
     parts = []
-    for chunk in pd.read_csv(path, usecols=usecols, chunksize=CHUNKSIZE,
-                             encoding=ENC, low_memory=False):
+    for chunk in chunks:
         chunk = chunk.rename(columns=inv)
         for c in date_cols:
             if c in chunk.columns:
@@ -160,6 +176,9 @@ joined = read_subset(JOINED, {
     "release_reason": ["stay_release_reason", "detention_release_reason"],
 }, date_cols=("apprehension_date", "book_in", "book_out"))
 print(f"  Shape: {joined.shape}")
+if UPDATED:
+    EXTRACT_DATE = max(joined["book_in"].max(), joined["book_out"].max()).normalize()
+    print(f"  Updated data: using latest recorded book-in/out date as 'extract' date: {EXTRACT_DATE:%Y-%m-%d}")
 if "dup" in joined.columns:
     n_dup = int((joined["dup"].astype(str).str.lower() == "true").sum())
     joined = joined[joined["dup"].astype(str).str.lower() != "true"]
@@ -334,8 +353,9 @@ for i, d in enumerate(sheets, 1):
         "n_countries": d["country"].nunique(),
     })
 print(pd.DataFrame(cmp_rows).to_string(index=False))
-overlap = len(set(sheets[0]["stay_id"].astype(str)) & set(sheets[1]["stay_id"].astype(str)))
-print(f"  stay_ID overlap between sheets: {overlap:,}")
+if len(sheets) > 1:
+    overlap = len(set(sheets[0]["stay_id"].astype(str)) & set(sheets[1]["stay_id"].astype(str)))
+    print(f"  stay_ID overlap between sheets: {overlap:,}")
 print("  Top 3 states (facility, longest): " + "; ".join(
     f"sheet {i}: {d['state'].astype(object).value_counts().head(3).to_dict()}"
     for i, d in enumerate(sheets, 1)))
