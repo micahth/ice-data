@@ -27,7 +27,7 @@
 
 ## Key Findings
 
-### 1. Arrests nearly doubled from Biden to Trump 2nd
+### 1. Arrests more than doubled from Biden to Trump 2nd
 Monthly arrests went from **11,361 under Biden** to **24,710 under Trump 2nd** —
 a 118% increase. This is the single largest measurable shift between administrations
 in this dataset.
