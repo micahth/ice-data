@@ -72,5 +72,6 @@ pip install -r notebooks/requirements.txt
 python notebooks/05_geo_detention_analysis.py   # division tables
 python notebooks/06_geo_regressions.py          # correlations, regressions
 python notebooks/07_facility_changes.py         # facility change list
+python notebooks/08_figures.py                  # figures
 ```
 External data are downloaded to `notebooks/.cache` (override with `GEO_CACHE`). Outputs are in `notebooks/results/`.
