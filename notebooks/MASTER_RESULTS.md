@@ -36,6 +36,17 @@ Data: `detention-stints` (ICE book-in/out records, Oct 2022 → **2026-03-11**, 
 4. Detention is not robustly associated with unemployment or property crime. GDP and violent-crime associations are unstable and change sign between eras.
 5. 111 facility codes were first used after 1/20/2025; 13 stopped booking.
 
+## Figures
+
+| | |
+|---|---|
+| ![Region](figures/fig1_region_per_capita.png) | ![Area type](figures/fig2_area_type_per_capita.png) |
+| ![Operator](figures/fig3_operator_adp.png) | ![Top states](figures/fig4_top_states.png) |
+
+![2025 detention rate vs outcomes](figures/fig5_scatter_2025.png)
+
+In 2025 all four state-level correlations are near zero (GDP r=−0.12, unemployment −0.11, violent crime −0.04, property crime −0.08). Louisiana (≈162 per 100k) is a far outlier and sets the slope visually; no pattern appears among the other states.
+
 ## Methods
 
 - **ADP:** overlapped bed-days ÷ window days from stints (duplicates dropped). Open stints are censored at the cutoff if booked since 2025 or at `stay_book_out` when present; 1,049 older open stints are excluded.
