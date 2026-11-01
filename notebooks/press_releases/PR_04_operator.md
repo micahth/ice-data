@@ -2,7 +2,7 @@
 
 Average daily population by operator class (classification by name/code rules; ICE publishes no operator field).
 
-| Operator | Old ADP | New ADP | Change | Median stay Old → New (d) |
+| Operator | Old ADP | New ADP | Change | Median completed facility stint Old → New (d) |
 |---|---:|---:|---:|---:|
 | GEO Group | 12,300 | 18,438 | +50% | 24.0 → 15.6 |
 | CoreCivic | 9,100 | 12,173 | +34% | 23.2 → 17.6 |
@@ -16,3 +16,4 @@ Share of new ADP by region: West: CoreCivic 38%, GEO 39%. Midwest: local/state 7
 Facility counts: local/state 399, ICE 204, federal 36, GEO 24, CoreCivic 23, other private 12, unclassified 9.
 
 **Caveat:** operator labels are my approximations (e.g., Florida soft-sided sites as state-run). Verify before attributing to a company.
+Duration is measured per completed stint at the facility, not per person's full detention stay; ongoing stints are excluded.

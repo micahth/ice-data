@@ -26,11 +26,11 @@ Data: `detention-stints` (ICE book-in/out records, Oct 2022 → **2026-03-11**, 
 | South / West / Northeast / Midwest per 100k | 17.3 / 9.5 / 4.1 / 1.2 | 25.9 / 15.1 / 8.0 / 5.1 |
 | Metro / micro / rural per 100k | 6.2 / 20.0 / 54.9 | 10.9 / 30.6 / 78.4 |
 | GEO / CoreCivic / other private / local-state / ICE / federal ADP | 12.3k / 9.1k / 6.6k / 2.2k / 3.4k / 22 | 18.4k / 12.2k / 9.4k / 7.8k / 6.3k / 971 |
-| Median stay (days) | 6.9 | 1.8 (censored) |
+| Median completed facility stint (days) | 6.9 | 1.8 |
 
 ## Key findings
 
-1. Per-capita detention rose in every region, state-group and area type. The Midwest grew fastest (+318%), the South remains highest.
+1. Facility-located ADP per resident rose in every region, state group and area type. The Midwest grew fastest (+318%), the South remains highest; this is not the detention rate of local residents.
 2. Rural and micropolitan facilities carry 3–7× the per-resident rate of metros.
 3. GEO and CoreCivic hold 56% of ADP; local/state sites grew fastest (3.5×).
 4. Detention is not robustly associated with unemployment or property crime. GDP and violent-crime associations are unstable and change sign between eras.
@@ -62,7 +62,7 @@ In 2025 all four state-level correlations are near zero (GDP r=−0.12, unemploy
 - Outcomes exist only at state level, so metro/micro analysis maps detention in those facilities onto state residents.
 - Crime for 2025 uses a sample-based index, not FBI data; 2026 crime unavailable.
 - About 50 states per year; correlational only; many comparisons tested.
-- The 2026 window is partial; median stay is biased short.
+- Duration is measured per completed facility stint, not per full detention stay; ongoing stints are excluded. The partial 2026 window and this selection can make the observed median look shorter.
 - Facility rate reflects detainees from elsewhere, not local residents.
 
 ## Reproduce
