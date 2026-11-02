@@ -14,7 +14,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.set_theme(style="whitegrid")
-FIGURES = os.path.join(os.path.dirname(__file__), "figures")
+HERE = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.dirname(HERE)
+FIGURES = os.path.join(HERE, "figures")
 os.makedirs(FIGURES, exist_ok=True)
 
 def savefig(name):
@@ -40,7 +42,7 @@ def parse_date(series):
 # Load detention stays (sheet 1)
 # ---------------------------------------------------------------------------
 print("\n=== Loading detention stays (sheet 1) ===")
-df = pd.read_csv("detention-stays (sheet 1) 7-24-2026.csv", low_memory=False, encoding="latin-1")
+df = pd.read_csv(os.path.join(DATA_DIR, "detention-stays (sheet 1) 7-24-2026.csv"), low_memory=False, encoding="latin-1")
 df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
 print(f"  Shape: {df.shape}")
 
@@ -169,7 +171,7 @@ if col_facility:
 # ---------------------------------------------------------------------------
 print("\n=== Section 7: Monthly Arrests ===")
 try:
-    arr = pd.read_csv("arrests-latest 7-24-2026.csv", low_memory=False, encoding="latin-1")
+    arr = pd.read_csv(os.path.join(DATA_DIR, "arrests-latest 7-24-2026.csv"), low_memory=False, encoding="latin-1")
     arr.columns = [c.strip().lower().replace(" ", "_") for c in arr.columns]
     col_date = find_col(arr, "apprehension_date", "arrest_date", "apprehension_date_time")
     if col_date:
