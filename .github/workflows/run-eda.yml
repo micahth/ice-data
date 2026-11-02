@@ -1,0 +1,45 @@
+name: Run EDA Script
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'notebooks/eda.py'
+      - 'notebooks/requirements.txt'
+      - '.github/workflows/run-eda-notebook.yml'
+      - 'arrests-latest 7-24-2026.csv'
+      - 'detention-stays (sheet 1) 7-24-2026.csv'
+  workflow_dispatch:   # Adds the manual trigger in the Actions tab.
+
+jobs:
+  run-eda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true        # pulls all Git LFS files automatically
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+
+      - name: Install dependencies
+        run: pip install -r notebooks/requirements.txt
+
+      - name: Run EDA
+        run: python notebooks/eda.py
+        env:
+          MPLBACKEND: Agg   # headless matplotlib (no display needed)
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: eda-results
+          path: notebooks/figures/
+          if-no-files-found: error
+          retention-days: 30

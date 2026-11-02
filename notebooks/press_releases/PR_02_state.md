@@ -1,6 +1,8 @@
-# PRESS RELEASE 2 — Louisiana detains 163 per 100,000 residents; Florida and California roughly doubled or tripled
+# PRESS RELEASE 2 — ICE facilities in Louisiana average 163 detainees per 100,000 state residents; Florida and California roughly doubled or tripled
 
 ADP per 100k residents, Old (2023–24) vs New (2025–Mar 2026):
+
+These are facility-location rates using each state's population as the denominator, not the share of state residents who are detained.
 
 | State | Old | New | 2026 YTD |
 |---|---:|---:|---:|

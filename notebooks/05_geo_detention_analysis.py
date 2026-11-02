@@ -78,7 +78,7 @@ open_recent = end.isna() & (st.book_in_date_time >= "2025-01-01")
 end = end.mask(open_recent, CUTOFF + pd.Timedelta(days=1))
 st["start"] = st.book_in_date_time
 st["end"] = end
-st["los_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
+st["stint_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
     st.book_out_date_time >= st.book_in_date_time)
 st["crim"] = st.book_in_criminality.str[0].map({"1": "convicted", "2": "pending", "3": "no_record"})
 print("excluded from ADP (open, pre-2025):", int(st.end.isna().sum()))
@@ -96,8 +96,8 @@ def window_stats(df, keys, label, w0, w1):
     out = pd.DataFrame({
         "book_ins": g.size(),
         "unique_people": g.unique_identifier.nunique(),
-        "mean_los_days": g.los_days.mean(),
-        "median_los_days": g.los_days.median(),
+        "mean_stint_days": g.stint_days.mean(),
+        "median_stint_days": g.stint_days.median(),
         "pct_convicted": g.crim.apply(lambda s: (s == "convicted").mean() * 100),
         "pct_pending_charges": g.crim.apply(lambda s: (s == "pending").mean() * 100),
         "pct_no_record": g.crim.apply(lambda s: (s == "no_record").mean() * 100),
@@ -187,6 +187,6 @@ def show(name, cols, by, per=ERAS):
 show("by_region", ["adp", "adp_per_100k"], "region")
 show("by_cbsa_class", ["adp", "adp_per_100k"], "cbsa_class")
 show("by_operator", ["adp", "book_ins_annualized"], "operator")
-print(tables["overall"][["period", "book_ins", "unique_people", "adp", "median_los_days", "mean_los_days"]].round(1))
+print(tables["overall"][["period", "book_ins", "unique_people", "adp", "median_stint_days", "mean_stint_days"]].round(1))
 print(fac.operator.value_counts())
 print(fac.cbsa_class.value_counts())
