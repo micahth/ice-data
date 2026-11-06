@@ -6,6 +6,27 @@ Reviewed every Markdown document and `codebook.txt`, plus the analysis scripts, 
 
 The numerical findings below are interesting claims reported by the project documents; they could not be independently recalculated in this checkout because the CSV inputs and result tables are Git LFS pointers rather than hydrated files.
 
+## Arrest-location analysis (`notebooks/09_arrest_locations.py`, PR 10)
+
+Run on the hydrated `arrests-latest 7-24-2026.csv` (705,286 rows after dropping `duplicate_drop_row`). Old = 2023–2024 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Outputs: `notebooks/results/arrests_by_{state,aor,landmark}.csv`; press release `notebooks/press_releases/PR_10_arrest_locations.md`.
+
+- Daily arrests rose from ~359 to ~909 (+153%); monthly arrests peaked at 39,829 in Dec 2025.
+- Texas holds 25.7% of new-era arrests (+138% per day). Fastest-growing states: Virginia +413%, Georgia +332%, Pennsylvania/Maryland +260%, Florida +245%. New York (+64%) and New Jersey (+61%) lagged.
+- By AOR, San Diego grew +961% (2.4 → 25.4/day), Washington +422%, El Paso +364%. Miami is now the largest AOR.
+- Share of arrestees with a criminal conviction fell from 43.0% to 33.1%, while pending-charge cases rose from 17.4% to 29.0%.
+- Data-quality notes: the file contains one stray 2026-09-17 record and one partial-day 2026-03-11 record (both excluded); data effectively end 2026-03-10, so March 2026 is partial. February 2026 (29,661) is below January (37,612), which could reflect incomplete recent data. Many landmarks are non-specific "general area" codes. Location is arrest location, not residence; findings are descriptive only.
+- The existing `notebooks/eda.py` was also run (figures written to `notebooks/figures/`); its field-office section produced no output because the detention-stays sheet has no AOR column, and its arrests section only plots monthly totals.
+
+## Arrest-rate regressions (`notebooks/10_arrest_regressions.py`, PR 11)
+
+State × year panel (2023–2025, 50 states), arrests per 100k by apprehension state against changes in real GDP, unemployment and violent/property crime (RTCI, FBI check). Same controls, year fixed effects and state-clustered SEs as `06_geo_regressions.py`, plus Benjamini–Hochberg q-values.
+
+- Mean state arrest rate: 37.5 (2023), 26.7 (2024), 73.1 (2025) per 100k.
+- 7 of 48 regression coefficients and 7 of 100 correlations were nominally significant (p<.05), roughly chance level. No regression coefficient has q<.10; one correlation does (old-era arrest rate vs GDP growth, r = 0.27), and it disappears with controls.
+- Old-era controlled models show opposite-signed nominal crime associations (violent +1.1, p = 0.03; property −1.0, p = 0.05, per +10 arrests/100k). Neither replicates in 2025 or in FBI-based checks.
+- No evidence of an association with GDP growth or unemployment change. Crime fell almost everywhere in 2025, so there is little differential variation to explain.
+- Limits: tiny samples (one year in the new era), arrest location rather than residence, concentration in a few states, and the FBI check omits the lagged-outcome control. Exploratory only; not causal.
+
 ## Interesting findings reported by the analysis
 
 - The reported national average daily population rises from about 33.6k in 2023–24 to 55.1k in 2025–March 2026; the reported rate rises from about 9.9 to 16.1 per 100,000 residents.
