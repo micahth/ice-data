@@ -7,6 +7,7 @@ Unit of analysis: state x year (50 states + DC).  Old era = 2023 and 2024, new e
 Outcomes (year-over-year change): real GDP growth (BEA), unemployment-rate change (BLS LAUS, annual avg),
 violent-crime and property-crime ("nonviolent") rate change (Real-Time Crime Index state sample; FBI as a check).
 Key regressor: detention ADP per 100,000 residents of the state in year t (scaled per +10).
+Added control: lagged change in youth share (ages 15-29) of state population.
 """
 import json
 import os
@@ -76,6 +77,22 @@ cls = cls[["state", "year", "det_metro", "det_micro", "det_rural"]]
 cp = load_county_pop()
 st_pop = cp.groupby(["state", "year"])["pop"].sum().unstack()
 fips_state = cp.assign(f2=cp.fips.str[:2]).drop_duplicates("f2").set_index("f2").state
+state_by_fips_num = {int(k): v for k, v in fips_state.items() if str(k).isdigit()}
+
+# Youth share (ages 15-29) by state/year from Census state agesex civilian file.
+# Expects file in notebooks/.cache/; user can drop it there when census.gov is unavailable.
+youth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", "sc-est2024-agesex-civ.csv")
+youth_raw = pd.read_csv(youth_path)
+youth_raw = youth_raw[(youth_raw["SUMLEV"] == 40) & (youth_raw["SEX"] == 0) & (youth_raw["STATE"] > 0)].copy()
+youth_raw["state"] = youth_raw["STATE"].map(state_by_fips_num)
+years_age = [2020, 2021, 2022, 2023, 2024]
+youth_long = youth_raw.melt(id_vars=["state", "AGE"], value_vars=[f"POPEST{y}_CIV" for y in years_age],
+                            var_name="year_col", value_name="pop")
+youth_long["year"] = youth_long.year_col.str.extract(r"POPEST(\d{4})_CIV").astype(int)
+tot = youth_long[youth_long.AGE == 999].set_index(["state", "year"])["pop"]
+young = youth_long[youth_long.AGE.between(15, 29)].groupby(["state", "year"])["pop"].sum()
+youth_share = (young / tot * 100).unstack()             # percent of state population ages 15-29
+youth_d_share = youth_share.diff(axis=1)                # year-over-year pp change
 
 # GDP (real, chained 2017 $)
 g = pd.read_csv(fetch("gdp.csv"), encoding="latin-1")
@@ -177,6 +194,9 @@ for s in sorted(set(det.state) & set(st_pop.index)):
         r["ln_pop"] = np.log(st_pop.loc[s, y])
         r["pop_growth"] = (st_pop.loc[s, y] / st_pop.loc[s, y - 1] - 1) * 100
         r["ln_density"] = np.log(st_pop.loc[s, y] / land[s]) if s in land.index else np.nan
+        # Use lagged youth-share level/change so 2025 rows can still use observed 2024 data.
+        r["lag_youth15_29_pct"] = youth_share.loc[s, y - 1] if s in youth_share.index and (y - 1) in youth_share.columns else np.nan
+        r["lag_d_youth15_29_pp"] = youth_d_share.loc[s, y - 1] if s in youth_d_share.index and (y - 1) in youth_d_share.columns else np.nan
         recs.append(r)
 panel = pd.DataFrame(recs)
 panel = panel.merge(det, on=["state", "year"], how="left").merge(op, on=["state", "year"], how="left") \
@@ -243,7 +263,7 @@ corr.round(4).to_csv(os.path.join(RESULTS, "correlations.csv"), index=False)
 # 6. Multivariable regressions (OLS, year fixed effects, state-clustered SEs)
 # ---------------------------------------------------------------------------
 LAG = {"d_gdp": "lag_gdp_pc", "d_unemp": "lag_unemp", "d_violent": "lag_violent", "d_property": "lag_property"}
-CONTROLS = "ln_pop + ln_density + pop_growth + ln_income + pct_bach + pct_hisp + med_age + gop24"
+CONTROLS = "ln_pop + ln_density + pop_growth + ln_income + pct_bach + pct_hisp + med_age + gop24 + lag_d_youth15_29_pp"
 
 
 def fit(formula, d):

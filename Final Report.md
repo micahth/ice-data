@@ -1,31 +1,32 @@
 # Final Report
 
-## Review scope and overall assessment
+## Executive findings (centerpiece)
 
-Reviewed every Markdown document and `codebook.txt`, plus the analysis scripts, generated-result references, and GitHub Actions workflow. The press releases are generally readable and do a good job labeling descriptive analyses and flagging several important limitations. The main concerns are reproducibility, a duration measure described as a full detention stay when it is actually a facility stint, and a workflow configured for a notebook that is not in this repository.
+The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Arrest pace rose sharply, but multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
 
-The numerical findings below are interesting claims reported by the project documents; they could not be independently recalculated in this checkout because the CSV inputs and result tables are Git LFS pointers rather than hydrated files.
+## 1) Arrest-location findings (`notebooks/09_arrest_locations.py`, PR 10)
 
-## Arrest-location analysis (`notebooks/09_arrest_locations.py`, PR 10)
-
-Run on the hydrated `arrests-latest 7-24-2026.csv` (705,286 rows after dropping `duplicate_drop_row`). Old = 2023–2024 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Outputs: `notebooks/results/arrests_by_{state,aor,landmark}.csv`; press release `notebooks/press_releases/PR_10_arrest_locations.md`.
+Run on hydrated `arrests-latest 7-24-2026.csv` (705,286 rows after dropping `duplicate_drop_row`). Old = 2023–2024 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Outputs: `notebooks/results/arrests_by_{state,aor,landmark}.csv`.
 
 - Daily arrests rose from ~359 to ~909 (+153%); monthly arrests peaked at 39,829 in Dec 2025.
 - Texas holds 25.7% of new-era arrests (+138% per day). Fastest-growing states: Virginia +413%, Georgia +332%, Pennsylvania/Maryland +260%, Florida +245%. New York (+64%) and New Jersey (+61%) lagged.
 - By AOR, San Diego grew +961% (2.4 → 25.4/day), Washington +422%, El Paso +364%. Miami is now the largest AOR.
 - Share of arrestees with a criminal conviction fell from 43.0% to 33.1%, while pending-charge cases rose from 17.4% to 29.0%.
-- Data-quality notes: the file contains one stray 2026-09-17 record and one partial-day 2026-03-11 record (both excluded); data effectively end 2026-03-10, so March 2026 is partial. February 2026 (29,661) is below January (37,612), which could reflect incomplete recent data. Many landmarks are non-specific "general area" codes. Location is arrest location, not residence; findings are descriptive only.
-- The existing `notebooks/eda.py` was also run (figures written to `notebooks/figures/`); its field-office section produced no output because the detention-stays sheet has no AOR column, and its arrests section only plots monthly totals.
+- Data quality: one stray 2026-09-17 record and one partial-day 2026-03-11 record were excluded; data effectively end 2026-03-10. Landmark fields often use non-specific "general area" labels.
 
-## Arrest-rate regressions (`notebooks/10_arrest_regressions.py`, PR 11)
+## 2) Arrest-rate regressions with youth-rate-change control (`notebooks/10_arrest_regressions.py`, PR 11)
 
-State × year panel (2023–2025, 50 states), arrests per 100k by apprehension state against changes in real GDP, unemployment and violent/property crime (RTCI, FBI check). Same controls, year fixed effects and state-clustered SEs as `06_geo_regressions.py`, plus Benjamini–Hochberg q-values.
+State × year panel (2023–2025, 50 states), arrests per 100k by apprehension state against changes in real GDP, unemployment and violent/property crime (RTCI, FBI check). Controls include population/density/income/education/demographics/politics, lagged outcomes, and **lagged change in youth share (ages 15–29)** from Census `sc-est2024-agesex-civ.csv`. Year fixed effects and state-clustered SEs; Benjamini–Hochberg q-values.
 
 - Mean state arrest rate: 37.5 (2023), 26.7 (2024), 73.1 (2025) per 100k.
-- 7 of 48 regression coefficients and 7 of 100 correlations were nominally significant (p<.05), roughly chance level. No regression coefficient has q<.10; one correlation does (old-era arrest rate vs GDP growth, r = 0.27), and it disappears with controls.
-- Old-era controlled models show opposite-signed nominal crime associations (violent +1.1, p = 0.03; property −1.0, p = 0.05, per +10 arrests/100k). Neither replicates in 2025 or in FBI-based checks.
-- No evidence of an association with GDP growth or unemployment change. Crime fell almost everywhere in 2025, so there is little differential variation to explain.
-- Limits: tiny samples (one year in the new era), arrest location rather than residence, concentration in a few states, and the FBI check omits the lagged-outcome control. Exploratory only; not causal.
+- 6 of 48 arrest-rate coefficients and 7 of 100 correlations are nominally significant (p<.05), near chance-level screening rates.
+- **No arrest-rate coefficient survives multiple-testing correction** (q<.10). One correlation survives (old-era GDP), but it disappears in controlled models.
+- Old-era controlled models still show opposite-signed nominal crime coefficients (violent +1.1, p = 0.03; property −1.1, p = 0.06, per +10 arrests/100k), but these do not replicate in 2025 or the FBI check.
+- Bottom line: this is evidence of **no robust detectable association in this dataset**, not proof of zero effect.
+
+## 3) Detention-rate regressions rerun with the same youth control (`notebooks/06_geo_regressions.py`)
+
+The detention regressions were rerun after adding the same lagged youth-share-change control. Substantive interpretation is unchanged: most associations are weak/unstable and should be treated as exploratory, not causal.
 
 ## Interesting findings reported by the analysis
 
@@ -49,8 +50,8 @@ State × year panel (2023–2025, 50 states), arrests per 100k by apprehension s
 
 ## Validation performed
 
-- Python syntax compilation passed for the notebooks scripts after the code changes. The updated GitHub Actions YAML parses, and `git diff --check` passes.
-- A data-range and output-schema audit was attempted but could not read the CSVs: tracked data and result CSVs are Git LFS pointer files in this checkout. For example, the detention-stints sheet 1 pointer declares an 821,880,386-byte object. The source-dependent analyses, figure regeneration, and numerical consistency checks therefore could not be run here.
+- Hydrated the required LFS inputs (`arrests-latest` and `detention-stints` sheets), reran `05_geo_detention_analysis.py`, `06_geo_regressions.py`, and `10_arrest_regressions.py`, and updated output CSVs.
+- Added Census state age data (`sc-est2024-agesex-civ.csv`) to `notebooks/.cache/` and verified youth-share controls are present in `state_year_panel.csv`.
 - The repository contains no automated test suite. Recommended data-dependent checks are listed below.
 
 ## Recommended tests before publication
