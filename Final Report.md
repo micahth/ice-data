@@ -20,7 +20,7 @@ State × year panel (2023–2025, 50 states), arrests per 100k by apprehension s
 
 - Mean state arrest rate: 37.5 (2023), 26.7 (2024), 73.1 (2025) per 100k.
 - 6 of 48 arrest-rate coefficients and 7 of 100 correlations are nominally significant (p<.05), near chance-level screening rates.
-- **No arrest-rate coefficient survives multiple-testing correction** (q<.10). One correlation survives (old-era GDP), but it disappears in controlled models.
+- **No arrest-rate coefficient survives multiple-testing correction** (q<.10). One exploratory correlation survives: old-era arrest rate versus GDP growth in the South (r = 0.57, n = 32, q = 0.061); it is not adjusted for covariates.
 - Old-era controlled models still show opposite-signed nominal crime coefficients (violent +1.1, p = 0.03; property −1.1, p = 0.06, per +10 arrests/100k), but these do not replicate in 2025 or the FBI check.
 - Bottom line: this is evidence of **no robust detectable association in this dataset**, not proof of zero effect.
 
@@ -73,3 +73,33 @@ The detention regressions were rerun after adding the same lagged youth-share-ch
 - Separate source data, derived results, and presentation assets clearly; describe which outputs are generated and avoid making stale generated CSVs appear authoritative.
 - Add citations beside sensitive or news-based facility claims, and provide a methods note on the inferred operator labels, small-area denominators, censoring/selection, and limits of causal inference.
 - Keep reports concise and consolidated: use `MASTER_RESULTS.md` as the technical index and link the press releases from it; identify the codebook as third-party documentation rather than project-authored analysis.
+
+## References
+
+AH Datalytics. (n.d.). *Real-Time Crime Index: Reported crime trends, January 2017–June 2026* [Data set]. GitHub. https://github.com/AH-Datalytics/rtci/blob/main/data/Crime_Index_Reported_Crime_Trends_Jan17_Jun26.csv
+
+Blair, G., Hausman, D., & Neff, P. (2025). *Immigration and Customs Enforcement individual-level data: An introduction* [Preprint]. https://deportationdata.org/docs/ice/ice-data-preprint.pdf
+
+Deportation Data Project. (n.d.-a). *ICE administrative arrests* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
+
+Deportation Data Project. (n.d.-b). *ICE detention facilities: Facility locations and attributes* [Data sets]. https://github.com/deportationdata/ice-detention-facilities
+
+Deportation Data Project. (n.d.-c). *ICE detention stints* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
+
+GreatTombProductions. (n.d.). *County population trends: 2020–2025 Census population estimates* [Data set]. GitHub. https://github.com/GreatTombProductions/county-population
+
+MIT Election Data and Science Lab. (n.d.). *County presidential election returns* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/countypres_2000-2024.csv
+
+Office of Management and Budget. (2023). *2023 delineation of metropolitan and micropolitan statistical areas* [Data set; file hosted by Jennifer Peebles]. https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/HEAD/data/raw/list1_2023.xlsx
+
+U.S. Bureau of Economic Analysis. (n.d.). *SAGDP1: Real GDP by state* [Data set; file hosted by njl250]. GitHub. https://github.com/njl250/JoE-Spring-2026/blob/main/SAGDP1_ALL_AREAS_1997_2025.csv
+
+U.S. Bureau of Labor Statistics. (n.d.). *Local Area Unemployment Statistics: State unemployment rates* [Data sets; files hosted by kmazurek95 and dathere]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/bls_laus_states.json ; https://github.com/dathere/bls-laus-stats/blob/HEAD/output/stateUnemployment.csv
+
+U.S. Census Bureau. (n.d.-a). *2024 county gazetteer* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/gazetteer_counties.txt
+
+U.S. Census Bureau. (n.d.-b). *American Community Survey, 2019–2023 five-year estimates: County demographics* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/acs_demographics.csv
+
+U.S. Census Bureau. (n.d.-c). *Annual estimates of the civilian population by single year of age and sex for states: 2020–2024* [Data set]. https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/asrh/sc-est2024-agesex-civ.csv
+
+U.S. Federal Bureau of Investigation. (n.d.). *State crime rates* [Data set; file hosted by CatalinaBedoya1]. GitHub. https://github.com/CatalinaBedoya1/PlotlyDashboard/blob/main/FinalProject/data/fbi_state_crime-2010-2024.csv
