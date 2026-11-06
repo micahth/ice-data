@@ -79,9 +79,8 @@ st_pop = cp.groupby(["state", "year"])["pop"].sum().unstack()
 fips_state = cp.assign(f2=cp.fips.str[:2]).drop_duplicates("f2").set_index("f2").state
 state_by_fips_num = {int(k): v for k, v in fips_state.items() if str(k).isdigit()}
 
-# Youth share (ages 15-29) by state/year from Census state agesex civilian file.
-# Expects file in notebooks/.cache/; user can drop it there when census.gov is unavailable.
-youth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache", "sc-est2024-agesex-civ.csv")
+# Youth share (ages 15-29) by state/year from the Census state agesex civilian file.
+youth_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "sc-est2024-agesex-civ.csv")
 youth_raw = pd.read_csv(youth_path)
 youth_raw = youth_raw[(youth_raw["SUMLEV"] == 40) & (youth_raw["SEX"] == 0) & (youth_raw["STATE"] > 0)].copy()
 youth_raw["state"] = youth_raw["STATE"].map(state_by_fips_num)

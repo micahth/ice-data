@@ -51,7 +51,7 @@ The detention regressions were rerun after adding the same lagged youth-share-ch
 ## Validation performed
 
 - Hydrated the required LFS inputs (`arrests-latest` and `detention-stints` sheets), reran `05_geo_detention_analysis.py`, `06_geo_regressions.py`, and `10_arrest_regressions.py`, and updated output CSVs.
-- Added Census state age data (`sc-est2024-agesex-civ.csv`) to `notebooks/.cache/` and verified youth-share controls are present in `state_year_panel.csv`.
+- Added Census state age data (`sc-est2024-agesex-civ.csv`) to `notebooks/data/` and verified youth-share controls are present in `state_year_panel.csv`. The Census source is the [2024 state civilian population estimates by age and sex](https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/asrh/sc-est2024-agesex-civ.csv).
 - The repository contains no automated test suite. Recommended data-dependent checks are listed below.
 
 ## Recommended tests before publication
