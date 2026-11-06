@@ -11,3 +11,9 @@
 - **Who is arrested changed:** share with a criminal conviction fell from 43.0% to 33.1%; share with pending criminal charges rose from 17.4% to 29.0%; "other immigration violators" were about flat (39.7% → 37.9%).
 
 **Caveats:** Counts are arrests by recorded apprehension location, not residence. Many site entries are non-specific "general area" codes. The file contains one record dated 2026-03-11 and one stray 2026-09-17 record; both are excluded as the data effectively end 2026-03-10. March 2026 is a 10-day partial month, and February 2026 (29,661) is lower than January (37,612), which may reflect incomplete recent data or a real slowdown and should not be over-read. All changes are descriptive, not causal.
+
+## References
+
+Blair, G., Hausman, D., & Neff, P. (2025). *Immigration and Customs Enforcement individual-level data: An introduction* [Preprint]. https://deportationdata.org/docs/ice/ice-data-preprint.pdf
+
+Deportation Data Project. (n.d.). *ICE administrative arrests* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html

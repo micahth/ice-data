@@ -17,3 +17,13 @@ Facility counts: local/state 399, ICE 204, federal 36, GEO 24, CoreCivic 23, oth
 
 **Caveat:** operator labels are my approximations (e.g., Florida soft-sided sites as state-run). Verify before attributing to a company.
 Duration is measured per completed stint at the facility, not per person's full detention stay; ongoing stints are excluded.
+
+## References
+
+Deportation Data Project. (n.d.-a). *ICE detention facilities: Facility locations and attributes* [Data sets]. https://github.com/deportationdata/ice-detention-facilities
+
+Deportation Data Project. (n.d.-b). *ICE detention stints* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
+
+GreatTombProductions. (n.d.). *County population trends: 2020–2025 Census population estimates* [Data set]. GitHub. https://github.com/GreatTombProductions/county-population
+
+Office of Management and Budget. (2023). *2023 delineation of metropolitan and micropolitan statistical areas* [Data set; file hosted by Jennifer Peebles]. https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/HEAD/data/raw/list1_2023.xlsx

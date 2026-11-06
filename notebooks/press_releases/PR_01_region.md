@@ -15,3 +15,13 @@
 
 **Caveat:** ADP is computed from ICE book-in/out stints. Residents are Census county populations (2025 used for 2026).
 This rate describes detention facilities located in each region; it does not estimate the share of that region's residents who are detained.
+
+## References
+
+Deportation Data Project. (n.d.-a). *ICE detention facilities: Facility locations and attributes* [Data sets]. https://github.com/deportationdata/ice-detention-facilities
+
+Deportation Data Project. (n.d.-b). *ICE detention stints* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
+
+GreatTombProductions. (n.d.). *County population trends: 2020–2025 Census population estimates* [Data set]. GitHub. https://github.com/GreatTombProductions/county-population
+
+Office of Management and Budget. (2023). *2023 delineation of metropolitan and micropolitan statistical areas* [Data set; file hosted by Jennifer Peebles]. https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/HEAD/data/raw/list1_2023.xlsx

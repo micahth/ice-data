@@ -21,3 +21,13 @@ These are facility-location rates using each state's population as the denominat
 Absolute ADP: Texas 11,713 → 15,348; Louisiana 5,558 → 7,534; **California 2,404 → 4,848 (2.0×)**; Georgia 2,099 → 3,539; **Florida 1,339 → 3,491 (2.6×)**; Washington 628 → 1,246.
 
 Full state table: `results/by_state.csv`, `results/by_state_operator.csv`.
+
+## References
+
+Deportation Data Project. (n.d.-a). *ICE detention facilities: Facility locations and attributes* [Data sets]. https://github.com/deportationdata/ice-detention-facilities
+
+Deportation Data Project. (n.d.-b). *ICE detention stints* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
+
+GreatTombProductions. (n.d.). *County population trends: 2020–2025 Census population estimates* [Data set]. GitHub. https://github.com/GreatTombProductions/county-population
+
+Office of Management and Budget. (2023). *2023 delineation of metropolitan and micropolitan statistical areas* [Data set; file hosted by Jennifer Peebles]. https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/HEAD/data/raw/list1_2023.xlsx

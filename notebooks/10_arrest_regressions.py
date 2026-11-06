@@ -8,6 +8,7 @@ Unit: state x year (2023, 2024, 2025; 2026 is a partial year and excluded). Old 
 Key regressor: ICE arrests (by apprehension state) per 100,000 residents, scaled per +10 (arr_rate10).
 Same outcomes, controls, year fixed effects and state-clustered SEs as 06. Exploratory: Benjamini-Hochberg
 adjusted q-values are reported across all arrest-rate coefficients.
+Includes lagged change in youth share (ages 15-29) as an additional control from Census state age data.
 """
 import os
 import re
@@ -52,7 +53,7 @@ OUT = {"d_gdp": "Real GDP growth (%)", "d_unemp": "Unemployment change (pp)",
        "d_violent": "Violent crime rate change (%)", "d_property": "Property (nonviolent) crime rate change (%)"}
 OUT_FBI = {"d_violent_fbi": "Violent crime change, FBI (%)", "d_property_fbi": "Property crime change, FBI (%)"}
 LAG = {"d_gdp": "lag_gdp_pc", "d_unemp": "lag_unemp", "d_violent": "lag_violent", "d_property": "lag_property"}
-CONTROLS = "ln_pop + ln_density + pop_growth + ln_income + pct_bach + pct_hisp + med_age + gop24"
+CONTROLS = "ln_pop + ln_density + pop_growth + ln_income + pct_bach + pct_hisp + med_age + gop24 + lag_d_youth15_29_pp"
 
 # ---- correlations -----------------------------------------------------------
 crow = []
