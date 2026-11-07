@@ -15,8 +15,8 @@ multiple-testing correction against economic and crime outcomes.
 > **Headline result:** A large enforcement shift with *no detectable state-level crime
 > or economic signal.* Average daily detention population rose from ~33.6k (2023–24) to
 > ~55.1k (2025–26) and daily arrests rose +153%, but across regressions with
-> Benjamini–Hochberg correction, **no arrest- or detention-rate coefficient survives**
-> correction against changes in GDP growth, unemployment, or violent/property crime.
+> Benjamini–Hochberg correction, **no arrest-rate coefficient survives** correction
+> against changes in GDP growth, unemployment, or violent/property crime.
 
 ---
 
