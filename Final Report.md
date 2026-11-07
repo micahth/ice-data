@@ -2,7 +2,7 @@
 
 ## Executive findings (centerpiece)
 
-The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Arrest pace rose sharply, but multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
+The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Arrest pace rose sharply and the increase varied substantially by state and area of responsibility, while the share of arrestees with convictions fell and the share with pending charges rose. These are counts by recorded apprehension location, not where arrestees live. Multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
 
 ## 1) Arrest-location findings (`notebooks/09_arrest_locations.py`, PR 10)
 
@@ -12,7 +12,7 @@ Run on hydrated `arrests-latest 7-24-2026.csv` (705,286 rows after dropping `dup
 - Texas holds 25.7% of new-era arrests (+138% per day). Fastest-growing states: Virginia +413%, Georgia +332%, Pennsylvania/Maryland +260%, Florida +245%. New York (+64%) and New Jersey (+61%) lagged.
 - By AOR, San Diego grew +961% (2.4 → 25.4/day), Washington +422%, El Paso +364%. Miami is now the largest AOR.
 - Share of arrestees with a criminal conviction fell from 43.0% to 33.1%, while pending-charge cases rose from 17.4% to 29.0%.
-- Data quality: one stray 2026-09-17 record and one partial-day 2026-03-11 record were excluded; data effectively end 2026-03-10. Landmark fields often use non-specific "general area" labels.
+- Interpretation and data quality: locations are recorded apprehension locations, not arrestees' residences; landmark fields often use non-specific "general area" labels. One stray 2026-09-17 record and one partial-day 2026-03-11 record were excluded, so data effectively end 2026-03-10. The new window is shorter than the old window, March 2026 is partial, and all differences are descriptive rather than causal.
 
 ## 2) Arrest-rate regressions with youth-rate-change control (`notebooks/10_arrest_regressions.py`, PR 11)
 
