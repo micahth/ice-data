@@ -2,7 +2,9 @@
 
 ## Executive findings (centerpiece)
 
-The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Arrest pace rose sharply and the increase varied substantially by state and area of responsibility, while the share of arrestees with convictions fell and the share with pending charges rose. These are counts by recorded apprehension location, not where arrestees live. Multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
+*Data snapshot: files dated 2026-07-24; arrest records run through 2026-03-10. Comparison periods: old = 2023-01-01 to 2024-12-31 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Regression panel: 2023–2025.*
+
+The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Between the old and new periods, arrest pace rose sharply (~359 to ~909 arrests/day, peaking at 39,829 in Dec 2025) and the increase varied substantially by state and area of responsibility, while the share of arrestees with convictions fell and the share with pending charges rose. These are counts by recorded apprehension location, not where arrestees live. Multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
 
 ## 1) Arrest-location findings (`notebooks/09_arrest_locations.py`, PR 10)
 
