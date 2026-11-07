@@ -42,8 +42,8 @@ multiple-testing correction against economic and crime outcomes.
   Midwest grew fastest (**+318%**), the South remains highest. Rural/non-metro facilities
   carry 3–7× the per-resident rate of metros.
 - **Operators.** Private operators GEO and CoreCivic together hold ~56% of newer-period
-  ADP; local/state facilities grew fastest (~3.5×). *Operator labels are inferred — ICE
-  publishes none.*
+  ADP; excluding the small-base federal category, local/state facilities grew fastest
+  (~3.5×). *Operator labels are inferred — ICE publishes none.*
 - **Arrests.** Texas holds 25.7% of new-era arrests; the fastest-growing states are
   Virginia (+413%), Georgia (+332%), and the San Diego AOR (+961%).
 - **No robust association.** 6 of 48 arrest-rate coefficients are nominally significant
