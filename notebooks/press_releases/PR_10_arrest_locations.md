@@ -1,6 +1,6 @@
 # PRESS RELEASE 10 — ICE arrests more than doubled in daily pace; Texas still leads, but San Diego, Virginia and Georgia grew fastest
 
-**Old = 2023-01-01 → 2024-12-31 (731 days) · New = 2025-01-01 → 2026-03-10 (434 days).** Source: `arrests-latest 7-24-2026.csv`, de-duplicated with ICE's `duplicate_drop_row` flag. Script: `notebooks/09_arrest_locations.py`.
+**Old = 2023-01-01 → 2024-12-31 (731 days) · New = 2025-01-01 → 2026-03-10 (434 days).** Source: `data/arrests-latest 7-24-2026.csv`, de-duplicated with ICE's `duplicate_drop_row` flag. Script: `notebooks/09_arrest_locations.py`.
 
 - **Overall pace:** ~359 arrests/day (old) → ~909/day (new), about **+153%**. Monthly arrests rose from 8,181 (Nov 2024) to a peak of 39,829 (Dec 2025).
 - **Texas** accounts for 25.7% of new-era arrests (101,231), up from 98 to 233 per day (+138%).

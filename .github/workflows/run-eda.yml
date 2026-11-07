@@ -7,9 +7,10 @@ on:
     paths:
       - 'notebooks/eda.py'
       - 'notebooks/requirements.txt'
-      - '.github/workflows/run-eda-notebook.yml'
-      - 'arrests-latest 7-24-2026.csv'
-      - 'detention-stays (sheet 1) 7-24-2026.csv'
+      - 'requirements.txt'
+      - '.github/workflows/run-eda.yml'
+      - 'data/arrests-latest 7-24-2026.csv'
+      - 'data/detention-stays (sheet 1) 7-24-2026.csv'
   workflow_dispatch:   # Adds the manual trigger in the Actions tab.
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
 
 
       - name: Install dependencies
-        run: pip install -r notebooks/requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run EDA
         run: python notebooks/eda.py

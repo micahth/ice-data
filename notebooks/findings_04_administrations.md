@@ -102,5 +102,10 @@ Under Trump 2nd that fell to **37%**, while pending criminal charges surged from
 
 ---
 
-*Data source: ICE detention stays and arrests files, extracted 7/24/2026.
-Analysis by: [your name]. Code: `notebooks/analysis_04_administrations.py`*
+*Data source: ICE detention stays and arrests files (`data/`), extracted 7/24/2026.
+Analysis by: Micah Holmquist.*
+
+> **Note:** This is a standalone descriptive summary. All figures are drawn directly
+> from the detention-stays and arrests files; the comparison is restricted to
+> **Biden vs. Trump 2nd** (see Caveats). It is not reproduced by a numbered pipeline
+> script in this repository.

@@ -27,7 +27,7 @@ else:
     use = ["book_in_date_time", "book_out_date_time", "stay_book_out_date_time", "detention_facility",
            "detention_facility_code", "unique_identifier", "stay_ID", "state", "duplicate_drop_row",
            "book_in_criminality"]
-    files = sorted(glob.glob(os.path.join(REPO, "detention-stints*.csv")))
+    files = sorted(glob.glob(os.path.join(REPO, "data", "detention-stints*.csv")))
     st = pd.concat([pd.read_csv(f, usecols=use, low_memory=False, encoding="latin-1") for f in files],
                    ignore_index=True)
     st = st[~st.duplicate_drop_row.fillna(False).astype(bool)].drop(columns="duplicate_drop_row")

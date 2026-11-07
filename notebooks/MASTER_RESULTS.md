@@ -68,7 +68,7 @@ In 2025 all four state-level correlations are near zero (GDP r=−0.12, unemploy
 ## Reproduce
 
 ```
-pip install -r notebooks/requirements.txt
+pip install -r requirements.txt
 python notebooks/05_geo_detention_analysis.py   # division tables
 python notebooks/06_geo_regressions.py          # correlations, regressions
 python notebooks/07_facility_changes.py         # facility change list

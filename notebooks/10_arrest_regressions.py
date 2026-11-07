@@ -25,7 +25,7 @@ from geo_common import REPO, RESULTS, STATE_ABBR
 warnings.filterwarnings("ignore")
 pd.set_option("display.width", 220, "display.max_columns", 40)
 
-a = pd.read_csv(os.path.join(REPO, "arrests-latest 7-24-2026.csv"),
+a = pd.read_csv(os.path.join(REPO, "data", "arrests-latest 7-24-2026.csv"),
                 usecols=["apprehension_date", "apprehension_state_filled_in", "apprehension_state_original",
                          "duplicate_drop_row"], low_memory=False, encoding="latin-1")
 a = a[~a.duplicate_drop_row.fillna(False).astype(bool)]

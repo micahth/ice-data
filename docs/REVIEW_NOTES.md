@@ -1,4 +1,11 @@
-# Final Report
+# Review Notes & Methodology Audit
+
+> **About this document.** This is a point-in-time review log of the analysis: the
+> executive findings, data-quality issues found, fixes applied, and recommended
+> follow-up tests. It is kept for transparency and reproducibility. For a reader-facing
+> overview start with the [top-level README](../README.md); for the technical index see
+> [`notebooks/MASTER_RESULTS.md`](../notebooks/MASTER_RESULTS.md). Raw source files
+> referenced below now live under `data/`.
 
 ## Executive findings (centerpiece)
 

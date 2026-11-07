@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'notebooks/ice_lib.py'
+      - 'tests/**'
+      - 'requirements.txt'
+      - '.github/workflows/tests.yml'
+  pull_request:
+    paths:
+      - 'notebooks/ice_lib.py'
+      - 'tests/**'
+      - 'requirements.txt'
+      - '.github/workflows/tests.yml'
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install pandas numpy pytest
+
+      - name: Run tests
+        run: python -m pytest tests/ -q

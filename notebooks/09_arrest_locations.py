@@ -15,7 +15,7 @@ pd.set_option("display.width", 200, "display.max_columns", 30, "display.max_rows
 use = ["apprehension_date", "apprehension_state_filled_in", "apprehension_state_original", "apprehension_aor",
        "apprehension_site_landmark", "apprehension_criminality", "arresting_agency", "operation",
        "duplicate_drop_row"]
-a = pd.read_csv(os.path.join(REPO, "arrests-latest 7-24-2026.csv"), usecols=use, low_memory=False,
+a = pd.read_csv(os.path.join(REPO, "data", "arrests-latest 7-24-2026.csv"), usecols=use, low_memory=False,
                 encoding="latin-1")
 print(f"rows: {len(a):,}")
 a = a[~a.duplicate_drop_row.fillna(False).astype(bool)].copy()
