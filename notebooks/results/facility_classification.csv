@@ -1,3 +1,708 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0a80c7ad557ba8c66404f2b9986307dde61d54151b3aeb8051308cc81d1a9f22
-size 119715
+detention_facility_code,n_stints,name,city,county,county_fips_code,state,type_detailed,region,cbsa_code,cbsa_title,cbsa_type,cbsa_class,operator,operator_basis
+ABIRJVA,85,SW Virginia Regional Jail Auth-Abg Facility,Abingdon,Washington,51191,VA,,South,28700,"Kingsport-Bristol, TN-VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ABQHOLD,1009,Albuquerque Hold Room,,,,NM,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+ABRXSPA,8,Abraxas Academy,Morgantown,Berks,42011,PA,JUVENILE,Northeast,39740,"Reading, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ADAMSMS,46389,Adams County Correctional Center,Natchez,Adams,28001,MS,DIGSA,South,35020,"Natchez, MS-LA",Micropolitan,Micropolitan,CoreCivic,named CoreCivic/CCA facility
+ADDCOVT,2,Addison County Jail,Middlebury,Addison,50001,VT,IGSA,Northeast,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+ADLNTCA,9409,Adelanto ICE Processing Center,Adelanto,San Bernardino,06071,CA,DIGSA,West,40140,"Riverside-San Bernardino-Ontario, CA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+AFRC,2,Artesia Family Residential Center,Artesia,Eddy,35015,NM,FAMILY,West,16100,"Carlsbad-Artesia, NM",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+AGAHOLD,14,Guam Enforcement and Removal Operations Hold Room,Tamuning,Guam,66010,GU,HOLD,Territories/Other,,(none),,Non-CBSA (rural),ICE,ICE SPC / staging / hold room / ERO site
+AGC,487,Aguadilla Service Processing Center,Aguadilla,Aguadilla,72005,PR,HOLD,Territories/Other,10380,"Aguadilla, PR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+AKANVIL,1,"Anvil Mountain Correctional Institution, Nome",Nome,Nome,02180,AK,,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+AKCOOKI,2,"Cook Inlet Pretrial, Anchorage",Anchorage,Anchorage,02020,AK,IGSA,West,11260,"Anchorage, AK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+AKFAIRB,5,Fairbanks Correctional Center,Fairbanks,Fairbanks North Star,02090,AK,IGSA,West,21820,"Fairbanks-College, AK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+AKGSCCC,2,GOOSE CREEK CORRECTIONAL CENTER,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+AKHIGHL,18,Highland Mtn Correctional Center,Eagle River,Anchorage,02020,AK,USMS IGA,West,11260,"Anchorage, AK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+AKKETCH,1,Ketchikan Regional Correctional Institution,Ketchikan,Ketchikan Gateway,02130,AK,IGSA,West,28540,"Ketchikan, AK",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+AKLEMON,7,"Lemon Creek, Juneau, AK",Juneau,Juneau,02110,AK,USMS IGA,West,27940,"Juneau, AK",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+AKMATSU,4,"Matsu Pretrial, Palmer AK",Palmer,Matanuska-Susitna,02170,AK,IGSA,West,11260,"Anchorage, AK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ALAMCNC,7295,Alamance County Detention Center,Graham,Alamance,37001,NC,IGSA,South,15500,"Burlington, NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ALAMOTX,17,Alamo Police Department,Alamo,Hidalgo,48215,TX,IGSA,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ALBHOLD,628,Albany Hold Room,Ballston Spa,Saratoga,36091,NY,HOLD,Northeast,10580,"Albany-Schenectady-Troy, NY",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ALEXAVA,22,Alexandria City Jail,Alexandria,Alexandria,51510,VA,USMS IGA,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ALHAMCA,1,ALHAMBRA CITY JAIL,,,,,USMS IGA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+ALLEGNY,264,Allegany County Jail,Belmont,Allegany,36003,NY,IGSA,Northeast,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+ALLEGVA,2,Alleghany County Jail,Covington,Covington,51580,VA,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+ALMHOLD,61,Alamosa Hold Room,Alamosa,Alamosa,08003,CO,HOLD,West,10480,"Alamosa, CO",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+AMHERVA,5,Amherst County Jail,Madison Heights,Amherst,51009,VA,,South,31340,"Lynchburg, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+AMTHOLD,2311,Amarillo Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+ANCHOAK,217,Anchorage Correctional Complex,Anchorage,Anchorage,02020,AK,USMS IGA,West,11260,"Anchorage, AK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ANCHOLD,14,Anchorage Sub-Office Hold Room,Anchorage,Anchorage,02020,AK,HOLD,West,11260,"Anchorage, AK",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ANDERSC,1,Anderson County Detention Center,Anderson,Anderson,45007,SC,,South,24860,"Greenville-Anderson-Greer, SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+APPSCLA,3168,Allen Parish Public Safety Complex,Oberlin,Allen,22003,LA,IGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+ARAPACO,2,Arapahoe County Jail,Centennial,Arapahoe,08005,CO,IGSA,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ARTESNM,1,ARTESIA CITY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+ATLANGA,9,Atlanta Pretrial Detention Center,Atlanta,Fulton,13121,GA,USMS IGA,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ATLHOLD,19847,Atlanta District Hold Room,Atlanta,Fulton,13121,GA,HOLD,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ATTHOLD,185,"Athens, TX Hold Room",,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+AURORCO,1,AURORA CITY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+AUSHOLD,12927,Austin Enforcement and Removal Operations Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+AZSPPER,1,Perryville State Prison,Goodyear,Maricopa,04013,AZ,IGSA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+AZSVCPC,18,Arizona State Prison - Yuma,San Luis,Yuma,04027,AZ,IGSA,West,49740,"Yuma, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BAKERFL,6972,Baker County Detention Center,Macclenny,Baker,12003,FL,IGSA,South,27260,"Jacksonville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BALDWAL,1817,Baldwin County Correctional Center,Bay Minette,Baldwin,01003,AL,IGSA,South,19300,"Daphne-Fairhope-Foley, AL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BALHOLD,7928,Baltimore Hold Room,Baltimore,Baltimore,24510,MD,HOLD,South,12580,"Baltimore-Columbia-Towson, MD",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BARTOGA,1,Bartow County Jail,Cartersville,Bartow,13015,GA,,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BASILLA,24654,South Louisiana ICE Processing Center,Basile,Evangeline,22039,LA,IGSA,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+BAYCOFL,15,Bay County,Panama City,Bay,12005,FL,IGSA,South,37460,"Panama City-Panama City Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BCORCPA,152,BERKS COUNTY RESIDENTIAL CENTER,,,,,DIGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+BEAVRPA,33,BEAVER COUNTY JAIL,,,,,USMS IGA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+BEDCITX,3,Bedford City Jail,Bedford,Tarrant,48439,TX,IGSA,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BELCOTX,311,Bell County Jail,Belton,Bell,48027,TX,IGSA,South,28660,"Killeen-Temple, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BELMOOH,1,BELMONT COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+BERGENJ,1,Bergen County Jail,Hackensack,Bergen,34003,NJ,USMS IGA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BERNANM,2,Bernalillo County Detention Center,Albuquerque,Bernalillo,35001,NM,DIGSA,West,10740,"Albuquerque, NM",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BHMHOLD,1467,Birmingham Hold Room,,,,AL,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BIINCCO,72,"BI Incororated, Geo Group Company",Aurora,Adams,08001,CO,,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+BILHOLD,5,Billings Hold Room,Billings,Yellowstone,30111,MT,HOLD,West,13740,"Billings, MT",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BKLHOLD,6302,Bakerfield Hold,,,,CA,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BLBNATX,32452,Bluebonnet Detention Facility,Anson,Jones,48253,TX,IGSA,South,10180,"Abilene, TX",Metropolitan,Metropolitan,Other private,named MTC/LaSalle/ICA facility
+BLGHOLD,20,Bowling Green Hold Room,,,,KY,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BLHHOLD,2,BELLINGHAM BPS ERO HOLDROOM,,,,,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BLOJVTN,1,Blount County Juvenile Detention Center,Maryville,Blount,47009,TN,JUVENILE,South,28940,"Knoxville, TN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BOIHOLD,920,Boise Hold Room,Boise,Ada,16001,ID,HOLD,West,14260,"Boise City, ID",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BOONEKY,4709,Boone County Jail,Burlington,Boone,21015,KY,USMS IGA,South,17140,"Cincinnati, OH-KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BOPALM,1,ALLENWOOD (MED) FCI,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPATL,3063,Federal Correctional Institution Atlanta,Atlanta,Fulton,13121,GA,,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPBER,1271,"Federal Correctional Institution - Berlin, NH",Berlin,Coos,33007,NH,,Northeast,,(none),,Non-CBSA (rural),Federal (BOP/CBP/other),federal prison / detention center
+BOPBRO,794,MDC Brooklyn,Brooklyn,Kings,36047,NY,BOP,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPCAA,4,US Penitentiary Canaan,Waymart,Wayne,42127,PA,BOP,Northeast,,(none),,Non-CBSA (rural),Federal (BOP/CBP/other),federal prison / detention center
+BOPCNV,122,Nashville Community Correctional,Nashville,Davidson,47037,TN,BOP,South,34980,"Nashville-Davidson--Murfreesboro--Franklin, TN",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPDAL,1,DALBY CORRECTIONAL INSTITUTE,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPDEV,1,Devens Federal Medical Center,Devens,Worcester,25027,MA,BOP,Northeast,49340,"Worcester, MA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPGUA,604,Guaynabo MDC (San Juan),Guaynabo,Guaynabo,72061,PR,BOP,Territories/Other,41980,"San Juan-Bayamón-Caguas, PR",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPHON,859,"Federal Detention Center, Honolulu (Federal Detention Center Honolulu)",Honolulu,Honolulu,15003,HI,BOP,West,46520,"Urban Honolulu, HI",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPLAT,1,LA Tuna Federal Correctional Institution,Anthony,El Paso,48141,TX,,South,21340,"El Paso, TX",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPLEW,213,Federal Correctional Institution Lewisburg,Lewisburg,Union,42119,PA,BOP,Northeast,30260,"Lewisburg, PA",Micropolitan,Micropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPLEX,9,Lexinton Federal Medical Center,Lexington,Fayette,21067,KY,BOP,South,30460,"Lexington-Fayette, KY",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPLOF,1111,LOMPOC FCI,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPLOM,101,LOMPOC USP,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPLOS,4,Los Angeles Metropolitan Detention Center,Los Angeles,Los Angeles,06037,CA,BOP,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPLVN,450,Federal Correctional Institution Leavenworth,Leavenworth,Leavenworth,20103,KS,BOP,Midwest,28140,"Kansas City, MO-KS",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPMCR,3,McCreary US Penitentiary,Pine Knot,McCreary,21147,KY,BOP,South,,(none),,Non-CBSA (rural),Federal (BOP/CBP/other),federal prison / detention center
+BOPMIA,2,Miami Federal Correctional Institution (Former McC),Miami,Miami-Dade,12086,FL,BOP,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPMIM,3005,Federal Detention Center Miami,Miami,Miami-Dade,12086,FL,BOP,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPMRG,1,MORGANTOWN FED.CORR.INST.,,,,,,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPOAD,12,Oakdale Federal Detention Center,Oakdale,Allen,22003,LA,BOP,South,,(none),,Non-CBSA (rural),Federal (BOP/CBP/other),federal prison / detention center
+BOPPET,2,PETERSBURG FED.CORR.INST.,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPPHL,4577,Federal Detention Center Philadelphia,Philadelphia,Philadelphia,42101,PA,,Northeast,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPPHX,15,Phoenix Federal Correctional Institution,Phoenix,Maricopa,04013,AZ,BOP,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPPOL,4,Pollock US Penitentiary,Pollock,Grant,22043,LA,BOP,South,10780,"Alexandria, LA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPRAE,1,"McRae Correctional Facility, CCA",Mcrae-Helena,Telfair,13271,GA,BOP,South,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+BOPSET,7,Seatac Federal Detention Center,Seatac,King,53033,WA,BOP,West,42660,"Seattle-Tacoma-Bellevue, WA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPSHE,1,SHERIDAN FED.CORR.INST.,,,,,BOP,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+BOPSPG,18,Springfield Federal Medical Center,Springfield,Greene,29077,MO,BOP,Midwest,44180,"Springfield, MO",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPTCN,5,Tucson Federal Correctional Institution,Tucson,Pima,04019,AZ,BOP,West,46060,"Tucson, AZ",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOPVIM,8,Victorville Medical I Federal Correctional Institution,Victorville,San Bernardino,06071,CA,BOP,West,40140,"Riverside-San Bernardino-Ontario, CA",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+BOSHOLD,9377,Boston Hold Room,Burlington,Middlesex,25017,MA,HOLD,Northeast,14460,"Boston-Cambridge-Newton, MA-NH",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BOSSRLA,1,Bossier Parish Correctional Center,Plain Dealing,Bossier,22015,LA,USMS IGA,South,43340,"Shreveport-Bossier City, LA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BOURBKY,239,Bourbon County Detention Center,Paris,Bourbon,21017,KY,,South,30460,"Lexington-Fayette, KY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BPC,29,Boston Service Processing Center,Boston,Suffolk,25025,MA,Other,Northeast,14460,"Boston-Cambridge-Newton, MA-NH",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BRDFDFL,14,Bradford County Jail,Starke,Bradford,12007,FL,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+BREVDFL,184,Brevard County Jail Complex,Cocoa,Brevard,12009,FL,IGSA,South,37340,"Palm Bay-Melbourne-Titusville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BRKHOLD,22,BERKS HOLD ROOM,,,,,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BROJAFL,1061,Broward County Jail,Fort Lauderdale,Broward,12011,FL,IGSA,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BROKSTX,544,Brooks County Detention Center,Falfurrias,Brooks,48047,TX,USMS IGA,South,10860,"Alice, TX",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+BROMMNY,313,Broome County Correctional Facility,Binghamton,Broome,36007,NY,IGSA,Northeast,13780,"Binghamton, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BROWNWI,74,Brown County Jail,Green Bay,Brown,55009,WI,,Midwest,24580,"Green Bay, WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BRWNSTX,2,Brownsville Police Department,Brownsville,Cameron,48061,TX,IGSA,South,15180,"Brownsville-Harlingen, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BRYANGA,4,Bryan County Jail,Pembroke,Bryan,13029,GA,IGSA,South,42340,"Savannah, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BSAHOLD,18154,Broadview Service Staging,Broadview,Cook,17031,IL,STAGING,Midwest,16980,"Chicago-Naperville-Elgin, IL-IN",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BSCHOLD,1223,Big Spring Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+BTV,14621,Buffalo (Batavia) Service Processing Center,Batavia,Genesee,36037,NY,SPC,Northeast,12860,"Batavia, NY",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BUFHOLD,243,Buffalo Hold Room,Buffalo,Erie,36029,NY,HOLD,Northeast,15380,"Buffalo-Cheektowaga, NY",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+BURLEND,213,Burleigh County Detention Center,Bismarck,Burleigh,38015,ND,IGSA,Midwest,13900,"Bismarck, ND",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+BURNETX,240,Burnet County Jail,Burnet,Burnet,48053,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+BUTLEOH,3396,Butler County Sheriff’s Office,Hamilton,Butler,39017,OH,IGSA,Midwest,17140,"Cincinnati, OH-KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CACFMES,2210,Mesa Verde ICE Processing Center,Bakersfield,Kern,06029,CA,DIGSA,West,12540,"Bakersfield-Delano, CA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+CACHEUT,117,Cache County Jail,Logan,Cache,49005,UT,USMS IGA,West,30860,"Logan, UT-ID",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CACTYCA,3682,California City Detention Facility,California City,Kern,06029,CA,USMS IGA,West,12540,"Bakersfield-Delano, CA",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+CADESVI,11441,Desert View Annex,Adelanto,San Bernardino,06071,CA,CDF,West,40140,"Riverside-San Bernardino-Ontario, CA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+CALHOMI,3280,Calhoun County Correctional Center,Battle Creek,Calhoun,26025,MI,IGSA,Midwest,12980,"Battle Creek, MI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CAMBRPA,557,"Cambria County Jail, PA",Ebensburg,Cambria,42021,PA,USMS IGA,Northeast,27780,"Johnstown, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CAMCOWY,49,Campbell County Jail,Gillette,Campbell,56005,WY,IGSA,West,23940,"Gillette, WY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CAMENCW,2,"CALIF. MEN COLONY, WEST",,,,,Other,Territories/Other,,(none),,Unmapped,Unclassified,no operator signal
+CAMERTX,3,Cameron County Jail,Olmito,Cameron,48061,TX,IGSA,South,15180,"Brownsville-Harlingen, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CARDFVA,6340,Caroline Detention Facility,Bowling Green,Caroline,51033,VA,DIGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+CARJAMN,19,CARVER COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+CARROMD,3,Carroll County Detention Center,Westminister,Carroll,24013,MD,IGSA,South,12580,"Baltimore-Columbia-Towson, MD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CASCAMT,206,"Cascade County Jail, MT",Great Falls,Cascade,30013,MT,USMS IGA,West,24500,"Great Falls, MT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CASPSAC,1,California State Prison-Sacramento,Represa,Sacramento,06067,CA,IGSA,West,40900,"Sacramento-Roseville-Folsom, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CASSCND,1,Cass County Jail,Fargo,Cass,38017,ND,IGSA,Midwest,22020,"Fargo, ND-MN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CASSCNE,254,Cass County Jail,Plattsmouth,Cass,31025,NE,USMS IGA,Midwest,36540,"Omaha, NE-IA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CATAHLA,6,Catahoula Correctional Center,Harrisonburg,Catahoula,22025,LA,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+CBENDTX,6269,Coastal Bend Detention Center,Robstown,Nueces,48355,TX,USMS IGA,South,18580,"Corpus Christi, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CBPHOLD,50,Buffalo USBP Hold Room,Cheektowaga,Erie,36029,NY,,Northeast,15380,"Buffalo-Cheektowaga, NY",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CBPORIL,50,CBP O’Hare Airport Terminal 5 BC Ext,Chicago,Cook,17031,IL,,Midwest,16980,"Chicago-Naperville-Elgin, IL-IN",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+CBRRSNC,147,Cabarrus County Jail,Concord,Cabarrus,37025,NC,IGSA,South,16740,"Charlotte-Concord-Gastonia, NC-SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CCADCAZ,3,CCA CENT.AZ.DET.CTR.,,,,,USMS IGA,Territories/Other,,(none),,Unmapped,CoreCivic,named CoreCivic/CCA facility
+CCAFLAZ,14347,Central Arizona Florence Correctional Center,Florence,Pinal,04021,AZ,USMS IGA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+CCAHUTX,11957,T Don Hutto Detention Center,Taylor,Williamson,48491,TX,FAMILY,South,12420,"Austin-Round Rock-San Marcos, TX",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+CCANOOH,2400,Northeast Ohio Correctional Center,Youngstown,Mahoning,39099,OH,CDF,Midwest,49660,"Youngstown-Warren, OH",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+CCASDCA,36059,Otay Mesa Detention Center,San Diego,San Diego,06073,CA,USMS CDF,West,41740,"San Diego-Chula Vista-Carlsbad, CA",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+CHAHOLD,170,Charlotte Amalie Hold Room,,,,VI,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CHARLSC,100,Charleston County Correct,North Charleston,Charleston,45019,SC,USMS IGA,South,16700,"Charleston-North Charleston, SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHASEKS,4286,Chase County Jail,Cottonwood Falls,Chase,20017,KS,IGSA,Midwest,21380,"Emporia, KS",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CHAVENM,719,Chavez Detention Center,Roswell,Chaves,35005,NM,IGSA,West,40740,"Roswell, NM",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CHFLDVA,3,Chesterfield County Jail,Chesterfield,Chesterfield,51041,VA,,South,40060,"Richmond, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHIHOLD,712,Chicago Hold Room,Chicago,Cook,17031,IL,HOLD,Midwest,16980,"Chicago-Naperville-Elgin, IL-IN",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CHIPPMI,464,Chippewa County Correctional Facility,Sault Sainte Marie,Chippewa,26033,MI,IGSA,Midwest,42300,"Sault Ste. Marie, MI",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CHLHOLD,4173,"Charleston, SC Hold Room",,,,SC,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CHMCINY,43,Courthouse Usm Cntl Islip,Central Islip,Suffolk,36103,NY,HOLD,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CHMHOLD,146,Champlain Hold Room,Champlain,Clinton,36019,NY,HOLD,Northeast,38460,"Plattsburgh, NY",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CHRISKY,349,Christian County Jail,Hopkinsville,Christian,21047,KY,IGSA,South,17300,"Clarksville, TN-KY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHRLTFL,40,Charlotte County Jail,Punta Gorda,Charlotte,12015,FL,IGSA,South,39460,"Punta Gorda, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHSHOLD,9,Enforcement and Removal Operations Charleston WV Hold Room,,,,WV,,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CHSPKVA,153,Chesapeake City Jail,Chesapeake,Chesapeake,51550,VA,,South,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHTHMGA,19,Chatham County Jail,Savannah,Chatham,13051,GA,IGSA,South,42340,"Savannah, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CHYHOLD,327,Cheyenne Hold Room,,,,WY,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CIBOCNM,4866,Cibola County Correctional Center,Milan,Cibola,35006,NM,IGSA,West,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+CIBOLNM,20,Cibola County Detention Center,Milan,Cibola,35006,NM,IGSA,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+CINHOLD,27,Cincinnati Hold Room,,,,OH,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CIPHOLD,2769,Central Islip Hold Room,Central Islip,Suffolk,36103,NY,HOLD,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CITRUFL,3,Citrus County Jail,Lecanto,Citrus,12017,FL,IGSA,South,26140,"Homosassa Springs, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CLARKIN,543,Clark County Jail,Jeffersonville,Clark,18019,IN,,Midwest,31140,"Louisville/Jefferson County, KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CLAYCIN,12516,Clay County Jail,Brazil,Clay,18021,IN,USMS IGA,Midwest,45460,"Terre Haute, IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CLEHOLD,109,Cleveland Hold Room,,,,OH,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CLICONY,673,Clinton County Jail,Plattsburgh,Clinton,36019,NY,USMS IGA,Northeast,38460,"Plattsburgh, NY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CLINTIN,758,Clinton County Sheriff’s Office,Frankfort,Clinton,18023,IN,IGSA,Midwest,23140,"Frankfort, IN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CLINTPA,1611,Clinton County Correctional Facility,Mcelhattan,Clinton,42035,PA,USMS IGA,Northeast,30820,"Lock Haven, PA",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CLMHOLD,177,Columbus Hold Room,,,,OH,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CLTHOLD,7030,Charlotte Hold Room,Charlotte,Mecklenburg,37119,NC,HOLD,South,16740,"Charlotte-Concord-Gastonia, NC-SC",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CMDHOLD,22,Batavia Command Center Hold Room,Batavia,Genesee,36037,NY,HOLD,Northeast,12860,"Batavia, NY",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CNGHOLD,2043,Chattanooga Hold Room,,,,TN,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+COAHOLD,821,"Columbia, SC Hold Room",Columbia,Richland,45079,SC,HOLD,South,17900,"Columbia, SC",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+COBBJGA,276,Cobb County Sheriffs Office Adult Detention Center,Marietta,Cobb,13067,GA,IGSA,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+COCONAZ,9,Coconino County Detention Facility,Flagstaff,Coconino,04005,AZ,USMS IGA,West,22380,"Flagstaff, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+COLLIFL,5595,Collier County Sheriff,Naples,Collier,12021,FL,IGSA,South,34940,"Naples-Marco Island, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+COLUMFL,15,Columbia County Jail,Lake City,Columbia,12023,FL,,South,29380,"Lake City, FL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CPBDCKY,656,Campbell County Detention Center,Newport,Campbell,21037,KY,,South,17140,"Cincinnati, OH-KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CRGHOLD,78,Craig Hold Room,,,,CO,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CRIHOLD,170,Cedar Rapids Hold Room,Cedar Rapids,Linn,19113,IA,HOLD,Midwest,16300,"Cedar Rapids, IA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+CROWGMN,222,Crow Wing County Jail,Brainerd,Crow Wing,27035,MN,IGSA,Midwest,14660,"Brainerd, MN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CRPHOLD,611,Corpus Christi EOR Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CRYCCTX,8,Crystal City Correctional Center,Crystal City,Zavala,48507,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+CSCNWWA,16269,Northwest ICE Processing Center (Nwipc),Tacoma,Pierce,53053,WA,CDF,West,42660,"Seattle-Tacoma-Bellevue, WA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+CSDHOLD,353,Colorado Springs Den Homeland Security Investigations Hold,,,,CO,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CSPHOLD,270,Casper Hold Room,,,,WY,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+CULBETX,1,Culberson County Sheriff’s,Van Horn,Culberson,48109,TX,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+CULPEVA,5,Culpeper County Adult Detention Center,Culpeper,Culpeper,51047,VA,IGSA,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CUMBEME,855,Cumberland County Jail,Portland,Cumberland,23005,ME,USMS IGA,Northeast,38860,"Portland-South Portland, ME",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+CURRYNM,2,Curry County Detention Facility,Clovis,Curry,35009,NM,IGSA,West,17580,"Clovis, NM",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+CVANXCA,4,Central Valley Annex,Mcfarland,Kern,06029,CA,,West,12540,"Bakersfield-Delano, CA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+CVREGVA,85,Central VA Regional Jail,Orange,Orange,51137,VA,IGSA,South,29470,"Lake of the Woods, VA",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+DAKOTNE,721,Dakota County Sheriff Office,Dakota City,Dakota,31043,NE,USMS IGA,Midwest,43580,"Sioux City, IA-NE-SD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DALCOTX,5482,Dallas County Jail-Lew Sterrett,Dallas,Dallas,48113,TX,USMS IGA,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DALHOLD,34360,Dallas FO Hold,Dallas,Dallas,48113,TX,HOLD,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+DAVIDTN,2,Davidson County Sheriff Department,Nashville,Davidson,47037,TN,IGSA,South,34980,"Nashville-Davidson--Murfreesboro--Franklin, TN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DAVISUT,215,Davis County Jail,Farmington,Davis,49011,UT,IGSA,West,36260,"Ogden, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DEAPDMI,1,DEARBORN POLICE DEPT.,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+DEKABGA,1,DEKALB COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+DEKALAL,2,Dekalb County Detention Center,Fort Payne,DeKalb,01049,AL,USMS IGA,South,22840,"Fort Payne, AL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+DENHOLD,3623,Denver Hold Room,Centennial,Arapahoe,08005,CO,HOLD,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+DENICDF,25196,Denver Contract Detention Facility (Aurora),Aurora,Adams,08001,CO,CDF,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+DENVECO,9,Denver County Jail,Denver,Denver,08031,CO,USMS IGA,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DEPCOGU,2,Department of Corrections,Mangilao,Guam,66010,GU,IGSA,Territories/Other,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+DETHOLD,450,Detroit Hold Room,,,,MI,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+DHDFNJ,10478,Delaney Hall Detention Facility,Newark,Essex,34013,NJ,IGSA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+DILLSAF,452,Dilley Processing Single Female,Dilley,Frio,48163,TX,,South,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+DLRHOLD,1297,Del Rio Detention and Removal Operations Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+DODGEWI,3982,Dodge Detention Facility,Juneau,Dodge,55027,WI,USMS IGA,Midwest,13180,"Beaver Dam, WI",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+DONAANM,2,Dona Ana County Detention Center,Las Cruces,Doña Ana,35013,NM,IGSA,West,29740,"Las Cruces, NM",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DORCDSC,505,Dorchester County Detention Center,Summerville,Dorchester,45035,SC,USMS IGA,South,16700,"Charleston-North Charleston, SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DOUGLCO,7,Douglas County Detention Center,Castle Rock,Douglas,08035,CO,IGSA,West,19740,"Denver-Aurora-Centennial, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DOUGLWI,289,Douglas County Jail,Superior,Douglas,55031,WI,IGSA,Midwest,20260,"Duluth, MN-WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DRCPCTX,1,DRT CPC HOLDING,,,,,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+DSMHOLD,298,Des Moines Hold Room,,,,IA,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+DULHOLD,3,DULUTH HOLD ROOM,,,,,,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+DURHOLD,47,Durango Hold Room,Durango,La Plata,08067,CO,HOLD,West,20420,"Durango, CO",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+DVCSDKY,167,Daviess County Detention Center,Owensboro,Daviess,21059,KY,,South,36980,"Owensboro, KY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+DVDHOLD,1178,Dover Hold Room,Dover,Kent,10001,DE,HOLD,South,20100,"Dover, DE",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+EAZ,45310,Eloy Detention Center,Eloy,Pinal,04021,AZ,DIGSA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+ECC,1,EL CENTRO SPC,,,,CA,SPC,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+ECLECTX,2,Ector County LEC,Odessa,Ector,48135,TX,IGSA,South,36220,"Odessa, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+EDNBGTX,3,Edinburg Police Department,Edinburg,Hidalgo,48215,TX,IGSA,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+EDNDCTX,7241,Eden Detention Center,Eden,Concho,48095,TX,USMS IGA,South,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+EDNHOLD,54,EDEN DET CTR HOLD ROOM,,,,,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+EHDLGTX,1682,East Hidalgo Detention Center,La Villa,Hidalgo,48215,TX,USMS IGA,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ELMORID,835,Elmore County Detention Center (Elmore County Jail),Mountain Home,Elmore,16039,ID,USMS IGA,West,34300,"Mountain Home, ID",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+ELPCOTX,72,El Paso County Jail (TX),El Paso,El Paso,48141,TX,IGSA,South,21340,"El Paso, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ELVDFTX,29931,El Valle Detention Facility,Raymondville,Willacy,48489,TX,IGSA,South,39700,"Raymondville, TX",Micropolitan,Micropolitan,GEO Group,named GEO Group facility
+ELZICDF,17982,Elizabeth Contract Detention Facility,Elizabeth,Union,34039,NJ,CDF,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+EPC,28403,El Paso Service Processing Center,El Paso,El Paso,48141,TX,SPC,South,21340,"El Paso, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+EPCDFTX,374,El Paso County Detention Facility,El Paso,El Paso,48141,TX,IGSA,South,21340,"El Paso, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+EPCJUVI,2,El Paso Service Processing Center Juvenile,El Paso,El Paso,48141,TX,HOLD,South,21340,"El Paso, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+EPCPCTX,6,EGP CPC Holding,Eagle Pass,Maverick,48323,TX,HOLD,South,20580,"Eagle Pass, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+EPSSFTX,15734,El Paso Soft Sided Facility,El Paso,El Paso,48141,TX,,South,21340,"El Paso, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ERICOPA,750,"Erie County Jail, PA",Erie,Erie,42049,PA,USMS IGA,Northeast,21500,"Erie, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+EROFCB,35548,Enforcement and Removal Operations El Paso Camp East Montana,El Paso,El Paso,48141,TX,,South,21340,"El Paso, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ESSEXMA,1,"Essex County Jail, Middleton",Middleton,Essex,25009,MA,IGSA,Northeast,14460,"Boston-Cambridge-Newton, MA-NH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ESSEXNJ,8,Essex County Jail,Newark,Essex,34013,NJ,IGSA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ETOWAAL,5958,Etowah County Jail (AL),Gadsden,Etowah,01055,AL,USMS IGA,South,23460,"Gadsden, AL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ETWHOLD,30,Etowah Enforcement and Removal Operations Hold Room,Gadsden,Etowah,01055,AL,HOLD,South,23460,"Gadsden, AL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+EUGHOLD,229,Eugene Hold Room,Eugene,Lane,41039,OR,HOLD,West,21660,"Eugene-Springfield, OR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FAYETKY,908,Fayette County Detention Center,Lexington,Fayette,21067,KY,USMS IGA,South,30460,"Lexington-Fayette, KY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FAYHOLD,194,Fayetteville Hold Room,,,,AR,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+FDLHOLD,328,Ferndale Hold Room,Ferndale,Whatcom,53073,WA,HOLD,West,13380,"Bellingham, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FINNEKS,593,Finney County Jail,Garden City,Finney,20055,KS,IGSA,Midwest,23780,"Garden City, KS",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+FIPCAGA,7462,Folkston ICE Processing Center (Annex),Folkston,Charlton,13049,GA,DIGSA,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+FIPCDGA,5275,Folkston D Ray ICE Processing Center,Folkston,Charlton,13049,GA,,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+FIPCMGA,20162,Folkston ICE Processing Center (Main),Folkston,Charlton,13049,GA,DIGSA,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+FLBAKCI,5700,Baker CI,Sanderson,Baker,12003,FL,,South,27260,"Jacksonville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FLCHACI,1,"CHARLOTTE CI, PUNTA GORDA",,,,,,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+FLDADCI,41,Dade Correctional Institution,Homestead,Miami-Dade,12086,FL,,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FLDSSFS,13661,Florida Soft Sided Facility South,Ochopee,Collier,12021,FL,,South,34940,"Naples-Marco Island, FL",Metropolitan,Metropolitan,Local/state government,state-run site hosting ICE detainees
+FLGLRFL,238,Flagler County Detention Facility,Bunnell,Flagler,12035,FL,IGSA,South,19660,"Deltona-Daytona Beach-Ormond Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FLO,43757,Florence Service Processing Center,Florence,Pinal,04021,AZ,SPC,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FLOYDGA,461,Floyd County Jail,Rome,Floyd,13115,GA,USMS IGA,South,40660,"Rome, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FMYHOLD,4349,Fort Myers Enforcement and Removal Operations Hold Room,Fort Myers,Lee,12071,FL,HOLD,South,15980,"Cape Coral-Fort Myers, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FNDDUWI,6,Fond Du Lac County Sheriff/Jail,Fond Du Lac,Fond du Lac,55039,WI,,Midwest,22540,"Fond du Lac, WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FORSYNC,3,FORSYTH COUNTY JAIL,,,,,USMS IGA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+FRANKNC,31,Franklin County Detention Center,Louisburg,Franklin,37069,NC,IGSA,South,39580,"Raleigh-Cary, NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FRANKPA,145,Franklin County Jail,Chambersburg,Franklin,42055,PA,,Northeast,16540,"Chambersburg, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+FRDHOLD,775,Frederick Hold Room,,,,CO,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+FREDEMD,1,FREDERICK COUNTY DET. CEN,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+FREEBMN,1913,Freeborn County Jail Services,Albert Lea,Freeborn,27047,MN,IGSA,Midwest,10660,"Albert Lea, MN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+FREESTX,1,FREESTONE COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+FREHOLD,4615,Fresno Hold Room,Fresno,Fresno,06019,CA,HOLD,West,23420,"Fresno, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FRMVLVA,8915,Farmville Detention Center,Farmville,Prince Edward,51147,VA,DIGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+FSAHOLD,34,Fort Smith Hold Room,Fort Smith,Sebastian,05131,AR,HOLD,South,22900,"Fort Smith, AR-OK",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FSF,100675,Florence Staging Facility,Florence,Pinal,04021,AZ,STAGING,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+FULCJIN,350,Fulton County Jail Indiana,Rochester,Fulton,18049,IN,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+GADRYJM,2,D. RAY JAMES PRISON,,,,,,Territories/Other,,(none),,Unmapped,Unclassified,no operator signal
+GALLAMT,4,GALLATIN COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+GARVIOK,296,Garvin County Jail,Pauls Valley,Garvin,40049,OK,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+GASTNNC,155,Gaston County Jail,Gastonia,Gaston,37071,NC,IGSA,South,16740,"Charlotte-Concord-Gastonia, NC-SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GCLECOK,2,Grady County Law Enforcement Center,Chickasha,Grady,40051,OK,USMS IGA,South,36420,"Oklahoma City, OK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GCPFCKS,26,Garden City Processing @ Finney County,Garden City,Finney,20055,KS,STAGING,Midwest,23780,"Garden City, KS",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+GEAUGOH,864,Geauga County Safety Center,Chardon,Geauga,39055,OH,USMS IGA,Midwest,17410,"Cleveland, OH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GFCORND,768,Grand Forks County Correctional Center,Grand Forks,Grand Forks,38035,ND,USMS IGA,Midwest,24220,"Grand Forks, ND-MN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GFJUVND,1,Grand Forks County Juvenile,Grand Forks,Grand Forks,38035,ND,JUVENILE,Midwest,24220,"Grand Forks, ND-MN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GJCHOLD,411,Grand Junction Hold Room,,,,CO,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+GLADEFL,2910,Glades County Detention Center,Moore Haven,Glades,12043,FL,IGSA,South,17500,"Clewiston, FL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+GLDSACA,5319,Golden State Annex,Mcfarland,Kern,06029,CA,CDF,West,12540,"Bakersfield-Delano, CA",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+GLEPDCA,184,Glendale Police Department,Glendale,Los Angeles,06037,CA,IGSA,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GOODCID,1,GOODING COUNTY JAIL,,,,,,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+GRAYSKY,1962,Grayson County Detention Center,Leitchfield,Grayson,21085,KY,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+GREENMA,1,Franklin House of Corrections,Greenfield,Franklin,25011,MA,USMS IGA,Northeast,24640,"Greenfield, MA",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+GREENMO,4294,Greene County Jail,Springfield,Greene,29077,MO,IGSA,Midwest,44180,"Springfield, MO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+GRFHOLD,442,Grand Forks Hold Room,,,,ND,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+GRIHOLD,3,Grand Island Hold Room,Grand Island,Hall,31079,NE,HOLD,Midwest,24260,"Grand Island, NE",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+GRMHOLD,807,Grand Rapids Hold Room,,,,MI,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+GRRHOLD,992,Greer Hold Room,,,,SC,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+GSCHOLD,148,Glenwood Springs Hold Room,Glenwood Springs,Garfield,08045,CO,HOLD,West,40090,"Rifle, CO",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+GTMOACU,540,Windward Holding Facility,Fpo Ae,,,CU,,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+GTMOBCU,4,Migrant Operations Center East,Fpo Ae,,,CU,,Territories/Other,,(none),,Unmapped,Unclassified,no operator signal
+GTMODCU,373,Naval Station Guantanamo Bay (Jtf Camp Six and Migrant Operations Center Main A),Fpo Ae,,,CU,,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+GUDOCHG,182,"Guam Department of Corrections, Hagatna Detention Facility",Hagatna,Guam,66010,GU,USMS IGA,Territories/Other,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+HAILEID,53,Dale G Haile Detention Center,Caldwell,Canyon,16027,ID,IGSA,West,14260,"Boise City, ID",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HALLJGA,22,Hall County Jail,Gainesville,Hall,13139,GA,USMS IGA,South,23580,"Gainesville, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HAMILTN,1,Hamilton County Jail (Tenn),Chattanooga,Hamilton,47065,TN,IGSA,South,16860,"Chattanooga, TN-GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HAMILTX,1,HAMILTON COUNTY JAIL (TX),,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+HARDEFL,6,Hardee County Jail,Wauchula,Hardee,12049,FL,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+HARDJIA,400,Hardin County Jail,Eldora,Hardin,19083,IA,IGSA,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+HARFOCT,10,Hartford Correctional Center,Hartford,Capitol,09110,CT,IGSA,Northeast,25540,"Hartford-West Hartford-East Hartford, CT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HARHOLD,1874,Hartford Office,,,,CT,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+HARRIMS,3,Harrison Detention Center,Gulfport,Harrison,28047,MS,,South,25060,"Gulfport-Biloxi, MS",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HASHENE,451,Hall County Department of Corrections,Grand Island,Hall,31079,NE,IGSA,Midwest,24260,"Grand Island, NE",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HASKLTX,5,Rolling Plains Detention Center,Haskell,Haskell,48207,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+HBGHOLD,667,Harrisonburg Hold Room,,,,VA,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+HCPSCMS,9165,Hancock County Public Safety Complex,Bay Saint Louis,Hancock,28045,MS,IGSA,South,25060,"Gulfport-Biloxi, MS",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HELHOLD,43,Hel District Custody,Helena,Lewis and Clark,30049,MT,HOLD,West,25740,"Helena, MT",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+HENDENC,18,Henderson County Detention Facility,Hendersonville,Henderson,37089,NC,IGSA,South,11700,"Asheville, NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HENDENV,3213,Henderson Detention Center,Henderson,Clark,32003,NV,USMS IGA,West,29820,"Las Vegas-Henderson-North Las Vegas, NV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HENDRFL,5,Hendry County Jail,Labelle,Hendry,12051,FL,IGSA,South,17500,"Clewiston, FL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+HENHOLD,26,Hendersonville Hold Room,,,,NC,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+HENRIVA,3,Henrico County Jail,Barhamsville,New Kent,51127,VA,IGSA,South,40060,"Richmond, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HERNAFL,2,Hernando County Jail,Brooksville,Hernando,12053,FL,IGSA,South,45300,"Tampa-St. Petersburg-Clearwater, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HHWHOLD,47,Enforcement and Removal Operations Honolulu Sub-Office Hold Room,Honolulu,Honolulu,15003,HI,HOLD,West,46520,"Urban Honolulu, HI",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+HICOJFL,605,Hillsborough County Jail,Tampa,Hillsborough,12057,FL,IGSA,South,45300,"Tampa-St. Petersburg-Clearwater, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HIDALNM,3,Hidalgo County Detention Center,Lordsburg,Hidalgo,35023,NM,IGSA,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+HIDALTX,3,Hidalgo County Sheriff’s Jail,Edinburg,Hidalgo,48215,TX,IGSA,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HLFRJVA,1,BRRJ Halifax,Halifax,Halifax,51083,VA,,South,,(none),,Non-CBSA (rural),Unclassified,no operator signal
+HLGHOLD,13989,Harlingen Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+HOUHOLD,1374,Houston Field Office Hold Room,Houston,Harris,48201,TX,HOLD,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+HOUICDF,23966,Houston Contract Detention Facility,Houston,Harris,48201,TX,CDF,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+HPKNSKY,875,Hopkins County Jail,Madisonville,Hopkins,21107,KY,,South,31580,"Madisonville, KY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+HRLGNTX,5,Harlingen Police Department,Harlingen,Cameron,48061,TX,IGSA,South,15180,"Brownsville-Harlingen, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+HUDSONJ,7,Hudson County Jail,Kearny,Hudson,34017,NJ,IGSA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+IAHSFTX,3,George Bush Intercontinental,Houston,Harris,48201,TX,STAGING,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+IBPSMIA,2,Miami Border Patrol,Pembroke Pines,Broward,12011,FL,IGSA,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+IFIHOLD,223,Idaho Falls Hold Room,,,,ID,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+IMPCOCA,3,Imperial County Jail,El Centro,Imperial,06025,CA,IGSA,West,20940,"El Centro, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+IMPHOLD,1469,Imperial Sub Office Hold Room,El Centro,Imperial,06025,CA,HOLD,West,20940,"El Centro, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+INDMPIN,1,Indianapolis Metropolitan PD,Indianapolis,Marion,18097,IN,,Midwest,26900,"Indianapolis-Carmel-Greenwood, IN",Metropolitan,Metropolitan,Unclassified,no operator signal
+INMIAMI,1186,Miami Correctional Facility (McF),Bunker Hill,Miami,18103,IN,,Midwest,37940,"Peru, IN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+INPHOLD,13917,Indianapolis Hold Room,,,,IN,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+IRADFCA,15359,Imperial Regional Detention Facility,Calexico,Imperial,06025,CA,DIGSA,West,20940,"El Centro, CA",Metropolitan,Metropolitan,Other private,named MTC/LaSalle/ICA facility
+IRWINGA,1575,Irwin County Detention Center,Ocilla,Irwin,13155,GA,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+IWAHOLD,26289,AZ Removal Operation Coord Center (Arocc),Mesa,Maricopa,04013,AZ,HOLD,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+JACKSTN,10,JACKSON COUNTY SHERIFF,,,,,,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+JAKHOLD,2742,Jackson MS Hold Room,,,,MS,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+JAXHOLD,3565,Jacksonville Sub-Office,Jacksonville,Duval,12031,FL,HOLD,South,27260,"Jacksonville, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+JCRLYTX,23636,Joe Corley Processing Center,Conroe,Montgomery,48339,TX,IGSA,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+JEFFEID,1097,Jefferson County Jail,Rigby,Jefferson,16051,ID,IGSA,West,26820,"Idaho Falls, ID",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+JEFFEIL,4,JEFFERSON COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+JENADLA,35684,Central Louisiana ICE Processing Center,Jena,LaSalle,22059,LA,DIGSA,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+JENATLA,125188,Alexandria Staging Facility,Alexandria,Rapides,22079,LA,STAGING,South,10780,"Alexandria, LA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+JHRWLTX,130,Jack Harwell Detention Center,Waco,McLennan,48309,TX,USMS IGA,South,47380,"Waco, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+JKPCCLA,35314,Jackson Parish Correctional Center,Jonesboro,Jackson,22049,LA,DIGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+KANDIMN,3409,Kandiyohi County Jail,Willmar,Kandiyohi,27067,MN,IGSA,Midwest,48820,"Willmar, MN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+KANHOLD,4751,Kansas City Hold Room,,,,MO,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+KARNETX,519,Karnes County Correctional Center,Karnes City,Karnes,48255,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+KCCDCTX,58,Karnes County Civil Detention Facility,Karnes City,Karnes,48255,TX,DIGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+KCOJFOK,4363,Kay County Detention Center,Newkirk,Kay,40071,OK,IGSA,South,38620,"Ponca City, OK",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+KENTOKY,670,Kenton County Detention Center,Covington,Kenton,21117,KY,IGSA,South,17140,"Cincinnati, OH-KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+KERCOCA,2,Kern County Jail (Lerdo),Bakersfield,Kern,06029,CA,IGSA,West,12540,"Bakersfield-Delano, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+KFMANTX,7,Kaufman County Detention Center,Kaufman,Kaufman,48257,TX,,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+KINNETX,79,Kinney County Jail,Brackettville,Kinney,48271,TX,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+KNXDFTN,5234,Knox County Detention Facility,Knoxville,Knox,47093,TN,USMS IGA,South,28940,"Knoxville, TN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+KNXHOLD,2763,Knoxville Hold Room,Knoxville,Knox,47093,TN,HOLD,South,28940,"Knoxville, TN",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+KODIAAK,2,Kodiak City Jail,Kodiak,Kodiak Island,02150,AK,IGSA,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+KRHUBFL,5933,Krome/Miami Hub,Miami,Miami-Dade,12086,FL,HOLD,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+KRNRCTX,33304,Karnes County Immigration Processing Center,Karnes City,Karnes,48255,TX,FAMILY,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+KRO,31319,Krome North Service Processing Center,Miami,Miami-Dade,12086,FL,SPC,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+KROHOLD,13965,Krome Hold Room,Miami,Miami-Dade,12086,FL,HOLD,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+LACKAPA,6,"Lackawana Cnty Jail, PA",Scranton,Lackawanna,42069,PA,USMS IGA,Northeast,42540,"Scranton--Wilkes-Barre, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LAFAYLA,96,Lafayette Parish Sheriff’s Office Jail Annex,Lafayette,Lafayette,22055,LA,IGSA,South,29180,"Lafayette, LA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LAKCOFL,104,Lake County Jail,Tavares,Lake,12069,FL,,South,36740,"Orlando-Kissimmee-Sanford, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LAPAZAZ,634,LA Paz County Adult Detention Facility,Parker,La Paz,04012,AZ,USMS IGA,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LARCOWY,312,Laramie County Jail,Cheyenne,Laramie,56021,WY,USMS IGA,West,16940,"Cheyenne, WY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LARELKY,360,Laurel County Corrections,London,Laurel,21125,KY,IGSA,South,18340,"Corbin, KY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+LASALTX,1,Lasalle County Jail,Cotulla,La Salle,48283,TX,Other,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LASHOLD,156,Las Cruces Hold Room,Las Cruces,Doña Ana,35013,NM,HOLD,West,29740,"Las Cruces, NM",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+LAWINCI,46402,Winn Correctional Center,Winnfield,Winn,22127,LA,DIGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+LAWRESD,52,"Lawrence County Jail, SD",Deadwood,Lawrence,46081,SD,IGSA,Midwest,43940,"Spearfish, SD",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+LBKHOLD,1767,Lubbock Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LBRTYFL,2,Liberty County Sheriff’s Office,Bristol,Liberty,12077,FL,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LEONCFL,4,Leon County Jail,Tallahassee,Leon,12073,FL,,South,45220,"Tallahassee, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LEVYCFL,19,Levy County Jail,Bronson,Levy,12075,FL,IGSA,South,23540,"Gainesville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LEXFCKY,123,Lexington Processing @ Fayette County,Lexington,Fayette,21067,KY,STAGING,South,30460,"Lexington-Fayette, KY",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+LEXINSC,2426,Lexington County Jail,Lexington,Lexington,45063,SC,USMS IGA,South,17900,"Columbia, SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LICEPLA,404,Louisiana ICE Processing Center,Angola,West Feliciana,22125,LA,,South,12940,"Baton Rouge, LA",Metropolitan,Metropolitan,Local/state government,state-run site hosting ICE detainees
+LIMCJTX,3,Limestone County Jail,Groesbeck,Limestone,48293,TX,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LIMESTX,2638,Limestone County Detention Center,Groesbeck,Limestone,48293,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LINCOMO,315,LINCOLN COUNTY SHERIFF'S,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+LINCONE,453,Lincoln County Detention Center,North Platte,Lincoln,31111,NE,IGSA,Midwest,35820,"North Platte, NE",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+LINNJIA,602,Linn County Jail,Cedar Rapids,Linn,19113,IA,USMS IGA,Midwest,16300,"Cedar Rapids, IA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LOGANOK,864,Logan County Jail,Guthrie,Logan,40083,OK,,South,36420,"Oklahoma City, OK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LONPDAR,1,Lonoke Police Department Detention Center,Lonoke,Lonoke,05085,AR,IGSA,South,30780,"Little Rock-North Little Rock-Conway, AR",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LOSCJCA,3,Los Angeles County Jail-Twin Tower,Los Angeles,Los Angeles,06037,CA,IGSA,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LOSHOLD,21978,Los Cust Case,Los Angeles,Los Angeles,06037,CA,HOLD,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+LOUCOVA,88,Loudoun County,Leesburg,Loudoun,51107,VA,USMS IGA,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LOUHOLD,575,Louisville Hold Room,,,,KY,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LPAPSAZ,16,LA Palma Correctional Center APSO,Eloy,Pinal,04021,AZ,DIGSA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LPD77CA,1,Los Angeles Police PD 77th Division,Los Angeles,Los Angeles,06037,CA,,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Unclassified,no operator signal
+LPLCCAZ,5,LA Palma Correctional Center,Eloy,Pinal,04021,AZ,DIGSA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LRAHOLD,3081,Little Rock Hold Room,Little Rock,Pulaski,05119,AR,HOLD,South,30780,"Little Rock-North Little Rock-Conway, AR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+LRDHOLD,7197,Laredo Detention Center Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LRDICDF,10658,Corecivic Laredo Processing Center,Laredo,Webb,48479,TX,USMS IGA,South,29700,"Laredo, TX",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+LSFHOLD,6,Los Fresnos Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LSRDCTX,1698,LA Salle County Regional Detention Center,Encinal,La Salle,48283,TX,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+LTVHOLD,3,"LORTON, VA HOLD ROOM",,,,,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LUBBOTX,976,Lubbock County Jail,Lubbock,Lubbock,48303,TX,USMS IGA,South,31180,"Lubbock, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+LVGHOLD,3080,Las Vegas Hold Room,,,,NV,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+LYNRJVA,44,BRRJ Lynchburg,Lynchburg,Lynchburg,51680,VA,,South,31340,"Lynchburg, VA",Metropolitan,Metropolitan,Unclassified,no operator signal
+MADISMS,3134,"Madison County Jail, MS",Canton,Madison,28089,MS,IGSA,South,27140,"Jackson, MS",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MADISNY,2,Madison County Jail,Wampsville,Madison,36053,NY,USMS IGA,Northeast,45060,"Syracuse, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MAHONOH,1487,Mahoning County Justice Center,Youngstown,Mahoning,39099,OH,IGSA,Midwest,49660,"Youngstown-Warren, OH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MANATFL,291,Manatee County Detention-Annex,Palmetto,Manatee,12081,FL,IGSA,South,35840,"North Port-Bradenton-Sarasota, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MANHOLD,468,Manchester Hold Room,,,,NH,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+MARICOR,2,Marion County Jail,Salem,Marion,41047,OR,IGSA,West,41420,"Salem, OR",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MARIOFL,137,Marion County Jail,Ocala,Marion,12083,FL,,South,36100,"Ocala, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MARIOIN,1103,Marion County Jail,Indianapolis,Marion,18097,IN,USMS IGA,Midwest,26900,"Indianapolis-Carmel-Greenwood, IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MARTIFL,609,Martin County Jail,Stuart,Martin,12085,FL,IGSA,South,38940,"Port St. Lucie, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MAVERTX,146,Maverick County Jail,Eagle Pass,Maverick,48323,TX,IGSA,South,20580,"Eagle Pass, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MCAHOLD,10509,McAllen Hold Room,Edinburg,Hidalgo,48215,TX,HOLD,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MCCLETX,402,McLennan County Jail,Waco,McLennan,48309,TX,IGSA,South,47380,"Waco, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MCHENIL,1,MCHENRY COUNTY SHERIFF'S,,,,,USMS IGA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+MEDHOLD,75,Medford Sub-Office,Medford,Jackson,41029,OR,HOLD,West,32780,"Medford, OR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MEMHOLD,4605,Memphis Hold Room,Memphis,Shelby,47157,TN,HOLD,South,32820,"Memphis, TN-MS-AR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MESJACO,1,Mesa County Jail,Grand Junction,Mesa,08077,CO,USMS IGA,West,24300,"Grand Junction, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+METROFL,61,Metro Dade Jail,Miami,Miami-Dade,12086,FL,IGSA,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MEYTHCT,1,MAINE YOUTH CENTER - LONG CREEK,,,,,JUVENILE,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+MGAHOLD,160,Montgomery Hold Room,,,,AL,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+MIAHOLD,8912,Miami (Miramar) Hold Room,Miramar,Broward,12011,FL,HOLD,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MIDLATX,392,Midland Detention Center,Midland,Midland,48329,TX,USMS IGA,South,33260,"Midland, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MILHOLD,1289,Milwaukee Hold Room,Milwaukee,Milwaukee,55079,WI,HOLD,Midwest,33340,"Milwaukee-Waukesha, WI",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MILLRAR,816,Miller County Jail,Texarkana,Miller,05091,AR,USMS IGA,South,45500,"Texarkana, TX-AR",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MINICID,831,Minicassia Detention Center,Burley,Cassia,16031,ID,IGSA,West,15420,"Burley, ID",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+MINNESD,653,Minnehaha County Jail,Sioux Falls,Minnehaha,46099,SD,USMS IGA,Midwest,43620,"Sioux Falls, SD-MN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MLDHOLD,1773,"Midland, TX Enforcement and Removal Operations Hold Room",,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+MLJHOLD,4871,Mount Laurel Hold Room,Mount Laurel,Burlington,34005,NJ,HOLD,Northeast,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MNROEMI,9,Monroe County Jail,Monroe,Monroe,26115,MI,IGSA,Midwest,33780,"Monroe, MI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MNTGMAL,1,Montgomery City Jail,Montgomery,Montgomery,01101,AL,IGSA,South,33860,"Montgomery, AL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MOAHOLD,2102,Mobile Hold Room,,,,AL,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+MOFFECO,8,MOFFAT COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+MONMONJ,1,Monmouth County Jail,Freehold,Monmouth,34025,NJ,IGSA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MONROFL,108,Monroe County Jail,Key West,Monroe,12087,FL,IGSA,South,28580,"Key West-Key Largo, FL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+MONROMI,1691,Monroe County Detention-Dorm,Monroe,Monroe,26115,MI,IGSA,Midwest,33780,"Monroe, MI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MONTGAL,3,Montgomery County Mac Sim Butler DF,Montgomery,Montgomery,01101,AL,USMS IGA,South,33860,"Montgomery, AL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MONTGNY,662,Montgomery County Jail,Fultonville,Montgomery,36057,NY,IGSA,Northeast,11220,"Amsterdam, NY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+MONTGTX,5,Montgomery County Jail,Conroe,Montgomery,48339,TX,IGSA,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+MPSIPAN,159,CNMI Department of Corrections,"Susupe, Saipan",Saipan,69110,MP,IGSA,Territories/Other,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+MRCDSTX,1,MERCEDES POLICE DEPT.,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+MRREGVA,3,MIDDLE RIVER REGIONAL JAIL,,,,,,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+MSF,17515,Miami Staging Facility,Miami,Miami-Dade,12086,FL,HOLD,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MSVPCPA,24609,Moshannon Valley Processing Center,Philipsburg,Clearfield,42033,PA,DIGSA,Northeast,20180,"DuBois, PA",Micropolitan,Micropolitan,GEO Group,named GEO Group facility
+MTGHOLD,36259,Montgomery Hold Room,Conroe,Montgomery,48339,TX,HOLD,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+MTGPCTX,51477,Montgomery Processing Center,Conroe,Montgomery,48339,TX,CDF,South,26420,"Houston-Pasadena-The Woodlands, TX",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+MUSCAIA,235,Muscatine County Jail,Muscatine,Muscatine,19139,IA,USMS IGA,Midwest,34700,"Muscatine, IA",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+NASSAFL,15,Nassau County Jail,Yulee,Nassau,12089,FL,IGSA,South,27260,"Jacksonville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NASSANY,3019,Nassau County Correctional Center,East Meadow,Nassau,36059,NY,IGSA,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NASTRNY,953,Nassau County ICE Intake,East Meadow,Nassau,36059,NY,,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NATJVWY,1,Natrona County Juvenile Detention Center,Casper,Natrona,56025,WY,,West,16220,"Casper, WY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NATROWY,586,Natrona County Detention Center,Casper,Natrona,56025,WY,USMS IGA,West,16220,"Casper, WY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NBGHOLD,1147,Newburgh Holding,,,,NY,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+NEMCCOI,376,McCook Detention Center,Mccook,Red Willow,31145,NE,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+NEWHOLD,633,New/INS Os Hold Room,,,,NJ,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+NIAGANY,255,Niagara County Jail,Lockport,Niagara,36063,NY,IGSA,Northeast,15380,"Buffalo-Cheektowaga, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NLSCOLA,463,Nelson Coleman Corrections Center,Killona,St. Charles,22089,LA,,South,35380,"New Orleans-Metairie, LA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NNREGVA,1,NORTHERN NECK REG. JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NOBLEMN,2,NOBLES CO. JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NOLHOLD,560,New Orleans Hold Room,Saint Rose,St. Charles,22089,LA,HOLD,South,35380,"New Orleans-Metairie, LA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+NORFOVA,4,Norfolk City Jail,Norfolk,Norfolk,51710,VA,USMS IGA,South,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NORHOLD,1540,Norfolk Sub-Office Hold,Norfolk,Norfolk,51710,VA,HOLD,South,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+NRJDCVA,35,NW Regional Juvenile Detention Center,Winchester,Frederick,51069,VA,JUVENILE,South,49020,"Winchester, VA-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NRLKCMI,5590,North Lake Processing Center,Baldwin,Lake,26085,MI,,Midwest,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+NRPHOLD,38,North Platte Hold Room,,,,NE,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+NSVHOLD,1786,Nashville Hold Room,Nashville,Davidson,47037,TN,HOLD,South,34980,"Nashville-Davidson--Murfreesboro--Franklin, TN",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+NVSDCNV,8636,Nevada Southern Detention Center,Pahrump,Nye,32023,NV,USMS IGA,West,37220,"Pahrump, NV",Micropolitan,Micropolitan,CoreCivic,named CoreCivic/CCA facility
+NWHNVNC,847,New Hanover County Detention Center,Castle Hayne,New Hanover,37129,NC,IGSA,South,48900,"Wilmington, NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NWRCCMN,343,Northwest Regional Corrections Center (Nwrcc),Crookston,Polk,27119,MN,USMS IGA,Midwest,24220,"Grand Forks, ND-MN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NWREGVA,61,Northwest Regional Adult Detention,Winchester,Frederick,51069,VA,IGSA,South,49020,"Winchester, VA-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NYCHOLD,23207,NYC Hold Room,New York,New York,36061,NY,HOLD,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+NYEPANV,1482,NYE COUNTY SHERIFF-PAHRUMP,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NYFISHC,6,FISHKILL C.F. BEACON NY,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NYGREAC,2,Great Meadow CF,Comstock,Washington,36115,NY,IGSA,Northeast,24020,"Glens Falls, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NYGROVC,2,GROVELAND C.F. SONYEA,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NYLIVIC,3,Livingston Correctional,Sonyea,Livingston,36051,NY,IGSA,Northeast,40380,"Rochester, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+NYMARCC,3,MARCY CORRECTIONAL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NYMDSTC,2,MIDSTATE CORRECTIONAL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+NYWASHC,1,Washington Correctional,Comstock,Washington,36115,NY,,Northeast,24020,"Glens Falls, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+OAK,2,Oakdale Federal Detention Center,Oakdale,Allen,22003,LA,IGSA,South,,(none),,Non-CBSA (rural),Federal (BOP/CBP/other),federal prison / detention center
+OAKHOLD,322,Oakdale Holding Room,Oakdale,Allen,22003,LA,HOLD,South,,(none),,Non-CBSA (rural),ICE,ICE SPC / staging / hold room / ERO site
+OCIRCCA,1,Orange Count Intake Release Facility,Santa Ana,Orange,06059,CA,IGSA,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+OGUHOLD,952,Ogden Hold Room,Ogden,Weber,49057,UT,HOLD,West,36260,"Ogden, UT",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+OHNORWE,633,Corrections Center of Northwest Ohio (CCNO),Stryker,Williams,39171,OH,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+OKCHOLD,7713,Oklahoma City Hold Room,Oklahoma City,Oklahoma,40109,OK,HOLD,South,36420,"Oklahoma City, OK",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+OKCIMMC,4283,Cimarron Correctional Facility,Cushing,Payne,40119,OK,,South,44660,"Stillwater, OK",Micropolitan,Micropolitan,CoreCivic,named CoreCivic/CCA facility
+OKDBACK,1131,Diamondback Correctional Facility,Watonga,Blaine,40011,OK,,South,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+OKMULOK,4,Okmulgee County Jail,Okmulgee,Okmulgee,40111,OK,IGSA,South,46140,"Tulsa, OK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+OLACCLA,5,Lasalle Correctional Center Olla,Olla,LaSalle,22059,LA,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+OLDHAKY,1852,Oldham County Detention Center,La Grange,Oldham,21185,KY,USMS IGA,South,31140,"Louisville/Jefferson County, KY-IN",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+OMAHOLD,5647,Omaha Field Office Hold,Omaha,Douglas,31055,NE,HOLD,Midwest,36540,"Omaha, NE-IA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ONSLONC,48,Onslow County Jail,Jacksonville,Onslow,37133,NC,,South,27340,"Jacksonville, NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ORANGFL,8245,Orange County Jail,Orlando,Orange,12095,FL,USMS IGA,South,36740,"Orlando-Kissimmee-Sanford, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ORANGNY,2384,Orange County Jail,Goshen,Orange,36071,NY,IGSA,Northeast,28880,"Kiryas Joel-Poughkeepsie-Newburgh, NY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ORLHOLD,15854,Orlando Hold Room,Orlando,Orange,12095,FL,HOLD,South,36740,"Orlando-Kissimmee-Sanford, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+OSCEOFL,344,Osceola County Jail,Kissimmee,Osceola,12097,FL,,South,36740,"Orlando-Kissimmee-Sanford, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+OTERONM,4,OTERO COUNTY DETENTION,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+OTRPCNM,26949,Otero County Processing Center,Chaparral,Otero,35035,NM,DIGSA,West,10460,"Alamogordo, NM",Micropolitan,Micropolitan,Other private,named MTC/LaSalle/ICA facility
+OZARKMO,601,Ozark County Jail,Gainesville,Ozark,29153,MO,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+PALMBFL,23,Palm Beach County Jail,West Palm Beach,Palm Beach,12099,FL,IGSA,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PBDPDMA,2,PEABODY PD,,,,,,Territories/Other,,(none),,Unmapped,Unclassified,no operator signal
+PCKNSAL,11043,Pickens County Detention Center,Carrollton,Pickens,01107,AL,IGSA,South,46220,"Tuscaloosa, AL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PCSHOLD,1462,Pecos Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+PDNHOLD,38,Pdn Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+PENNISD,320,Pennington County Jail,Rapid City,Pennington,46103,SD,USMS IGA,Midwest,39660,"Rapid City, SD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PHELPMO,495,Phelps County Jail,Rolla,Phelps,29161,MO,,Midwest,40620,"Rolla, MO",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+PHELPNE,498,Phelps County Jail,Holdrege,Phelps,31137,NE,USMS IGA,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+PHIHOLD,4985,Phi District Office,,,,PA,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+PHOHOLD,33553,Phoenix District Office,Phoenix,Maricopa,04013,AZ,HOLD,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PIC,102859,Port Isabel Service Processing Center,Los Fresnos,Cameron,48061,TX,SPC,South,15180,"Brownsville-Harlingen, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PIERCND,10,Pierce County Jail,Rugby,Pierce,38069,ND,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+PIKCOPA,4515,Pike County Correctional Facility,Lords Valley,Pike,42103,PA,IGSA,Northeast,25770,"Hemlock Farms, PA",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+PIMAJAZ,3,Pima County Jail,Tucson,Pima,04019,AZ,IGSA,West,46060,"Tucson, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PINALAZ,5,Pinal County Jail,Florence,Pinal,04021,AZ,IGSA,West,38060,"Phoenix-Mesa-Chandler, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PINELFL,7959,Pinellas County Jail,Clearwater,Pinellas,12103,FL,USMS IGA,South,45300,"Tampa-St. Petersburg-Clearwater, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PINEPLA,45555,Pine Prairie ICE Processing Center,Pine Prairie,Evangeline,22039,LA,IGSA,South,,(none),,Non-CBSA (rural),Other private,named MTC/LaSalle/ICA facility
+PITHOLD,1833,Pittsburgh Hold Room,Pittsburgh,Allegheny,42003,PA,HOLD,Northeast,38300,"Pittsburgh, PA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PKEHOLD,837,Pike County Enforcement and Removal Operations Hold Room,,,,PA,HOLD,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+PLATTMO,1,Platte County Jail,Platte City,Platte,29165,MO,IGSA,Midwest,28140,"Kansas City, MO-KS",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PLATTWY,749,Platte County Jail,Wheatland,Platte,56031,WY,USMS IGA,West,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+PLYMOMA,8751,Plymouth County Correctional Facility,Plymouth,Plymouth,25023,MA,IGSA,Northeast,14460,"Boston-Cambridge-Newton, MA-NH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PMREGVA,1,PIEDMONT REG JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+POLKCTX,23284,IAH Polk Adult Detention Facility,Livingston,Polk,48373,TX,IGSA,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+POLKJFL,23,Polk County Jail,Bartow,Polk,12105,FL,IGSA,South,29460,"Lakeland-Winter Haven, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+POLKJIA,1405,Polk County Jail,Des Moines,Polk,19153,IA,USMS IGA,Midwest,19780,"Des Moines-West Des Moines, IA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+POMHOLD,191,"Portland, ME Hold Room",Scarborough,Cumberland,23005,ME,HOLD,Northeast,38860,"Portland-South Portland, ME",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+POOHOLD,2545,Portland District Office,Portland,Multnomah,41051,OR,HOLD,West,38900,"Portland-Vancouver-Hillsboro, OR-WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+POTTAIA,1457,Pottawattamie County Jail,Council Bluffs,Pottawattamie,19155,IA,USMS IGA,Midwest,36540,"Omaha, NE-IA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+POTTRTX,3,Potter County Jail,Amarillo,Potter,48375,TX,,South,11100,"Amarillo, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PRLDCTX,40648,Prairieland Detention Facility,Alvarado,Johnson,48251,TX,DIGSA,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,Other private,named MTC/LaSalle/ICA facility
+PRLHOLD,1426,Prairieland Suboffice Hold Room,Alvarado,Johnson,48251,TX,HOLD,South,19100,"Dallas-Fort Worth-Arlington, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PROHOLD,840,Prohold,Warwick,Kent,44003,RI,HOLD,Northeast,39300,"Providence-Warwick, RI-MA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PRUHOLD,1054,Provo Hold Room,,,,UT,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+PUEBLCO,2,Pueblo County Jail,Pueblo,Pueblo,08101,CO,USMS IGA,West,39380,"Pueblo, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+PUEHOLD,751,Pueblo Hold Room,Florence,Fremont,08043,CO,HOLD,West,15860,"Cañon City, CO",Micropolitan,Micropolitan,ICE,ICE SPC / staging / hold room / ERO site
+PUTMAFL,15,Putnam County Jail,Palatka,Putnam,12107,FL,,South,37260,"Palatka, FL",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+PUTNMTN,2537,Putnam County Sheriff,Cookeville,Putnam,47141,TN,,South,18260,"Cookeville, TN",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+PWILLVA,13,Prince William,Manassas,Prince William,51153,VA,USMS IGA,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RAADCMN,1,"Ramsey Adult Detention Center Annex, Spm",Saint Paul,Ramsey,27123,MN,USMS IGA,Midwest,33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RADDFGA,2426,Robert A Deyton Detention Facility,Lovejoy,Clayton,13063,GA,USMS CDF,South,12060,"Atlanta-Sandy Springs-Roswell, GA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RAPPSVA,562,Rapp Sec Center,Stafford,Stafford,51179,VA,USMS IGA,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RCMHOLD,13962,Richmond Sub-Office Hold,North Chesterfield,Chesterfield,51041,VA,HOLD,South,40060,"Richmond, VA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+RDUHOLD,3911,Raleigh Hold Room,Cary,Wake,37183,NC,HOLD,South,39580,"Raleigh-Cary, NC",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+REDHOLD,241,Redding Hold Room,Redding,Shasta,06089,CA,HOLD,West,39820,"Redding, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+RENHOLD,469,Reno Hold Room,,,,NV,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+RGRNDTX,17145,Rio Grande Processing Center,Laredo,Webb,48479,TX,USMS IGA,South,29700,"Laredo, TX",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+RGS,412,Rio Grande Valley Staging,Los Fresnos,Cameron,48061,TX,STAGING,South,15180,"Brownsville-Harlingen, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+RICHOLD,189,Richland Hold Room,Richland,Benton,53005,WA,,West,28420,"Kennewick-Richland, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+RIIHOLD,706,Rock Island Hold Room,,,,IL,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+RMKHOLD,635,Roanoke Sub-Office Hold Room,Salem,Salem,51775,VA,HOLD,South,40220,"Roanoke, VA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+RNDLLTX,522,Randall County Jail,Amarillo,Randall,48381,TX,USMS IGA,South,11100,"Amarillo, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ROCKIIL,1,Rock Island County Jail,Rock Island,Rock Island,17161,IL,USMS IGA,Midwest,19340,"Davenport-Moline-Rock Island, IA-IL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+ROCKIVA,476,Rockingham County Jail,Harrisonburg,Harrisonburg,51660,VA,USMS IGA,South,25500,"Harrisonburg, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RONKEVA,334,Roanoke City Jail,Roanoke,Roanoke,51770,VA,USMS IGA,South,40220,"Roanoke, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RPCHOLD,187,Rapid City Hold Room,,,,SD,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+RSREGVA,5284,Riverside Regional Jail,North Prince George,Prince George,51149,VA,USMS IGA,South,40060,"Richmond, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+RSWHOLD,1289,Roswell Hold Room,,,,NM,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+RVRCCLA,10106,River Correctional Center,Ferriday,Concordia,22029,LA,DIGSA,South,35020,"Natchez, MS-LA",Micropolitan,Micropolitan,Other private,named MTC/LaSalle/ICA facility
+RWCCMLA,23054,Richwood Correctional Center,Monroe,Ouachita,22073,LA,DIGSA,South,33740,"Monroe, LA",Metropolitan,Metropolitan,Other private,named MTC/LaSalle/ICA facility
+SAAHOLD,5846,Santa Ana Detention and Removal Operations Hold Room,Santa Ana,Orange,06059,CA,HOLD,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SACHOLD,1323,Sacramento Hold,Sacramento,Sacramento,06067,CA,HOLD,West,40900,"Sacramento-Roseville-Folsom, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SACITCA,5,Santa Ana City Jail,Santa Ana,Orange,06059,CA,IGSA,West,31080,"Los Angeles-Long Beach-Anaheim, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SAGHOLD,2699,San Angelo Hold Room,San Angelo,Tom Green,48451,TX,HOLD,South,41660,"San Angelo, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SAIHOLD,17,Saipain Hold,,,,MP,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SAJHOLD,692,San Juan Sub-Office Hold Room,San Juan,San Juan,72127,PR,STAGING,Territories/Other,41980,"San Juan-Bayamón-Caguas, PR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SALEMNJ,1,Salem County Correctional Facility,Woodstown,Salem,34033,NJ,USMS IGA,Northeast,37980,"Philadelphia-Camden-Wilmington, PA-NJ-DE-MD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SALHOLD,1844,Salisbury Hold Room,Salisbury,Wicomico,24045,MD,HOLD,South,41540,"Salisbury, MD",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SALINNE,8,Saline County Jail,Wilber,Saline,31151,NE,USMS IGA,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+SARASFL,444,Sarasota County Jail,Sarasota,Sarasota,12115,FL,IGSA,South,35840,"North Port-Bradenton-Sarasota, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SARPYNE,241,Sarpy County Department of Corrections,Papillion,Sarpy,31153,NE,IGSA,Midwest,36540,"Omaha, NE-IA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SAUKCWI,198,Sauk County Sheriff,Baraboo,Sauk,55111,WI,,Midwest,12660,"Baraboo, WI",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+SAVHOLD,332,Savannah Hold Room,Savannah,Chatham,13051,GA,,South,42340,"Savannah, GA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SBDHOLD,4904,San Bernardino Hold Room,San Bernardino,San Bernardino,06071,CA,HOLD,West,40140,"Riverside-San Bernardino-Ontario, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SBERNCA,1,San Bernardino County Jail,San Bernardino,San Bernardino,06071,CA,USMS IGA,West,40140,"Riverside-San Bernardino-Ontario, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SCOTTIA,268,Scott County Jail,Davenport,Scott,19163,IA,,Midwest,19340,"Davenport-Moline-Rock Island, IA-IL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SCOTTNE,11,Scotts Bluff County Jail,Gering,Scotts Bluff,31157,NE,USMS IGA,Midwest,42420,"Scottsbluff, NE",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+SEAHOLD,3706,Seattle Field Office Hold Room,Seattle,King,53033,WA,HOLD,West,42660,"Seattle-Tacoma-Bellevue, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SEBASAR,649,Sebastian County Detention Center,Fort Smith,Sebastian,05131,AR,USMS IGA,South,22900,"Fort Smith, AR-OK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SENECOH,1993,Seneca County Jail,Tiffin,Seneca,39147,OH,IGSA,Midwest,45660,"Tiffin, OH",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+SFDHOLD,317,Sioux Falls Hold Room,,,,SD,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SFRHOLD,2320,Sfr Hold Room,San Francisco,San Francisco,06075,CA,HOLD,West,41860,"San Francisco-Oakland-Fremont, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SGUHOLD,421,"St. George, UT Hold Room",,,,UT,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SHERBMN,1615,Sherburne County Jail Services,Elk River,Sherburne,27141,MN,IGSA,Midwest,33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SIOUXIA,55,Sioux County Jail,Orange City,Sioux,19167,IA,IGSA,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+SJS,3494,San Juan Staging,Guaynabo,Guaynabo,72061,PR,STAGING,Territories/Other,41980,"San Juan-Bayamón-Caguas, PR",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SJUHOLD,1370,San Juan Airport Hold Room,,,,PR,HOLD,Territories/Other,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SLCHOLD,9084,Salt Lake City Hold Room,West Valley City,Salt Lake,49035,UT,HOLD,West,41620,"Salt Lake City-Murray, UT",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SLRDCAZ,15286,San Luis Regional Detention Center,San Luis,Yuma,04027,AZ,IGSA,West,49740,"Yuma, AZ",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SLSLCUT,2851,Salt Lake County Jail,Salt Lake City,Salt Lake,49035,UT,USMS IGA,West,41620,"Salt Lake City-Murray, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SMAHOLD,2469,Santa Maria Sub Office Enforcement and Removal Operations,Santa Maria,Santa Barbara,06083,CA,HOLD,West,42200,"Santa Maria-Santa Barbara, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SMARYMD,1,St. Mary’s County Detention Center,Leonardtown,St. Mary's,24037,MD,IGSA,South,30500,"Lexington Park, MD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SMNOLFL,113,Seminole County Jail,Sanford,Seminole,12117,FL,,South,36740,"Orlando-Kissimmee-Sanford, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SMRVLTX,7,Somervell County Sheriff’s Department,Glen Rose,Somervell,48425,TX,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+SNAHOLD,15545,San Antonio Detention and Removal Operations Hold Room,San Antonio,Bexar,48029,TX,HOLD,South,41700,"San Antonio-New Braunfels, TX",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SNDHOLD,14105,Snd District Staging,San Diego,San Diego,06073,CA,HOLD,West,41740,"San Diego-Chula Vista-Carlsbad, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SNJHOLD,24,Snj Hold Room,Stockton,San Joaquin,06077,CA,HOLD,West,44700,"Stockton-Lodi, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SOBAYCA,3,South Bay Detent Facility,Chula Vista,San Diego,06073,CA,IGSA,West,41740,"San Diego-Chula Vista-Carlsbad, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SPGHOLD,1537,Enforcement and Removal Operations Hold Room (Springfield MO),,,,MO,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SPMHOLD,13389,Bishop Henry Whipple Federal Building,Fort Snelling,Hennepin,27053,MN,HOLD,Midwest,33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SPOHOLD,1114,Spokane Hold Room,Spokane,Spokane,53063,WA,HOLD,West,44060,"Spokane-Spokane Valley, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+SROSAFL,1,Santa Rosa County Jail,Milton,Santa Rosa,12113,FL,,South,37860,"Pensacola-Ferry Pass-Brent, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STAHOLD,175,Saint Albans Hold Room,Saint. Albans,Franklin,50011,VT,HOLD,Northeast,15540,"Burlington-South Burlington, VT",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+STCDFTX,42527,South Texas ICE Processing Center,Pearsall,Frio,48163,TX,CDF,South,,(none),,Non-CBSA (rural),GEO Group,named GEO Group facility
+STCHRLA,4,St. Charles Parish Jail,Killona,St. Charles,22089,LA,,South,35380,"New Orleans-Metairie, LA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STCLAMI,1798,St. Clair County Jail,Port Huron,St. Clair,26147,MI,IGSA,Midwest,19820,"Detroit-Warren-Dearborn, MI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STDHOLD,3693,South Texas/Pearsall Hold Room,Pearsall,Frio,48163,TX,HOLD,South,,(none),,Non-CBSA (rural),ICE,ICE SPC / staging / hold room / ERO site
+STFRCTX,30061,Dilley Immigration Processing Center,Dilley,Frio,48163,TX,FAMILY,South,,(none),,Non-CBSA (rural),CoreCivic,named CoreCivic/CCA facility
+STGENMO,1774,Ste. Genevieve County Detention Center,Sainte Genevieve,Ste. Genevieve,29186,MO,,Midwest,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+STJONFL,96,St. John’s County Jail,Saint Augustine,St. Johns,12109,FL,IGSA,South,27260,"Jacksonville, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STK,1907,Stockton Staging Facility,Stockton,San Joaquin,06077,CA,STAGING,West,44700,"Stockton-Lodi, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+STLHOLD,2318,St. Louis Hold Room,Saint. Louis,St. Louis,29510,MO,HOLD,Midwest,41180,"St. Louis, MO-IL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+STLUCFL,45,St. Lucie County Jail,Fort Pierce,St. Lucie,12111,FL,,South,38940,"Port St. Lucie, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STRAFNH,1970,Strafford County Corrections,Dover,Strafford,33017,NH,IGSA,Northeast,14460,"Boston-Cambridge-Newton, MA-NH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+STTAMLA,1,ST TAMMANY PARISH JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+STTCJVI,1,ST T CRIMINAL JUST COMPLX,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+STUHOLD,3104,Stuart Hold Room,,,,FL,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+STWRTGA,40481,Stewart Detention Center,Lumpkin,Stewart,13259,GA,DIGSA,South,17980,"Columbus, GA-AL",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+SUMMIUT,6,Summit County Jail,Park City,Summit,49043,UT,IGSA,West,25720,"Heber, UT",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+SUMTEFL,106,Sumter County Jail,Bushnell,Sumter,12119,FL,,South,48680,"Wildwood-The Villages, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+SUWANFL,1,Suwannee County Jail,Live Oak,Suwannee,12121,FL,IGSA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+SWEETWY,442,Sweetwater County Detention Center,Rock Springs,Sweetwater,56037,WY,USMS IGA,West,40540,"Rock Springs, WY",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+SXCHOLD,122,Sioux City Hold Room,,,,IA,HOLD,Midwest,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+SYRHOLD,465,Syracuse Hold Room,,,,NY,,Northeast,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+TALHOLD,5048,Tallahassee Hold Room,,,,FL,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+TALLAMS,6,Tallahatchie County Correctional Facility,Tutwiler,Tallahatchie,28135,MS,USMS IGA,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+TAMHOLD,14834,Tampa Hold Room,Tampa,Hillsborough,12057,FL,HOLD,South,45300,"Tampa-St. Petersburg-Clearwater, FL",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+TAYLOTX,3,Taylor County Adult Detention,Abilene,Taylor,48441,TX,IGSA,South,10180,"Abilene, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TBRJLME,50,Two Bridges Regional Jail,Wiscasset,Lincoln,23015,ME,,Northeast,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+TELLECO,159,Teller County Jail,Divide,Teller,08119,CO,IGSA,West,17820,"Colorado Springs, CO",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TFALLID,11,TWIN FALLS COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+TFIHOLD,288,Twin Falls Hold Room,,,,ID,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+TGKJLFL,2259,Turner Guiford Knight (Tgk) Jail,Miami,Miami-Dade,12086,FL,IGSA,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TGREETX,405,Tom Green County Jail,San Angelo,Tom Green,48451,TX,USMS IGA,South,41660,"San Angelo, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TITUSTX,181,Titus County Jail,Mount Pleasant,Titus,48449,TX,USMS IGA,South,34420,"Mount Pleasant, TX",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+TNWESDF,1601,West Tennessee Detention Facility,Mason,Tipton,47167,TN,USMS IGA,South,32820,"Memphis, TN-MS-AR",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+TOOELUT,985,Tooele County Jail,Tooele,Tooele,49045,UT,USMS IGA,West,41620,"Salt Lake City-Murray, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TOOLEMT,3,TOOLE COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+TOORANM,10228,Torrance County Detention Facility,Estancia,Torrance,35057,NM,IGSA,West,10740,"Albuquerque, NM",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+TUCHOLD,3612,Tucson INS Hold Room,,,,AZ,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+TULCOOK,5575,Tulsa County Jail,Tulsa,Tulsa,40143,OK,IGSA,South,46140,"Tulsa, OK",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+TULHOLD,1526,Tulsa Hold Room,Tulsa,Tulsa,40143,OK,HOLD,South,46140,"Tulsa, OK",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+TXAHOLD,486,Texarkana Hold Room,,,,AR,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+UCBPMCA,253,CBP MOVEMENT COORDINATION AREA,,,,,,Territories/Other,,(none),,Unmapped,Federal (BOP/CBP/other),federal prison / detention center
+UHOSPIN,3,Union Hospital,Terre Haute,Vigo,18167,IN,,Midwest,45460,"Terre Haute, IN",Metropolitan,Metropolitan,Unclassified,no operator signal
+UINTAWY,1613,Uinta County Detention Center,Evanston,Uinta,56041,WY,USMS IGA,West,21740,"Evanston, WY-UT",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+UNIONSD,70,Union County Jail,Elk Point,Union,46127,SD,USMS IGA,Midwest,43580,"Sioux City, IA-NE-SD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+URSLATX,3546,Ursula Centralized Processing Center,Mcallen,Hidalgo,48215,TX,,South,32580,"McAllen-Edinburg-Mission, TX",Metropolitan,Metropolitan,Federal (BOP/CBP/other),federal prison / detention center
+USMWDLA,2,"US MARSHALS, W.D. LA.",,,,,USMS IGA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+UTAHCUT,1,Utah County Jail,Spanish Fork,Utah,49049,UT,IGSA,West,39340,"Provo-Orem-Lehi, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+UVALDTX,56,Uvalde County Jail,Uvalde,Uvalde,48463,TX,USMS IGA,South,46620,"Uvalde, TX",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+VALVETX,2485,Val Verde Detention Center,Del Rio,Val Verde,48465,TX,USMS IGA,South,19620,"Del Rio, TX",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+VENHOLD,5128,Ventura Custody Case,Camarillo,Ventura,06111,CA,HOLD,West,37100,"Oxnard-Thousand Oaks-Ventura, CA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+VENTUCA,1,Ventura County Jail,Ventura,Ventura,06111,CA,USMS IGA,West,37100,"Oxnard-Thousand Oaks-Ventura, CA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VICTOTX,100,Victoria County Jail,Victoria,Victoria,48469,TX,IGSA,South,47020,"Victoria, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VIRBEVA,14,Virginia Beach,Virginia Beach,Virginia Beach,51810,VA,IGSA,South,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VPREGVA,2,Virginia Peninsula Regional Jail,Williamsburg,James City,51095,VA,USMS IGA,South,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VRK,405,Vrk Prcs,New York,New York,36061,NY,HOLD,Northeast,35620,"New York-Newark-Jersey City, NY-NJ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+VTCHTDN,716,Chittenden Regional Correctional Facility,South Burlington,Chittenden,50007,VT,IGSA,Northeast,15540,"Burlington-South Burlington, VT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VTDCORR,2,VT. Department of Corrections,Waterbury,Washington,50023,VT,IGSA,Northeast,12740,"Barre, VT",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+VTSTALB,2098,Northwest State Correctional Facility,Swanton,Franklin,50011,VT,USMS IGA,Northeast,15540,"Burlington-South Burlington, VT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+VVSHOLD,1218,Shreveport Hold Room,,,,LA,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+WAJAIMN,146,Washington County Jail,Stillwater,Washington,27163,MN,USMS IGA,Midwest,33460,"Minneapolis-St. Paul-Bloomington, MN-WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WAKULFL,3,Wakulla County Jail,Crawfordville,Wakulla,12129,FL,IGSA,South,45220,"Tallahassee, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WALTNFL,2,Walton County DOC,Defuniak Springs,Walton,12131,FL,,South,18880,"Crestview-Fort Walton Beach-Destin, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WARDCND,192,Ward County Detention Center,Minot,Ward,38101,ND,USMS IGA,Midwest,33500,"Minot, ND",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WASHCUT,647,Washington County Jail,Hurricane,Washington,49053,UT,USMS IGA,West,41100,"St. George, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WASHIAR,2188,Washington County Jail,Fayetteville,Washington,05143,AR,USMS IGA,South,22220,"Fayetteville-Springdale-Rogers, AR",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WASHIMD,4,Washington County Detention,Hagerstown,Washington,24043,MD,IGSA,South,25180,"Hagerstown-Martinsburg, MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WASHOLD,11546,Washington Field Office,Chantilly,Fairfax,51059,VA,HOLD,South,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+WASHONV,1667,Washoe County Jail,Reno,Washoe,32031,NV,USMS IGA,West,39900,"Reno, NV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WAUKEWI,539,Waukesha County Jail,Waukesha,Waukesha,55133,WI,IGSA,Midwest,33340,"Milwaukee-Waukesha, WI",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WCCPBFL,23080,Broward Transitional Center,Pompano Beach,Broward,12011,FL,CDF,South,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",Metropolitan,Metropolitan,GEO Group,named GEO Group facility
+WCTHOLD,3757,Waco Detention and Removal Operations Hold Room,,,,TX,HOLD,South,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+WEBCOTX,1,Webb County Jail,Laredo,Webb,48479,TX,IGSA,South,29700,"Laredo, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WEBDCTX,8838,Corecivic Webb County Detention Center,Laredo,Webb,48479,TX,USMS IGA,South,29700,"Laredo, TX",Metropolitan,Metropolitan,CoreCivic,named CoreCivic/CCA facility
+WEBERUT,304,Weber County Jail,Ogden,Weber,49057,UT,USMS IGA,West,36260,"Ogden, UT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WESHOLD,22,Westminster Custody,,,,CA,HOLD,West,,(none),,Unmapped,ICE,ICE SPC / staging / hold room / ERO site
+WHITFGA,46,WHITFIELD COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+WICHOLD,143,Wichita Hold Room,Wichita,Sedgwick,20173,KS,HOLD,Midwest,48620,"Wichita, KS",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+WILSOTX,9,Wilson County Jail,Floresville,Wilson,48493,TX,IGSA,South,41700,"San Antonio-New Braunfels, TX",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WLTSOFL,3110,Walton County Jail,Defuniak Springs,Walton,12131,FL,,South,18880,"Crestview-Fort Walton Beach-Destin, FL",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WMLNDPA,1,Westmoreland County Jail,Greensburg,Westmoreland,42129,PA,IGSA,Northeast,38300,"Pittsburgh, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WNTHOLD,188,Wenatchee Hold Room,Wenatchee,Chelan,53007,WA,HOLD,West,48300,"Wenatchee-East Wenatchee, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+WOODBIA,782,Woodbury County Jail,Sioux City,Woodbury,19193,IA,IGSA,Midwest,43580,"Sioux City, IA-NE-SD",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WOODFKY,15,Woodford County Sheriff/Jail,Versailles,Woodford,21239,KY,,South,30460,"Lexington-Fayette, KY",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WORCEMD,2,Worcester County Jail,Snow Hill,Worcester,24047,MD,IGSA,South,36180,"Ocean Pines, MD",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+WPOHOLD,268,Williamsport Hold Room,Williamsport,Lycoming,42081,PA,HOLD,Northeast,48700,"Williamsport, PA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+WVEASTR,878,Eastern Regional Jail,Martinsburg,Berkeley,54003,WV,USMS IGA,South,25180,"Hagerstown-Martinsburg, MD-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVIRGVA,738,Western Virginia Regional Jail,Salem,Roanoke,51161,VA,USMS IGA,South,40220,"Roanoke, VA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVNCENT,54,North Central Regional Jail,Greenwood,Doddridge,54017,WV,,South,17220,"Clarksburg, WV",Micropolitan,Micropolitan,Local/state government,county/state jail or IGSA/IGA
+WVNORTH,1062,Northern Regional Jail,Moundsville,Marshall,54051,WV,USMS IGA,South,48540,"Wheeling, WV-OH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVPTMAC,39,Potomac Highlands Regional Jail,Augusta,Hampshire,54027,WV,,South,49020,"Winchester, VA-WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVSCENT,1341,South Central Regional Jail,Charleston,Kanawha,54039,WV,USMS IGA,South,16620,"Charleston, WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVSOUTH,39,Southern Regional Jail,Beaver,Raleigh,54081,WV,,South,13220,"Beckley, WV",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WVSWEST,29,Southwestern Regional Jail,Holden,Logan,54045,WV,,South,,(none),,Non-CBSA (rural),Local/state government,county/state jail or IGSA/IGA
+WVWESTR,205,Western Regional Jail,Barboursville,Cabell,54011,WV,,South,26580,"Huntington-Ashland, WV-KY-OH",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+WYATTRI,2538,Wyatt Detention Facility,Central Falls,Providence,44007,RI,USMS IGA,Northeast,39300,"Providence-Warwick, RI-MA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+YAKHOLD,839,Yakima Sub-Office,Yakima,Yakima,53077,WA,HOLD,West,49420,"Yakima, WA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+YELLOMT,14,Yellowstone County Jail,Billings,Yellowstone,30111,MT,USMS IGA,West,13740,"Billings, MT",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+YORCOPA,1,York County Prison,York,York,42133,PA,IGSA,Northeast,49620,"York-Hanover, PA",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+YORCOSC,105,York County Detention Center,York,York,45091,SC,USMS IGA,South,16740,"Charlotte-Concord-Gastonia, NC-SC",Metropolitan,Metropolitan,Local/state government,county/state jail or IGSA/IGA
+YRKHOLD,2344,York Hold Room,York,York,42133,PA,HOLD,Northeast,49620,"York-Hanover, PA",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+YUBAJCA,6,YUBA COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA
+YUMHOLD,988,Yuma Hold Room,Yuma,Yuma,04027,AZ,HOLD,West,49740,"Yuma, AZ",Metropolitan,Metropolitan,ICE,ICE SPC / staging / hold room / ERO site
+ZAVCOTX,1,ZAVALA COUNTY JAIL,,,,,IGSA,Territories/Other,,(none),,Unmapped,Local/state government,county/state jail or IGSA/IGA

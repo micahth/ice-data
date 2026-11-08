@@ -29,18 +29,34 @@ os.makedirs(RESULTS, exist_ok=True)
 
 RAW = "https://raw.githubusercontent.com"
 MEDIA = "https://media.githubusercontent.com/media"
+REVISIONS = {
+    "deportationdata/ice-detention-facilities": "a311796374555f100435ae7578cac2a945eea5b1",
+    "jenniferpeebles/omb_msas_historical_delineation": "d3a2e5f79b471318dfea91db0c384e5e02857863",
+    "GreatTombProductions/county-population": "7f0daa62f6de3adea11d6834a5a235d7d6ec98c1",
+    "njl250/JoE-Spring-2026": "aa65d14ec4dd3e09b833dfe8fb0a40cc36e6ad1c",
+    "kmazurek95/us-election-county-swing": "1a11c45649d8aed480fd62a694bf604e6a8aee28",
+    "dathere/bls-laus-stats": "ddd044bd107e4f0c0d3cfcb2439696a8274fcf46",
+    "CatalinaBedoya1/PlotlyDashboard": "5a96ad147364339acbe2999a95877c8a05d36b9a",
+    "AH-Datalytics/rtci": "40cf8591b591eb12a0df4ad3efe7a7656ea359ea",
+}
+
+
+def source_url(repo, path, media=False):
+    return f"{MEDIA if media else RAW}/{repo}/{REVISIONS[repo]}/{path}"
+
+
 SOURCES = {
-    "facilities_latest.parquet": f"{MEDIA}/deportationdata/ice-detention-facilities/main/data/facilities-latest.parquet",
-    "facilities_attributes.parquet": f"{MEDIA}/deportationdata/ice-detention-facilities/main/data/facilities-attributes-cleaned-with-codes.parquet",
-    "list1_2023.xlsx": f"{RAW}/jenniferpeebles/omb_msas_historical_delineation/HEAD/data/raw/list1_2023.xlsx",
-    "gdp.csv": f"{RAW}/njl250/JoE-Spring-2026/main/SAGDP1_ALL_AREAS_1997_2025.csv",
-    "laus_old.json": f"{RAW}/kmazurek95/us-election-county-swing/main/data/raw/bls_laus_states.json",
-    "laus_new.csv": f"{RAW}/dathere/bls-laus-stats/HEAD/output/stateUnemployment.csv",
-    "fbi_crime.csv": f"{RAW}/CatalinaBedoya1/PlotlyDashboard/main/FinalProject/data/fbi_state_crime-2010-2024.csv",
-    "rtci.csv": f"{RAW}/AH-Datalytics/rtci/main/data/Crime_Index_Reported_Crime_Trends_Jan17_Jun26.csv",
-    "acs.csv": f"{RAW}/kmazurek95/us-election-county-swing/main/data/raw/acs_demographics.csv",
-    "gaz.txt": f"{RAW}/kmazurek95/us-election-county-swing/main/data/raw/gazetteer_counties.txt",
-    "pres.csv": f"{RAW}/kmazurek95/us-election-county-swing/main/data/raw/countypres_2000-2024.csv",
+    "facilities_latest.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-latest.parquet", media=True),
+    "facilities_attributes.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-attributes-cleaned-with-codes.parquet", media=True),
+    "list1_2023.xlsx": source_url("jenniferpeebles/omb_msas_historical_delineation", "data/raw/list1_2023.xlsx"),
+    "gdp.csv": source_url("njl250/JoE-Spring-2026", "SAGDP1_ALL_AREAS_1997_2025.csv"),
+    "laus_old.json": source_url("kmazurek95/us-election-county-swing", "data/raw/bls_laus_states.json"),
+    "laus_new.csv": source_url("dathere/bls-laus-stats", "output/stateUnemployment.csv"),
+    "fbi_crime.csv": source_url("CatalinaBedoya1/PlotlyDashboard", "FinalProject/data/fbi_state_crime-2010-2024.csv"),
+    "rtci.csv": source_url("AH-Datalytics/rtci", "data/Crime_Index_Reported_Crime_Trends_Jan17_Jun26.csv"),
+    "acs.csv": source_url("kmazurek95/us-election-county-swing", "data/raw/acs_demographics.csv"),
+    "gaz.txt": source_url("kmazurek95/us-election-county-swing", "data/raw/gazetteer_counties.txt"),
+    "pres.csv": source_url("kmazurek95/us-election-county-swing", "data/raw/countypres_2000-2024.csv"),
 }
 
 
@@ -48,7 +64,13 @@ def fetch(name):
     path = os.path.join(CACHE, name)
     if not os.path.exists(path):
         print(f"  downloading {name}")
-        subprocess.run(["curl", "-sfL", "-o", path, SOURCES[name]], check=True)
+        temporary = path + ".part"
+        try:
+            subprocess.run(["curl", "-sfL", "-o", temporary, SOURCES[name]], check=True)
+            os.replace(temporary, path)
+        finally:
+            if os.path.exists(temporary):
+                os.remove(temporary)
     return path
 
 
@@ -58,16 +80,22 @@ def fetch_pop_shards():
     for i in range(256):
         p = os.path.join(d, f"{i:02x}.json")
         if not os.path.exists(p):
-            subprocess.run(["curl", "-sfL", "-o", p,
-                            f"{RAW}/GreatTombProductions/county-population/main/data/detail/{i:02x}.json"],
-                           check=True)
+            temporary = p + ".part"
+            try:
+                subprocess.run(["curl", "-sfL", "-o", temporary,
+                                source_url("GreatTombProductions/county-population", f"data/detail/{i:02x}.json")],
+                               check=True)
+                os.replace(temporary, p)
+            finally:
+                if os.path.exists(temporary):
+                    os.remove(temporary)
     return d
 
 
 # ---------------------------------------------------------------------------
 # Periods
 # ---------------------------------------------------------------------------
-CUTOFF = pd.Timestamp("2026-03-11")   # last book-in / book-out in the FOIA release
+CUTOFF = pd.Timestamp("2026-03-11")   # detention analysis cutoff, inclusive
 PERIODS = {
     "Old (2023-2024)": (pd.Timestamp("2023-01-01"), pd.Timestamp("2025-01-01")),
     "New (2025-Mar 2026)": (pd.Timestamp("2025-01-01"), CUTOFF + pd.Timedelta(days=1)),

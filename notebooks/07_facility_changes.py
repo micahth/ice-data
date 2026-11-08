@@ -1,4 +1,4 @@
-"""Data-derived list of facility openings, closures, renames and operator-relevant changes
+"""Data-derived list of facility activity and name changes
 since the start of Trump's second term (2025-01-20). Writes results/facility_changes.csv."""
 import os
 import pandas as pd
@@ -7,9 +7,9 @@ CACHE = os.environ.get("GEO_CACHE", os.path.join(os.path.dirname(__file__), ".ca
 OUT = os.path.join(os.path.dirname(__file__), "results")
 START, CUT = pd.Timestamp("2025-01-20"), pd.Timestamp("2026-03-11")
 
-s = pd.read_pickle(os.path.join(CACHE, "stints_clean.pkl"))
+s = pd.read_pickle(os.path.join(CACHE, "stints_downloaded.pkl" if os.environ.get("ICE_DATA_DIR") else "stints_clean.pkl"))
 s["bi"] = pd.to_datetime(s.book_in_date_time, errors="coerce")
-s = s[s.bi.notna()]
+s = s[s.bi.notna() & (s.bi < CUT + pd.Timedelta(days=1))]
 cls = pd.read_csv(os.path.join(OUT, "facility_classification.csv")).set_index("detention_facility_code")
 
 g = s.groupby("detention_facility_code")

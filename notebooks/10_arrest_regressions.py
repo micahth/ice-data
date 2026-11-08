@@ -6,30 +6,27 @@ Run after 06_geo_regressions.py (which writes state_year_panel.csv with outcomes
 
 Unit: state x year (2023, 2024, 2025; 2026 is a partial year and excluded). Old era = 2023-2024, new era = 2025.
 Key regressor: ICE arrests (by apprehension state) per 100,000 residents, scaled per +10 (arr_rate10).
-Same outcomes, controls, year fixed effects and state-clustered SEs as 06. Exploratory: Benjamini-Hochberg
-adjusted q-values are reported across all arrest-rate coefficients.
+Same outcomes and controls as 06. Parsimonious lagged-outcome models are primary; full controls and
+exclusion of the highest-rate state are sensitivity checks. Repeated-state models use clustered SEs;
+single-year models use HC3. T-based 95% intervals and Benjamini-Hochberg q-values are reported.
 Includes lagged change in youth share (ages 15-29) as an additional control from Census state age data.
 """
 import os
-import re
-import warnings
 
 import numpy as np
 import pandas as pd
-import statsmodels.formula.api as smf
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
 from geo_common import REPO, RESULTS, STATE_ABBR
+from arrest_common import clean_arrests, load_arrests
+from regression_common import coefficient, fit
 
-warnings.filterwarnings("ignore")
 pd.set_option("display.width", 220, "display.max_columns", 40)
 
-a = pd.read_csv(os.path.join(REPO, "arrests-latest 7-24-2026.csv"),
-                usecols=["apprehension_date", "apprehension_state_filled_in", "apprehension_state_original",
-                         "duplicate_drop_row"], low_memory=False, encoding="latin-1")
-a = a[~a.duplicate_drop_row.fillna(False).astype(bool)]
-a["year"] = pd.to_datetime(a.apprehension_date, errors="coerce").dt.year
+a = clean_arrests(load_arrests(["apprehension_date", "apprehension_state_filled_in",
+                               "apprehension_state_original", "duplicate_drop_row"]))
+a["year"] = a.date.dt.year
 name = a.apprehension_state_filled_in.fillna(a.apprehension_state_original).str.title().str.replace(" Of ", " of ")
 a["state"] = name.map(STATE_ABBR | {"District of Columbia": "DC"})
 print(f"arrests with unmapped state (dropped): {a.state.isna().sum():,}")
@@ -75,16 +72,10 @@ for era in ["Old", "New"]:
                              "pearson_r": r, "pearson_p": p, "spearman_rho": rho, "spearman_p": sp})
 corr = pd.DataFrame(crow)
 corr["pearson_q_bh"] = multipletests(corr.pearson_p, method="fdr_bh")[1]
+corr["spearman_q_bh"] = multipletests(corr.spearman_p, method="fdr_bh")[1]
 corr.round(4).to_csv(os.path.join(RESULTS, "arrest_correlations.csv"), index=False)
 
 # ---- regressions ------------------------------------------------------------
-def fit(formula, d):
-    terms = [t for t in re.findall(r"[A-Za-z_][A-Za-z_0-9]*", formula) if t in d.columns]
-    d = d.dropna(subset=terms)
-    m = smf.ols(formula, data=d).fit(cov_type="cluster", cov_kwds={"groups": pd.factorize(d.state)[0]})
-    return m, len(d)
-
-
 rows = []
 
 
@@ -93,17 +84,21 @@ def collect(m, n, outcome, era, spec):
         if t.startswith("C(year)") or t == "Intercept":
             continue
         rows.append({"outcome": {**OUT, **OUT_FBI}[outcome], "era": era, "spec": spec, "term": t,
-                     "coef": m.params[t], "se": m.bse[t], "p": m.pvalues[t], "n": n, "r2": m.rsquared,
-                     "adj_r2": m.rsquared_adj})
+                     "n": n, **coefficient(m, t)})
 
 
 for yv in OUT:
     lag = LAG[yv]
     for era, sub in [("Old", panel[panel.era == "Old"]), ("New", panel[panel.era == "New"]), ("Pooled", panel)]:
         fe = " + C(year)" if sub.year.nunique() > 1 else ""
-        for sp, f in {"M1 bivariate": f"{yv} ~ arr_rate10{fe}",
+        for sp, f in {"M0 + lagged outcome": f"{yv} ~ arr_rate10 + {lag}{fe}",
+                      "M1 bivariate": f"{yv} ~ arr_rate10{fe}",
                       "M2 + controls": f"{yv} ~ arr_rate10 + {lag} + {CONTROLS}{fe}"}.items():
             collect(*fit(f, sub), yv, era, sp)
+    new = panel[panel.year == 2025]
+    highest = new.loc[new.arr_rate.idxmax(), "state"]
+    collect(*fit(f"{yv} ~ arr_rate10 + {lag}", new[new.state != highest]), yv, "New",
+            f"M0 excluding highest-rate state ({highest})")
     for era, sub in [("Old", panel[panel.year == 2024]), ("New", panel[panel.year == 2025])]:
         collect(*fit(f"{yv} ~ d_arr_rate10 + {lag} + {CONTROLS}", sub), yv, era, "M5 first-difference")
     collect(*fit(f"{yv} ~ arr_rate10 + arr_rate10:new + new + {lag} + {CONTROLS}", panel), yv, "Pooled",
@@ -126,8 +121,8 @@ reg.loc[key, "q_bh"] = multipletests(reg.loc[key, "p"], method="fdr_bh")[1]
 reg.round(5).to_csv(os.path.join(RESULTS, "arrest_regressions.csv"), index=False)
 
 print("\nKey arrest-rate coefficients (per +10 arrests per 100k):")
-show = reg[key & reg.spec.isin(["M1 bivariate", "M2 + controls", "M5 first-difference", "M7 + detention rate"])]
-print(show[["outcome", "era", "spec", "term", "coef", "se", "p", "q_bh", "n"]].round(3).to_string(index=False))
+show = reg[key & reg.spec.isin(["M0 + lagged outcome", "M2 + controls"])]
+print(show[["outcome", "era", "spec", "coef", "ci_low", "ci_high", "cov_type", "q_bh", "n"]].round(3).to_string(index=False))
 print(f"\nCorrelations tested: {len(corr)}; p<.05: {(corr.pearson_p < .05).sum()}; q<.10: {(corr.pearson_q_bh < .10).sum()}")
 print(f"Regression arrest terms tested: {key.sum()}; p<.05: {(reg[key].p < .05).sum()}; q<.10: {(reg[key].q_bh < .10).sum()}")
 print("\nAll-state correlations with p<.05:")

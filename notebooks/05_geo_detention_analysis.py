@@ -2,11 +2,10 @@
 Analysis 05 - ICE detention by region, state, metro/micro area and facility operator, old vs. new.
 
 Run from the repo root:  python notebooks/05_geo_detention_analysis.py
-Writes tidy CSVs to notebooks/results/ (consumed by 06_geo_regressions.py and the press releases).
+Writes tidy CSVs to notebooks/results/ (consumed by 06_geo_regressions.py and the report).
 
 Old = book-ins/bed-days Jan 2023 - Dec 2024.  New = Jan 2025 - Mar 11 2026 (end of the FOIA release).
 """
-import glob
 import os
 
 import numpy as np
@@ -14,22 +13,23 @@ import pandas as pd
 
 from geo_common import (ANNUAL, CACHE, CUTOFF, ERAS, OPERATORS, PERIODS, REPO, RESULTS, TERRITORY, classify_operator,
                         fetch, load_cbsa_delineation, load_county_pop, period_population, region_of)
+from ice_lib import adp, annualize, build_intervals
+from data_common import read_source
 
 pd.set_option("display.width", 220, "display.max_columns", 40)
 
 # ---------------------------------------------------------------------------
 # 1. Load stints (de-duplicated by ICE's duplicate_drop_row flag)
 # ---------------------------------------------------------------------------
-pkl = os.path.join(CACHE, "stints_clean.pkl")
+pkl = os.path.join(CACHE, "stints_clean.pkl") if not os.environ.get("ICE_DATA_DIR") else os.path.join(
+    CACHE, "stints_downloaded.pkl")
 if os.path.exists(pkl):
     st = pd.read_pickle(pkl)
 else:
     use = ["book_in_date_time", "book_out_date_time", "stay_book_out_date_time", "detention_facility",
            "detention_facility_code", "unique_identifier", "stay_ID", "state", "duplicate_drop_row",
            "book_in_criminality"]
-    files = sorted(glob.glob(os.path.join(REPO, "detention-stints*.csv")))
-    st = pd.concat([pd.read_csv(f, usecols=use, low_memory=False, encoding="latin-1") for f in files],
-                   ignore_index=True)
+    st = read_source("detention-stints", use)
     st = st[~st.duplicate_drop_row.fillna(False).astype(bool)].drop(columns="duplicate_drop_row")
     for c in ["book_in_date_time", "book_out_date_time", "stay_book_out_date_time"]:
         st[c] = pd.to_datetime(st[c], utc=True, errors="coerce").dt.tz_localize(None)
@@ -39,8 +39,10 @@ print(f"stints (deduplicated): {len(st):,}")
 # ---------------------------------------------------------------------------
 # 2. Facility table: location, CBSA type, operator
 # ---------------------------------------------------------------------------
-fl = pd.read_parquet(fetch("facilities_latest.parquet"))
-at = pd.read_parquet(fetch("facilities_attributes.parquet")).dropna(subset=["detention_facility_code"])
+fl = pd.read_parquet(fetch("facilities_latest.parquet"),
+                     columns=["detention_facility_code", "name", "city", "county", "county_fips_code", "state"])
+at = pd.read_parquet(fetch("facilities_attributes.parquet"),
+                     columns=["detention_facility_code", "type_detailed"]).dropna(subset=["detention_facility_code"])
 at = at.drop_duplicates("detention_facility_code").set_index("detention_facility_code")["type_detailed"]
 cbsa = load_cbsa_delineation().set_index("fips")
 
@@ -68,31 +70,24 @@ fac.drop(columns=["stint_name", "stint_state"]).to_csv(os.path.join(RESULTS, "fa
 # ---------------------------------------------------------------------------
 cols = ["detention_facility_code", "state", "region", "cbsa_class", "cbsa_code", "cbsa_title", "operator"]
 st = st.merge(fac[cols].rename(columns={"state": "fac_state"}), on="detention_facility_code", how="left")
-st["state"] = st.fac_state.fillna(st.state)
+st["state"] = st.fac_state.fillna(st.state).fillna("Unknown")
 st["region"] = st.state.map(region_of)
+st["cbsa_class"] = st.cbsa_class.fillna("Unmapped")
+st["operator"] = st.operator.fillna("Unclassified")
 
-# Bed-day interval. Open stints: use the stay's book-out if present; if still unknown, censor at the data
-# cut-off only for stints booked in since 2025 (older open stints are record artifacts and excluded from ADP).
-end = st.book_out_date_time.fillna(st.stay_book_out_date_time)
-open_recent = end.isna() & (st.book_in_date_time >= "2025-01-01")
-end = end.mask(open_recent, CUTOFF + pd.Timedelta(days=1))
-st["start"] = st.book_in_date_time
-st["end"] = end
+st = build_intervals(st, CUTOFF)
 st["stint_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
     st.book_out_date_time >= st.book_in_date_time)
 st["crim"] = st.book_in_criminality.str[0].map({"1": "convicted", "2": "pending", "3": "no_record"})
-print("excluded from ADP (open, pre-2025):", int(st.end.isna().sum()))
+print("interval status:", st.interval_status.value_counts().to_dict())
 
 # ---------------------------------------------------------------------------
 # 4. Per-division statistics
 # ---------------------------------------------------------------------------
 def window_stats(df, keys, label, w0, w1):
-    days = (w1 - w0).days
-    d = df[df.end.notna() & (df.start < w1) & (df.end > w0)]
-    bed = (d.end.clip(upper=w1) - d.start.clip(lower=w0)).dt.total_seconds() / 86400
-    adp = bed.groupby([d[k] for k in keys]).sum() / days if keys else pd.Series({"all": bed.sum() / days})
+    population = adp(df, w0, w1, keys=keys) if keys else pd.Series({"all": adp(df, w0, w1)})
     b = df[(df.book_in_date_time >= w0) & (df.book_in_date_time < w1)]
-    g = b.groupby(keys) if keys else b.groupby(lambda _: "all")
+    g = b.groupby(keys, dropna=False) if keys else b.groupby(lambda _: "all")
     out = pd.DataFrame({
         "book_ins": g.size(),
         "unique_people": g.unique_identifier.nunique(),
@@ -102,9 +97,12 @@ def window_stats(df, keys, label, w0, w1):
         "pct_pending_charges": g.crim.apply(lambda s: (s == "pending").mean() * 100),
         "pct_no_record": g.crim.apply(lambda s: (s == "no_record").mean() * 100),
     })
-    out["adp"] = adp
+    out = out.reindex(out.index.union(population.index, sort=False))
+    out["book_ins"] = out.book_ins.fillna(0)
+    out["unique_people"] = out.unique_people.fillna(0)
+    out["adp"] = population
     out["adp"] = out.adp.fillna(0)
-    out["book_ins_annualized"] = out.book_ins / (days / 365.25)
+    out["book_ins_annualized"] = annualize(out.book_ins, w0, w1)
     out["period"] = label
     return out.reset_index()
 

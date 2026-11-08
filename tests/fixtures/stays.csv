@@ -1,0 +1,5 @@
+stay_book_in_date_time,stay_book_out_date_time,book_in_criminality,citizenship_country,apprehension_aor,detention_facility_longest,gender,duplicate_drop_row
+2024-01-01,2024-01-04,1 Convicted Criminal,TEST COUNTRY,TEST AOR,TEST FACILITY,TEST,False
+2024-01-01,2024-01-04,1 Convicted Criminal,TEST COUNTRY,TEST AOR,TEST FACILITY,TEST,True
+2025-01-01,,3 Other Immigration Violator,TEST COUNTRY,TEST AOR,TEST FACILITY,TEST,False
+2025-02-02,2025-02-01,2 Pending Criminal Charges,TEST COUNTRY,TEST AOR,TEST FACILITY,TEST,False
