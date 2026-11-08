@@ -19,7 +19,7 @@ def read_source(name, columns=None):
         return pd.read_parquet(Path(directory) / f"{name}-latest.parquet", columns=columns)
     frames = []
     for filename in CSV_INPUTS[name]:
-        path = REPO / filename
+        path = REPO / "data" / filename
         with path.open("rb") as source:
             if source.read(42).startswith(b"version https://git-lfs.github.com/spec/v1"):
                 raise ValueError(f"{filename} is an LFS pointer; hydrate this input or set ICE_DATA_DIR")

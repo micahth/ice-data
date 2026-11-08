@@ -2,4 +2,4 @@ notebooks/.cache/
 __pycache__/
 .pytest_cache/
 .venv/
-data/raw/
+/data/raw/

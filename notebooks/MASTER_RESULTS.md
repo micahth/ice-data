@@ -38,7 +38,7 @@ BH adjustment is applied separately to arrest and detention exposure-coefficient
 
 | Input | Publisher and coverage | Retrieval/processing |
 |---|---|---|
-| Root arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; July 24, 2026 exports | Original LFS files; documentation/license in [codebook](../codebook.txt); event dates filtered as above |
+| Arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; July 24, 2026 exports | Original LFS files in `data/`; documentation/license in [codebook](../data/codebook.txt); event dates filtered as above |
 | Optional parquet sources | [DDP ICE data catalog](https://deportationdata.org/data/ice.html), official `deportationdata/ice` repository | `download_data.py` pins July 6, 2026 commit `bfc8b3fa7602fbf810fb811e6d07ef603e528b78`, SHA-256 and byte size per dataset; not claimed identical to local CSV exports |
 | Facility location/attributes | [DDP facility data](https://github.com/deportationdata/ice-detention-facilities) | County FIPS and type; inferred operator rules in `geo_common.py`, no verified ownership history |
 | County population | Census 2020–2025 estimates, hosted by [GreatTombProductions](https://github.com/GreatTombProductions/county-population) | 256 JSON shards; aggregate counties to state/region/CBSA |
@@ -54,7 +54,7 @@ Secondary GitHub inputs use immutable revisions in `geo_common.REVISIONS` and ex
 
 ## Artifact map and execution order
 
-Use the [README commands](../README.md#full-analysis). `05` precedes `06` and `07`; `06` precedes `10`; `09` and `10` precede `08`. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
+Use the [README commands](../README.md#reproduce-the-full-analysis). `05` precedes `06` and `07`; `06` precedes `10`; `09` and `10` precede `08`. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
 
 | Script | Generated tables |
 |---|---|

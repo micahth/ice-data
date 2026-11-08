@@ -1,4 +1,4 @@
-/*.csv filter=lfs diff=lfs merge=lfs -text
+/data/*.csv filter=lfs diff=lfs merge=lfs -text
 *.parquet filter=lfs diff=lfs merge=lfs -text
 notebooks/results/*.csv text diff merge
 notebooks/data/*.csv text diff merge
