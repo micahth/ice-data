@@ -58,3 +58,7 @@ Source data: Deportation Data Project. (2026). *ICE arrests, detainers and deten
 - **Formats:** CSV, Markdown
 
 Install dependencies with `pip install -r notebooks/requirements.txt`.
+
+## Data files (Git LFS)
+
+The root `*.csv` data files are stored with [Git LFS](https://git-lfs.com). After cloning, run `git lfs install && git lfs pull` to download the real data; without it the files are small text pointers (e.g., the arrests file is ~362 MB).
