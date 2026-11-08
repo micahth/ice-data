@@ -22,7 +22,7 @@ Facility county → OMB CBSA and Census region. Known county without a CBSA is n
 
 ## Research design and uncertainty
 
-The [policy-source appendix](POLICY_SOURCES.md) explains the economic motivation and competing mechanisms. GDP growth is exploratory, unemployment is closer to the labor-market claim, and wages/fiscal savings are not observed. Crime regressions describe a separate association, without identifying whether enforcement changes crime or responds to it.
+The [labor-market literature appendix](LABOR_MARKET_LITERATURE.md) explains the economic motivation and competing mechanisms. GDP growth is exploratory, unemployment is closer to the labor-market question, and wages/fiscal outcomes are not observed. Crime regressions describe a separate association, without identifying whether enforcement changes crime or responds to it.
 
 Primary association models (`M0`) include exposure per 10/100k, the lagged outcome and, for repeated years, year fixed effects. They are parsimonious descriptions, not causal estimates or state-fixed-effects models. `M1` is bivariate; `M2` adds log population, log density, population growth, log income, bachelor's share, Hispanic share, median age, 2024 Republican vote share and lagged change in ages-15–29 share. Controls describe scale, urbanization, socioeconomic context, demographic composition and political context; their choice was exploratory, not preregistered. Static ACS and 2024 vote measures cannot be interpreted as wholly pre-treatment controls for 2023.
 

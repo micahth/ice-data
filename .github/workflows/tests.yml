@@ -8,14 +8,14 @@ on:
       - 'notebooks/**'
       - 'tests/**'
       - 'requirements.txt'
-      - '.github/workflows/run-eda.yml'
+      - '.github/workflows/tests.yml'
       - '.gitattributes'
   pull_request:
     paths:
       - 'notebooks/**'
       - 'tests/**'
       - 'requirements.txt'
-      - '.github/workflows/run-eda.yml'
+      - '.github/workflows/tests.yml'
       - '.gitattributes'
   workflow_dispatch:
 

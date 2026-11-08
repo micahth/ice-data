@@ -1,6 +1,6 @@
 # ICE Detention & Arrests: A Geographic and Statistical Analysis (2022–2026)
 
-[![Tests](https://github.com/micahth/ice-data/actions/workflows/run-eda.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/run-eda.yml)
+[![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
 An analysis of U.S. Immigration and Customs Enforcement (ICE) arrest, detainer, and
 detention records released by the [Deportation Data Project](https://deportationdata.org/).
@@ -54,7 +54,7 @@ and state-level economic/crime associations.
 
 - **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
-- **[Policy sources](notebooks/POLICY_SOURCES.md):** primary-source claims motivating the question; claims are not treated as findings.
+- **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
 - **[Facility activity notes](notebooks/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
 - **[DDP codebook](data/codebook.txt):** third-party source documentation.
 
@@ -126,15 +126,12 @@ LICENSE                   MIT license for the project code
 
 ## Limitations
 
-This is descriptive and correlational, not causal inference. Apprehension location is
-not necessarily residence or workplace. The analysis does not observe work
-authorization, employment, deportation outcomes, or voluntary departures. GDP growth
-is not a necessary consequence of wage or fiscal claims; labor supply and demand can
-both change. Small state samples, missing outcomes, confounding, changing enforcement
-targets, and wide confidence intervals preclude ruling out meaningful effects.
-Facility-location population denominators are not resident detention rates, and
-operator labels are inferred. See the [Final Report](Final%20Report.md) and
-[technical guide](notebooks/MASTER_RESULTS.md) for details.
+This is descriptive and correlational, not causal: arrests are not completed
+removals, and employment is unobserved. Apprehension locations and facility-
+population denominators do not measure where people live or residents' likelihood
+of detention. Small samples, confounding, incomplete outcomes and wide intervals
+limit conclusions; see the [Final Report](Final%20Report.md) and
+[technical guide](notebooks/MASTER_RESULTS.md).
 
 ## Data citation
 

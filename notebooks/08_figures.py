@@ -80,7 +80,7 @@ for ax, label in zip(axes.flat, cols.values()):
     positions = np.arange(len(d))
     ax.errorbar(d.coef, positions, xerr=[d.coef - d.ci_low, d.ci_high - d.coef],
                 fmt="o", capsize=4, color=OLD_COLOR)
-    labels = d.apply(lambda r: f"{r.spec.replace('M0 + lagged outcome', 'Lagged outcome only').replace('M2 + controls', 'Full controls')}"
+    labels = d.apply(lambda r: f"{r.spec.replace('M0 + lagged outcome', 'Lagged outcome only').replace('M0 excluding highest-rate state (TX)', 'Lagged outcome only, excl. TX').replace('M2 + controls', 'Full controls')}"
                               f"\n(n={int(r.n)}, {r.cov_type})", axis=1)
     ax.set_yticks(positions, labels, fontsize=8)
     ax.axvline(0, linestyle="--", color=NEW_COLOR, linewidth=1)
