@@ -1,7 +1,7 @@
 """
 Pure, unit-tested helpers for stint intervals, average daily population (ADP) and annualization.
 
-Scripts 05 and 06 both import these so the cutoff and interval rules live in one place.
+Scripts 05 and 06 both import these so the interval rules live in one place.
 Windows are half-open: [w0, w1). A stint [start, end) contributes the overlap with the window in days.
 """
 import numpy as np
@@ -52,7 +52,7 @@ def adp(df, w0, w1, keys=None):
     days = window_days(w0, w1)
     if not keys:
         return bed.sum() / days
-    return bed.groupby([d[k] for k in keys]).sum() / days
+    return bed.groupby([d[k] for k in keys], dropna=False).sum() / days
 
 
 def annualize(count, w0, w1):

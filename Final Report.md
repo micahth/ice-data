@@ -1,107 +1,50 @@
-# Final Report
+# ICE enforcement expanded; state-level outcome estimates remain uncertain
 
-## Executive findings (centerpiece)
+Micah Holmquist | Deportation Data Project CSV exports dated July 24, 2026
 
-*Data snapshot: files dated 2026-07-24; arrest records run through 2026-03-10. Comparison periods: old = 2023-01-01 to 2024-12-31 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Regression panel: 2023–2025.*
+## Question and hypothesis
 
-The main result is a **large enforcement shift without a detectable state-level crime or economic signal**. Between the old and new periods, arrest pace rose sharply (~359 to ~909 arrests/day, peaking at 39,829 in Dec 2025) and the increase varied substantially by state and area of responsibility, while the share of arrestees with convictions fell and the share with pending charges rose. These are counts by recorded apprehension location, not where arrestees live. Multivariable regressions (with multiple-testing correction) still do not show reliable associations between arrest rates and changes in violent/property crime, GDP growth, or unemployment.
+How did ICE enforcement change, and did states with more enforcement also experience better economic or crime trends?
 
-## 1) Arrest-location findings (`notebooks/09_arrest_locations.py`, PR 10)
+Trump and administration officials have argued that unauthorized immigration depresses wages and burdens public resources; Secretary Kristi Noem explicitly linked departures to better job opportunities. The [primary-source appendix](notebooks/POLICY_SOURCES.md) documents these claims without endorsing them. A labor-competition hypothesis predicts better employment or wage outcomes following actual workforce removals, conditional on substitution and adjustment. This project tests only whether **arrest intensity is associated with annual state outcome changes**. It does not observe workers removed from employment; GDP growth is an indirect, exploratory outcome, not a necessary implication of wage or fiscal claims.
 
-Run on hydrated `arrests-latest 7-24-2026.csv` (705,286 rows after dropping `duplicate_drop_row`). Old = 2023–2024 (731 days); new = 2025-01-01 to 2026-03-10 (434 days). Outputs: `notebooks/results/arrests_by_{state,aor,landmark}.csv`.
+## Main findings
 
-- Daily arrests rose from ~359 to ~909 (+153%); monthly arrests peaked at 39,829 in Dec 2025.
-- Texas holds 25.7% of new-era arrests (+138% per day). Fastest-growing states: Virginia +413%, Georgia +332%, Pennsylvania/Maryland +260%, Florida +245%. New York (+64%) and New Jersey (+61%) lagged.
-- By AOR, San Diego grew +961% (2.4 → 25.4/day), Washington +422%, El Paso +364%. Miami is now the largest AOR.
-- Share of arrestees with a criminal conviction fell from 43.0% to 33.1%, while pending-charge cases rose from 17.4% to 29.0%.
-- Interpretation and data quality: locations are recorded apprehension locations, not arrestees' residences; landmark fields often use non-specific "general area" labels. One stray 2026-09-17 record and one partial-day 2026-03-11 record were excluded, so data effectively end 2026-03-10. The new window is shorter than the old window, March 2026 is partial, and all differences are descriptive rather than causal.
+| Measure | 2023–2024 | Jan 2025–Mar 10, 2026 |
+|---|---:|---:|
+| Included arrest records | 262,329 | 394,590 |
+| Window length | 731 days | 434 days |
+| Arrests per day | 358.9 | 909.2 |
+| Convicted-criminal share of arrest records | 43.0% | 33.1% |
+| Pending-charge share of arrest records | 17.4% | 29.0% |
 
-## 2) Arrest-rate regressions with youth-rate-change control (`notebooks/10_arrest_regressions.py`, PR 11)
+Daily arrest pace increased **153%**; monthly arrests peaked at **39,829 in December 2025**. Texas accounted for 25.7% of newer-period arrests. Differences describe recorded apprehension locations, not arrestees' residences. Criminality categories describe arrest records, not unique detainees or proven effects on crime.
 
-State × year panel (2023–2025, 50 states), arrests per 100k by apprehension state against changes in real GDP, unemployment and violent/property crime (RTCI, FBI check). Controls include population/density/income/education/demographics/politics, lagged outcomes, and **lagged change in youth share (ages 15–29)** from Census `sc-est2024-agesex-civ.csv`. Year fixed effects and state-clustered SEs; Benjamini–Hochberg q-values.
+National detention average daily population (ADP) increased from **33.6k to 55.1k**, using a detention window ending March **11**, 2026 (435 newer-period days). Facility ADP per resident rose in every region; rural facilities held about 78.4 detainees per 100,000 local residents versus 10.9 in metropolitan counties. These measure where facilities hold people, **not local residents' likelihood of detention**. Operator classifications are inferred, not verified ownership records.
 
-- Mean state arrest rate: 37.5 (2023), 26.7 (2024), 73.1 (2025) per 100k.
-- 6 of 48 arrest-rate coefficients and 7 of 100 correlations are nominally significant (p<.05), near chance-level screening rates.
-- **No arrest-rate coefficient survives multiple-testing correction** (q<.10). One exploratory correlation survives: old-era arrest rate versus GDP growth in the South (r = 0.57, n = 32, q = 0.061); it is not adjusted for covariates.
-- Old-era controlled models still show opposite-signed nominal crime coefficients (violent +1.1, p = 0.03; property −1.1, p = 0.06, per +10 arrests/100k), but these do not replicate in 2025 or the FBI check.
-- Bottom line: this is evidence of **no robust detectable association in this dataset**, not proof of zero effect.
+## State-level associations and uncertainty
 
-## 3) Detention-rate regressions rerun with the same youth control (`notebooks/06_geo_regressions.py`)
+The panel covers 50 states in 2023–2025; complete-case sample sizes vary by outcome and controls. The primary descriptive specification uses the arrest rate and a lagged outcome, with year effects when multiple years are included. The full-control specification is a sensitivity check, not a preferred high-dimensional model for a small cross-section.
 
-The detention regressions were rerun after adding the same lagged youth-share-change control. Substantive interpretation is unchanged: most associations are weak/unstable and should be treated as exploratory, not causal.
+2025 estimates below use HC3 heteroskedasticity-robust standard errors and t-based, **pointwise 95% confidence intervals**. Coefficients are outcome change per additional 10 arrests per 100,000 residents:
 
-## Interesting findings reported by the analysis
+| Outcome | Lagged outcome only: estimate [95% CI], n | Full controls: estimate [95% CI], n |
+|---|---|---|
+| Real GDP growth (percentage points) | 0.021 [−0.019, 0.061], 50 | −0.016 [−0.137, 0.106], 42 |
+| Unemployment change (percentage points) | 0.000 [−0.018, 0.018], 50 | 0.011 [−0.047, 0.070], 42 |
+| Violent crime rate change (%) | −0.444 [−1.051, 0.164], 45 | 0.218 [−1.091, 1.526], 38 |
+| Property crime rate change (%) | −0.151 [−0.573, 0.270], 44 | 0.109 [−0.949, 1.168], 37 |
 
-- The reported national average daily population rises from about 33.6k in 2023–24 to 55.1k in 2025–March 2026; the reported rate rises from about 9.9 to 16.1 per 100,000 residents.
-- Rural/non-CBSA facilities are reported at 78.4 detainees per 100,000 residents, compared with 10.9 in metropolitan counties. These are facility locations divided by local population, not a measure of how many local residents are detained.
-- Louisiana is reported at 163.1 per 100,000, and the Midwest has the largest reported regional increase (+318%). Small local populations and large facilities can make these per-resident facility rates extreme.
-- Local/state facilities are reported to have grown from 2.2k to 7.8k ADP; the documents estimate that GEO and CoreCivic together hold 56% of the newer-period ADP. Operator labels are inferred, not provided by ICE.
-- The correlation and regression documents characterize associations with economic and crime outcomes as weak or unstable, and explicitly caution against causal interpretation and over-reading multiple comparisons.
-- The facility-change analysis identifies 111 facility codes first appearing after January 20, 2025, and 13 that stopped booking. It correctly distinguishes observed activity changes from unverified ownership/operator claims.
+Across 64 arrest-related coefficients, **none passes Benjamini–Hochberg q < .10**. Removing Texas, the highest arrest-rate state in 2025, does not resolve uncertainty in the reduced-control models. The [coefficient chart](notebooks/figures/fig6_arrest_coefficients.png) shows both specifications and that sensitivity check. These intervals allow positive and negative associations; they are not equivalence tests or multiplicity-adjusted intervals.
 
-## Findings and changes made
+## Methods and limitations
 
-1. **Duration was mislabeled as full detention-stay length.** `05_geo_detention_analysis.py` calculates duration as the difference between each stint's facility book-in and book-out. It excludes stints without a book-out date. A person transferred between facilities can therefore contribute several shorter stints, rather than one full stay. Updated the relevant summary and press-release labels to say “completed facility stint,” clarified the selection caveat, and renamed the generated summary fields to `mean_stint_days` and `median_stint_days`.
-2. **The EDA workflow targeted an absent notebook.** The workflow referenced `notebooks/01_eda.ipynb`, which is not tracked, although the available analysis entry point is `notebooks/eda.py`. It also watched the nonexistent notebook path and attempted notebook/HTML conversion. Updated and renamed the workflow to run the available script, trigger on its script and data inputs, and upload the generated figures.
-3. **The administration comparison is not reproducible from this repository.** `findings_04_administrations.md` names `notebooks/analysis_04_administrations.py`, which is absent, and retains the placeholder `[your name]`. Its administration-level counts and comparisons could not be checked against an analysis script here.
-4. **The data extraction date and analysis cutoff need to be explained together.** Source filenames say `7-24-2026`, while the geographic analysis explicitly sets its event cutoff to March 11, 2026. These may represent the extraction date and last included event date respectively, but that distinction should be stated and the actual maximum source dates verified after LFS files are hydrated.
-5. **Some claims need stronger publication framing.** The correlations script screens up to 500 outcome × detention measure × group × era combinations before filtering unusable samples, while the original press release said about 40 comparisons. The 2025 state-level regressions also have small samples. Updated the correlation document to state the screening scale and exploratory status; any portfolio-facing p-values should be adjusted for multiple testing or clearly labeled exploratory. Tier B facility ownership/operator events are explicitly unverified and should remain unpublished as factual claims until sourced.
-6. **Unequal windows made a raw count sound like a decline.** The old period is 24 months and the new period is 15 months. The original “unique people fell” statement compared 539k with 455k without accounting for those unequal windows. Updated the press releases to label these as period totals and avoid calling them a decline.
-7. **Facility rates could be mistaken for resident detention rates.** A state's facility ADP divided by state population measures detention at facilities in that state, including people from elsewhere. Updated the PR 1–3 headlines/notes and master finding to make this facility-location interpretation explicit.
-8. **Portfolio orientation is missing.** There is no top-level README describing the research question, data provenance, setup, entry points, generated artifacts, or limitations. The copied `codebook.txt` identifies its source and CC-0 license, but project-specific citation and provenance for the additional data inputs are spread across code rather than summarized for readers.
+Duplicate-drop flags are applied before counting. Arrest comparisons start January 1, 2023 and exclude a stray September 2026 record and the one-record March 11 partial day. January 1, 2025 is a calendar-year descriptive split, **not** the January 20 inauguration or a causal intervention date. Daily rates account for unequal windows; March 2026 remains a partial month. Regression models exclude partial-year 2026.
 
-## Validation performed
+Detention ADP is overlapping bed-days divided by actual window days. Facility stints use half-open intervals; missing book-outs fall back to a recorded stay book-out. Otherwise, stints starting in 2025 or later are censored at March 12, 2026; 1,049 older open records are excluded. That date rule is an assumption about uncertain records, not evidence that older open records are artifacts. Completed-stint durations exclude ongoing stints and are neither full-stay durations nor comparable release hazards.
 
-- Hydrated the required LFS inputs (`arrests-latest` and `detention-stints` sheets), reran `05_geo_detention_analysis.py`, `06_geo_regressions.py`, and `10_arrest_regressions.py`, and updated output CSVs.
-- Added Census state age data (`sc-est2024-agesex-civ.csv`) to `notebooks/data/` and verified youth-share controls are present in `state_year_panel.csv`. The Census source is the [2024 state civilian population estimates by age and sex](https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/asrh/sc-est2024-agesex-civ.csv).
-- The repository contains no automated test suite. Recommended data-dependent checks are listed below.
+Repeated-state models use state-clustered t-based inference; 2025-only models use HC3, not nominal clustering with one observation per state. Nine demographic/economic/political controls plus a lagged outcome reduce samples to 37–42 in the full-control 2025 models. Some controls are contemporaneous or measured after the earlier outcomes, so they cannot establish causal adjustment. Small samples, influential states and model dependence limit what null results establish.
 
-## Recommended tests before publication
+Enforcement may respond to local conditions; labor supply and demand may both change; apprehension state may differ from workplace or residence. Arrests are not completed removals, and employment status is unobserved. Annual averages can obscure delayed or sector-specific effects. Crime indices have incomplete state/agency coverage; state aggregates cannot establish individual effects.
 
-- Hydrate the LFS data, rerun the analysis scripts in documented order, and compare regenerated tables and figures with the claims in all press releases and `MASTER_RESULTS.md`.
-- Add tests for interval overlap and boundary dates, duplicate-stint exclusion, negative/invalid durations, missing book-outs, and the cutoff applied to open recent stints.
-- Check that facility ADP aggregates reconcile to national ADP, state totals reconcile to region totals, and operator/area classifications do not silently drop facilities. Include unmapped geography and unclassified operators in the reconciliation.
-- Verify the population denominators and the handling of the partial 2026 period; test that the annualization uses the actual number of days in each window.
-- For the regressions, assert expected sample sizes and missingness by outcome, independently verify state-clustered standard errors, and report a multiple-comparison adjustment or explicitly designate p-values as exploratory.
-- Add a reproducibility check that every documented script, input, result, and figure path exists, including the administration comparison.
-
-## Suggestions to prepare the repository for a data-science portfolio
-
-- Add a concise README with a project overview, research questions, data provenance/citations, environment setup, one-command reproduction instructions, figures, and a plain-language limitations section.
-- Restore and document the missing administration-analysis code, remove the author placeholder, and make its period definitions and filters explicit.
-- Add a source manifest with dataset URLs, release/extraction dates, event-date coverage, licenses, checksums, and retrieval instructions. Explain why the July 2026-named extracts are analyzed only through March 11.
-- Keep large raw inputs in LFS or an external data store, but provide a small, clearly labeled fixture for CI so tests run without downloading multi-gigabyte data. Ensure the fixture contains no unnecessary person-level identifiers.
-- Add focused automated tests and a reproducible environment lock file; make CI run syntax, data-contract, and small-fixture checks in addition to the EDA workflow.
-- Separate source data, derived results, and presentation assets clearly; describe which outputs are generated and avoid making stale generated CSVs appear authoritative.
-- Add citations beside sensitive or news-based facility claims, and provide a methods note on the inferred operator labels, small-area denominators, censoring/selection, and limits of causal inference.
-- Keep reports concise and consolidated: use `MASTER_RESULTS.md` as the technical index and link the press releases from it; identify the codebook as third-party documentation rather than project-authored analysis.
-
-## References
-
-AH Datalytics. (n.d.). *Real-Time Crime Index: Reported crime trends, January 2017–June 2026* [Data set]. GitHub. https://github.com/AH-Datalytics/rtci/blob/main/data/Crime_Index_Reported_Crime_Trends_Jan17_Jun26.csv
-
-Blair, G., Hausman, D., & Neff, P. (2025). *Immigration and Customs Enforcement individual-level data: An introduction* [Preprint]. https://deportationdata.org/docs/ice/ice-data-preprint.pdf
-
-Deportation Data Project. (n.d.-a). *ICE administrative arrests* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
-
-Deportation Data Project. (n.d.-b). *ICE detention facilities: Facility locations and attributes* [Data sets]. https://github.com/deportationdata/ice-detention-facilities
-
-Deportation Data Project. (n.d.-c). *ICE detention stints* [Data set; government data obtained from U.S. Immigration and Customs Enforcement through a Freedom of Information Act request]. https://deportationdata.org/data/ice.html
-
-GreatTombProductions. (n.d.). *County population trends: 2020–2025 Census population estimates* [Data set]. GitHub. https://github.com/GreatTombProductions/county-population
-
-MIT Election Data and Science Lab. (n.d.). *County presidential election returns* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/countypres_2000-2024.csv
-
-Office of Management and Budget. (2023). *2023 delineation of metropolitan and micropolitan statistical areas* [Data set; file hosted by Jennifer Peebles]. https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/HEAD/data/raw/list1_2023.xlsx
-
-U.S. Bureau of Economic Analysis. (n.d.). *SAGDP1: Real GDP by state* [Data set; file hosted by njl250]. GitHub. https://github.com/njl250/JoE-Spring-2026/blob/main/SAGDP1_ALL_AREAS_1997_2025.csv
-
-U.S. Bureau of Labor Statistics. (n.d.). *Local Area Unemployment Statistics: State unemployment rates* [Data sets; files hosted by kmazurek95 and dathere]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/bls_laus_states.json ; https://github.com/dathere/bls-laus-stats/blob/HEAD/output/stateUnemployment.csv
-
-U.S. Census Bureau. (n.d.-a). *2024 county gazetteer* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/gazetteer_counties.txt
-
-U.S. Census Bureau. (n.d.-b). *American Community Survey, 2019–2023 five-year estimates: County demographics* [Data set; file hosted by kmazurek95]. GitHub. https://github.com/kmazurek95/us-election-county-swing/blob/main/data/raw/acs_demographics.csv
-
-U.S. Census Bureau. (n.d.-c). *Annual estimates of the civilian population by single year of age and sex for states: 2020–2024* [Data set]. https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/asrh/sc-est2024-agesex-civ.csv
-
-U.S. Federal Bureau of Investigation. (n.d.). *State crime rates* [Data set; file hosted by CatalinaBedoya1]. GitHub. https://github.com/CatalinaBedoya1/PlotlyDashboard/blob/main/FinalProject/data/fbi_state_crime-2010-2024.csv
+**Conclusion:** the enforcement increase is well supported descriptively. This dataset does not establish a reliable state-level economic or crime association, and cannot confirm or refute the causal economic effects of deportation. [Methods, data provenance and reproducible outputs](notebooks/MASTER_RESULTS.md) provide the supporting detail.

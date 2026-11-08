@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7af8907182d05779430bd3865a074df2715c031789dd4ee3ad8e159ab87efed5
-size 192
+operator,facilities,stints
+CoreCivic,23,330572
+Federal (BOP/CBP/other),36,20493
+GEO Group,24,448218
+ICE,204,1158669
+Local/state government,399,319701
+Other private,12,294262
+Unclassified,9,60

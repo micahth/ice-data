@@ -1,3 +1,142 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0a088148651ca5f4b40b07d09f44d3fb382d904abbe0b5db848b57ae3995687d
-size 22014
+code,facility,state,operator_class,change_type,first_bookin,last_bookin,pre_stints,post_stints,names_seen
+JENADLA,Central Louisiana ICE Processing Center,LA,GEO Group,NAME CHANGE,2021-02-08,2026-03-10,19596,16088,LASALLE ICE PROCESSING CENTER | CENTRAL LOUISIANA ICE PROC CTR
+BALHOLD,Baltimore Hold Room,MD,ICE,NAME CHANGE,2022-10-03,2026-03-10,1381,6547,BAL D D & P | BALTIMORE HOLD ROOM
+SBDHOLD,San Bernardino Hold Room,CA,ICE,NAME CHANGE,2022-10-03,2026-03-10,1723,3181,SAN BERNADINO HOLD ROOM | SAN BERNARDINO HOLD ROOM
+CALHOMI,Calhoun County Correctional Center,MI,Local/state government,NAME CHANGE,2021-08-13,2026-03-09,1689,1591,"CALHOUN CO., BATTLE CR,MI | CALHOMI CALHOUN CO., BATTLE CR,MI"
+DETHOLD,Detroit Hold Room,MI,ICE,NAME CHANGE,2022-11-09,2026-03-10,34,416,"U.S. IMMIGRATION, DETROIT | DETROIT HOLDROOM"
+ROCKIVA,Rockingham County Jail,VA,Local/state government,NAME CHANGE,2022-10-03,2026-03-10,151,325,ROCKINGHAM CO. JAIL | ROCKINGHAM COUNTY JAIL
+GEAUGOH,Geauga County Safety Center,OH,Local/state government,NAME CHANGE,2020-08-12,2026-03-03,582,282,GEAUGA COUNTY JAIL | GEAUGA COUNTY JAIL (GEAUGOH)
+AGAHOLD,Guam Enforcement and Removal Operations Hold Room,GU,ICE,NAME CHANGE,2023-02-03,2025-11-19,5,9,AGANA INS | GUAM ERO HOLD ROOM
+ABRXSPA,Abraxas Academy,PA,Local/state government,NAME CHANGE,2024-06-26,2026-02-02,1,7,ABRAXAS ACADEMY DETENTION CENTER | ABRAXAS ACADEMY
+EROFCB,Enforcement and Removal Operations El Paso Camp East Montana,TX,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-07-03,2026-03-10,0,35548,ERO EL PASO CAMP EAST MONTANA | ERO EL PASO CAMP BLISS
+EPSSFTX,El Paso Soft Sided Facility,TX,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-03-10,2025-09-30,0,15734,EL PASO SOFT SIDED FACILITY
+FLBAKCI,Baker CI,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-02,2026-03-10,0,5700,BAKER C. I.
+NRLKCMI,North Lake Processing Center,MI,GEO Group,NEW SINCE 2025-01-20 (no book-ins before),2025-06-16,2026-03-10,0,5590,NORTH LAKE CORRECTIONAL FACILITY
+RSREGVA,Riverside Regional Jail,VA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-01,2026-03-10,0,5284,RIVERSIDE REG JAIL
+FIPCDGA,Folkston D Ray ICE Processing Center,GA,GEO Group,NEW SINCE 2025-01-20 (no book-ins before),2025-08-05,2026-03-10,0,5275,FOLKSTON D RAY ICE PROCESSING CTR
+BOPPHL,Federal Detention Center Philadelphia,PA,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-02-07,2026-03-10,0,4577,FDC PHILADELPHIA
+GREENMO,Greene County Jail,MO,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-02-19,2026-03-10,0,4294,GREENE COUNTY JAIL
+OKCIMMC,Cimarron Correctional Facility,OK,CoreCivic,NEW SINCE 2025-01-20 (no book-ins before),2025-03-03,2026-03-09,0,4283,CIMARRON CORRECTIONAL FACILITY | CIMMARRON CORR FACILITY
+URSLATX,Ursula Centralized Processing Center,TX,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-06-26,2026-03-10,0,3546,URSULA CENTRALIZED PROCESSING CNTR
+BUTLEOH,Butler County Sheriff’s Office,OH,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-06,2026-03-10,0,3396,BUTLER COUNTY JAIL
+WLTSOFL,Walton County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-11,2026-03-10,0,3110,WALTON COUNTY JAIL
+BOPATL,Federal Correctional Institution Atlanta,GA,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-02-07,2026-03-10,0,3063,ATLANTA U.S. PEN.
+BOPMIM,Federal Detention Center Miami,FL,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-02-07,2026-03-09,0,3005,MIAMI FED.DET.CENTER
+GLADEFL,Glades County Detention Center,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-01,2026-03-09,0,2910,GLADES COUNTY DETENTION CENTER
+PUTNMTN,Putnam County Sheriff,TN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-10,2026-03-10,0,2537,PUTNAM COUNTY SHERIFF
+CCANOOH,Northeast Ohio Correctional Center,OH,CoreCivic,NEW SINCE 2025-01-20 (no book-ins before),2025-02-24,2026-03-10,0,2400,CCA NORTHEAST OH CORRECTS
+TGKJLFL,Turner Guiford Knight (Tgk) Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-14,2026-03-10,0,2259,TURNER GUIFORD KNIGHT (TGK) JAIL
+NSVHOLD,Nashville Hold Room,TN,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-02-22,2026-03-10,0,1786,NASHVILLE HOLD ROOM
+STGENMO,Ste. Genevieve County Detention Center,MO,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-03,2026-03-10,0,1774,STE. GENEVIEVE COUNTY SHERIFF/JAIL
+UINTAWY,Uinta County Detention Center,WY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-03,2026-03-10,0,1613,UINTA COUNTY JAIL
+IRWINGA,Irwin County Detention Center,GA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-12,2026-03-07,0,1575,IRWIN COUNTY DETENTION CENTER
+MAHONOH,Mahoning County Justice Center,OH,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-30,2026-03-10,0,1487,MAHONING COUNTY JAIL
+BOPBER,"Federal Correctional Institution - Berlin, NH",NH,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-03-05,2026-02-09,0,1271,FCI BERLIN
+INMIAMI,Miami Correctional Facility (McF),IN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-01,2026-03-10,0,1186,MIAMI CORRECTIONAL CENTER
+OKDBACK,Diamondback Correctional Facility,OK,CoreCivic,NEW SINCE 2025-01-20 (no book-ins before),2026-01-01,2026-03-10,0,1131,DIAMONDBACK CORR FACILITY
+MARIOIN,Marion County Jail,IN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-02-08,2026-03-07,0,1103,MARION COUNTY JAIL
+HPKNSKY,Hopkins County Jail,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-17,2026-03-09,0,875,HOPKINS COUNTY JAIL
+LOGANOK,Logan County Jail,OK,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-28,2026-03-10,0,864,LOGAN COUNTY JAIL
+BOPBRO,MDC Brooklyn,NY,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-06-20,2026-03-09,0,794,BROOKLYN MDC
+CLINTIN,Clinton County Sheriff’s Office,IN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-26,2026-03-10,0,758,CLINTON COUNTY JAIL
+KENTOKY,Kenton County Detention Center,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-17,2026-03-10,0,670,KENTON CO DETENTION CTR
+MONTGNY,Montgomery County Jail,NY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-20,2026-03-09,0,662,MONTGOMERY COUNTY JAIL
+CPBDCKY,Campbell County Detention Center,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-14,2026-03-10,0,656,CAMPBELL CO DET CTR
+OHNORWE,Corrections Center of Northwest Ohio (CCNO),OH,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-10,2026-03-10,0,633,CORRECTIONS CENTER OF NW OHIO
+MARTIFL,Martin County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-21,2026-03-10,0,609,MARTIN COUNTY JAIL
+HICOJFL,Hillsborough County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-07-01,2026-03-10,0,605,HILLSBOROUGH COUNTY JAIL
+OZARKMO,Ozark County Jail,MO,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-09,2026-02-16,0,601,OZARK COUNTY SHERIFF'S OFFICE
+CAMBRPA,"Cambria County Jail, PA",PA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-14,2026-03-05,0,557,"CAMBRIA COUNTY JAIL, PA"
+BROKSTX,Brooks County Detention Center,TX,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-23,2025-12-21,0,544,BROOKS COUNTY JAIL (CONTRACT)
+CLARKIN,Clark County Jail,IN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-10,2026-03-10,0,543,CLARK COUNTY JAIL
+GTMOACU,Windward Holding Facility,CU,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-02-04,2026-02-11,0,540,WINDWARD HOLDING FACILITY | JTF CAMP SIX | WINWARD HOLDING FACILITY
+PHELPMO,Phelps County Jail,MO,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-19,2026-03-02,0,495,PHELPS COUNTY JAIL
+AGC,Aguadilla Service Processing Center,PR,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-01-27,2026-03-10,0,487,AGUADILLA SPC
+SYRHOLD,Syracuse Hold Room,NY,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-01-23,2026-03-10,0,465,SYRACUSE HOLD ROOM
+NLSCOLA,Nelson Coleman Corrections Center,LA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-27,2026-03-10,0,463,NELSON COLEMAN CORRECTIONS CENTER
+DILLSAF,Dilley Processing Single Female,TX,CoreCivic,NEW SINCE 2025-01-20 (no book-ins before),2025-10-28,2026-03-07,0,452,DILLEY PROCESSING SINGLE FEMALE
+BOPLVN,Federal Correctional Institution Leavenworth,KS,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-02-07,2026-03-06,0,450,LEAVENWORTH USP
+LICEPLA,Louisiana ICE Processing Center,LA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-02,2026-03-02,0,404,LOUISIANA ICE PROCESSING CENTER
+HARDJIA,Hardin County Jail,IA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-18,2026-03-05,0,400,HARDIN CO JAIL
+NEMCCOI,McCook Detention Center,NE,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-11-03,2026-03-06,0,376,MCCOOK ICE IGSA
+GTMODCU,Naval Station Guantanamo Bay (Jtf Camp Six and Migrant Operations Center Main A),CU,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-02-09,2026-03-08,0,373,MIGRANT OPS CENTER MAIN AV622
+LARELKY,Laurel County Corrections,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-07,2026-03-10,0,360,LAUREL COUNTY CORRECTIONS
+CSDHOLD,Colorado Springs Den Homeland Security Investigations Hold,CO,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-03-25,2026-03-06,0,353,COLO SPRINGS DEN HSI HOLD
+FULCJIN,Fulton County Jail Indiana,IN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-21,2026-03-10,0,350,FULTON CO JAIL INDIANA
+CHRISKY,Christian County Jail,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-18,2026-03-10,0,349,CHRISTIAN COUNTY JAIL
+OSCEOFL,Osceola County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-21,2026-01-31,0,344,OSCEOLA COUNTY JAIL
+SAVHOLD,Savannah Hold Room,GA,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-12-04,2026-03-10,0,332,SAVANNAH HOLD ROOM
+BROMMNY,Broome County Correctional Facility,NY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-02-25,2026-02-28,0,313,BROOME COUNTY JAIL
+WEBERUT,Weber County Jail,UT,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-29,2026-03-10,0,304,WEBER COUNTY JAIL
+SCOTTIA,Scott County Jail,IA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-25,2026-03-10,0,268,SCOTT COUNTY JAIL
+ALLEGNY,Allegany County Jail,NY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-02-26,2026-03-09,0,264,ALLEGANY COUNTY JAIL
+NIAGANY,Niagara County Jail,NY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-14,2026-02-12,0,255,NIAGARA COUNTY JAIL
+CASSCNE,Cass County Jail,NE,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-14,2026-03-07,0,254,CASS COUNTY JAIL
+UCBPMCA,CBP MOVEMENT COORDINATION AREA,,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-09-10,2026-03-09,0,253,CBP MOVEMENT COORDINATION AREA
+SARPYNE,Sarpy County Department of Corrections,NE,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-05,2026-03-10,0,241,SARPY COUNTY JAIL
+BOURBKY,Bourbon County Detention Center,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-01,2026-03-10,0,239,BOURBON CO DET CENTER
+MUSCAIA,Muscatine County Jail,IA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-03,2026-02-24,0,235,MUSCATINE COUNTY JAIL
+CROWGMN,Crow Wing County Jail,MN,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-08,2026-02-20,0,222,CROW WING COUNTY JAIL
+DAVISUT,Davis County Jail,UT,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-28,2026-03-10,0,215,DAVIS CO. JAIL
+BOPLEW,Federal Correctional Institution Lewisburg,PA,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2026-01-22,2026-02-19,0,213,LEWISBURG U.S. PEN.
+BURLEND,Burleigh County Detention Center,ND,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-14,2026-03-06,0,213,"BURLEIGH CO. JAIL, ND"
+WVWESTR,Western Regional Jail,WV,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-01-05,2026-02-26,0,205,WESTERN REGIONAL JAIL
+SAUKCWI,Sauk County Sheriff,WI,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-04-30,2026-03-10,0,198,SAUK COUNTY SHERIFF
+RPCHOLD,Rapid City Hold Room,SD,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-01-24,2026-03-07,0,187,RAPID CITY HOLD ROOM
+BREVDFL,Brevard County Jail Complex,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-26,2025-12-08,0,184,BREVARD COUNTY JAIL COMPLEX
+DVCSDKY,Daviess County Detention Center,KY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-10-07,2026-03-09,0,167,DAVIESS COUNTY DETENTION CENTER
+MGAHOLD,Montgomery Hold Room,AL,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-12-26,2026-03-10,0,160,MONTGOMERY HOLD ROOM
+CHSPKVA,Chesapeake City Jail,VA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-03,2026-03-08,0,153,CHESAPEAKE CITY JAIL
+FRANKPA,Franklin County Jail,PA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-16,2026-03-08,0,145,FRANKLIN COUNTY JAIL
+MARIOFL,Marion County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-23,2026-01-21,0,137,MARION COUNTY JAIL
+SMNOLFL,Seminole County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-21,2025-09-12,0,113,SEMINOLE COUNTY JAIL
+SUMTEFL,Sumter County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-27,2025-08-14,0,106,SUMTER COUNTY JAIL
+LAKCOFL,Lake County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-01-22,2025-11-20,0,104,LAKE COUNTY JAIL
+VICTOTX,Victoria County Jail,TX,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-03,2025-09-30,0,100,VICTORIA COUNTY JAIL
+LAFAYLA,Lafayette Parish Sheriff’s Office Jail Annex,LA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-01-06,2026-03-10,0,96,LAFAYETTE PARISH SO JAIL ANNEX
+LOUCOVA,Loudoun County,VA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-08-22,2026-03-10,0,88,LOUDOUN COUNTY
+BROWNWI,Brown County Jail,WI,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-05-08,2026-03-10,0,74,BROWN COUNTY JAIL
+METROFL,Metro Dade Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-03-15,2026-01-31,0,61,METRO DADE JAIL
+SIOUXIA,Sioux County Jail,IA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-08,2026-03-02,0,55,SIOUX COUNTY JAIL
+WVNCENT,North Central Regional Jail,WV,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-01-05,2026-02-25,0,54,NORTH CENTRAL REGIONAL JAIL
+LAWRESD,"Lawrence County Jail, SD",SD,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-09-08,2026-03-05,0,52,"LAWRENCE CO. JAIL, SD"
+CBPHOLD,Buffalo USBP Hold Room,NY,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-09-17,2026-02-09,0,50,BUFFALO USBP HOLD ROOM
+CBPORIL,CBP O’Hare Airport Terminal 5 BC Ext,IL,Federal (BOP/CBP/other),NEW SINCE 2025-01-20 (no book-ins before),2025-12-09,2026-03-09,0,50,CBP O'HARE AIRPORT TRM 5 B.C. EXT
+TBRJLME,Two Bridges Regional Jail,ME,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-02-27,2025-10-25,0,50,TWO BRIDGES REGIONAL JAIL
+ONSLONC,Onslow County Jail,NC,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-08-29,2026-03-09,0,48,ONSLOW COUNTY JAIL
+DURHOLD,Durango Hold Room,CO,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-01-28,2026-03-10,0,47,DURANGO HOLDROOM
+STLUCFL,St. Lucie County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-06-12,2026-02-17,0,45,ST. LUCIE COUNTY JAIL
+LYNRJVA,BRRJ Lynchburg,VA,Unclassified,NEW SINCE 2025-01-20 (no book-ins before),2025-07-24,2026-03-06,0,44,B.R.R.J. LYNCHBURG
+FLDADCI,Dade Correctional Institution,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-08-11,2025-09-30,0,41,DADE CORRECTIONAL INST
+CHRLTFL,Charlotte County Jail,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-07-22,2025-12-17,0,40,CHARLOTTE COUNTY JAIL
+WVPTMAC,Potomac Highlands Regional Jail,WV,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2025-08-28,2026-01-18,0,39,POTOMAC HIGHLANDS REGIONAL JAIL
+WVSOUTH,Southern Regional Jail,WV,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-01-07,2026-02-25,0,39,SOUTHERN REGIONAL JAIL
+NRPHOLD,North Platte Hold Room,NE,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-03-05,2025-04-11,0,38,NORTH PLATTE HOLD ROOM
+FSAHOLD,Fort Smith Hold Room,AR,ICE,NEW SINCE 2025-01-20 (no book-ins before),2025-02-24,2026-02-19,0,34,FORT SMITH HOLDROOM
+FRANKNC,Franklin County Detention Center,NC,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-02-04,2026-03-09,0,31,FRANKLIN COUNTY DETENTION CENTER
+WVSWEST,Southwestern Regional Jail,WV,Local/state government,NEW SINCE 2025-01-20 (no book-ins before),2026-01-06,2026-01-14,0,29,SOUTHWESTERN REGIONAL JAIL
+FLDSSFS,Florida Soft Sided Facility South,FL,Local/state government,NEW SINCE 2025-01-20 (no book-ins before); NAME CHANGE,2025-09-18,2026-03-11,0,13661,FLORIDA SOFT-SIDED FACILITY-SOUTH | FLORIDA SOFT-SIDED FACILITY -SOUTH
+CACTYCA,California City Detention Facility,CA,CoreCivic,NEW SINCE 2025-01-20 (no book-ins before); NAME CHANGE,2025-08-27,2026-03-10,0,3682,CAL CITY ICE PROCESSING CENTER | CALIFORNIA CITY CORECTIONS CENTER
+NASTRNY,Nassau County ICE Intake,NY,Local/state government,NEW SINCE 2025-01-20 (no book-ins before); NAME CHANGE,2025-02-11,2026-03-10,0,953,NASSAU COUNTY ICE TRAILER | NASSAU COUNTY ICE INTAKE
+ABIRJVA,SW Virginia Regional Jail Auth-Abg Facility,VA,Local/state government,NEW SINCE 2025-01-20 (no book-ins before); NAME CHANGE,2025-05-15,2026-03-04,0,85,B.R.R.J. ABINGDON | SW VIRGINIA REG JAIL AUTH-ABG FAC
+LSRDCTX,LA Salle County Regional Detention Center,TX,Local/state government,RECENT START (few book-ins before inauguration),2024-07-12,2026-02-25,4,1694,LA SALLE CO REGIONAL DET. CENTER
+WPOHOLD,Williamsport Hold Room,PA,ICE,RECENT START (few book-ins before inauguration),2024-09-11,2026-03-04,13,255,WILLIAMSPORT HOLD ROOM
+CHMHOLD,Champlain Hold Room,NY,ICE,RECENT START (few book-ins before inauguration),2024-10-01,2026-02-27,4,142,CHAMPLAIN HOLD ROOM
+MONROFL,Monroe County Jail,FL,Local/state government,RECENT START (few book-ins before inauguration),2024-12-06,2026-03-04,3,105,MONROE COUNTY JAIL
+BIINCCO,"BI Incororated, Geo Group Company",CO,GEO Group,RECENT START (few book-ins before inauguration),2025-01-15,2026-03-03,2,70,"BI INCORORATED, GEO GROUP COMPANY"
+ALMHOLD,Alamosa Hold Room,CO,ICE,RECENT START (few book-ins before inauguration),2024-11-21,2026-01-18,1,60,ALAMOSA HOLDROOM
+CAMCOWY,Campbell County Jail,WY,Local/state government,RECENT START (few book-ins before inauguration),2024-07-23,2026-03-07,1,48,CAMPBELL COUNTY JAIL
+HELHOLD,Hel District Custody,MT,ICE,RECENT START (few book-ins before inauguration),2024-12-04,2026-03-04,2,41,HEL DISTRICT CUSTODY
+ALAMCNC,Alamance County Detention Center,NC,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-09-30,2025-11-14,3605,3690,ALAMANCE CO. DET. FACILITY
+DALCOTX,Dallas County Jail-Lew Sterrett,TX,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-09-30,2025-12-08,4288,1194,DALLAS COUNTY JAIL-LEW STERRETT
+GASTNNC,Gaston County Jail,NC,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-10-03,2025-09-25,86,69,GASTON COUNTY JAIL
+CBRRSNC,Cabarrus County Jail,NC,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-09-30,2025-09-13,89,58,Cabarrus County Jail
+YORCOSC,York County Detention Center,SC,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-09-30,2025-08-21,55,50,YORK COUNTY DETENTION CENTER
+BOPGUA,Guaynabo MDC (San Juan),PR,Federal (BOP/CBP/other),STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-09-08,2025-02-25,572,32,GUAYNABO MDC (SAN JUAN)
+SXCHOLD,Sioux City Hold Room,IA,ICE,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-11-14,2025-02-28,106,16,SIOUX CITY HOLD ROOM
+WAJAIMN,Washington County Jail,MN,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-10-10,2025-02-12,135,11,WASHINGTON COUNTY JAIL
+HAILEID,Dale G Haile Detention Center,ID,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-10-05,2025-04-06,44,9,HAILE DET. CENTER
+TELLECO,Teller County Jail,CO,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-12-07,2025-05-29,150,9,TELLER COUNTY JAIL
+BURNETX,Burnet County Jail,TX,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20),2022-10-06,2025-06-23,236,4,BURNET COUNTY JAIL
+HHWHOLD,Enforcement and Removal Operations Honolulu Sub-Office Hold Room,HI,ICE,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20); NAME CHANGE,2022-11-29,2025-12-09,31,16,INS DISTRICT OFFICE | ERO HONOLULU SUB-OFFICE HOLD ROOM
+COBBJGA,Cobb County Sheriffs Office Adult Detention Center,GA,Local/state government,STOPPED BOOKING (>90 days no book-ins; used after 2025-01-20); NAME CHANGE,2022-10-01,2025-01-30,265,11,COBB COUNTY JAIL | COBB CO SHERIFFS OFC ADULT DET CTR

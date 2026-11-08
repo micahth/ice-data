@@ -1,0 +1,11 @@
+apprehension_date,apprehension_state_filled_in,apprehension_state_original,apprehension_aor,apprehension_site_landmark,apprehension_criminality,arresting_agency,operation,duplicate_drop_row
+2022-12-31,Texas,,TEST AOR,TEST SITE,1 Convicted Criminal,TEST,TEST,False
+2023-01-01,Texas,,TEST AOR,TEST SITE,1 Convicted Criminal,TEST,TEST,False
+2024-12-31,Texas,,TEST AOR,TEST SITE,2 Pending Criminal Charges,TEST,TEST,False
+2024-12-31,Texas,,TEST AOR,TEST SITE,2 Pending Criminal Charges,TEST,TEST,True
+2025-01-01,Texas,,TEST AOR,TEST SITE,3 Other Immigration Violator,TEST,TEST,False
+2025-12-01,Texas,,TEST AOR,TEST SITE,3 Other Immigration Violator,TEST,TEST,False
+2026-03-10,,Texas,,,1 Convicted Criminal,TEST,TEST,False
+2026-03-11,Texas,,TEST AOR,TEST SITE,1 Convicted Criminal,TEST,TEST,False
+2026-09-17,Texas,,TEST AOR,TEST SITE,1 Convicted Criminal,TEST,TEST,False
+,,Texas,,,3 Other Immigration Violator,TEST,TEST,False

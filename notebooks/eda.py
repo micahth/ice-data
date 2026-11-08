@@ -1,6 +1,6 @@
 """
 ICE Detention Data — Exploratory Data Analysis
-Run from the repo root: py notebooks\\eda.py
+Run from the repo root: python notebooks/eda.py
 Figures are saved to notebooks/figures/
 """
 
@@ -12,9 +12,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from arrest_common import clean_arrests, load_arrests, monthly_arrests
+from data_common import read_source
+from figure_common import plot_monthly_arrests, set_style
 
 sns.set_theme(style="whitegrid")
-FIGURES = os.path.join(os.path.dirname(__file__), "figures")
+set_style()
+FIGURES = os.environ.get("ICE_FIGURES_DIR", os.path.join(os.path.dirname(__file__), "figures"))
 os.makedirs(FIGURES, exist_ok=True)
 
 def savefig(name):
@@ -39,8 +43,9 @@ def parse_date(series):
 # ---------------------------------------------------------------------------
 # Load detention stays (sheet 1)
 # ---------------------------------------------------------------------------
-print("\n=== Loading detention stays (sheet 1) ===")
-df = pd.read_csv("detention-stays (sheet 1) 7-24-2026.csv", low_memory=False, encoding="latin-1")
+print("\n=== Loading detention stays (all sheets) ===")
+df = read_source("detention-stays")
+df = df[~df.duplicate_drop_row.fillna(False).astype(bool)].copy()
 df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
 print(f"  Shape: {df.shape}")
 
@@ -81,7 +86,7 @@ print("\n=== Section 2: Detention Length ===")
 if "stay_days" in df.columns:
     released = df[df["released"] & df["stay_days"].notna() & (df["stay_days"] >= 0)]
     pct_still = (~df["released"]).mean() * 100
-    print(f"  Still detained: {pct_still:.1f}%")
+    print(f"  No recorded book-out (not necessarily still detained): {pct_still:.1f}%")
     print(released["stay_days"].describe(percentiles=[.25,.5,.75,.9,.95,.99]).to_string())
 
     p99 = released["stay_days"].quantile(0.99)
@@ -168,31 +173,8 @@ if col_facility:
 # Section 7 — Monthly arrest trends
 # ---------------------------------------------------------------------------
 print("\n=== Section 7: Monthly Arrests ===")
-try:
-    arr = pd.read_csv("arrests-latest 7-24-2026.csv", low_memory=False, encoding="latin-1")
-    arr.columns = [c.strip().lower().replace(" ", "_") for c in arr.columns]
-    col_date = find_col(arr, "apprehension_date", "arrest_date", "apprehension_date_time")
-    if col_date:
-        arr[col_date] = parse_date(arr[col_date])
-        monthly = arr.groupby(arr[col_date].dt.to_period("M")).size()
-        monthly.index = monthly.index.astype(str)
-        idx = list(monthly.index)
-        fig, ax = plt.subplots(figsize=(16, 5))
-        ax.plot(idx, monthly.values, color="steelblue", linewidth=1.5)
-        for label, m in [("Biden (Jan 2021)", "2021-01"),
-                         ("COVID (Mar 2020)", "2020-03"),
-                         ("Trump 2nd term (Jan 2025)", "2025-01")]:
-            if m in idx:
-                x = idx.index(m)
-                ax.axvline(x=x, color="red", linestyle="--", linewidth=1, alpha=0.7)
-                ax.text(x + 0.2, ax.get_ylim()[1] * 0.9, label, fontsize=8, color="red")
-        ax.set(ylabel="Arrests", title="Monthly ICE Arrest Trends")
-        ax.set_xticks(range(0, len(idx), 6))
-        ax.set_xticklabels([idx[i] for i in range(0, len(idx), 6)], rotation=45, ha="right")
-        plt.tight_layout()
-        savefig("monthly_arrests.png")
-except FileNotFoundError:
-    print("  arrests file not found, skipping.")
+arr = clean_arrests(load_arrests(["apprehension_date", "duplicate_drop_row"]))
+plot_monthly_arrests(monthly_arrests(arr), os.path.join(FIGURES, "monthly_arrests.png"))
 
 # ---------------------------------------------------------------------------
 # Section 8 — Gender

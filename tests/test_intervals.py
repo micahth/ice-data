@@ -96,6 +96,14 @@ def test_adp_groups_by_key():
     assert out["TX"] == pytest.approx(1.0) and out["LA"] == pytest.approx(0.5)
 
 
+def test_grouped_adp_retains_unknown_geography():
+    df = build_intervals(stints([("2024-01-01", "2024-01-11", None), ("2024-01-01", "2024-01-06", None)]), CUTOFF)
+    df["state"] = ["TX", None]
+    out = adp(df, T("2024-01-01"), T("2024-01-11"), keys=["state"])
+    assert len(out) == 2
+    assert out.sum() == adp(df, T("2024-01-01"), T("2024-01-11"))
+
+
 @pytest.mark.parametrize("w0,w1,days", [
     ("2023-01-01", "2024-01-01", 365),
     ("2024-01-01", "2025-01-01", 366),

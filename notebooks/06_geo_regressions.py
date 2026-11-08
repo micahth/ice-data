@@ -11,16 +11,17 @@ Added control: lagged change in youth share (ages 15-29) of state population.
 """
 import json
 import os
-import warnings
 
 import numpy as np
 import pandas as pd
-import statsmodels.formula.api as smf
 from scipy import stats
+from statsmodels.stats.multitest import multipletests
 
 from geo_common import (ABBR_STATE, RESULTS, STATE_ABBR, fetch, load_county_pop, region_of)
+from ice_lib import adp, build_intervals
+from geo_common import CUTOFF
+from regression_common import coefficient, fit
 
-warnings.filterwarnings("ignore")
 pd.set_option("display.width", 220, "display.max_columns", 40)
 YEARS = [2023, 2024, 2025]
 ERA_OF = {2023: "Old", 2024: "Old", 2025: "New"}
@@ -48,20 +49,16 @@ fac = pd.read_csv(os.path.join(RESULTS, "facility_classification.csv"))
 pop_state = pd.read_csv(os.path.join(RESULTS, "state_population_by_period.csv"), index_col=0)
 # state x cbsa_class ADP computed in script 05 is not stored per state, so rebuild it from stints cache
 cache = os.environ.get("GEO_CACHE", os.path.join(os.path.dirname(os.path.abspath(__file__)), ".cache"))
-st = pd.read_pickle(os.path.join(cache, "stints_clean.pkl"))
+st = pd.read_pickle(os.path.join(cache, "stints_downloaded.pkl" if os.environ.get("ICE_DATA_DIR") else "stints_clean.pkl"))
 st = st.merge(fac[["detention_facility_code", "state", "cbsa_class"]].rename(columns={"state": "fstate"}),
               on="detention_facility_code", how="left")
 st["state"] = st.fstate.fillna(st.state)
-end = st.book_out_date_time.fillna(st.stay_book_out_date_time)
-end = end.mask(end.isna() & (st.book_in_date_time >= "2025-01-01"), pd.Timestamp("2026-03-12"))
-st["end"] = end
+st = build_intervals(st, CUTOFF)
 rows = []
 for y in YEARS + [2026]:
     w0 = pd.Timestamp(f"{y}-01-01")
     w1 = pd.Timestamp(f"{y + 1}-01-01") if y < 2026 else pd.Timestamp("2026-03-12")
-    d = st[st.end.notna() & (st.book_in_date_time < w1) & (st.end > w0)]
-    bed = (d.end.clip(upper=w1) - d.book_in_date_time.clip(lower=w0)).dt.total_seconds() / 86400
-    a = bed.groupby([d.state, d.cbsa_class]).sum().div((w1 - w0).days).unstack().fillna(0)
+    a = adp(st, w0, w1, keys=["state", "cbsa_class"]).unstack().fillna(0)
     a["year"] = y
     rows.append(a.reset_index())
 cls = pd.concat(rows)
@@ -95,7 +92,7 @@ youth_d_share = youth_share.diff(axis=1)                # year-over-year pp chan
 
 # GDP (real, chained 2017 $)
 g = pd.read_csv(fetch("gdp.csv"), encoding="latin-1")
-g = g[g.Description.str.startswith("Real GDP (millions")]
+g = g[g.Description.str.startswith("Real GDP (millions", na=False)].copy()
 g["state"] = g.GeoName.str.strip().map(STATE_ABBR | {"District of Columbia": "DC"})
 g = g.dropna(subset=["state"]).set_index("state")
 for y in range(2021, 2026):
@@ -256,21 +253,15 @@ for era in ["Old", "New"]:
                 if res:
                     crow.append({"era": era, "group": gname, "outcome": yl, "detention_measure": xl, **res})
 corr = pd.DataFrame(crow)
+corr["pearson_q_bh"] = multipletests(corr.pearson_p, method="fdr_bh")[1]
+corr["spearman_q_bh"] = multipletests(corr.spearman_p, method="fdr_bh")[1]
 corr.round(4).to_csv(os.path.join(RESULTS, "correlations.csv"), index=False)
 
 # ---------------------------------------------------------------------------
-# 6. Multivariable regressions (OLS, year fixed effects, state-clustered SEs)
+# 6. OLS associations (year effects, clustered panel / HC3 cross-sectional inference)
 # ---------------------------------------------------------------------------
 LAG = {"d_gdp": "lag_gdp_pc", "d_unemp": "lag_unemp", "d_violent": "lag_violent", "d_property": "lag_property"}
 CONTROLS = "ln_pop + ln_density + pop_growth + ln_income + pct_bach + pct_hisp + med_age + gop24 + lag_d_youth15_29_pp"
-
-
-def fit(formula, d):
-    import re
-    terms = [t for t in re.findall(r"[A-Za-z_][A-Za-z_0-9]*", formula) if t in d.columns]
-    d = d.dropna(subset=terms)
-    m = smf.ols(formula, data=d).fit(cov_type="cluster", cov_kwds={"groups": pd.factorize(d.state)[0]})
-    return m, len(d)
 
 
 mrows = []
@@ -280,9 +271,8 @@ def collect(model, n, outcome, era, spec):
     for t in model.params.index:
         if t.startswith("C(year)") or t == "Intercept":
             continue
-        mrows.append({"outcome": OUT.get(outcome, outcome), "era": era, "spec": spec, "term": t, "coef": model.params[t],
-                      "se": model.bse[t], "p": model.pvalues[t], "n": n, "r2": model.rsquared,
-                      "adj_r2": model.rsquared_adj})
+        mrows.append({"outcome": OUT.get(outcome, outcome), "era": era, "spec": spec, "term": t,
+                      "n": n, **coefficient(model, t)})
 
 
 for yv in OUT:
@@ -290,6 +280,7 @@ for yv in OUT:
     for era, sub in [("Old", panel[panel.era == "Old"]), ("New", panel[panel.era == "New"]), ("Pooled", panel)]:
         fe = " + C(year)" if sub.year.nunique() > 1 else ""
         specs = {
+            "M0 + lagged outcome": f"{yv} ~ det_rate10 + {lag}{fe}",
             "M1 bivariate": f"{yv} ~ det_rate10{fe}",
             "M2 + controls": f"{yv} ~ det_rate10 + {lag} + {CONTROLS}{fe}",
             "M3 by operator": f"{yv} ~ det_ice10 + det_corecivic10 + det_geo10 + det_otherpriv10 + det_localstate10 + {lag} + {CONTROLS}{fe}",
@@ -318,6 +309,9 @@ for yv, lag in [("d_violent_fbi", "lag_fbi_v"), ("d_property_fbi", "lag_fbi_p")]
         collect(m, n, yv, "Old", sp)
 reg = pd.DataFrame(mrows)
 reg["outcome"] = reg.outcome.replace(OUT_FBI)
+key = reg.term.str.contains("det_")
+reg["q_bh"] = np.nan
+reg.loc[key, "q_bh"] = multipletests(reg.loc[key, "p"], method="fdr_bh")[1]
 reg.round(5).to_csv(os.path.join(RESULTS, "regressions.csv"), index=False)
 
 # ---------------------------------------------------------------------------
