@@ -1,6 +1,6 @@
 # Technical guide: cohorts, models and data provenance
 
-The [Final Report](../Final%20Report.md) is the findings narrative. This guide defines its estimands and the generated artifacts; it is not a second report.
+The [Final Report](../final_report.md) is the findings narrative. This guide defines its estimands and the generated artifacts; it is not a second report.
 
 ## Cohorts and denominators
 
@@ -30,9 +30,15 @@ Additional models use exposure changes, era interactions, operator/facility-loca
 
 OLS drops incomplete cases explicitly through the formula design. Single-observation-per-state samples use **HC3 robust SEs and residual-df t intervals**. Repeated-state samples use **state-clustered SEs and cluster-df t intervals** with finite-sample correction. CSVs include `n`, `n_states`, `n_parameters`, `df_resid`, `cov_type`, coefficient, SE, p-value and pointwise 95% bounds. Unidentified/saturated models fail explicitly.
 
-The 2025 arrest reduced-control models use 44–50 observations; full-control models use 37–42, with 12 estimated parameters. Report intervals—not nonsignificance alone—define the observed uncertainty. Excluding Texas (highest 2025 arrest rate) is an influence sensitivity, not a license to remove inconvenient observations. The detention scatter labels Louisiana and shows correlations with and without it; its symlog x-axis changes display spacing, not the modeled exposure.
+The 2025 arrest reduced-control and full-control models both use 50 observations for GDP/unemployment, 45 for violent crime and 44 for property crime; full controls estimate 12 parameters. All nine controls are finite for every state in every panel year. Remaining crime gaps are outcome-source coverage: AK, DE, ME, SD and WV for violent crime, plus NM for property crime. Report intervals—not nonsignificance alone—define the observed uncertainty. Excluding Texas (highest 2025 arrest rate) is an influence sensitivity, not a license to remove inconvenient observations. The detention scatter labels Louisiana and shows correlations with and without it; its symlog x-axis changes display spacing, not the modeled exposure.
 
-BH adjustment is applied separately to arrest and detention exposure-coefficient families across all reported specifications/eras/outcomes; controls are not in these families. Correlation Pearson and Spearman families are adjusted separately within each analysis. The 64 arrest coefficients include interaction terms, reduced-control models and the Texas exclusion check. Repeated specifications are dependent; nominal-significance counts must not be read as independent chance experiments. Pointwise intervals are not BH-adjusted confidence regions. Regional correlations pooling two years also have dependent state observations, so their ordinary correlation p-values are only exploratory.
+**Corrected election coverage:** the old source-wide `mode == "TOTAL"` filter removed ID, NC, RI, UT, WA, WI, WV and WY because their returns have missing mode (no voting-method breakdown). `republican_vote_share` now selects TOTAL rows within each state, falling back only to missing-mode rows where that state has no totals. Election shares cover all 51 jurisdictions, including DC, although the detention-derived analysis panel contains 50 states. The corrected full-control 2025 arrest sample sizes are 50/50/45/44, formerly 42/42/38/37. `require_control_coverage` runs before both regression scripts fit any models and fails with state/year/column details for any missing or nonfinite control. Synthetic mixed-mode tests and a committed-panel contract protect this invariant.
+
+**Primary testing family:** four outcomes × the 2025 (`New`) lagged-outcome (`M0`) exposure coefficient, separately for arrests and detention. This revised analysis plan was defined after examining earlier results, not preregistered. Only those four rows per analysis receive `q_bh`; the other 60 arrest exposure terms, other eras, bivariate/full-control specifications, differences, interactions, Texas exclusion and FBI checks are sensitivity analyses with unadjusted p-values and blank q-values. `inference_family` distinguishes primary, sensitivity and control rows. No primary arrest q-value is below .10. Repeated specifications are dependent; nominal-significance counts must not be read as independent chance experiments. Pointwise intervals are not BH-adjusted confidence regions. Exploratory correlation Pearson and Spearman families remain adjusted separately within each analysis; regional correlations pooling two years have dependent state observations, so their ordinary correlation p-values are only exploratory.
+
+**Detection limits:** `arrest_mde.csv` reports an approximate 80%-power minimum detectable association using nominal two-sided alpha .05: `(t(.975, residual df) + z(.80)) × HC3 SE`. Multiplying by the all-state 2025 arrest-rate IQR/10 (5.418754) gives 0.31 GDP-growth points, 0.14 unemployment-change points, 4.66% violent-crime change and 3.23% property-crime change. These retrospective, variance-conditional approximations describe design precision, not achieved power or a prospective power analysis. They do not account for BH selection, and multiplicity generally raises detection requirements. Only one post-period year and 44–50 states constrain detection of modest associations.
+
+Same-year arrests can respond to local economic deterioration or crime changes; this specific reverse-causality mechanism is not eliminated by controlling for lagged outcomes.
 
 ## Sources and frozen retrieval
 
@@ -54,15 +60,31 @@ Secondary GitHub inputs use immutable revisions in `geo_common.REVISIONS` and ex
 
 ## Artifact map and execution order
 
-Use the [README commands](../README.md#reproduce-the-full-analysis). `05` precedes `06` and `07`; `06` precedes `10`; `09` and `10` precede `08`. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
+Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
 
 | Script | Generated tables |
 |---|---|
-| `05_geo_detention_analysis.py` | `overall`, `by_state`, `by_region`, `by_cbsa*`, `by_operator`, geography/operator cross-tabs, facility classification/counts and population denominators |
-| `06_geo_regressions.py` | `state_year_panel`, `correlations`, `regressions` |
-| `07_facility_changes.py` | `facility_changes` (observed codes/activity, not ownership) |
-| `09_arrest_locations.py` | `arrests_by_state/aor/landmark`, `arrest_summary`, `arrest_criminality`, `monthly_arrests` |
-| `10_arrest_regressions.py` | `arrest_rate_panel`, `arrest_correlations`, `arrest_regressions` |
-| `08_figures.py` | Monthly arrest chart, geography/operator charts, labeled detention scatter, arrest coefficient intervals |
+| `01_geo_detention_analysis.py` | `overall`, `by_state`, `by_region`, `by_cbsa*`, `by_operator`, geography/operator cross-tabs, facility classification/counts and population denominators |
+| `02_geo_regressions.py` | `state_year_panel`, `correlations`, `regressions` |
+| `03_facility_changes.py` | `facility_changes` (observed codes/activity, not ownership) |
+| `04_arrest_locations.py` | `arrests_by_state/aor/landmark`, `arrest_summary`, `arrest_criminality`, `monthly_arrests` |
+| `05_arrest_regressions.py` | `arrest_rate_panel`, `arrest_correlations`, `arrest_regressions`, `arrest_mde` |
+| `06_figures.py` | Monthly arrest chart, geography/operator charts, labeled detention scatter, arrest coefficient intervals |
 
 All tables live in `results/` as ordinary Git CSVs. `pytest` checks synthetic cohorts, boundary/censoring cases, covariance selection against statsmodels, confidence-interval arithmetic, download failure behavior, lightweight EDA/figure execution and aggregate reconciliation. CI never hydrates raw LFS or contacts data services.
+
+## Portfolio examples
+
+**SQL:** `04_arrest_locations.py --engine duckdb --output-dir /tmp/ice-sql-results` is an alternative implementation of the six arrest descriptive tables. [`sql/clean_arrests.sql`](sql/clean_arrests.sql) handles duplicate flags, date parsing, the half-open cohort window and location normalization; [`sql/arrest_locations.sql`](sql/arrest_locations.sql) uses conditional aggregation, a window denominator and zero-safe rate comparisons. The runner also aggregates criminality, era totals and a complete monthly calendar (including zero-record months). It reads the same original CSV or explicitly selected parquet, without sending records to an external service. Tests compare SQL to pandas on synthetic duplicate/date/location cases. Output ordering among tied locations may differ; counts, rates and shares must agree. No speed claim is made without a benchmark.
+
+**Interactive view:** `streamlit run analysis/dashboard.py --browser.gatherUsageStats=false` from the repository root reads only committed state/AOR aggregates. Users select observation window, measure and top-location count, inspect the full table and download a CSV. Shares always use all records, not just displayed locations. Different window lengths, unknown locations and residence/record distinctions are explicit. Tests exercise both periods and both geographic levels without raw inputs.
+
+**Forecasting:** `python analysis/forecast_arrests.py` compares last-month, seasonal-naive (12-month lag) and log-AR(1) predictions. The initial training period is January 2023–December 2024 (24 complete months). Each of the 14 targets from January 2025–February 2026 is predicted from an expanding history ending the previous month; there is no shuffled split, future normalization, tuning or fitting on test targets. Partial March 2026 is excluded even from fitting the final March full-month projection. `arrest_forecast_backtest.csv` records the origin, training size, actual, prediction and signed error for every model/target; `arrest_forecast_metrics.csv` reports MAE/RMSE; `arrest_forecast_projection.csv` holds the next-month projections.
+
+| Model | Held-out months | MAE (records/month) | RMSE (records/month) |
+|---|---:|---:|---:|
+| Last month | 14 | 3,881.2 | 4,419.0 |
+| Seasonal naive | 14 | 17,487.9 | 19,452.6 |
+| Log-AR(1) | 14 | 4,472.8 | 5,015.3 |
+
+The fitted log-AR(1) model does **not** beat the last-month baseline. It fits an intercept and lagged log count by OLS using past months only; inverse-log predictions represent conditional medians, bounded at zero to respect count support. The short evaluation period spans a policy/regime shift, so these 14 origins are not independent validation replicates or evidence of deployment readiness. The March full-month projections (29,661 last-month; 18,640 seasonal; 29,730 log-AR(1)) are illustrative, not observed totals. No calibrated forecast intervals or causal interpretation are claimed. Tests perturb future and partial-month counts to ensure earlier predictions do not change.

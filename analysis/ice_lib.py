@@ -1,7 +1,7 @@
 """
 Pure, unit-tested helpers for stint intervals, average daily population (ADP) and annualization.
 
-Scripts 05 and 06 both import these so the interval rules live in one place.
+Scripts 01 and 02 both import these so the interval rules live in one place.
 Windows are half-open: [w0, w1). A stint [start, end) contributes the overlap with the window in days.
 """
 import numpy as np

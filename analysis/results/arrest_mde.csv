@@ -1,0 +1,5 @@
+outcome,n,alpha,power,se,df_resid,mde_per_10,arrest_iqr_per_10,mde_across_iqr
+Real GDP growth (%),50,0.05,0.8,0.019865,47.0,0.056683,5.418754,0.30715
+Unemployment change (pp),50,0.05,0.8,0.009128,47.0,0.026046,5.418754,0.141139
+Violent crime rate change (%),45,0.05,0.8,0.300805,42.0,0.860214,5.418754,4.661286
+Property (nonviolent) crime rate change (%),44,0.05,0.8,0.208512,41.0,0.596586,5.418754,3.232753

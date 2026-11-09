@@ -1,7 +1,7 @@
 """
 ICE Detention Data — Exploratory Data Analysis
-Run from the repo root: python notebooks/eda.py
-Figures are saved to notebooks/figures/
+Run from the repo root: python analysis/eda.py
+Figures are saved to analysis/figures/
 """
 
 import os

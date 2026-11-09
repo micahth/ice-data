@@ -1,4 +1,4 @@
-notebooks/.cache/
+analysis/.cache/
 __pycache__/
 .pytest_cache/
 .venv/

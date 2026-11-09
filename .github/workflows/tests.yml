@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - 'notebooks/**'
+      - 'analysis/**'
       - 'tests/**'
       - 'requirements.txt'
       - '.github/workflows/tests.yml'
       - '.gitattributes'
   pull_request:
     paths:
-      - 'notebooks/**'
+      - 'analysis/**'
       - 'tests/**'
       - 'requirements.txt'
       - '.github/workflows/tests.yml'
@@ -44,4 +44,4 @@ jobs:
           MPLBACKEND: Agg
 
       - name: Check script syntax
-        run: python -m compileall -q notebooks tests
+        run: python -m compileall -q analysis tests
