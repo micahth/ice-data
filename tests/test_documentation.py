@@ -8,7 +8,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 def test_local_report_links_exist():
-    documents = [REPO / "README.md", REPO / "CASE_STUDY.md", REPO / "Final Report.md", *REPO.glob("notebooks/*.md")]
+    documents = [REPO / "README.md", REPO / "outputs/README.md", REPO / "CASE_STUDY.md", REPO / "Final Report.md", *REPO.glob("notebooks/*.md")]
     for document in documents:
         for link in re.findall(r"\]\(([^)]+)\)", document.read_text()):
             if "://" not in link and not link.startswith("#"):
