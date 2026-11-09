@@ -53,6 +53,7 @@ and state-level economic/crime associations.
 ## Read the analysis
 
 - **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
+- **[Key outputs](outputs/README.md):** the four main figures with their source tables.
 - **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
 - **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
@@ -128,6 +129,7 @@ refresh details.
 ```text
 data/                     Raw FOIA exports (LFS) and third-party codebook
 notebooks/                Python analysis scripts, cached inputs, results, figures
+outputs/                  Landing page for the four key figures
 tests/                    Synthetic tests for cohorts, intervals, models and outputs
 Final Report.md           Reader-facing findings
 requirements.txt          Pinned direct dependencies
