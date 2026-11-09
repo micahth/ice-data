@@ -62,6 +62,8 @@ def test_filters_change_actual_data():
     data, fig = panels.detention_figure("Region", "adp", "new")
     assert data.period.str.startswith("New").all()
     assert sum(sum(trace.y) for trace in fig.data) == pytest.approx(data.adp.sum())
+    _, operator_fig = panels.detention_figure("Operator")
+    assert "U.S. residents" in operator_fig.layout.title.text
     reg, _ = panels.coefficient_forest("Real GDP growth (%)", ["M2 + controls"], True)
     assert set(reg.spec) == {"M2 + controls", panels.SENSITIVITY_SPEC}
     assert reg.term.eq("arr_rate10").all()

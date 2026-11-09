@@ -10,12 +10,13 @@ REPO = Path(__file__).resolve().parents[1]
 SQL = REPO / "sql/arrests_by_state.sql"
 
 
-def pandas_by_state(frame):
+def _pandas_by_state(frame):
+    """Reproduce every measure in analysis 09, independently of SQL."""
     data = clean_arrests(frame)
     data["state"] = data.apprehension_state_filled_in.fillna(
         data.apprehension_state_original).fillna("Unknown")
     counts = data.groupby(["state", "era"]).size().unstack(fill_value=0)
-    counts = counts.reindex(columns=["old", "new"], fill_value=0)
+    counts = counts.reindex(columns=["old", "new"], fill_value=0).astype(int)
     for era in ("old", "new"):
         counts[f"{era}_per_day"] = counts[era] / ARREST_DAYS[era]
     counts["change_pct"] = (
@@ -43,6 +44,6 @@ def test_sql_matches_all_pandas_measures(case):
     with duckdb.connect() as con:
         con.register("arrests", frame)
         actual = con.execute(SQL.read_text()).fetchdf().set_index("state").sort_index()
-    expected = pandas_by_state(frame)
+    expected = _pandas_by_state(frame)
     pd.testing.assert_frame_equal(actual, expected, check_names=False, check_dtype=False,
-                                  rtol=1e-12, atol=1e-12)
+                                  check_exact=False, rtol=1e-12, atol=1e-12)

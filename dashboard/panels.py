@@ -98,8 +98,9 @@ def detention_figure(dimension="Region", metric="adp_per_100k", era="both"):
     data = _read(table)
     if era != "both":
         data = data[data.period.str.startswith("Old" if era == "old" else "New")]
+    population_basis = "U.S. residents" if dimension == "Operator" else "local residents"
     label = {"adp": "Facility average daily population",
-             "adp_per_100k": "Facility ADP per 100k residents"}[metric]
+             "adp_per_100k": f"Facility ADP per 100k {population_basis}"}[metric]
     fig = px.bar(data, x=key, y=metric, color="period", barmode="group",
                  labels={metric: label, "period": "Period"},
                  title=f"{label} by {dimension.lower()}")
