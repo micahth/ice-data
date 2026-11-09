@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICE enforcement explorer</title>
+<style>
+body {font:16px/1.5 system-ui,sans-serif; margin:auto; padding:24px; max-width:1200px; color:#172b4d}
+header,aside,.controls,.kpis {margin-bottom:20px}
+a {color:#075baf}
+aside {background:#f1f5f9; padding:16px; border-left:4px solid #536e88}
+label {display:inline-block; margin:8px 18px 8px 0}
+select,button {font:inherit; padding:8px; max-width:100%}
+nav {display:flex; gap:8px; flex-wrap:wrap}
+nav button[aria-pressed=true] {background:#172b4d; color:white}
+.kpis {display:flex; flex-wrap:wrap; gap:20px}
+.kpis div {background:#f1f5f9; padding:16px}
+.kpis strong {display:block; font-size:1.6rem}
+.chart {min-height:400px}
+table {border-collapse:collapse; font-size:0.9rem}
+td,th {padding:6px; border:1px solid #cbd5e1; text-align:left}
+details {overflow:auto; margin:12px 0 24px}
+pre {white-space:pre-wrap}
+[hidden] {display:none!important}
+#error {color:#a30000}
+@media(max-width:600px) {body{padding:12px} .kpis{gap:8px}}
+</style>
+<script src="plotly.min.js" defer></script>
+<script src="site.js" defer></script>
+</head>
+<body>
+<header>
+<h1>ICE enforcement explorer</h1>
+<p>Daily arrests increased 153%; state-level outcome associations remain uncertain.</p>
+<p><a href="figures.html">Full-size figures</a> ·
+<a href="ice-geography.twbx" download>Tableau workbook</a> ·
+<a href="https://github.com/micahth/ice-data">Code, report and provenance</a></p>
+<details><summary>AI-assisted development disclosure</summary>
+<p>I used AI-assisted development tools to accelerate implementation, explore alternative approaches,
+and improve documentation and testing. I remained responsible for defining analytical requirements,
+evaluating methodological choices, validating outputs, and interpreting results.</p></details>
+</header>
+<aside><strong>Methods &amp; limitations</strong>
+Arrests are deduplicated records, not unique people or completed removals. Locations are not
+residences or workplaces. March 2026 is partial; annual maps and models exclude 2026.
+Confidence intervals are pointwise, not multiplicity-adjusted; these are not causal estimates.
+Source: DDP July 24, 2026 CSV exports. Filters affect only the current view, not national comparison KPIs.
+</aside>
+<nav aria-label="Dashboard views">
+<button data-page="trend" aria-pressed="true">Enforcement over time</button>
+<button data-page="geography" aria-pressed="false">Geography</button>
+<button data-page="detention" aria-pressed="false">Detention geography</button>
+<button data-page="models" aria-pressed="false">Model uncertainty</button>
+<button data-page="sql" aria-pressed="false">SQL</button>
+</nav>
+<p id="error" role="alert"></p>
+<main id="content" aria-live="polite"></main>
+<noscript>This interactive explorer requires JavaScript. The full-size figures and source tables remain available.</noscript>
+</body>
+</html>

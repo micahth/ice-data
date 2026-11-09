@@ -28,3 +28,18 @@ def monthly_arrests(data):
     counts = data.groupby(data.date.dt.to_period("M")).size().reindex(months, fill_value=0)
     return pd.DataFrame({"month": months.astype(str), "arrests": counts.values,
                          "partial_month": months == ARREST_END.to_period("M")})
+
+
+def location_breakdown(data):
+    """Joint state/year/location counts from the cleaned arrest cohort."""
+    data = data.assign(
+        year=data.date.dt.year,
+        state=data.apprehension_state_filled_in.fillna(
+            data.apprehension_state_original).fillna("Unknown"),
+        aor=data.apprehension_aor.fillna("Unknown"),
+        landmark=data.apprehension_site_landmark.str.strip().str.upper().fillna("Unknown"),
+    )
+    long = data.melt(id_vars=["state", "year"], value_vars=["aor", "landmark"],
+                     var_name="dimension", value_name="location")
+    return long.groupby(["state", "year", "dimension", "location"]).size().rename(
+        "arrests").reset_index()

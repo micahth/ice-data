@@ -16,8 +16,8 @@ WITH cleaned AS (
         -- Prefer the filled-in state, fall back to the original, then 'Unknown'
         -- (matches .fillna(...).fillna('Unknown') in the pandas version).
         COALESCE(
-            NULLIF(apprehension_state_filled_in, ''),
-            NULLIF(apprehension_state_original, ''),
+            apprehension_state_filled_in,
+            apprehension_state_original,
             'Unknown'
         ) AS state,
         CASE

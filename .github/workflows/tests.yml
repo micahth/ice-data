@@ -7,6 +7,8 @@ on:
     paths:
       - 'notebooks/**'
       - 'dashboard/**'
+      - '.streamlit/**'
+      - 'bi/**'
       - 'sql/**'
       - 'tests/**'
       - 'requirements.txt'
@@ -16,6 +18,8 @@ on:
     paths:
       - 'notebooks/**'
       - 'dashboard/**'
+      - '.streamlit/**'
+      - 'bi/**'
       - 'sql/**'
       - 'tests/**'
       - 'requirements.txt'
@@ -48,4 +52,12 @@ jobs:
           MPLBACKEND: Agg
 
       - name: Check script syntax
-        run: python -m compileall -q notebooks dashboard tests
+        run: python -m compileall -q notebooks dashboard bi tests
+
+      - name: Build standalone dashboard and Tableau package
+        run: python dashboard/build_site.py --output site
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-preview
+          path: site

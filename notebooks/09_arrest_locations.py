@@ -7,7 +7,7 @@ Writes CSVs to notebooks/results/arrests_by_*.csv. Old = CY2023-2024, New = 2025
 import os
 
 import pandas as pd
-from arrest_common import ARREST_DAYS, clean_arrests, load_arrests, monthly_arrests
+from arrest_common import ARREST_DAYS, clean_arrests, load_arrests, monthly_arrests, location_breakdown
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(REPO, "notebooks", "results")
@@ -19,6 +19,7 @@ use = ["apprehension_date", "apprehension_state_filled_in", "apprehension_state_
 a = load_arrests(use)
 print(f"rows: {len(a):,}")
 a = clean_arrests(a)
+location_breakdown(a).to_csv(os.path.join(RES, "arrests_state_locations.csv"), index=False)
 days = ARREST_DAYS
 print("days per era:", days, "| last date:", a.date.max().date())
 a["state"] = a.apprehension_state_filled_in.fillna(a.apprehension_state_original).fillna("Unknown")

@@ -2,10 +2,8 @@
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-An analysis of U.S. Immigration and Customs Enforcement (ICE) arrest, detainer, and
-detention records released by the [Deportation Data Project](https://deportationdata.org/).
-It combines record-level interval logic, geographic joins, population normalization,
-and state-level economic/crime associations.
+An analysis of ICE records from the [Deportation Data Project](https://deportationdata.org/),
+combining tested record-level transformations, geographic joins, and statistical inference.
 
 > **Headline:** Daily arrests rose from about **359 to 909 (+153%)** between 2023–2024
 > and January 2025–March 10, 2026. The share of arrest records classified as convicted
@@ -13,22 +11,15 @@ and state-level economic/crime associations.
 > associations with economic or crime trends. Confidence intervals remain wide.
 > Arrests are not deportations, employment records, or residence locations.
 
-**Why this project (beyond the subject):** the hard parts here — reconstructing durations
-from open-ended records, normalizing by exposure time, joining external panels, and
-correcting for multiple comparisons — are the same problems behind subscription churn,
-cohort retention, utilization metrics, and A/B-test guardrails. The subject is ICE data;
-the methods are general. See the [skills-to-industry map](CASE_STUDY.md#7-skills-demonstrated).
+**Transferable work:** explicit data-quality rules, exposure-adjusted metrics, SQL/pandas
+reconciliation, uncertainty reporting, and interactive communication. These techniques
+also arise in utilization and experimentation analytics; this project does **not**
+implement a churn model, retention analysis, or A/B-testing system.
 
 > **Development note:** I used AI-assisted development tools to accelerate implementation,
 > explore alternative approaches, and improve documentation and testing. I remained
 > responsible for defining analytical requirements, evaluating methodological choices,
 > validating outputs, and interpreting results.
-
-## Research questions
-
-1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
-2. How did detention ADP and arrest pace change after normalizing for time and population?
-3. Are state arrest rates associated with changes in state economic or crime outcomes?
 
 ## Key findings
 
@@ -67,6 +58,7 @@ the methods are general. See the [skills-to-industry map](CASE_STUDY.md#7-skills
 - **[Key outputs](outputs/README.md):** the four main figures with their source tables ([large-figure viewer](outputs/index.html)).
 - **[SQL views](sql/README.md):** selected result tables reproduced as declarative SQL and cross-checked against the pandas pipelines.
 - **[Interactive dashboard](dashboard/README.md):** a Streamlit app over the committed result tables (enforcement trend, geography, detention, model uncertainty).
+- **[Tableau companion](bi/README.md):** a downloadable workbook with an embedded annual state panel.
 - **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
 - **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
@@ -76,6 +68,12 @@ the methods are general. See the [skills-to-industry map](CASE_STUDY.md#7-skills
 The numbered scripts `05`–`10` are analysis identifiers, not missing prerequisites.
 `eda.py` is optional exploratory analysis.
 
+## Research questions
+
+1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
+2. How did detention ADP and arrest pace change after normalizing for time and population?
+3. Are state arrest rates associated with changes in state economic or crime outcomes?
+
 ## Setup and tests
 
 Python 3.11 or 3.12; direct Python dependencies are pinned (this is not a full
@@ -83,7 +81,7 @@ transitive lock file).
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt -r dashboard/requirements.txt
 python -m pytest -q
 python notebooks/08_figures.py
 ```
@@ -102,6 +100,19 @@ python -m pip install -r dashboard/requirements.txt
 streamlit run dashboard/app.py
 ```
 
+For the standalone browser dashboard and full-size figure viewer:
+
+```bash
+python dashboard/build_site.py --output site
+python -m http.server 8000 --directory site
+```
+
+Open `http://localhost:8000`. Public hosting is **not yet enabled**: the current
+credential cannot change the Pages setting. A repository administrator must select
+**Settings > Pages > Source: GitHub Actions**. After this PR is merged, the
+`Publish dashboard` workflow builds and deploys the site. Its deployment URL is the
+source of truth; no live link is claimed before deployment succeeds.
+
 ## Repository structure
 
 ```text
@@ -109,6 +120,7 @@ data/                     Raw FOIA exports (LFS) and third-party codebook
 notebooks/                Python analysis scripts, cached inputs, results, figures
 sql/                      Declarative SQL reproductions of selected result tables
 dashboard/                Streamlit app over the committed result tables
+bi/                       Packaged Tableau workbook and reproducible builder
 outputs/                  Landing page and large-figure viewer for the four key figures
 tests/                    Synthetic tests for cohorts, intervals, models and outputs
 Final Report.md           Reader-facing findings

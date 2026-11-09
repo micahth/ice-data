@@ -79,13 +79,13 @@ The asymmetric treatment is a documented assumption: if old open records represe
 | Work | Skill | Where this appears in industry |
 |---|---|---|
 | Excluding duplicates and invalid intervals | Data quality and validation | Deduping events/orders; rejecting malformed records in a pipeline |
-| Reconstructing detention intervals; handling open records | Record-level transformation, business rules | Active-subscription / still-employed cohorts (right-censoring) |
+| Reconstructing detention intervals; handling open records | Record-level transformation, business rules | Duration and utilization metrics with incomplete end dates; not a fitted churn/survival model |
 | Reconciling aggregates to source totals | Data integrity | Pipeline tie-outs; financial/reporting reconciliation |
 | Joining external datasets | Data integration | Enriching facts with dimensions from multiple systems |
 | Population-normalized rates | Metric construction | Per-user / per-capita KPIs instead of raw counts |
 | Average daily population from bed-days | Exposure-adjusted measures | Average active users, utilization and occupancy rates |
 | Declarative SQL matched to the pandas result | SQL / set-based thinking | Warehouse queries, dbt models, BI data sources |
-| Multiple-testing correction (Benjamini–Hochberg) | Inferential discipline | Not declaring a winner across many A/B-test metrics |
+| Multiple-testing correction (Benjamini–Hochberg) | Inferential discipline | Managing false discoveries across multiple comparisons; not an A/B-test design or sequential guardrail |
 | Interactive dashboard over result tables | Stakeholder communication | Self-serve BI dashboards for non-technical partners |
 | Tests and CI | Quality assurance | Guarding analytics logic against regressions |
 | Documenting source revisions and limits | Auditability | Reproducible, defensible reporting |
