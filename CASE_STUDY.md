@@ -1,6 +1,6 @@
 # ICE Enforcement Data: From Administrative Records to Reproducible Analysis
 
-I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/). The goal was to turn large, imperfect administrative records into defensible measures, and to report clearly what those measures can and cannot show.
+I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/). The analysis includes **656,919 deduplicated arrest records** (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with **nine external input groups** (the non-DDP-record rows of the [source inventory](notebooks/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
 ## 1. The problem
 
@@ -14,7 +14,21 @@ How did ICE arrest and detention activity change over time and geographically, a
 - Facility location and apprehension location measure different things, and neither is residence.
 - External population, economic, demographic, and crime data had to be joined to state-year panels.
 
-## 3. What I built
+## 3. Worked example: turning open detention records into a measure
+
+Detention records often lack an end date, and "no end date" can mean different things. I defined explicit rules (`notebooks/ice_lib.py`) and unit-tested each one. This illustration uses three made-up records, with the code's actual output, for the window January 1, 2025 to March 11, 2026 (435 days):
+
+| Record | Book-in | Book-out | Rule applied | Bed-days counted |
+|---|---|---|---|---:|
+| A | 2025-03-01 | 2025-03-11 | Closed: use recorded end | 10 |
+| B | 2025-06-01 | missing | Booked in on/after 2025-01-01: **censored** at the cutoff | 284 |
+| C | 2023-05-01 | missing | Older open record: **excluded**, not assumed still detained | 0 |
+
+The stint's own book-out is used first, then the stay's book-out, then censoring. Missing starts and negative intervals are flagged and excluded. Average daily population is overlapping bed-days divided by actual window days: (10 + 284) / 435 = 0.68 for these three records. Windows are half-open so a stay ending on the window's first day adds nothing. In the real data, 1,049 older open records are excluded.
+
+The asymmetric treatment is a documented assumption: if old open records represent real ongoing detention, period comparisons could be biased. Choosing, testing, and disclosing that rule is the work, more than the pandas.
+
+## 4. What I built
 
 - Cleaning, validation, and detention-interval/average-daily-population calculations (`ice_lib.py`, `data_common.py`).
 - Geographic classification (region, CBSA, state) and population-normalized measures.
@@ -22,7 +36,7 @@ How did ICE arrest and detention activity change over time and geographically, a
 - Descriptive comparisons and regressions with HC3 or clustered errors, 95% confidence intervals, and Benjamini–Hochberg adjustment.
 - Automated tests, committed result tables, and documented data provenance.
 
-## 4. What I found
+## 5. What I found
 
 - Recorded arrests per day rose from about 359 to 909 (+153%) between windows.
 - The convicted-criminal share of arrest records fell from 43.0% to 33.1%.
@@ -38,14 +52,14 @@ How did ICE arrest and detention activity change over time and geographically, a
 |---|---|
 | ![Facility ADP per 100k by region](notebooks/figures/fig1_region_per_capita.png) | ![Arrest-rate coefficients](notebooks/figures/fig6_arrest_coefficients.png) |
 
-## 5. Quality assurance and limitations
+## 6. Quality assurance and limitations
 
 - `pytest` covers interval boundaries and censoring, cohort definitions, covariance selection against statsmodels, confidence-interval arithmetic, download failure handling, aggregate reconciliation, and figure generation.
 - Tests check that numbers in the report match the generated result tables, and that local links resolve.
 - Source versions are documented: published results use July 24, 2026 CSV exports; the alternative pinned download is a different (July 6) revision and is not claimed to reproduce them. See [Reproduction status](README.md#reproduction-status).
 - Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
 
-## 6. Skills demonstrated
+## 7. Skills demonstrated
 
 | Work | Skill |
 |---|---|
