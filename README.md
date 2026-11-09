@@ -13,6 +13,17 @@ and state-level economic/crime associations.
 > associations with economic or crime trends. Confidence intervals remain wide.
 > Arrests are not deportations, employment records, or residence locations.
 
+**Why this project (beyond the subject):** the hard parts here — reconstructing durations
+from open-ended records, normalizing by exposure time, joining external panels, and
+correcting for multiple comparisons — are the same problems behind subscription churn,
+cohort retention, utilization metrics, and A/B-test guardrails. The subject is ICE data;
+the methods are general. See the [skills-to-industry map](CASE_STUDY.md#7-skills-demonstrated).
+
+> **Development note:** I used AI-assisted development tools to accelerate implementation,
+> explore alternative approaches, and improve documentation and testing. I remained
+> responsible for defining analytical requirements, evaluating methodological choices,
+> validating outputs, and interpreting results.
+
 ## Research questions
 
 1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
@@ -53,7 +64,9 @@ and state-level economic/crime associations.
 ## Read the analysis
 
 - **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
-- **[Key outputs](outputs/README.md):** the four main figures with their source tables.
+- **[Key outputs](outputs/README.md):** the four main figures with their source tables ([large-figure viewer](outputs/index.html)).
+- **[SQL views](sql/README.md):** selected result tables reproduced as declarative SQL and cross-checked against the pandas pipelines.
+- **[Interactive dashboard](dashboard/README.md):** a Streamlit app over the committed result tables (enforcement trend, geography, detention, model uncertainty).
 - **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
 - **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
@@ -79,13 +92,37 @@ Tests and chart generation use synthetic fixtures and committed result tables. T
 do not download raw LFS data or call external data services. CI runs the same test and
 syntax checks without hydrating the large raw inputs.
 
+The `sql/` folder reproduces selected result tables as declarative SQL (DuckDB) and
+`tests/test_sql.py` asserts the SQL output matches the pandas pipeline on the same input.
+
+Launch the interactive dashboard (reads the committed result tables, no raw data needed):
+
+```bash
+python -m pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
+```
+
+## Repository structure
+
+```text
+data/                     Raw FOIA exports (LFS) and third-party codebook
+notebooks/                Python analysis scripts, cached inputs, results, figures
+sql/                      Declarative SQL reproductions of selected result tables
+dashboard/                Streamlit app over the committed result tables
+outputs/                  Landing page and large-figure viewer for the four key figures
+tests/                    Synthetic tests for cohorts, intervals, models and outputs
+Final Report.md           Reader-facing findings
+requirements.txt          Pinned direct dependencies
+LICENSE                   MIT license for the project code
+```
+
 ## Reproduction status
 
 | Item | Status |
 |---|---|
 | Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
 | Alternative download | `download_data.py` fetches a pinned July 6, 2026 parquet revision; **not byte-identical**, and exact reproduction of the published tables is not claimed or tested |
-| Runs without raw data | `pytest` and `08_figures.py` (synthetic fixtures and committed result tables) |
+| Runs without raw data | `pytest`, `08_figures.py`, and the dashboard (synthetic fixtures and committed result tables) |
 | Needs raw data | Scripts `05`–`10`, which regenerate `notebooks/results/` |
 
 ## Reproduce the full analysis
@@ -123,18 +160,6 @@ alternative source. `--datasets arrests detention-stints detention-stays` also
 downloads stays for the optional EDA script. Secondary inputs are fetched at immutable
 revisions and cached under `notebooks/.cache/`; see the technical guide for sources and
 refresh details.
-
-## Repository structure
-
-```text
-data/                     Raw FOIA exports (LFS) and third-party codebook
-notebooks/                Python analysis scripts, cached inputs, results, figures
-outputs/                  Landing page for the four key figures
-tests/                    Synthetic tests for cohorts, intervals, models and outputs
-Final Report.md           Reader-facing findings
-requirements.txt          Pinned direct dependencies
-LICENSE                   MIT license for the project code
-```
 
 ## Limitations
 
