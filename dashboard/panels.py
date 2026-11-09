@@ -75,9 +75,10 @@ DETENTION_DIMENSIONS = {"Region": ("by_region", "region"),
 def detention_figure(dimension="Region"):
     table, key = DETENTION_DIMENSIONS[dimension]
     data = _read(table)
+    population_basis = "U.S. residents" if dimension == "Operator" else "local residents"
     fig = px.bar(data, x=key, y="adp_per_100k", color="period", barmode="group",
-                 labels={"adp_per_100k": "Facility ADP per 100k local residents", "period": "Period"},
-                 title=f"Detention facility ADP per 100,000 local residents by {dimension.lower()}")
+                 labels={"adp_per_100k": f"Facility ADP per 100k {population_basis}", "period": "Period"},
+                 title=f"Detention facility ADP per 100,000 {population_basis} by {dimension.lower()}")
     fig.update_xaxes(title=None)
     return data, fig
 
