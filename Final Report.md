@@ -22,6 +22,14 @@ Daily arrest pace increased **153%**; monthly arrests peaked at **39,829 in Dece
 
 National detention average daily population (ADP) increased from **33.6k to 55.1k**, using a detention window ending March **11**, 2026 (435 newer-period days). Facility ADP per resident rose in every region; rural facilities held about 78.4 detainees per 100,000 local residents versus 10.9 in metropolitan counties. These measure where facilities hold people, **not local residents' likelihood of detention**. Operator classifications are inferred, not verified ownership records.
 
+## Where apprehensions occurred
+
+![Share of arrest records by state and ICE Area of Responsibility](notebooks/figures/fig7_arrest_geography.png)
+
+Recorded apprehensions are concentrated but became somewhat less concentrated in Texas. By state, Texas's share fell from 27.3% to 25.7% while Florida rose from 7.4% to 10.1% and Georgia from 2.2% to 3.7%; the ten largest states account for 65.8% of newer-period records. By ICE Area of Responsibility, Miami (10.2%), New Orleans (7.9%) and Dallas (7.6%) lead, with Atlanta and Washington gaining the most share. Landmark-level records are far more dispersed (6,393 distinct labels; top ten = 22.3%), and many are generic "general area" entries, so they reflect reporting convention as much as place. Full tables: `arrests_by_state.csv`, `arrests_by_aor.csv` and `arrests_by_landmark.csv` in `notebooks/results/`.
+
+This uses apprehension location rather than detention-facility location, which reflects bed capacity and transfers. Neither measures where people live or work.
+
 ## State-level associations and uncertainty
 
 The panel covers 50 states in 2023–2025; complete-case sample sizes vary by outcome and controls. The primary descriptive specification uses the arrest rate and a lagged outcome, with year effects when multiple years are included. The full-control specification is a sensitivity check, not a preferred high-dimensional model for a small cross-section.

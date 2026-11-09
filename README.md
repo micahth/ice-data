@@ -52,6 +52,7 @@ and state-level economic/crime associations.
 
 ## Read the analysis
 
+- **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
 - **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
 - **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
@@ -76,6 +77,15 @@ python notebooks/08_figures.py
 Tests and chart generation use synthetic fixtures and committed result tables. They
 do not download raw LFS data or call external data services. CI runs the same test and
 syntax checks without hydrating the large raw inputs.
+
+## Reproduction status
+
+| Item | Status |
+|---|---|
+| Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
+| Alternative download | `download_data.py` fetches a pinned July 6, 2026 parquet revision; **not byte-identical**, and exact reproduction of the published tables is not claimed or tested |
+| Runs without raw data | `pytest` and `08_figures.py` (synthetic fixtures and committed result tables) |
+| Needs raw data | Scripts `05`–`10`, which regenerate `notebooks/results/` |
 
 ## Reproduce the full analysis
 

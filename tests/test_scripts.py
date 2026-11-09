@@ -21,5 +21,5 @@ def test_eda_runs_on_synthetic_sources_without_lfs(tmp_path):
 def test_publication_figures_run_from_small_committed_tables(tmp_path):
     env = os.environ | {"ICE_FIGURES_DIR": str(tmp_path), "MPLBACKEND": "Agg"}
     subprocess.run([sys.executable, str(REPO / "notebooks/08_figures.py")], env=env, check=True, capture_output=True)
-    assert len(list(tmp_path.glob("*.png"))) == 7
+    assert len(list(tmp_path.glob("*.png"))) == 8
     assert (tmp_path / "fig6_arrest_coefficients.png").stat().st_size > 10000

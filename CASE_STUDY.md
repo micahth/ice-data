@@ -1,0 +1,61 @@
+# ICE Enforcement Data: From Administrative Records to Reproducible Analysis
+
+I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/). The goal was to turn large, imperfect administrative records into defensible measures, and to report clearly what those measures can and cannot show.
+
+## 1. The problem
+
+How did ICE arrest and detention activity change over time and geographically, and were state-level arrest rates associated with economic or crime outcomes?
+
+## 2. The data challenges
+
+- Record-level administrative data from several extracts, with duplicate arrest records.
+- Incomplete dates and open-ended detention stints (1,049 older open records excluded; qualifying newer ones censored at a stated date).
+- Observation windows of different lengths (731 vs. 434 days), so counts had to become daily rates.
+- Facility location and apprehension location measure different things, and neither is residence.
+- External population, economic, demographic, and crime data had to be joined to state-year panels.
+
+## 3. What I built
+
+- Cleaning, validation, and detention-interval/average-daily-population calculations (`ice_lib.py`, `data_common.py`).
+- Geographic classification (region, CBSA, state) and population-normalized measures.
+- A state-year panel combining enforcement and external data.
+- Descriptive comparisons and regressions with HC3 or clustered errors, 95% confidence intervals, and Benjamini–Hochberg adjustment.
+- Automated tests, committed result tables, and documented data provenance.
+
+## 4. What I found
+
+- Recorded arrests per day rose from about 359 to 909 (+153%) between windows.
+- The convicted-criminal share of arrest records fell from 43.0% to 33.1%.
+- Apprehensions shifted geographically (for example, Texas's share fell from 27.3% to 25.7% while Florida's rose from 7.4% to 10.1%); see the [Final Report](Final%20Report.md).
+- None of 64 arrest-related state-level coefficients survived multiple-testing adjustment. I did not treat that as proof of no relationship.
+- The results do not establish causality.
+
+| Arrests over time | Geography of apprehensions |
+|---|---|
+| ![Monthly arrests](notebooks/figures/monthly_arrests.png) | ![Arrest geography](notebooks/figures/fig7_arrest_geography.png) |
+
+| Detention geography | Regression estimates with confidence intervals |
+|---|---|
+| ![Facility ADP per 100k by region](notebooks/figures/fig1_region_per_capita.png) | ![Arrest-rate coefficients](notebooks/figures/fig6_arrest_coefficients.png) |
+
+## 5. Quality assurance and limitations
+
+- `pytest` covers interval boundaries and censoring, cohort definitions, covariance selection against statsmodels, confidence-interval arithmetic, download failure handling, aggregate reconciliation, and figure generation.
+- Tests check that numbers in the report match the generated result tables, and that local links resolve.
+- Source versions are documented: published results use July 24, 2026 CSV exports; the alternative pinned download is a different (July 6) revision and is not claimed to reproduce them. See [Reproduction status](README.md#reproduction-status).
+- Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
+
+## 6. Skills demonstrated
+
+| Work | Skill |
+|---|---|
+| Excluding duplicates and invalid intervals | Data quality and validation |
+| Reconstructing detention intervals; handling open records | Record-level transformation, business rules |
+| Reconciling aggregates to source totals | Data integrity |
+| Joining external datasets | Data integration |
+| Population-normalized rates | Metric construction |
+| Tests and CI | Quality assurance |
+| Documenting source revisions and limits | Auditability |
+| Models with uncertainty | Analytical reasoning |
+
+Tools: Python, pandas, NumPy, SciPy, statsmodels, matplotlib, pytest, Git/GitHub Actions, CSV/parquet.
