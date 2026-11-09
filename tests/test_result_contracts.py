@@ -4,13 +4,36 @@ import numpy as np
 import pandas as pd
 import pytest
 from scipy.stats import t
+from geo_common import STATE_ABBR
+from regression_common import require_control_coverage
 
 REPO = Path(__file__).resolve().parents[1]
-RESULTS = REPO / "notebooks/results"
+RESULTS = REPO / "analysis/results"
+
+
+def test_all_50_states_have_every_control_in_every_year():
+    panel = pd.read_csv(RESULTS / "state_year_panel.csv")
+    require_control_coverage(panel, set(STATE_ABBR.values()) - {"DC"})
+    assert len(panel) == 150
+    election = panel.drop_duplicates("state").set_index("state").gop24
+    for state, expected in {"NC": 50.9, "WI": 49.6, "WY": 71.6}.items():
+        assert election[state] == pytest.approx(expected, abs=0.1)
+
+
+@pytest.mark.parametrize("name", ["arrest_regressions", "regressions"])
+def test_primary_family_is_four_2025_lagged_outcome_coefficients(name):
+    from statsmodels.stats.multitest import multipletests
+    regressions = pd.read_csv(RESULTS / f"{name}.csv")
+    primary = regressions.loc[regressions.inference_family == "primary"]
+    assert len(primary) == 4 and primary.outcome.nunique() == 4
+    assert set(primary.era) == {"New"}
+    assert set(primary.spec) == {"M0 + lagged outcome"}
+    np.testing.assert_allclose(primary.q_bh, multipletests(primary.p, method="fdr_bh")[1], atol=0.00002)
+    assert regressions.loc[regressions.inference_family != "primary", "q_bh"].isna().all()
 
 
 def test_small_tables_are_not_lfs_pointers():
-    for path in [*RESULTS.glob("*.csv"), *REPO.glob("notebooks/data/*.csv")]:
+    for path in [*RESULTS.glob("*.csv"), *REPO.glob("analysis/data/*.csv")]:
         assert not path.read_bytes().startswith(b"version https://git-lfs.github.com/spec/v1"), path
         assert len(pd.read_csv(path)) > 0, path
 

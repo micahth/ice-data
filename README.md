@@ -34,9 +34,9 @@ and state-level economic/crime associations.
   people are held, not a local-resident detention rate.
 - **Criminality:** arrest-record classifications describe people at apprehension, and
   are distinct from detention book-in categories.
-- **Statistical uncertainty:** none of 64 arrest-related coefficients survives
-  Benjamini–Hochberg adjustment at q < .10. 2025-only models use HC3 robust intervals;
-  estimates and sensitivity checks appear in the report.
+- **Statistical uncertainty:** none of the four primary 2025 lagged-outcome
+  arrest-rate tests survives Benjamini–Hochberg adjustment at q < .10. Other models
+  are unadjusted sensitivity analyses; intervals and detection limits appear in the report.
 - **Causality:** estimates are exploratory. Arrests are not completed removals, and
   employment status is not observed.
 
@@ -44,24 +44,24 @@ and state-level economic/crime associations.
 
 | Monthly arrests | Facility ADP per 100k by region |
 |---|---|
-| ![Monthly arrests with partial March identified](notebooks/figures/monthly_arrests.png) | ![Facility ADP per 100k by region](notebooks/figures/fig1_region_per_capita.png) |
+| ![Monthly arrests with partial March identified](analysis/figures/monthly_arrests.png) | ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) |
 
 | 2025 facility rates vs. outcomes | Arrest-rate model estimates and confidence intervals |
 |---|---|
-| ![Detention and outcome scatter plots, including Louisiana sensitivity](notebooks/figures/fig5_scatter_2025.png) | ![Arrest-rate estimates and 95 percent confidence intervals](notebooks/figures/fig6_arrest_coefficients.png) |
+| ![Detention and outcome scatter plots, including Louisiana sensitivity](analysis/figures/fig5_scatter_2025.png) | ![Arrest-rate estimates and 95 percent confidence intervals](analysis/figures/fig6_arrest_coefficients.png) |
 
 ## Read the analysis
 
 - **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
 - **[Key outputs](outputs/README.md):** the four main figures with their source tables.
-- **[Final Report](Final%20Report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
-- **[Technical guide](notebooks/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
-- **[Labor-market literature](notebooks/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
-- **[Facility activity notes](notebooks/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
+- **[Final Report](final_report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
+- **[Technical guide](analysis/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
+- **[Labor-market literature](analysis/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
+- **[Facility activity notes](analysis/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
 - **[DDP codebook](data/codebook.txt):** third-party source documentation.
 
-The numbered scripts `05`–`10` are analysis identifiers, not missing prerequisites.
-`eda.py` is optional exploratory analysis.
+The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
+exploratory analysis.
 
 ## Setup and tests
 
@@ -72,7 +72,7 @@ transitive lock file).
 python -m venv .venv && source .venv/bin/activate
 python -m pip install -r requirements.txt
 python -m pytest -q
-python notebooks/08_figures.py
+python analysis/06_figures.py
 ```
 
 Tests and chart generation use synthetic fixtures and committed result tables. They
@@ -85,8 +85,8 @@ syntax checks without hydrating the large raw inputs.
 |---|---|
 | Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
 | Alternative download | `download_data.py` fetches a pinned July 6, 2026 parquet revision; **not byte-identical**, and exact reproduction of the published tables is not claimed or tested |
-| Runs without raw data | `pytest` and `08_figures.py` (synthetic fixtures and committed result tables) |
-| Needs raw data | Scripts `05`–`10`, which regenerate `notebooks/results/` |
+| Runs without raw data | `pytest` and `06_figures.py` (synthetic fixtures and committed result tables) |
+| Needs raw data | Scripts `01`–`05`, which regenerate `analysis/results/` |
 
 ## Reproduce the full analysis
 
@@ -95,13 +95,13 @@ the reported cohort from these exact exports:
 
 ```bash
 git lfs install
-git lfs pull --include="data/arrests-latest 7-24-2026.csv,data/detention-stints*.csv" --exclude=""
-python notebooks/05_geo_detention_analysis.py
-python notebooks/06_geo_regressions.py
-python notebooks/07_facility_changes.py
-python notebooks/09_arrest_locations.py
-python notebooks/10_arrest_regressions.py
-python notebooks/08_figures.py
+git lfs pull --include="data/arrests_2026-07-24.csv,data/detention_stints*.csv" --exclude=""
+python analysis/01_geo_detention_analysis.py
+python analysis/02_geo_regressions.py
+python analysis/03_facility_changes.py
+python analysis/04_arrest_locations.py
+python analysis/05_arrest_regressions.py
+python analysis/06_figures.py
 ```
 
 The July 24, 2026 extraction date differs from the event cutoff: arrest analysis
@@ -113,7 +113,7 @@ Avoid downloading this repository's large LFS files by using the checksum-verifi
 direct DDP parquet downloader:
 
 ```bash
-python notebooks/download_data.py
+python analysis/download_data.py
 export ICE_DATA_DIR="$PWD/data/raw"
 ```
 
@@ -121,17 +121,38 @@ It retrieves a pinned July 6, 2026 source revision; those data are **not byte-id
 to the July 24 CSV extracts**, so do not assume report numbers reproduce from that
 alternative source. `--datasets arrests detention-stints detention-stays` also
 downloads stays for the optional EDA script. Secondary inputs are fetched at immutable
-revisions and cached under `notebooks/.cache/`; see the technical guide for sources and
+revisions and cached under `analysis/.cache/`; see the technical guide for sources and
 refresh details.
+
+## SQL, interactive view and forecasting
+
+The SQL path uses DuckDB directly over the original CSV (or selected parquet) to
+deduplicate, apply the same cohort window, normalize locations, aggregate records,
+and calculate window-normalized rates and shares. It is an alternative to pandas,
+not a claim of faster execution; queries are in [`analysis/sql/`](analysis/sql).
+
+```bash
+python analysis/04_arrest_locations.py --engine duckdb --output-dir /tmp/ice-sql-results
+streamlit run analysis/dashboard.py --browser.gatherUsageStats=false
+python analysis/forecast_arrests.py
+```
+
+The local dashboard switches state/AOR, observation window and count/share/daily-rate
+views, with CSV download; it reads only committed aggregates, not individual records.
+The forecast example compares log-AR(1), last-month and seasonal-naive models with
+expanding-window, one-month-ahead backtesting. It excludes partial March throughout.
+Last-month forecasts outperform the fitted model on the 14 held-out months; this is
+an honest baseline comparison, not evidence of deployment readiness. See the
+[technical guide](analysis/MASTER_RESULTS.md#portfolio-examples).
 
 ## Repository structure
 
 ```text
 data/                     Raw FOIA exports (LFS) and third-party codebook
-notebooks/                Python analysis scripts, cached inputs, results, figures
+analysis/                 Ordered scripts, SQL, dashboard, forecast, results, figures
 outputs/                  Landing page for the four key figures
 tests/                    Synthetic tests for cohorts, intervals, models and outputs
-Final Report.md           Reader-facing findings
+final_report.md           Reader-facing findings
 requirements.txt          Pinned direct dependencies
 LICENSE                   MIT license for the project code
 ```
@@ -142,8 +163,8 @@ This is descriptive and correlational, not causal: arrests are not completed
 removals, and employment is unobserved. Apprehension locations and facility-
 population denominators do not measure where people live or residents' likelihood
 of detention. Small samples, confounding, incomplete outcomes and wide intervals
-limit conclusions; see the [Final Report](Final%20Report.md) and
-[technical guide](notebooks/MASTER_RESULTS.md).
+limit conclusions; see the [Final Report](final_report.md) and
+[technical guide](analysis/MASTER_RESULTS.md).
 
 ## Data citation
 

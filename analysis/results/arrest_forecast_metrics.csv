@@ -1,0 +1,4 @@
+model,n_forecasts,mae,rmse
+last_month,14,3881.2143,4418.9972
+seasonal_naive,14,17487.8571,19452.6055
+log_ar1,14,4472.7568,5015.3124

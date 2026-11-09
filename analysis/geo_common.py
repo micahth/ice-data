@@ -1,5 +1,5 @@
 """
-Shared helpers for the geography / operator analyses (scripts 05 and 06).
+Shared helpers for the geography / operator analyses (scripts 01 and 02).
 
 External inputs (all public, fetched from GitHub raw/media URLs and cached):
   facilities_latest.parquet  deportationdata/ice-detention-facilities  (facility -> county, CBSA, Metro/Micro)

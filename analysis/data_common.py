@@ -6,10 +6,10 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parent.parent
 CSV_INPUTS = {
-    "arrests": ["arrests-latest 7-24-2026.csv"],
-    "detention-stays": ["detention-stays (sheet 1) 7-24-2026.csv", "detention-stays (sheet 2) 7-24-2026.csv"],
-    "detention-stints": ["detention-stints (sheet 1) 7-24-2026.csv",
-                        "detention-stints (sheet 2) 7-24-2026.csv", "detention-stints (sheet 3).csv"],
+    "arrests": ["arrests_2026-07-24.csv"],
+    "detention-stays": ["detention_stays_2026-07-24_part1.csv", "detention_stays_2026-07-24_part2.csv"],
+    "detention-stints": ["detention_stints_2026-07-24_part1.csv",
+                        "detention_stints_2026-07-24_part2.csv", "detention_stints_part3.csv"],
 }
 
 

@@ -1,6 +1,6 @@
 # Recorded facility activity changes
 
-`07_facility_changes.py` writes [`results/facility_changes.csv`](results/facility_changes.csv) from deduplicated stint book-ins through March 11, 2026. The comparison date is January 20, 2025; earlier records begin in October 2022, not the facility's lifetime.
+`03_facility_changes.py` writes [`results/facility_changes.csv`](results/facility_changes.csv) from deduplicated stint book-ins through March 11, 2026. The comparison date is January 20, 2025; earlier records begin in October 2022, not the facility's lifetime.
 
 | Label | Rule |
 |---|---|

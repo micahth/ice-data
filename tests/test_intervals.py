@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "notebooks"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "analysis"))
 from ice_lib import adp, annualize, build_intervals, overlap_days, window_days  # noqa: E402
 
 T = pd.Timestamp
