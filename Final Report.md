@@ -45,7 +45,7 @@ The panel covers 50 states in 2023–2025; complete-case sample sizes vary by ou
 
 Across 64 arrest-related coefficients, **none passes Benjamini–Hochberg q < .10**. Removing Texas, the highest arrest-rate state in 2025, does not resolve uncertainty in the reduced-control models. The [coefficient chart](notebooks/figures/fig6_arrest_coefficients.png) shows both specifications and that sensitivity check. These intervals allow positive and negative associations; they are not equivalence tests or multiplicity-adjusted intervals.
 
-For scale, the interquartile range of 2025 state arrest rates is about **54 per 100,000**, or 5.4 units of the model's +10-per-100,000 scale. Across that range, the lagged-outcome intervals translate to about **−0.10 to +0.10 percentage points** for unemployment change, **−0.10 to +0.33 points** for GDP growth, and **−5.7% to +0.9%** for violent-crime change. Under this specification, the data rule out large unemployment associations, but still allow a meaningful violent-crime reduction.
+For scale, the interquartile range of 2025 state arrest rates is about **54 per 100,000**, or 5.4 units of the model's +10-per-100,000 scale. Across that range, the lagged-outcome intervals translate to about **−0.10 to +0.10 percentage points** for unemployment change, **−0.10 to +0.33 points** for GDP growth, and **−5.7% to +0.9%** for violent-crime change. Under this specification, the confidence intervals are comparatively narrow for unemployment change, providing evidence against very large state-level associations. They do not establish that the true association is zero, and the intervals are pointwise rather than multiplicity-adjusted. The violent-crime interval still allows a meaningful reduction.
 
 ## Methods and limitations
 
