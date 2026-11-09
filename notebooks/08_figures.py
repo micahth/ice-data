@@ -92,4 +92,21 @@ fig.suptitle("2025 arrest-rate estimates remain uncertain across specifications\
 fig.tight_layout()
 fig.savefig(os.path.join(F, "fig6_arrest_coefficients.png"), dpi=160)
 plt.close(fig)
+fig, axes = plt.subplots(1, 2, figsize=(13, 5.5))
+for ax, (key, label, trim) in zip(axes, [("state", "State", None), ("aor", "ICE Area of Responsibility", " Area of Responsibility")]):
+    d = pd.read_csv(f"{R}/arrests_by_{key}.csv")
+    d["share_old"] = d.old / d.old.sum() * 100
+    d = d[d[key] != "Unknown"].nlargest(10, "new").iloc[::-1]
+    names = d[key].str.replace(trim, "", regex=False) if trim else d[key].str.title()
+    y = np.arange(len(d))
+    ax.barh(y - 0.2, d.share_old, 0.4, color=OLD_COLOR, label="2023-2024")
+    ax.barh(y + 0.2, d.share_new_pct, 0.4, color=NEW_COLOR, label="Jan 2025-Mar 10, 2026")
+    ax.set_yticks(y, names)
+    ax.set_title("Top 10 states" if key == "state" else "Top 10 ICE Areas of Responsibility")
+    ax.set_xlabel("Share of arrest records (%)")
+axes[0].legend(frameon=False, loc="lower right")
+fig.suptitle("Where recorded apprehensions occurred\nApprehension location, not residence or workplace", fontsize=12)
+fig.tight_layout()
+fig.savefig(os.path.join(F, "fig7_arrest_geography.png"), dpi=160)
+plt.close(fig)
 print(sorted(os.listdir(F)))
