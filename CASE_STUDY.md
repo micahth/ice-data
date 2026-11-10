@@ -2,7 +2,7 @@
 
 I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
-## 1. The problem, 
+## 1. The problem
 
 How did ICE arrest and detention activity change over time and geographically, and were state-level arrest rates associated with economic or crime outcomes?
 
