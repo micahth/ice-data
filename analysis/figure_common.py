@@ -50,19 +50,24 @@ def plot_calendar_month_arrests(monthly, path):
     fig, ax = plt.subplots(figsize=(9, 4.5))
     for year in sorted(dates.dt.year.unique()):
         mask = dates.dt.year == year
-        is_current = year == dates.dt.year.max()
+        partial_months = dates[mask & monthly.partial_month]
+        label = f"{year} ({partial_months.iloc[-1]:%b} partial)" if not partial_months.empty else str(year)
         ax.plot(dates[mask].dt.month, daily[mask], marker="o", linewidth=2,
-                color=NEW_COLOR if is_current else OLD_COLOR,
-                alpha=1 if is_current else 0.65,
-                label=f"{year} (March partial)" if is_current else str(year))
+                color=NEW_COLOR if year >= 2025 else OLD_COLOR,
+                alpha=1 if year >= 2025 else 0.65,
+                label=label)
     ax.set(title="Monthly arrest pace by calendar month",
            ylabel="Arrest records per observed day", xlabel="Calendar month")
     ax.set_xticks(range(1, 13), ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
     ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
     ax.legend(loc="upper left", frameon=False, ncol=2)
-    fig.text(0.01, 0.01, "Monthly rates account for days observed; March 2026 covers 10 days.",
-             fontsize=8, color="#555555")
+    partial = monthly.loc[monthly.partial_month]
+    note = "Monthly rates account for days observed."
+    if not partial.empty:
+        month = pd.Period(partial.iloc[-1].month, freq="M")
+        note += f" {month.strftime('%B %Y')} covers {int(partial.iloc[-1].days_observed)} days."
+    fig.text(0.01, 0.01, note, fontsize=8, color="#555555")
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(path, dpi=160)
     plt.close(fig)
