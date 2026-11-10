@@ -16,7 +16,7 @@ and state-level economic/crime associations.
 ## Research questions
 
 1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
-2. How did detention ADP and arrest pace change after normalizing for time and population?
+2. How did detention, Average Daily Population of People Detained (ADP), and arrest pace change after normalizing for time and population?
 3. Are state arrest rates associated with changes in state economic or crime outcomes?
 
 ## Key findings
