@@ -79,8 +79,11 @@ def main():
     st["operator"] = st.operator.fillna("Unclassified")
 
     st = build_intervals(st, CUTOFF)
-    st["stint_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
-        st.book_out_date_time >= st.book_in_date_time)
+    # Resolve the book-out the same way build_intervals does (facility book-out, else stay book-out)
+    # so duration summaries and ADP treat missing-facility-book-out records consistently.
+    book_out = st.book_out_date_time.fillna(st.stay_book_out_date_time)
+    st["stint_days"] = ((book_out - st.book_in_date_time).dt.total_seconds() / 86400).where(
+        book_out >= st.book_in_date_time)
     st["crim"] = st.book_in_criminality.str[0].map({"1": "convicted", "2": "pending", "3": "no_record"})
     print("interval status:", st.interval_status.value_counts().to_dict())
 
