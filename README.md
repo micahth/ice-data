@@ -1,11 +1,12 @@
-# ICE Detention & Arrests: A Geographic and Statistical Analysis (2022–2026)
+# ICE Detention & Arrests: A Geographic and Statistical Analysis (2023–2026)
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-An analysis of U.S. Immigration and Customs Enforcement (ICE) arrest, detainer, and
-detention records released by the [Deportation Data Project](https://deportationdata.org/).
-It combines record-level interval logic, geographic joins, population normalization,
-and state-level economic/crime associations.
+The primary analysis covers 2023–2026 U.S. Immigration and Customs Enforcement (ICE)
+arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/).
+A supplemental vintage notebook also describes detainer records. The project combines
+record-level interval logic, geographic joins, population normalization, and state-level
+economic/crime associations.
 
 > **Headline:** Daily arrests rose from about **359 to 909 (+153%)** between 2023–2024
 > and January 2025–March 10, 2026. The share of arrest records classified as convicted
