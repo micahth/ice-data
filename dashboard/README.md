@@ -68,7 +68,7 @@ this repository.
 ## Provenance and reproduction
 
 `arrests_state_locations.csv` was generated from the exact July 24, 2026 CSV with
-`python notebooks/09_arrest_locations.py`. Its AOR, landmark, and state marginals
+`python analysis/04_arrest_locations.py`. Its AOR, landmark, and state marginals
 reconcile to the existing published tables. Unknown locations are retained.
 The year 2026 contains only January 1-March 10 and is not offered as an annual map.
 The alternate July 6 parquet is not claimed to reproduce the published tables.

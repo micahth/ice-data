@@ -9,7 +9,7 @@ import streamlit as st
 import panels
 
 REPO = Path(__file__).resolve().parents[1]
-SOURCE = "https://github.com/micahth/ice-data/blob/main/notebooks/results/"
+SOURCE = "https://github.com/micahth/ice-data/blob/main/analysis/results/"
 st.set_page_config(page_title="ICE Enforcement Dashboard", layout="wide")
 
 
@@ -76,7 +76,7 @@ elif page == "Geography":
     points = event.selection.points
     # State names are source labels; the selector and map share the Census state mapping.
     import sys
-    sys.path.insert(0, str(REPO / "notebooks"))
+    sys.path.insert(0, str(REPO / "analysis"))
     from geo_common import STATE_ABBR
     names = {abbr: name.upper() for name, abbr in STATE_ABBR.items()}
     options = sorted(data.state)

@@ -1,0 +1,4 @@
+month,train_end,n_train,model,forecast
+2026-03,2026-02,38,last_month,29661.0
+2026-03,2026-02,38,seasonal_naive,18640.0
+2026-03,2026-02,38,log_ar1,29729.4896

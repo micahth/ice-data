@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from zipfile import ZipFile, ZIP_DEFLATED
 
 REPO = Path(__file__).resolve().parents[1]
-SOURCE = REPO / "notebooks/results/arrest_rate_panel.csv"
+SOURCE = REPO / "analysis/results/arrest_rate_panel.csv"
 
 
 def element(parent, tag, **attributes):

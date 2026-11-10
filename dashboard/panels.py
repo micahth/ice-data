@@ -1,7 +1,7 @@
 """Chart and table builders for the dashboard.
 
 These functions are intentionally free of Streamlit so they can be unit-tested and
-reused. Each reads a committed table from ``notebooks/results/`` and returns a pandas
+reused. Each reads a committed table from ``analysis/results/`` and returns a pandas
 DataFrame and/or a Plotly figure. No raw LFS data is required.
 """
 from pathlib import Path
@@ -11,7 +11,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-RESULTS = Path(__file__).resolve().parents[1] / "notebooks" / "results"
+RESULTS = Path(__file__).resolve().parents[1] / "analysis" / "results"
 
 ERA_LABEL = {"old": "2023–2024", "new": "Jan 2025 – Mar 10, 2026"}
 CAVEAT = "Records, not unique people. Apprehension/facility location is not residence or workplace."

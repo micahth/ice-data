@@ -22,7 +22,7 @@ def build(destination):
     data = {name: json.loads(pd.read_csv(panels.RESULTS / f"{name}.csv").to_json(orient="records"))
             for name in names}
     data["kpis"] = panels.summary_kpis()
-    sys.path.insert(0, str(REPO / "notebooks"))
+    sys.path.insert(0, str(REPO / "analysis"))
     from geo_common import STATE_ABBR
     data["states"] = {abbr: name.upper() for name, abbr in STATE_ABBR.items()}
     data["sql"] = (REPO / "sql/arrests_by_state.sql").read_text()
@@ -34,10 +34,10 @@ def build(destination):
     for name in ("site.js", "index.html"):
         shutil.copyfile(Path(__file__).parent / name, destination / name)
     shutil.copytree(Path(__file__).parent / "static", destination / "static", dirs_exist_ok=True)
-    shutil.copytree(REPO / "notebooks/figures", destination / "figures", dirs_exist_ok=True)
+    shutil.copytree(REPO / "analysis/figures", destination / "figures", dirs_exist_ok=True)
     shutil.copytree(panels.RESULTS, destination / "results", dirs_exist_ok=True)
-    viewer = (REPO / "outputs/index.html").read_text().replace("../notebooks/figures/", "figures/")
-    for name in ("CASE_STUDY.md", "Final%20Report.md"):
+    viewer = (REPO / "outputs/index.html").read_text().replace("../analysis/figures/", "figures/")
+    for name in ("CASE_STUDY.md", "final_report.md"):
         viewer = viewer.replace(f"../{name}", f"https://github.com/micahth/ice-data/blob/main/{name}")
     viewer = viewer.replace('href="README.md"', 'href="https://github.com/micahth/ice-data/tree/main/outputs"')
     (destination / "figures.html").write_text(viewer)

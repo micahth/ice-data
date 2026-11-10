@@ -24,7 +24,7 @@ def test_standalone_site_and_tableau_package(tmp_path):
     assert data["sql_result"][0]["new"] == 3
     assert "Plotly" in (tmp_path / "plotly.min.js").read_text()
     viewer = (tmp_path / "figures.html").read_text()
-    assert "../notebooks/figures/" not in viewer
+    assert "../analysis/figures/" not in viewer
     assert (tmp_path / "figures/monthly_arrests.png").exists()
     topology = json.loads((tmp_path / "static/usa_110m.json").read_text())
     assert topology["type"] == "Topology"
@@ -37,9 +37,9 @@ def test_standalone_site_and_tableau_package(tmp_path):
         connection = root.find("./datasources/datasource/connection")
         assert connection.attrib["directory"] == "data"
         assert archive.read("data/arrest_rate_panel.csv") == (
-            REPO / "notebooks/results/arrest_rate_panel.csv").read_bytes()
+            REPO / "analysis/results/arrest_rate_panel.csv").read_bytes()
         for sheet in root.findall("./worksheets/worksheet"):
             year_filter = sheet.find("./table/view/filter/groupfilter")
             assert year_filter.attrib["member"] == "2025"
-    expected = pd.read_csv(REPO / "notebooks/results/arrest_rate_panel.csv")
+    expected = pd.read_csv(REPO / "analysis/results/arrest_rate_panel.csv")
     assert sum(row["arrests"] for row in data["arrest_rate_panel"]) == expected.arrests.sum()

@@ -6,9 +6,10 @@ on:
     paths:
       - 'dashboard/**'
       - 'bi/**'
-      - 'notebooks/results/**'
-      - 'notebooks/figures/**'
-      - 'notebooks/geo_common.py'
+      - 'analysis/results/**'
+      - 'analysis/figures/**'
+      - 'analysis/geo_common.py'
+      - 'sql/**'
       - 'outputs/index.html'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
