@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 from geo_common import (ANNUAL, CACHE, CUTOFF, ERAS, OPERATORS, PERIODS, REPO, RESULTS, TERRITORY, classify_operator,
-                        fetch, load_cbsa_delineation, load_county_pop, period_population, region_of)
+                        fetch, load_cbsa_delineation, load_county_pop, period_population, region_of, require_columns)
 from ice_lib import adp, annualize, build_intervals
 from data_common import read_source
 
@@ -44,8 +44,10 @@ def main():
     # ---------------------------------------------------------------------------
     fl = pd.read_parquet(fetch("facilities_latest.parquet"),
                          columns=["detention_facility_code", "name", "city", "county", "county_fips_code", "state"])
+    require_columns(fl, "facilities_latest.parquet")
     at = pd.read_parquet(fetch("facilities_attributes.parquet"),
                          columns=["detention_facility_code", "type_detailed"]).dropna(subset=["detention_facility_code"])
+    require_columns(at, "facilities_attributes.parquet")
     at = at.drop_duplicates("detention_facility_code").set_index("detention_facility_code")["type_detailed"]
     cbsa = load_cbsa_delineation().set_index("fips")
 
