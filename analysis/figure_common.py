@@ -41,3 +41,28 @@ def plot_monthly_arrests(monthly, path):
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(path, dpi=160)
     plt.close(fig)
+
+
+def plot_calendar_month_arrests(monthly, path):
+    set_style()
+    dates = pd.to_datetime(monthly.month)
+    daily = monthly.arrests / monthly.days_observed
+    fig, ax = plt.subplots(figsize=(9, 4.5))
+    for year in sorted(dates.dt.year.unique()):
+        mask = dates.dt.year == year
+        is_current = year == dates.dt.year.max()
+        ax.plot(dates[mask].dt.month, daily[mask], marker="o", linewidth=2,
+                color=NEW_COLOR if is_current else OLD_COLOR,
+                alpha=1 if is_current else 0.65,
+                label=f"{year} (March partial)" if is_current else str(year))
+    ax.set(title="Monthly arrest pace by calendar month",
+           ylabel="Arrest records per observed day", xlabel="Calendar month")
+    ax.set_xticks(range(1, 13), ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
+    ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
+    ax.legend(loc="upper left", frameon=False, ncol=2)
+    fig.text(0.01, 0.01, "Monthly rates account for days observed; March 2026 covers 10 days.",
+             fontsize=8, color="#555555")
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.savefig(path, dpi=160)
+    plt.close(fig)
