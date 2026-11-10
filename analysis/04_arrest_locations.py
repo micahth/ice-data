@@ -66,7 +66,7 @@ def main():
     print("\n=== top arresting agencies by era ===")
     print((pd.crosstab(arrests.arresting_agency, arrests.era).sort_values("new", ascending=False).head(10)))
     print("\n=== missing location share by era ===")
-    print((arrests.groupby("era")[["state", "aor", "landmark"]].agg(lambda s: s.isna().mean() * 100)).round(1))
+    print((arrests.groupby("era")[["state", "aor", "landmark"]].agg(lambda s: (s == "Unknown").mean() * 100)).round(1))
 
     monthly = monthly_arrests(arrests)
     monthly.to_csv(os.path.join(RES, "monthly_arrests.csv"), index=False)
