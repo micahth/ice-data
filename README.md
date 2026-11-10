@@ -168,7 +168,7 @@ LICENSE                   MIT license for the project code
 This is descriptive and correlational, not causal: arrests are not completed
 removals, and employment is unobserved. Apprehension locations and facility-
 population denominators do not measure where people live or residents' likelihood
-of detention. Small samples, confounding, incomplete outcomes and wide intervals
+of detention. Small samples, confounding, incomplete outcomes, and wide intervals
 limit conclusions; see the [Final Report](final_report.md) and
 [technical guide](analysis/MASTER_RESULTS.md).
 
