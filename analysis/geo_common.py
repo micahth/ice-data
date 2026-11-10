@@ -12,6 +12,7 @@ External inputs (all public, fetched from GitHub raw/media URLs and cached):
   acs.csv / gaz.txt / pres.csv  county ACS controls, land area, 2024 presidential vote (kmazurek95)
 """
 import glob
+import hashlib
 import json
 import os
 import re
@@ -45,6 +46,60 @@ def source_url(repo, path, media=False):
     return f"{MEDIA if media else RAW}/{repo}/{REVISIONS[repo]}/{path}"
 
 
+def _sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _write_checksum(path, digest):
+    checksum = path + ".sha256"
+    temporary = checksum + ".part"
+    try:
+        with open(temporary, "w", encoding="ascii") as output:
+            output.write(digest + "\n")
+        os.replace(temporary, checksum)
+    finally:
+        if os.path.exists(temporary):
+            os.remove(temporary)
+
+
+def _fetch_to_cache(name, url, path):
+    checksum = path + ".sha256"
+    if os.path.exists(path) and os.path.exists(checksum):
+        with open(checksum, encoding="ascii") as source:
+            expected = source.read().strip()
+        actual = _sha256(path)
+        if expected == actual:
+            return path
+        print(f"  cached {name} failed SHA-256 verification; downloading again")
+    elif os.path.exists(path):
+        print(f"  cached {name} has no SHA-256 record; downloading again")
+
+    temporary = path + ".part"
+    command = [
+        "curl", "-sfL", "--retry", "3", "--retry-all-errors", "--retry-delay", "1",
+        "--connect-timeout", "20", "--max-time", "300", "-o", temporary, url,
+    ]
+    try:
+        subprocess.run(command, check=True, capture_output=True, text=True)
+        if not os.path.exists(temporary) or os.path.getsize(temporary) == 0:
+            raise ValueError(f"Download of {name} returned an empty file")
+        digest = _sha256(temporary)
+        os.replace(temporary, path)
+        _write_checksum(path, digest)
+        print(f"  verified {name}: sha256={digest}")
+    except subprocess.CalledProcessError as error:
+        detail = (error.stderr or "").strip() or str(error)
+        raise RuntimeError(f"Failed to download {name} from {url} after retries: {detail}") from error
+    finally:
+        if os.path.exists(temporary):
+            os.remove(temporary)
+    return path
+
+
 SOURCES = {
     "facilities_latest.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-latest.parquet", media=True),
     "facilities_attributes.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-attributes-cleaned-with-codes.parquet", media=True),
@@ -62,16 +117,13 @@ SOURCES = {
 
 def fetch(name):
     path = os.path.join(CACHE, name)
+    try:
+        url = SOURCES[name]
+    except KeyError as error:
+        raise ValueError(f"Unknown external data source: {name}") from error
     if not os.path.exists(path):
         print(f"  downloading {name}")
-        temporary = path + ".part"
-        try:
-            subprocess.run(["curl", "-sfL", "-o", temporary, SOURCES[name]], check=True)
-            os.replace(temporary, path)
-        finally:
-            if os.path.exists(temporary):
-                os.remove(temporary)
-    return path
+    return _fetch_to_cache(name, url, path)
 
 
 def fetch_pop_shards():
@@ -79,16 +131,10 @@ def fetch_pop_shards():
     os.makedirs(d, exist_ok=True)
     for i in range(256):
         p = os.path.join(d, f"{i:02x}.json")
+        url = source_url("GreatTombProductions/county-population", f"data/detail/{i:02x}.json")
         if not os.path.exists(p):
-            temporary = p + ".part"
-            try:
-                subprocess.run(["curl", "-sfL", "-o", temporary,
-                                source_url("GreatTombProductions/county-population", f"data/detail/{i:02x}.json")],
-                               check=True)
-                os.replace(temporary, p)
-            finally:
-                if os.path.exists(temporary):
-                    os.remove(temporary)
+            print(f"  downloading population shard {i:02x}")
+        _fetch_to_cache(f"population shard {i:02x}", url, p)
     return d
 
 
