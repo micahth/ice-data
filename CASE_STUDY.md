@@ -10,7 +10,7 @@ How did ICE arrest and detention activity change over time and geographically, a
 
 - Record-level administrative data from several extracts, with duplicate arrest records.
 - Incomplete dates and open-ended detention stints (1,049 older open records excluded; qualifying newer ones censored at a stated date).
-- Observation windows of different lengths (731 vs. 434 days), so counts had to become daily rates.
+- Observation windows of different lengths (731 vs. 434 days), so daily averages had to be used.
 - Facility location and apprehension location measure different things, and neither is residence.
 - External population, economic, demographic, and crime data had to be joined to state-year panels.
 
