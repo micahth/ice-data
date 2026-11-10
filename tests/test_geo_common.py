@@ -30,7 +30,7 @@ def test_fetch_verifies_download_before_caching(tmp_path, monkeypatch):
     monkeypatch.setitem(geo_common.CHECKSUMS, "synthetic.csv", expected)
 
     def fake_curl(command, check):
-        Path(command[4]).write_bytes(payload)
+        Path(command[3]).write_bytes(payload)
 
     monkeypatch.setattr(geo_common.subprocess, "run", fake_curl)
     target = Path(geo_common.fetch("synthetic.csv"))
@@ -44,7 +44,7 @@ def test_fetch_rejects_bad_download_and_tampered_cache(tmp_path, monkeypatch):
     monkeypatch.setitem(geo_common.CHECKSUMS, "synthetic.csv", hashlib.sha256(b"expected").hexdigest())
 
     def fake_curl(command, check):
-        Path(command[4]).write_bytes(b"unexpected")
+        Path(command[3]).write_bytes(b"unexpected")
 
     monkeypatch.setattr(geo_common.subprocess, "run", fake_curl)
     target = tmp_path / "synthetic.csv"
