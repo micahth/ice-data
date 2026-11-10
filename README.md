@@ -124,7 +124,7 @@ downloads stays for the optional EDA script. Secondary inputs are fetched at imm
 revisions and cached under `analysis/.cache/`; see the technical guide for sources and
 refresh details.
 
-## SQL, interactive view and forecasting
+## SQL, interactive view, and forecasting
 
 The SQL path uses DuckDB directly over the original CSV (or selected parquet) to
 deduplicate, apply the same cohort window, normalize locations, aggregate records,
