@@ -16,6 +16,10 @@ Arrest counts are not unique people, detention counts or completed removals. `ar
 
 `ice_lib.py` supplies interval rules to both detention scripts: facility book-out, then stay book-out, then censoring at March 12 for unknown ends on stints starting in 2025 or later. Older unknown ends (1,049 records) are excluded. This asymmetric censoring is an explicit measurement assumption and can bias period differences if older open records represent real ongoing detention. Missing starts and negative intervals are flagged and excluded. Windows are half-open; ADP is overlapped bed-days / actual days, and book-ins are annualized using 365.25 / actual days.
 
+`01_geo_detention_analysis.py` also generates [detention_censoring_sensitivity.csv](results/detention_censoring_sensitivity.csv): national ADP for both comparison eras and each annual/partial-year window under `primary` (the existing rule), `censor_all` (all unknown ends censored through March 11), and `exclude_all` (all unknown ends excluded). An open record means both facility and stay book-out are missing; known stay book-outs remain valid fallback ends in every specification. Deduplication, cutoff, window lengths, missing-start exclusions and negative-interval checks are unchanged. Older open stints can contribute to later windows under `censor_all`, not only their booking year. The CSV includes ADP and absolute/percentage differences from the primary estimate in the same window; a zero primary ADP yields an undefined (blank) percentage difference.
+
+The [report sensitivity table](../final_report.md#detention-censoring-sensitivity) compares these national estimates. These alternatives probe dependence on the unknown-end assumption; neither is necessarily more correct, and they are not confidence bounds. Geographic/operator estimates and regression models retain the primary specification; this check does not establish their robustness under alternative censoring.
+
 Median completed facility-stint duration is conditional on a known valid stint end. Transfers split a person's stay into multiple stints; right-censoring and the partial final period make comparisons selective. No release-rate comparison or change in release probability is reported.
 
 Facility county → OMB CBSA and Census region. Known county without a CBSA is non-CBSA; unknown county is retained as unmapped. State/location and inferred operator tables retain unknown classifications for reconciliation. Per-capita ADP uses facility-location population, not detainee residence. Earlier-era population is the mean of 2023 and 2024; later-era and 2026 use 2025. This is not a population-time-weighted rate.
@@ -64,7 +68,7 @@ Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts
 
 | Script | Generated tables |
 |---|---|
-| `01_geo_detention_analysis.py` | `overall`, `by_state`, `by_region`, `by_cbsa*`, `by_operator`, geography/operator cross-tabs, facility classification/counts and population denominators |
+| `01_geo_detention_analysis.py` | `overall`, `detention_censoring_sensitivity`, `by_state`, `by_region`, `by_cbsa*`, `by_operator`, geography/operator cross-tabs, facility classification/counts and population denominators |
 | `02_geo_regressions.py` | `state_year_panel`, `correlations`, `regressions` |
 | `03_facility_changes.py` | `facility_changes` (observed codes/activity, not ownership) |
 | `04_arrest_locations.py` | `arrests_by_state/aor/landmark`, `arrest_summary`, `arrest_criminality`, `monthly_arrests` |

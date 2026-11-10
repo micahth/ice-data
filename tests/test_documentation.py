@@ -44,3 +44,16 @@ def test_facility_counts_are_supported_by_activity_table():
     document = (REPO / "analysis/FACILITY_CHANGES.md").read_text()
     assert f"**{changes.change_type.str.contains('NEW SINCE').sum()} codes first observed" in document
     assert f"**{changes.change_type.str.contains('STOPPED BOOKING').sum()} codes with no final-90-day bookings" in document
+
+
+def test_detention_sensitivity_report_matches_generated_table():
+    report = (REPO / "final_report.md").read_text()
+    table = pd.read_csv(REPO / "analysis/results/detention_censoring_sensitivity.csv")
+    populations = table.pivot(index="period", columns="specification", values="adp")
+    policies = ["primary", "censor_all", "exclude_all"]
+    for period, row in populations.iterrows():
+        expected = f"| {period} | " + " | ".join(f"{row[p]:,.1f}" for p in policies) + " |"
+        assert expected in report
+    growth = 100 * (populations.loc["New (2025-Mar 2026)"] / populations.loc["Old (2023-2024)"] - 1)
+    expected = "| New vs. old change | " + " | ".join(f"{growth[p]:+.1f}%" for p in policies) + " |"
+    assert expected in report
