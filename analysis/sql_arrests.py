@@ -46,6 +46,7 @@ def aggregate_arrests(connection):
             ) AS series(month)
         )
         SELECT STRFTIME(month, '%Y-%m') AS month, COUNT(arrest_date) AS arrests,
+               DATE_DIFF('day', month, LEAST(month + INTERVAL 1 MONTH, CAST($end_date AS TIMESTAMP))) AS days_observed,
                month = DATE_TRUNC('month', CAST($end_date AS TIMESTAMP)) AS partial_month
         FROM months LEFT JOIN cleaned_arrests
           ON DATE_TRUNC('month', arrest_date) = month
