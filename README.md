@@ -39,10 +39,16 @@ and state-level economic/crime associations.
   are unadjusted sensitivity analyses; intervals and detection limits appear in the report.
 - **Causality:** estimates are exploratory. Arrests are not completed removals, and
   employment status is not observed.
+- **Annual timing:** economic comparisons use calendar-year outcomes, so the 2025
+  arrest period starts January 1 rather than January 20; it is not an inauguration-date design.
 
 ### Selected figures
 
-| Monthly arrests | Facility ADP per 100k by region |
+The 153% daily-rate comparison accounts for unequal window lengths; it does not adjust for seasonality. This calendar-month view places 2025–2026 alongside 2023–2024. March 2026 is partial and its rate uses 10 observed days.
+
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+
+| Monthly arrests over time | Facility ADP per 100k by region |
 |---|---|
 | ![Monthly arrests with partial March identified](analysis/figures/monthly_arrests.png) | ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) |
 
