@@ -46,7 +46,13 @@ def require_control_coverage(panel, expected_states, years=(2023, 2024, 2025)):
 
 
 def primary_bh(regressions, exposure_term):
-    """Four 2025 lagged-outcome exposure tests; sensitivity p-values stay unadjusted."""
+    """Four 2025 lagged-outcome exposure tests; sensitivity p-values stay unadjusted.
+
+    ``q_bh_all_exposure`` is a transparency sensitivity analysis: it applies the same
+    Benjamini-Hochberg procedure across *every* exposure coefficient (the broadest
+    reasonable family), so the post-hoc, revision-time choice of the four primary tests
+    can be checked against a family no one could accuse of being selected after the fact.
+    """
     regressions = regressions.copy()
     exposure = regressions.term.str.contains("arr_rate" if exposure_term == "arr_rate10" else "det_")
     primary = (
@@ -56,9 +62,14 @@ def primary_bh(regressions, exposure_term):
     selected = regressions.loc[primary]
     if len(selected) != 4 or selected.outcome.nunique() != 4 or not np.isfinite(selected.p).all():
         raise ValueError("Primary BH family requires exactly four finite outcome p-values")
+    if not np.isfinite(regressions.loc[exposure, "p"]).all():
+        raise ValueError("All-exposure BH sensitivity requires finite exposure p-values")
     regressions["inference_family"] = np.where(primary, "primary", np.where(exposure, "sensitivity", "control"))
     regressions["q_bh"] = np.nan
     regressions.loc[primary, "q_bh"] = multipletests(selected.p, method="fdr_bh")[1]
+    regressions["q_bh_all_exposure"] = np.nan
+    regressions.loc[exposure, "q_bh_all_exposure"] = multipletests(
+        regressions.loc[exposure, "p"], method="fdr_bh")[1]
     return regressions
 
 

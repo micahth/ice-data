@@ -30,6 +30,11 @@ def test_primary_family_is_four_2025_lagged_outcome_coefficients(name):
     assert set(primary.spec) == {"M0 + lagged outcome"}
     np.testing.assert_allclose(primary.q_bh, multipletests(primary.p, method="fdr_bh")[1], atol=0.00002)
     assert regressions.loc[regressions.inference_family != "primary", "q_bh"].isna().all()
+    exposure = regressions.inference_family.isin(["primary", "sensitivity"])
+    np.testing.assert_allclose(
+        regressions.loc[exposure, "q_bh_all_exposure"],
+        multipletests(regressions.loc[exposure, "p"], method="fdr_bh")[1], atol=0.00002)
+    assert regressions.loc[~exposure, "q_bh_all_exposure"].isna().all()
 
 
 def test_small_tables_are_not_lfs_pointers():

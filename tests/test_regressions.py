@@ -102,5 +102,11 @@ def test_only_four_primary_tests_receive_bh_q_values():
     np.testing.assert_allclose(result.q_bh.iloc[:4], [0.04, 0.04, 0.04, 0.5])
     assert result.q_bh.iloc[4:].isna().all()
     assert result.inference_family.tolist() == ["primary"] * 4 + ["sensitivity"] * 4 + ["control"] * 4
+    from statsmodels.stats.multitest import multipletests
+    exposure = result.term == "arr_rate10"
+    np.testing.assert_allclose(
+        result.loc[exposure, "q_bh_all_exposure"],
+        multipletests(result.loc[exposure, "p"], method="fdr_bh")[1])
+    assert result.loc[~exposure, "q_bh_all_exposure"].isna().all()
     with pytest.raises(ValueError, match="exactly four"):
         primary_bh(primary.iloc[:3], "arr_rate10")
