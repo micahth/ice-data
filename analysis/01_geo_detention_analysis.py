@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 
 from geo_common import (ANNUAL, CACHE, CUTOFF, ERAS, OPERATORS, PERIODS, REPO, RESULTS, TERRITORY, classify_operator,
-                        fetch, load_cbsa_delineation, load_county_pop, period_population, region_of)
+                        fetch, load_cbsa_delineation, load_county_pop, period_population, region_of, require_columns)
 from ice_lib import adp, annualize, build_intervals, censoring_sensitivity
 from data_common import read_source
 
@@ -46,8 +46,10 @@ def main():
     # ---------------------------------------------------------------------------
     fl = pd.read_parquet(fetch("facilities_latest.parquet"),
                          columns=["detention_facility_code", "name", "city", "county", "county_fips_code", "state"])
+    require_columns(fl, "facilities_latest.parquet")
     at = pd.read_parquet(fetch("facilities_attributes.parquet"),
                          columns=["detention_facility_code", "type_detailed"]).dropna(subset=["detention_facility_code"])
+    require_columns(at, "facilities_attributes.parquet")
     at = at.drop_duplicates("detention_facility_code").set_index("detention_facility_code")["type_detailed"]
     cbsa = load_cbsa_delineation().set_index("fips")
 
@@ -81,8 +83,11 @@ def main():
     st["operator"] = st.operator.fillna("Unclassified")
 
     st = build_intervals(st, CUTOFF)
-    st["stint_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
-        st.book_out_date_time >= st.book_in_date_time)
+    # Resolve the book-out the same way build_intervals does (facility book-out, else stay book-out)
+    # so duration summaries and ADP treat missing-facility-book-out records consistently.
+    book_out = st.book_out_date_time.fillna(st.stay_book_out_date_time)
+    st["stint_days"] = ((book_out - st.book_in_date_time).dt.total_seconds() / 86400).where(
+        book_out >= st.book_in_date_time)
     st["crim"] = st.book_in_criminality.str[0].map({"1": "convicted", "2": "pending", "3": "no_record"})
     print("interval status:", st.interval_status.value_counts().to_dict())
 

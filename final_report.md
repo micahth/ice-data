@@ -20,6 +20,10 @@ The labor-market effects of enforcement are an empirical question, not a one-dir
 
 Daily arrest pace increased **153%**; monthly arrests peaked at **39,829 in December 2025**. Texas accounted for 25.7% of newer-period arrests. Differences describe recorded apprehension locations, not arrestees' residences. Criminality categories describe arrest records, not unique detainees or proven effects on crime.
 
+The daily-rate comparison normalizes the unequal observation windows but does not control for seasonal patterns. The monthly series below places 2025–2026 alongside the historical calendar-month pattern; 2026 March is partial and shown as a rate using its 10 observed days.
+
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+
 National detention average daily population (ADP) increased from **33.6k to 55.1k**, using a detention window ending March **11**, 2026 (435 newer-period days). Facility ADP per resident rose in every region; rural facilities held about 78.4 detainees per 100,000 local residents versus 10.9 in metropolitan counties. These measure where facilities hold people, **not local residents' likelihood of detention**. Operator classifications are inferred, not verified ownership records.
 
 ### Detention-censoring sensitivity
@@ -53,6 +57,8 @@ This uses apprehension location rather than detention-facility location, which r
 ## State-level associations and uncertainty
 
 The panel covers 50 states in 2023–2025. All controls are now complete for every state-year; crime sample sizes remain smaller because of outcome-source coverage. The primary testing family is the four **2025 arrest-rate coefficients in the lagged-outcome specification**. Other eras and specifications are sensitivity analyses; repeated-year models include year effects. The full-control specification is not a preferred high-dimensional model for a small cross-section.
+
+**Timing note:** Annual economic outcomes are calendar-year measures, so the 2025 arrest period starts January 1, not January 20. This aligns the comparison to annual data; it includes pre-inauguration days and does not estimate an inauguration-date effect.
 
 2025 estimates below use HC3 heteroskedasticity-robust standard errors and t-based, **pointwise 95% confidence intervals**. Coefficients are outcome change per additional 10 arrests per 100,000 residents:
 
