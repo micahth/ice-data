@@ -37,7 +37,7 @@ def main():
     for code, r in f.iterrows():
         kinds = []
         if r.pre_stints == 0 and r.post_stints >= 25:
-            kinds.append("NEW SINCE 2025-01-20 (no book-ins before)")
+            kinds.append("First observed booking activity after January 20, 2025.")
         elif r.pre_stints > 0 and r.post_stints >= 25 and r.first_bookin >= pd.Timestamp("2024-07-01") and r.pre_stints < 0.1 * r.post_stints:
             kinds.append("RECENT START (few book-ins before inauguration)")
         if r.post_stints > 0 and r.pre_stints >= 25 and r.recent_90d == 0 and r.last_bookin < CUT - pd.Timedelta(days=90):

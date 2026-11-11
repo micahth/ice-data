@@ -17,7 +17,7 @@ import pandas as pd
 from scipy import stats
 from statsmodels.stats.multitest import multipletests
 
-from geo_common import (ABBR_STATE, RESULTS, STATE_ABBR, fetch, load_county_pop, region_of)
+from geo_common import (ABBR_STATE, RESULTS, STATE_ABBR, fetch, load_county_pop, region_of, require_columns)
 from ice_lib import adp, build_intervals
 from geo_common import CUTOFF
 from regression_common import CONTROLS, coefficient, fit, primary_bh, republican_vote_share, require_control_coverage
@@ -95,6 +95,7 @@ def main():
 
     # GDP (real, chained 2017 $)
     g = pd.read_csv(fetch("gdp.csv"), encoding="latin-1")
+    require_columns(g, "gdp.csv")
     g = g[g.Description.str.startswith("Real GDP (millions", na=False)].copy()
     g["state"] = g.GeoName.str.strip().map(STATE_ABBR | {"District of Columbia": "DC"})
     g = g.dropna(subset=["state"]).set_index("state")
@@ -104,10 +105,12 @@ def main():
 
     # Unemployment (annual average of monthly seasonally adjusted rates)
     lo = pd.DataFrame(json.load(open(fetch("laus_old.json"))))
+    require_columns(lo, "laus_old.json")
     lo = lo[lo.period.str.match(r"M(0[1-9]|1[0-2])")]
     lo["state"] = lo.series_id.str[5:7].map(fips_state)
     lo["rate"] = lo.value.astype(float)
     ln = pd.read_csv(fetch("laus_new.csv"))
+    require_columns(ln, "laus_new.csv")
     ln["state"] = ln.GeoID.astype(int).astype(str).str.zfill(2).map(fips_state)
     ln = ln.rename(columns={"Year": "year", "Unemployment Rate": "rate"})
     un = pd.concat([lo[["state", "year", "rate"]], ln[["state", "year", "rate"]]])
@@ -117,6 +120,7 @@ def main():
 
     # Crime: RTCI state sample (fixed agency sample, monthly counts) - rates per 100k sample population
     rt = pd.read_csv(fetch("rtci.csv"), low_memory=False)
+    require_columns(rt, "rtci.csv")
     rt = rt[(rt.id.str.len() == 2) & (rt["size"] == "all") & (rt.id != "us")]
     rt["state"] = rt.id.str.upper()
     ann = rt.groupby(["state", "year"]).agg(v=("violent_total", "sum"), p=("property_total", "sum"),
@@ -129,6 +133,7 @@ def main():
 
     # FBI check (2022-2024 state rates)
     fb = pd.read_csv(fetch("fbi_crime.csv"))
+    require_columns(fb, "fbi_crime.csv")
     fb["state"] = fb.state.str.title().str.replace("Of", "of").map(STATE_ABBR | {"District of Columbia": "DC"})
     fb = fb.dropna(subset=["state"])
     fviol = fb.pivot(index="state", columns="year", values="violent_crime_rate")
@@ -138,6 +143,7 @@ def main():
     # 3. Controls
     # ---------------------------------------------------------------------------
     acs = pd.read_csv(fetch("acs.csv"), dtype={"FIPS": str})
+    require_columns(acs, "acs.csv")
     acs["st"] = acs.FIPS.str[:2].map(fips_state)
     for c in acs.columns[1:16]:
         acs[c] = pd.to_numeric(acs[c], errors="coerce")
@@ -161,8 +167,10 @@ def main():
     })
     gz = pd.read_csv(fetch("gaz.txt"), sep="\t", dtype={"GEOID": str})
     gz.columns = [c.strip() for c in gz.columns]
+    require_columns(gz, "gaz.txt")
     land = gz.groupby("USPS").ALAND_SQMI.sum()
     pr = pd.read_csv(fetch("pres.csv"), dtype={"county_fips": str})
+    require_columns(pr, "pres.csv")
     pr = pr[(pr.year == 2024) & (pr.office == "US PRESIDENT")]
     gop = republican_vote_share(pr)
     missing_votes = set(STATE_ABBR.values()) - set(gop.dropna().index)
