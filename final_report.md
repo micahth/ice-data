@@ -26,6 +26,26 @@ The daily-rate comparison normalizes the unequal observation windows but does no
 
 National detention average daily population (ADP) increased from **33.6k to 55.1k**, using a detention window ending March **11**, 2026 (435 newer-period days). Facility ADP per resident rose in every region; rural facilities held about 78.4 detainees per 100,000 local residents versus 10.9 in metropolitan counties. These measure where facilities hold people, **not local residents' likelihood of detention**. Operator classifications are inferred, not verified ownership records.
 
+### Detention-censoring sensitivity
+
+The primary specification excludes 1,049 older open facility stints and censors 60,582 qualifying newer open stints through March 11, 2026 (exclusive interval end March 12). Here, "open" means neither a facility nor a stay book-out is known. The alternatives change only that treatment, keeping the same deduplicated records, date fallback, interval validation, cutoff and window denominators.
+
+National ADP (people, not thousands):
+
+| Period | Primary: existing treatment | Censor all open records | Exclude all open records |
+|---|---:|---:|---:|
+| Old (2023-2024) | 33,571.8 | 33,705.9 | 33,571.8 |
+| New (2025-Mar 2026) | 55,073.3 | 56,122.3 | 44,978.6 |
+| 2023 | 30,215.4 | 30,239.1 | 30,215.4 |
+| 2024 | 36,919.0 | 37,163.2 | 36,919.0 |
+| 2025 | 52,997.1 | 54,046.1 | 47,719.3 |
+| 2026 YTD (to Mar 11) | 65,899.2 | 66,948.2 | 30,688.2 |
+| New vs. old change | +64.0% | +66.5% | +34.0% |
+
+The newer-period increase remains positive under all three specifications, but its magnitude depends on the treatment of unknown ends. Censoring all open records raises newer-period ADP by 1.9% relative to primary; excluding all lowers it by 18.3%. The 2026 YTD estimate is especially sensitive: excluding open records lowers it by 53.4% and reverses the apparent increase from 2025. This exclusion omits ongoing detention near the cutoff, while censoring all may overstate detention if older unknown ends reflect missing documentation rather than continuous custody. Neither alternative is necessarily more correct; these are assumption checks, not confidence bounds. They assess national ADP, not robustness of geographic/operator comparisons or regression coefficients.
+
+Source: [generated sensitivity table](analysis/results/detention_censoring_sensitivity.csv), including absolute and percentage differences from primary for every window. The [technical guide](analysis/MASTER_RESULTS.md) documents reproduction.
+
 ## Where apprehensions occurred
 
 ![Share of arrest records by state and ICE Area of Responsibility](analysis/figures/fig7_arrest_geography.png)
@@ -61,7 +81,7 @@ For scale, the interquartile range of 2025 state arrest rates is about **54 per 
 
 Arrest counts are deduplicated records, not unique people or completed removals; apprehension location need not be residence or workplace. The January 1, 2025 split is a calendar-year comparison, not an intervention-date design. March 2026 is partial, and regression models omit partial-year 2026.
 
-Detention ADP is overlapping bed-days divided by actual window days; when a facility-stint book-out is missing, ADP intervals may use the stay-level book-out. Completed facility-stint durations use only the stint-level book-out, since a stay can continue beyond a transfer. In the earlier and later windows, 0 and 1 book-ins, respectively, had only a valid stay-level end and therefore were excluded from completed-duration summaries (the full duration denominator breakdown is in [`duration_observation_counts.csv`](analysis/results/duration_observation_counts.csv)). ADP also censors qualifying open stints at March 12, 2026; 1,049 older open records are excluded. No release-rate comparison is reported because censoring makes it unreliable.
+Detention ADP is overlapping bed-days divided by actual window days; when a facility-stint book-out is missing, ADP intervals may use the stay-level book-out. The sensitivity table above compares the primary rule—which censors qualifying open stints at March 12, 2026 and excludes 1,049 older open records—with censoring or excluding all open records. Completed facility-stint durations use only the stint-level book-out, since a stay can continue beyond a transfer. In the earlier and later windows, 0 and 1 book-ins, respectively, had only a valid stay-level end and therefore were excluded from completed-duration summaries (see [`duration_observation_counts.csv`](analysis/results/duration_observation_counts.csv) for the full denominator breakdown). No release-rate comparison is reported because censoring makes it unreliable.
 
 The primary models are parsimonious; full-control models are a sensitivity check. Single-year models use HC3 intervals, and repeated-state models use state-clustered inference. Intervals are pointwise, not multiplicity-adjusted. Small samples, confounding, model dependence, incomplete crime coverage, and unobserved employment limit interpretation; the [technical guide](analysis/MASTER_RESULTS.md) documents specifications and data handling.
 

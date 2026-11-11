@@ -58,6 +58,37 @@ def test_facility_adp_reconciles_to_national_total(name):
     np.testing.assert_allclose(division, national, atol=0.1, rtol=0)
 
 
+def test_detention_censoring_sensitivity_reconciles_and_bounds_primary():
+    from geo_common import PERIODS
+    from ice_lib import window_days
+
+    table = pd.read_csv(RESULTS / "detention_censoring_sensitivity.csv")
+    assert len(table) == 3 * len(PERIODS)
+    assert not table.duplicated(["specification", "period"]).any()
+    assert set(table.period) == set(PERIODS)
+    assert set(table.specification) == {"primary", "censor_all", "exclude_all"}
+    expected_days = table.period.map({p: window_days(*w) for p, w in PERIODS.items()})
+    np.testing.assert_array_equal(table.days, expected_days)
+    populations = table.pivot(index="period", columns="specification", values="adp")
+    overall = pd.read_csv(RESULTS / "overall.csv").set_index("period").adp
+    np.testing.assert_allclose(populations.primary, overall.reindex(populations.index), atol=0.0001, rtol=0)
+    assert (populations.exclude_all <= populations.primary).all()
+    assert (populations.primary <= populations.censor_all).all()
+    assert (populations.exclude_all >= 0).all()
+    baseline = table.period.map(populations.primary)
+    np.testing.assert_allclose(table.adp_difference_from_primary, table.adp - baseline, atol=0.0002, rtol=0)
+    np.testing.assert_allclose(table.pct_difference_from_primary, (table.adp / baseline - 1) * 100,
+                               atol=0.0001, rtol=0)
+    for specification in populations:
+        for era, years in [
+            ("Old (2023-2024)", ["2023", "2024"]),
+            ("New (2025-Mar 2026)", ["2025", "2026 YTD (to Mar 11)"]),
+        ]:
+            bed_days = sum(populations.loc[y, specification] * window_days(*PERIODS[y]) for y in years)
+            assert populations.loc[era, specification] == pytest.approx(
+                bed_days / window_days(*PERIODS[era]), abs=0.0001)
+
+
 def test_duration_observation_counts_distinguish_stay_end_fallback():
     duration = pd.read_csv(RESULTS / "duration_observation_counts.csv").set_index("period")
     overall = pd.read_csv(RESULTS / "overall.csv").set_index("period")

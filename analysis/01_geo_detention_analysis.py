@@ -13,7 +13,7 @@ import pandas as pd
 
 from geo_common import (ANNUAL, CACHE, CUTOFF, ERAS, OPERATORS, PERIODS, REPO, RESULTS, TERRITORY, classify_operator,
                         fetch, load_cbsa_delineation, load_county_pop, period_population, region_of, require_columns)
-from ice_lib import adp, annualize, build_intervals
+from ice_lib import adp, annualize, build_intervals, censoring_sensitivity
 from data_common import read_source
 
 
@@ -38,6 +38,8 @@ def main():
             st[c] = pd.to_datetime(st[c], utc=True, errors="coerce").dt.tz_localize(None)
         st.to_pickle(pkl)
     print(f"stints (deduplicated): {len(st):,}")
+    censoring_sensitivity(st, CUTOFF, PERIODS).round(4).to_csv(
+        os.path.join(RESULTS, "detention_censoring_sensitivity.csv"), index=False)
 
     # ---------------------------------------------------------------------------
     # 2. Facility table: location, CBSA type, operator
