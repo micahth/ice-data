@@ -81,13 +81,33 @@ def main():
     st["operator"] = st.operator.fillna("Unclassified")
 
     st = build_intervals(st, CUTOFF)
-    # Resolve the book-out the same way build_intervals does (facility book-out, else stay book-out)
-    # so duration summaries and ADP treat missing-facility-book-out records consistently.
-    book_out = st.book_out_date_time.fillna(st.stay_book_out_date_time)
-    st["stint_days"] = ((book_out - st.book_in_date_time).dt.total_seconds() / 86400).where(
-        book_out >= st.book_in_date_time)
+    # ADP uses build_intervals()' stay-level fallback; completed stint durations require a stint-level book-out.
+    st["stint_days"] = ((st.book_out_date_time - st.book_in_date_time).dt.total_seconds() / 86400).where(
+        st.book_out_date_time >= st.book_in_date_time)
     st["crim"] = st.book_in_criminality.str[0].map({"1": "convicted", "2": "pending", "3": "no_record"})
     print("interval status:", st.interval_status.value_counts().to_dict())
+
+    duration_counts = []
+    for period in ERAS:
+        w0, w1 = PERIODS[period]
+        cohort = st[(st.book_in_date_time >= w0) & (st.book_in_date_time < w1)]
+        valid_duration = cohort.stint_days.notna()
+        stay_end_only = (
+            cohort.book_out_date_time.isna()
+            & cohort.stay_book_out_date_time.notna()
+            & (cohort.stay_book_out_date_time >= cohort.book_in_date_time)
+        )
+        duration_counts.append({
+            "period": period,
+            "book_ins": len(cohort),
+            "valid_stint_duration_observations": int(valid_duration.sum()),
+            "excluded_stay_end_only": int(stay_end_only.sum()),
+            "other_missing_or_invalid_stint_duration": int(len(cohort) - valid_duration.sum() - stay_end_only.sum()),
+        })
+    duration_counts = pd.DataFrame(duration_counts)
+    duration_counts.to_csv(os.path.join(RESULTS, "duration_observation_counts.csv"), index=False)
+    print("completed facility-stint duration observations:")
+    print(duration_counts.to_string(index=False))
 
     # ---------------------------------------------------------------------------
     # 4. Per-division statistics

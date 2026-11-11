@@ -44,3 +44,11 @@ def test_facility_counts_are_supported_by_activity_table():
     document = (REPO / "analysis/FACILITY_CHANGES.md").read_text()
     assert f"**{changes.change_type.str.contains('First observed booking activity').sum()} codes first observed" in document
     assert f"**{changes.change_type.str.contains('STOPPED BOOKING').sum()} codes with no final-90-day bookings" in document
+
+
+def test_duration_exclusions_are_reported_from_generated_table():
+    report = (REPO / "final_report.md").read_text()
+    duration = pd.read_csv(REPO / "analysis/results/duration_observation_counts.csv").set_index("period")
+    old = int(duration.loc["Old (2023-2024)", "excluded_stay_end_only"])
+    new = int(duration.loc["New (2025-Mar 2026)", "excluded_stay_end_only"])
+    assert f"{old} and {new} book-ins, respectively" in report
