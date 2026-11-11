@@ -89,6 +89,20 @@ def test_detention_censoring_sensitivity_reconciles_and_bounds_primary():
                 bed_days / window_days(*PERIODS[era]), abs=0.0001)
 
 
+def test_duration_observation_counts_distinguish_stay_end_fallback():
+    duration = pd.read_csv(RESULTS / "duration_observation_counts.csv").set_index("period")
+    overall = pd.read_csv(RESULTS / "overall.csv").set_index("period")
+    for period in ["Old (2023-2024)", "New (2025-Mar 2026)"]:
+        assert duration.loc[period, "book_ins"] == overall.loc[period, "book_ins"]
+        assert duration.loc[period, "book_ins"] == (
+            duration.loc[period, "valid_stint_duration_observations"]
+            + duration.loc[period, "excluded_stay_end_only"]
+            + duration.loc[period, "other_missing_or_invalid_stint_duration"]
+        )
+    assert duration.loc["Old (2023-2024)", "excluded_stay_end_only"] == 0
+    assert duration.loc["New (2025-Mar 2026)", "excluded_stay_end_only"] == 1
+
+
 @pytest.mark.parametrize("name", ["arrest_regressions", "regressions"])
 def test_confidence_intervals_and_model_metadata(name):
     reg = pd.read_csv(RESULTS / f"{name}.csv")

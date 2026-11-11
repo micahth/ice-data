@@ -2,16 +2,20 @@
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-An analysis of U.S. Immigration and Customs Enforcement (ICE) arrest, detainer, and
-detention records released by the [Deportation Data Project](https://deportationdata.org/).
-It combines record-level interval logic, geographic joins, population normalization,
-and state-level economic/crime associations.
+**Portfolio case study:** [Read the five-minute overview](CASE_STUDY.md) or go straight
+to the [Final Report](final_report.md).
 
-> **Headline:** Daily arrests rose from about **359 to 909 (+153%)** between 2023–2024
-> and January 2025–March 10, 2026. The share of arrest records classified as convicted
-> criminal fell from **43.0% to 33.1%**. State-level models do not establish reliable
-> associations with economic or crime trends. Confidence intervals remain wide.
-> Arrests are not deportations, employment records, or residence locations.
+- **Question:** How did ICE arrest and detention activity change over time and
+  geographically, and were state arrest rates associated with economic or crime outcomes?
+- **Data:** ICE arrest and detention records from the [Deportation Data Project](https://deportationdata.org/),
+  joined with population, economic, demographic, and crime data. The analysis uses
+  administrative records, not unique-person counts.
+- **Findings:** Arrests per day rose from **359 to 909 (+153%)**, while the share of
+  arrest records classified as convicted criminal fell from **43.0% to 33.1%**.
+  Primary state-level tests did not establish reliable associations; results are
+  exploratory, not causal.
+- **Skills:** Python, SQL/DuckDB, data validation and integration, geographic analysis,
+  statistical modeling with uncertainty, forecasting/backtesting, and automated tests.
 
 ## Research questions
 
@@ -68,6 +72,24 @@ The 153% daily-rate comparison accounts for unequal window lengths; it does not 
 
 The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
+
+## Analytical pipeline
+
+```mermaid
+flowchart TD
+    sources["SOURCE DATA<br/>DDP FOIA records · Census · BEA · BLS · Crime data"]
+    cleaning["CLEANING AND TRANSFORMATION<br/>Deduplication · Interval construction · Geographic joins"]
+    implementations["ANALYTICAL IMPLEMENTATIONS<br/>Python: pandas and statistical models<br/>SQL: DuckDB and aggregations"]
+    outputs["ANALYTICAL OUTPUTS<br/>Regression · Forecasting · Geographic analysis"]
+    communication["COMMUNICATION<br/>Reports · Figures · Interactive dashboard"]
+
+    sources --> cleaning --> implementations --> outputs --> communication
+```
+
+The ordered scripts use shared helper modules in `analysis/`; SQL queries live in
+[`analysis/sql/`](analysis/sql), generated tables in
+[`analysis/results/`](analysis/results), and figures in
+[`analysis/figures/`](analysis/figures). The dashboard reads committed aggregates.
 
 ## Setup and tests
 

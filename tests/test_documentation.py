@@ -57,3 +57,11 @@ def test_detention_sensitivity_report_matches_generated_table():
     growth = 100 * (populations.loc["New (2025-Mar 2026)"] / populations.loc["Old (2023-2024)"] - 1)
     expected = "| New vs. old change | " + " | ".join(f"{growth[p]:+.1f}%" for p in policies) + " |"
     assert expected in report
+
+
+def test_duration_exclusions_are_reported_from_generated_table():
+    report = (REPO / "final_report.md").read_text()
+    duration = pd.read_csv(REPO / "analysis/results/duration_observation_counts.csv").set_index("period")
+    old = int(duration.loc["Old (2023-2024)", "excluded_stay_end_only"])
+    new = int(duration.loc["New (2025-Mar 2026)", "excluded_stay_end_only"])
+    assert f"{old} and {new} book-ins, respectively" in report
