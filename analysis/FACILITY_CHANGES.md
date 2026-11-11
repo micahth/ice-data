@@ -9,6 +9,6 @@
 | Stopped booking | At least 25 earlier book-ins and some later activity, but no book-ins during the final 90 days |
 | Name change | Multiple recorded names under one code, with different first and last names |
 
-The extract identifies **111 codes first observed after the comparison date** and **13 codes with no final-90-day bookings** under these rules. Labels can overlap. The classification describes observed booking activity, not facility openings; inactivity is not proof of closure. Code changes, sparse use and reporting delays can produce these patterns.
+The extract identifies **111 codes first observed after the comparison date** and **13 codes with no final-90-day bookings** under these rules. Labels can overlap. The classification describes observed booking activity, not facility openings; first-observed activity is not proof of a new facility, and inactivity is not proof of closure. Code changes, sparse use and reporting delays can produce these patterns.
 
 `operator_class` comes from name/code/type heuristics in `geo_common.py`, not an ICE ownership field or independently verified contract history. No ownership changes, reopenings, named contractor events or public-news claims are inferred from these activity counts. The table retains recorded facility names; alias matches to names used in news coverage have not been established.

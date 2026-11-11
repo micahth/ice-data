@@ -24,6 +24,8 @@ from regression_common import CONTROLS, coefficient, fit, primary_bh, require_co
 
 def main():
     pd.set_option("display.width", 220, "display.max_columns", 40)
+    print("PRIMARY TESTING FAMILY: four 2025 (New), M0 + lagged-outcome arrest-rate coefficients; "
+          "Benjamini–Hochberg correction is limited to these four tests.")
 
     arrests = clean_arrests(load_arrests(["apprehension_date", "apprehension_state_filled_in",
                                    "apprehension_state_original", "duplicate_drop_row"]))
@@ -78,6 +80,8 @@ def main():
     correlations["spearman_q_bh"] = multipletests(correlations.spearman_p, method="fdr_bh")[1]
     correlations.round(4).to_csv(os.path.join(RESULTS, "arrest_correlations.csv"), index=False)
 
+    # PRIMARY FAMILY: four outcomes × 2025 (New) × M0 + lagged outcome.
+    # All other arrest-rate specifications are unadjusted sensitivity analyses.
     # ---- regressions ------------------------------------------------------------
     rows = []
 

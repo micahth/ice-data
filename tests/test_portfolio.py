@@ -115,6 +115,10 @@ def test_forecast_rejects_invalid_monthly_input(failure):
 
 
 def test_dashboard_shares_use_all_locations_and_switch_periods():
+    from dashboard import PERIODS
+
+    assert PERIODS["2023-2024 (731 days)"] == ("old", ARREST_DAYS["old"])
+    assert PERIODS["Jan 2025-Mar 10, 2026 (434 days)"] == ("new", ARREST_DAYS["new"])
     table = pd.DataFrame({"state": ["Texas", "Florida", "Unknown"], "old": [3, 1, 1], "new": [2, 4, 2]})
     view = location_view(table, "state", "new", 434)
     assert view.Location.iloc[0] == "Florida"

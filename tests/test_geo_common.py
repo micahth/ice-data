@@ -24,8 +24,8 @@ def test_external_inputs_have_publisher_retrieval_and_checksum_metadata():
 
 
 def _write_payload(payload):
-    def fake_run(cmd, check):
-        Path(cmd[3]).write_bytes(payload)
+    def fake_run(cmd, **kwargs):
+        Path(cmd[cmd.index("-o") + 1]).write_bytes(payload)
     return fake_run
 
 
@@ -78,9 +78,9 @@ def test_population_shards_are_verified_against_individual_and_aggregate_checksu
 
     assert Path(geo_common.fetch_pop_shards()) == shards
 
-    def fake_run(cmd, check):
+    def fake_run(cmd, **kwargs):
         name = cmd[-1].rsplit("/", 1)[-1]
-        Path(cmd[3]).write_bytes(payloads[name])
+        Path(cmd[cmd.index("-o") + 1]).write_bytes(payloads[name])
 
     monkeypatch.setattr(geo_common.subprocess, "run", fake_run)
     (shards / "80.json").write_text("changed")

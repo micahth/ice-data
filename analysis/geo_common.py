@@ -57,6 +57,79 @@ def source_url(repo, path, media=False):
     return f"{MEDIA if media else RAW}/{repo}/{REVISIONS[repo]}/{path}"
 
 
+def _sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _write_checksum(path, digest):
+    checksum = path + ".sha256"
+    temporary = checksum + ".part"
+    try:
+        with open(temporary, "w", encoding="ascii") as output:
+            output.write(digest + "\n")
+        os.replace(temporary, checksum)
+    finally:
+        if os.path.exists(temporary):
+            os.remove(temporary)
+
+
+def _fetch_to_cache(name, url, path, expected=None):
+    checksum = path + ".sha256"
+    expected_checksum = None
+    if expected is not None:
+        expected_checksum = expected["sha256"]
+        if os.path.exists(path):
+            try:
+                _verify(path, expected)
+                cached_checksum = None
+                if os.path.exists(checksum):
+                    with open(checksum, encoding="ascii") as source:
+                        cached_checksum = source.read().strip()
+                if cached_checksum != expected_checksum:
+                    _write_checksum(path, expected_checksum)
+                return path
+            except ValueError:
+                print(f"  cached {name} failed SHA-256 verification; downloading again")
+                os.remove(path)
+                if os.path.exists(checksum):
+                    os.remove(checksum)
+    elif os.path.exists(path) and os.path.exists(checksum):
+        with open(checksum, encoding="ascii") as source:
+            expected_checksum = source.read().strip()
+        if expected_checksum == _sha256(path):
+            return path
+        print(f"  cached {name} failed SHA-256 verification; downloading again")
+    elif os.path.exists(path):
+        print(f"  cached {name} has no SHA-256 record; downloading again")
+
+    temporary = path + ".part"
+    command = [
+        "curl", "-sSfL", "--retry", "3", "--retry-all-errors", "--retry-delay", "1",
+        "--connect-timeout", "20", "--max-time", "300", "-o", temporary, url,
+    ]
+    try:
+        subprocess.run(command, check=True, capture_output=True, text=True)
+        if not os.path.exists(temporary) or os.path.getsize(temporary) == 0:
+            raise ValueError(f"Download of {name} returned an empty file")
+        digest = _sha256(temporary)
+        if expected is not None:
+            _verify(temporary, expected)
+        os.replace(temporary, path)
+        _write_checksum(path, digest)
+        print(f"  verified {name}: sha256={digest}")
+    except subprocess.CalledProcessError as error:
+        detail = (error.stderr or "").strip() or str(error)
+        raise RuntimeError(f"Failed to download {name} from {url} after retries: {detail}") from error
+    finally:
+        if os.path.exists(temporary):
+            os.remove(temporary)
+    return path
+
+
 SOURCES = {
     "facilities_latest.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-latest.parquet", media=True),
     "facilities_attributes.parquet": source_url("deportationdata/ice-detention-facilities", "data/facilities-attributes-cleaned-with-codes.parquet", media=True),
@@ -118,14 +191,6 @@ POP_PROVENANCE = {
 }
 
 
-def _sha256(path):
-    digest = hashlib.sha256()
-    with open(path, "rb") as source:
-        for chunk in iter(lambda: source.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
 # Columns each downstream analysis relies on; validated after parsing so a
 # reshaped upstream schema fails loudly instead of producing silent NaNs.
 REQUIRED_COLUMNS = {
@@ -172,30 +237,15 @@ def _verify(path, expected):
             f"{size} bytes, sha256={actual}")
 
 
-def _download_verified(url, path, expected):
-    """Download `url` to `path` atomically, replacing it only once verified."""
-    temporary = path + ".part"
-    try:
-        subprocess.run(["curl", "-sfL", "-o", temporary, url], check=True)
-        _verify(temporary, expected)
-        os.replace(temporary, path)
-    finally:
-        if os.path.exists(temporary):
-            os.remove(temporary)
-
-
 def fetch(name):
-    expected = SOURCE_CHECKSUMS[name]
+    try:
+        url = SOURCES[name]
+    except KeyError as error:
+        raise ValueError(f"Unknown external data source: {name}") from error
     path = os.path.join(CACHE, name)
-    if os.path.exists(path):
-        try:
-            _verify(path, expected)
-            return path
-        except ValueError:
-            os.remove(path)   # stale/corrupt cache; re-download below
-    print(f"  downloading {name}")
-    _download_verified(SOURCES[name], path, expected)
-    return path
+    if not os.path.exists(path):
+        print(f"  downloading {name}")
+    return _fetch_to_cache(name, url, path, SOURCE_CHECKSUMS.get(name))
 
 
 def _pop_manifest_digest(directory):
@@ -212,15 +262,11 @@ def fetch_pop_shards():
     os.makedirs(d, exist_ok=True)
     for i in range(256):
         key = f"{i:02x}.json"
-        expected = POP_SHARD_CHECKSUMS[key]
         p = os.path.join(d, key)
-        if os.path.exists(p):
-            try:
-                _verify(p, expected)
-                continue
-            except ValueError:
-                os.remove(p)
-        _download_verified(source_url("GreatTombProductions/county-population", f"data/detail/{key}"), p, expected)
+        if not os.path.exists(p):
+            print(f"  downloading population shard {i:02x}")
+        url = source_url("GreatTombProductions/county-population", f"data/detail/{key}")
+        _fetch_to_cache(f"population shard {i:02x}", url, p, POP_SHARD_CHECKSUMS[key])
     actual = _pop_manifest_digest(d)
     expected = POP_PROVENANCE["sha256"]
     if actual != expected:

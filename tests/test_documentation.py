@@ -42,7 +42,8 @@ def test_report_headline_and_intervals_match_generated_tables():
 def test_facility_counts_are_supported_by_activity_table():
     changes = pd.read_csv(REPO / "analysis/results/facility_changes.csv")
     document = (REPO / "analysis/FACILITY_CHANGES.md").read_text()
-    assert f"**{changes.change_type.str.contains('First observed booking activity').sum()} codes first observed" in document
+    first_observed = changes.loc[(changes.pre_stints == 0) & (changes.post_stints >= 25)]
+    assert f"**{len(first_observed)} codes first observed" in document
     assert f"**{changes.change_type.str.contains('STOPPED BOOKING').sum()} codes with no final-90-day bookings" in document
 
 
