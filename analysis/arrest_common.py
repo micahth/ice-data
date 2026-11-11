@@ -26,5 +26,8 @@ def clean_arrests(data):
 def monthly_arrests(data):
     months = pd.period_range(ARREST_START, ARREST_END - pd.Timedelta(days=1), freq="M")
     counts = data.groupby(data.date.dt.to_period("M")).size().reindex(months, fill_value=0)
+    days_observed = [(min(month.end_time.normalize() + pd.Timedelta(days=1), ARREST_END)
+                      - month.start_time.normalize()).days for month in months]
     return pd.DataFrame({"month": months.astype(str), "arrests": counts.values,
+                         "days_observed": days_observed,
                          "partial_month": months == ARREST_END.to_period("M")})

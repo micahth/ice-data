@@ -27,6 +27,10 @@ def test_single_year_uses_hc3_t_intervals():
     output = coefficient(model, "x")
     assert output["n_states"] == 50 and output["df_resid"] == 48
     assert output["ci_low"] < output["coef"] < output["ci_high"]
+    influence = model.get_influence()
+    assert output["max_cooks_distance"] == pytest.approx(influence.cooks_distance[0].max())
+    assert output["max_leverage"] == pytest.approx(influence.hat_matrix_diag.max())
+    assert output["max_cooks_state"] in data.state.values
 
 
 def test_repeated_states_use_clustered_t_intervals_on_complete_cases():

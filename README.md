@@ -1,22 +1,32 @@
-# ICE Detention & Arrests: A Geographic and Statistical Analysis (2022–2026)
+# ICE Detention & Arrests: A Geographic and Statistical Analysis (2023–2026)
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-An analysis of U.S. Immigration and Customs Enforcement (ICE) arrest, detainer, and
-detention records released by the [Deportation Data Project](https://deportationdata.org/).
-It combines record-level interval logic, geographic joins, population normalization,
-and state-level economic/crime associations.
+The primary analysis covers 2023–2026 U.S. Immigration and Customs Enforcement (ICE)
+arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/).
+A supplemental vintage notebook also describes detainer records. The project combines
+record-level interval logic, geographic joins, population normalization, and state-level
+economic/crime associations.
 
-> **Headline:** Daily arrests rose from about **359 to 909 (+153%)** between 2023–2024
-> and January 2025–March 10, 2026. The share of arrest records classified as convicted
-> criminal fell from **43.0% to 33.1%**. State-level models do not establish reliable
-> associations with economic or crime trends. Confidence intervals remain wide.
-> Arrests are not deportations, employment records, or residence locations.
+**Portfolio case study:** [Read the five-minute overview](CASE_STUDY.md) or go straight
+to the [Final Report](final_report.md).
+
+- **Question:** How did ICE arrest and detention activity change over time and
+  geographically, and were state arrest rates associated with economic or crime outcomes?
+- **Data:** ICE arrest and detention records from the [Deportation Data Project](https://deportationdata.org/),
+  joined with population, economic, demographic, and crime data. The analysis uses
+  administrative records, not unique-person counts.
+- **Findings:** Arrests per day rose from **359 to 909 (+153%)**, while the share of
+  arrest records classified as convicted criminal fell from **43.0% to 33.1%**.
+  Primary state-level tests did not establish reliable associations; results are
+  exploratory, not causal.
+- **Skills:** Python, SQL/DuckDB, data validation and integration, geographic analysis,
+  statistical modeling with uncertainty, forecasting/backtesting, and automated tests.
 
 ## Research questions
 
 1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
-2. How did detention ADP and arrest pace change after normalizing for time and population?
+2. How did detention, Average Daily Population of People Detained (ADP), and arrest pace change after normalizing for time and population?
 3. Are state arrest rates associated with changes in state economic or crime outcomes?
 
 ## Key findings
@@ -39,10 +49,16 @@ and state-level economic/crime associations.
   are unadjusted sensitivity analyses; intervals and detection limits appear in the report.
 - **Causality:** estimates are exploratory. Arrests are not completed removals, and
   employment status is not observed.
+- **Annual timing:** economic comparisons use calendar-year outcomes, so the 2025
+  arrest period starts January 1 rather than January 20; it is not an inauguration-date design.
 
 ### Selected figures
 
-| Monthly arrests | Facility ADP per 100k by region |
+The 153% daily-rate comparison accounts for unequal window lengths; it does not adjust for seasonality. This calendar-month view places 2025–2026 alongside 2023–2024. March 2026 is partial and its rate uses 10 observed days.
+
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+
+| Monthly arrests over time | Facility ADP per 100k by region |
 |---|---|
 | ![Monthly arrests with partial March identified](analysis/figures/monthly_arrests.png) | ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) |
 
@@ -62,6 +78,24 @@ and state-level economic/crime associations.
 
 The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
+
+## Analytical pipeline
+
+```mermaid
+flowchart TD
+    sources["SOURCE DATA<br/>DDP FOIA records · Census · BEA · BLS · Crime data"]
+    cleaning["CLEANING AND TRANSFORMATION<br/>Deduplication · Interval construction · Geographic joins"]
+    implementations["ANALYTICAL IMPLEMENTATIONS<br/>Python: pandas and statistical models<br/>SQL: DuckDB and aggregations"]
+    outputs["ANALYTICAL OUTPUTS<br/>Regression · Forecasting · Geographic analysis"]
+    communication["COMMUNICATION<br/>Reports · Figures · Interactive dashboard"]
+
+    sources --> cleaning --> implementations --> outputs --> communication
+```
+
+The ordered scripts use shared helper modules in `analysis/`; SQL queries live in
+[`analysis/sql/`](analysis/sql), generated tables in
+[`analysis/results/`](analysis/results), and figures in
+[`analysis/figures/`](analysis/figures). The dashboard reads committed aggregates.
 
 ## Setup and tests
 
@@ -162,7 +196,7 @@ LICENSE                   MIT license for the project code
 This is descriptive and correlational, not causal: arrests are not completed
 removals, and employment is unobserved. Apprehension locations and facility-
 population denominators do not measure where people live or residents' likelihood
-of detention. Small samples, confounding, incomplete outcomes and wide intervals
+of detention. Small samples, confounding, incomplete outcomes, and wide intervals
 limit conclusions; see the [Final Report](final_report.md) and
 [technical guide](analysis/MASTER_RESULTS.md).
 

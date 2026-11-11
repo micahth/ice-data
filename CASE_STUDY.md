@@ -2,7 +2,7 @@
 
 I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
-## 1. The problem, 
+## 1. The problem
 
 How did ICE arrest and detention activity change over time and geographically, and were state-level arrest rates associated with economic or crime outcomes?
 
@@ -10,7 +10,7 @@ How did ICE arrest and detention activity change over time and geographically, a
 
 - Record-level administrative data from several extracts, with duplicate arrest records.
 - Incomplete dates and open-ended detention stints (1,049 older open records excluded; qualifying newer ones censored at a stated date).
-- Observation windows of different lengths (731 vs. 434 days), so counts had to become daily rates.
+- Observation windows of different lengths (731 vs. 434 days), so daily averages had to be used.
 - Facility location and apprehension location measure different things, and neither is residence.
 - External population, economic, demographic, and crime data had to be joined to state-year panels.
 
@@ -52,6 +52,10 @@ The asymmetric treatment is a documented assumption: if old open records represe
 |---|---|
 | ![Monthly arrests](analysis/figures/monthly_arrests.png) | ![Arrest geography](analysis/figures/fig7_arrest_geography.png) |
 
+The 153% daily-rate comparison normalizes window length but not seasonality. This calendar-month view shows the historical pattern alongside 2025–2026; March 2026 is partial and uses its 10 observed days.
+
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+
 | Detention geography | Regression estimates with confidence intervals |
 |---|---|
 | ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) | ![Arrest-rate coefficients](analysis/figures/fig6_arrest_coefficients.png) |
@@ -63,6 +67,7 @@ The asymmetric treatment is a documented assumption: if old open records represe
 - A source-wide election-mode filter silently lost eight states. Selecting TOTAL rows per state and retaining unsplit rows where totals are absent restored the full-control economic samples from 42 to 50. Both regression scripts now reject missing controls across every state-year; crime coverage gaps remain explicit.
 - Source versions are documented: published results use July 24, 2026 CSV exports; the alternative pinned download is a different (July 6) revision and is not claimed to reproduce them. See [Reproduction status](README.md#reproduction-status).
 - Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
+- Annual economic outcomes are calendar-year measures: the 2025 arrest period begins January 1, not January 20, and is not an inauguration-date comparison.
 
 ## 7. Skills demonstrated
 

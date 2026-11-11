@@ -9,6 +9,9 @@ CONTROL_COLUMNS = [
     "med_age", "gop24", "lag_d_youth15_29_pp",
 ]
 CONTROLS = " + ".join(CONTROL_COLUMNS)
+PRIMARY_ERA = "New"
+PRIMARY_SPECIFICATION = "M0 + lagged outcome"
+PRIMARY_FAMILY_SIZE = 4
 
 
 def republican_vote_share(returns):
@@ -46,7 +49,7 @@ def require_control_coverage(panel, expected_states, years=(2023, 2024, 2025)):
 
 
 def primary_bh(regressions, exposure_term):
-    """Four 2025 lagged-outcome exposure tests; sensitivity p-values stay unadjusted.
+    """Adjust the four 2025 lagged-outcome tests and report all-exposure sensitivity q-values.
 
     ``q_bh_all_exposure`` is a transparency sensitivity analysis: it applies the same
     Benjamini-Hochberg procedure across *every* exposure coefficient (the broadest
@@ -56,11 +59,13 @@ def primary_bh(regressions, exposure_term):
     regressions = regressions.copy()
     exposure = regressions.term.str.contains("arr_rate" if exposure_term == "arr_rate10" else "det_")
     primary = (
-        (regressions.term == exposure_term) & (regressions.era == "New")
-        & (regressions.spec == "M0 + lagged outcome")
+        (regressions.term == exposure_term) & (regressions.era == PRIMARY_ERA)
+        & (regressions.spec == PRIMARY_SPECIFICATION)
     )
     selected = regressions.loc[primary]
-    if len(selected) != 4 or selected.outcome.nunique() != 4 or not np.isfinite(selected.p).all():
+    if (len(selected) != PRIMARY_FAMILY_SIZE
+            or selected.outcome.nunique() != PRIMARY_FAMILY_SIZE
+            or not np.isfinite(selected.p).all()):
         raise ValueError("Primary BH family requires exactly four finite outcome p-values")
     if not np.isfinite(regressions.loc[exposure, "p"]).all():
         raise ValueError("All-exposure BH sensitivity requires finite exposure p-values")
@@ -93,10 +98,22 @@ def fit(formula, data):
 
 def coefficient(result, term):
     lower, upper = result.conf_int(alpha=0.05).loc[term]
+    influence = result.get_influence()
+    cooks_distance = np.asarray(influence.cooks_distance[0])
+    leverage = np.asarray(influence.hat_matrix_diag)
+    sample = result.model.data.frame.loc[result.model.data.row_labels]
+    max_cook = int(np.argmax(cooks_distance))
+    max_leverage = int(np.argmax(leverage))
     return {
         "coef": result.params[term], "se": result.bse[term], "p": result.pvalues[term],
         "ci_low": lower, "ci_high": upper, "cov_type": result.cov_type,
         "n_states": result.model.data.frame.loc[result.model.data.row_labels, "state"].nunique(),
+        "max_cooks_distance": cooks_distance[max_cook],
+        "max_cooks_state": sample.iloc[max_cook].state,
+        "max_cooks_year": sample.iloc[max_cook].year,
+        "max_leverage": leverage[max_leverage],
+        "max_leverage_state": sample.iloc[max_leverage].state,
+        "max_leverage_year": sample.iloc[max_leverage].year,
         "df_resid": result.df_resid, "n_parameters": result.model.exog.shape[1],
         "r2": result.rsquared, "adj_r2": result.rsquared_adj,
     }
