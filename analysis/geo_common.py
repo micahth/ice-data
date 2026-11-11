@@ -80,7 +80,7 @@ def _fetch_to_cache(name, url, path):
 
     temporary = path + ".part"
     command = [
-        "curl", "-sfL", "--retry", "3", "--retry-all-errors", "--retry-delay", "1",
+        "curl", "-sSfL", "--retry", "3", "--retry-all-errors", "--retry-delay", "1",
         "--connect-timeout", "20", "--max-time", "300", "-o", temporary, url,
     ]
     try:
