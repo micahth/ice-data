@@ -1,5 +1,4 @@
 import hashlib
-import os
 from pathlib import Path
 
 import pandas as pd
@@ -8,15 +7,32 @@ import pytest
 import geo_common
 
 
+def test_external_inputs_have_publisher_retrieval_and_checksum_metadata():
+    assert set(geo_common.PROVENANCE) == set(geo_common.SOURCES) == set(geo_common.CHECKSUMS)
+    for source in geo_common.PROVENANCE.values():
+        assert source["publisher"]
+        assert source["original_url"].startswith("https://")
+        assert source["retrieval_url"].startswith("https://")
+        assert source["retrieved_on"] == geo_common.RETRIEVED_ON
+        assert len(source["sha256"]) == 64
+
+    assert geo_common.POP_PROVENANCE["publisher"]
+    assert geo_common.POP_PROVENANCE["original_url"].startswith("https://")
+    assert geo_common.POP_PROVENANCE["retrieval_url_template"].startswith("https://")
+    assert geo_common.POP_PROVENANCE["retrieved_on"] == geo_common.RETRIEVED_ON
+    assert len(geo_common.POP_PROVENANCE["sha256"]) == 64
+
+
 def _write_payload(payload):
     def fake_run(cmd, check):
-        Path(cmd[3]).write_bytes(payload)   # cmd = ["curl", "-sfL", "-o", <temp>, <url>]
+        Path(cmd[3]).write_bytes(payload)
     return fake_run
 
 
 def test_fetch_verifies_checksum_and_replaces_atomically(tmp_path, monkeypatch):
     payload = b"synthetic source file"
     monkeypatch.setattr(geo_common, "CACHE", str(tmp_path))
+    monkeypatch.setitem(geo_common.SOURCES, "gdp.csv", "https://example.test/data.csv")
     monkeypatch.setitem(geo_common.SOURCE_CHECKSUMS, "gdp.csv",
                         {"sha256": hashlib.sha256(payload).hexdigest(), "size": len(payload)})
     monkeypatch.setattr(geo_common.subprocess, "run", _write_payload(payload))
@@ -25,24 +41,51 @@ def test_fetch_verifies_checksum_and_replaces_atomically(tmp_path, monkeypatch):
     assert not Path(path + ".part").exists()
 
 
-def test_bad_download_raises_and_leaves_no_file(tmp_path, monkeypatch):
+def test_fetch_rejects_bad_download_and_tampered_cache(tmp_path, monkeypatch):
     monkeypatch.setattr(geo_common, "CACHE", str(tmp_path))
-    monkeypatch.setitem(geo_common.SOURCE_CHECKSUMS, "gdp.csv", {"sha256": "0" * 64, "size": 999})
-    monkeypatch.setattr(geo_common.subprocess, "run", _write_payload(b"corrupt bytes"))
+    monkeypatch.setattr(geo_common.subprocess, "run", _write_payload(b"unexpected"))
+    monkeypatch.setitem(geo_common.SOURCE_CHECKSUMS, "gdp.csv",
+                        {"sha256": hashlib.sha256(b"expected").hexdigest(), "size": len(b"expected")})
+    target = tmp_path / "gdp.csv"
     with pytest.raises(ValueError, match="Checksum/size mismatch"):
         geo_common.fetch("gdp.csv")
-    assert not (tmp_path / "gdp.csv").exists()
+    assert not target.exists()
     assert not (tmp_path / "gdp.csv.part").exists()
 
+    target.write_bytes(b"tampered cache")
+    with pytest.raises(ValueError, match="Checksum/size mismatch"):
+        geo_common.fetch("gdp.csv")
+    assert not target.exists()
 
-def test_corrupt_cache_is_reverified_and_replaced(tmp_path, monkeypatch):
-    payload = b"good source bytes"
-    monkeypatch.setattr(geo_common, "CACHE", str(tmp_path))
-    (tmp_path / "gdp.csv").write_bytes(b"stale truncated cache")
-    monkeypatch.setitem(geo_common.SOURCE_CHECKSUMS, "gdp.csv",
-                        {"sha256": hashlib.sha256(payload).hexdigest(), "size": len(payload)})
-    monkeypatch.setattr(geo_common.subprocess, "run", _write_payload(payload))
-    assert Path(geo_common.fetch("gdp.csv")).read_bytes() == payload
+
+def test_population_shards_are_verified_against_individual_and_aggregate_checksums(tmp_path, monkeypatch):
+    cache = tmp_path / "cache"
+    shards = cache / "pop"
+    shards.mkdir(parents=True)
+    payloads = {f"{i:02x}.json": f"shard {i:02x}".encode() for i in range(256)}
+    checksums = {
+        name: {"sha256": hashlib.sha256(payload).hexdigest(), "size": len(payload)}
+        for name, payload in payloads.items()
+    }
+    aggregate = hashlib.sha256()
+    for name, entry in sorted(checksums.items()):
+        aggregate.update(f"pop/{name} {entry['sha256']}\n".encode())
+    monkeypatch.setattr(geo_common, "CACHE", str(cache))
+    monkeypatch.setattr(geo_common, "POP_SHARD_CHECKSUMS", checksums)
+    monkeypatch.setitem(geo_common.POP_PROVENANCE, "sha256", aggregate.hexdigest())
+    for name, payload in payloads.items():
+        (shards / name).write_bytes(payload)
+
+    assert Path(geo_common.fetch_pop_shards()) == shards
+
+    def fake_run(cmd, check):
+        name = cmd[-1].rsplit("/", 1)[-1]
+        Path(cmd[3]).write_bytes(payloads[name])
+
+    monkeypatch.setattr(geo_common.subprocess, "run", fake_run)
+    (shards / "80.json").write_text("changed")
+    assert Path(geo_common.fetch_pop_shards()) == shards
+    assert (shards / "80.json").read_bytes() == payloads["80.json"]
 
 
 def test_checksum_manifest_covers_every_source():
