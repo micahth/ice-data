@@ -185,7 +185,7 @@ an honest baseline comparison, not evidence of deployment readiness. See the
 data/                     Raw FOIA exports (LFS) and third-party codebook
 analysis/                 Ordered scripts, SQL, dashboard, forecast, results, figures
 outputs/                  Landing page for the four key figures
-tests/                    Synthetic tests for cohorts, intervals, models and outputs
+tests/                    Synthetic tests for cohorts, intervals, models, and outputs
 final_report.md           Reader-facing findings
 requirements.txt          Pinned direct dependencies
 LICENSE                   MIT license for the project code
