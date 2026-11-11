@@ -69,6 +69,24 @@ The 153% daily-rate comparison accounts for unequal window lengths; it does not 
 The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
 
+## Analytical pipeline
+
+```mermaid
+flowchart TD
+    sources["SOURCE DATA<br/>DDP FOIA records · Census · BEA · BLS · Crime data"]
+    cleaning["CLEANING AND TRANSFORMATION<br/>Deduplication · Interval construction · Geographic joins"]
+    implementations["ANALYTICAL IMPLEMENTATIONS<br/>Python: pandas and statistical models<br/>SQL: DuckDB and aggregations"]
+    outputs["ANALYTICAL OUTPUTS<br/>Regression · Forecasting · Geographic analysis"]
+    communication["COMMUNICATION<br/>Reports · Figures · Interactive dashboard"]
+
+    sources --> cleaning --> implementations --> outputs --> communication
+```
+
+The ordered scripts use shared helper modules in `analysis/`; SQL queries live in
+[`analysis/sql/`](analysis/sql), generated tables in
+[`analysis/results/`](analysis/results), and figures in
+[`analysis/figures/`](analysis/figures). The dashboard reads committed aggregates.
+
 ## Setup and tests
 
 Python 3.11 or 3.12; direct Python dependencies are pinned (this is not a full
