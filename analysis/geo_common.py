@@ -94,6 +94,9 @@ def _fetch_to_cache(name, url, path, expected=None):
                 return path
             except ValueError:
                 print(f"  cached {name} failed SHA-256 verification; downloading again")
+                os.remove(path)
+                if os.path.exists(checksum):
+                    os.remove(checksum)
     elif os.path.exists(path) and os.path.exists(checksum):
         with open(checksum, encoding="ascii") as source:
             expected_checksum = source.read().strip()
@@ -140,6 +143,53 @@ SOURCES = {
     "gaz.txt": source_url("kmazurek95/us-election-county-swing", "data/raw/gazetteer_counties.txt"),
     "pres.csv": source_url("kmazurek95/us-election-county-swing", "data/raw/countypres_2000-2024.csv"),
 }
+RETRIEVED_ON = "2026-11-10"
+_ORIGINAL_SOURCES = {
+    "facilities_latest.parquet": ("Deportation Data Project", "https://deportationdata.org/data/ice.html"),
+    "facilities_attributes.parquet": ("Deportation Data Project", "https://deportationdata.org/data/ice.html"),
+    "list1_2023.xlsx": ("U.S. OMB (distributed by Census)", "https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx"),
+    "gdp.csv": ("U.S. Bureau of Economic Analysis", "https://apps.bea.gov/itable/?ReqID=96&step=1"),
+    "laus_old.json": ("U.S. Bureau of Labor Statistics", "https://www.bls.gov/lau/data.htm"),
+    "laus_new.csv": ("U.S. Bureau of Labor Statistics", "https://www.bls.gov/lau/tables.htm"),
+    "fbi_crime.csv": ("FBI Uniform Crime Reporting Program", "https://catalog.data.gov/dataset/crime-in-the-united-states"),
+    "rtci.csv": ("AH Datalytics, Real-Time Crime Index", "https://realtimecrimeindex.com/data/#download"),
+    "acs.csv": ("U.S. Census Bureau, American Community Survey", "https://www.census.gov/data/developers/data-sets/acs-5year/2023.html"),
+    "gaz.txt": ("U.S. Census Bureau", "https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.2024.html"),
+    "pres.csv": ("MIT Election Data and Science Lab", "https://doi.org/10.7910/DVN/VOQCHQ"),
+}
+CHECKSUMS = {
+    "facilities_latest.parquet": "cce1c18e657af4fdfe99650fbe7925f02b435e4e08457e1b51f1741c641dfb3a",
+    "facilities_attributes.parquet": "758691f016344306d13054b235fa514d7e35c2488f5745b8d8e692f8e9385921",
+    "list1_2023.xlsx": "952c4b1e78acbb54e6ec9412434b7602fedacbf021736351a63c181bdb753629",
+    "gdp.csv": "ebecf96e659c138b5683829613a1c1d44dae4fe6ce0672eaadbd4ec3a0a60df0",
+    "laus_old.json": "927c3ddd4dc7808b729e9c6af83acf8e32e06b18b718adff9d26747c61d728f3",
+    "laus_new.csv": "54dc2f07b969a497dd97a13662bf5d255741803d916a7bab3120550459045aee",
+    "fbi_crime.csv": "0179279d06c345e341f68f53fcba19644038b8b71c0fb97036ac7785d370f3e8",
+    "rtci.csv": "961d5cba9db14a5a6a892888cc08caaf64866147aaaed6228a96a79e9a3bf7cb",
+    "acs.csv": "ccefaddb511b66331779d1f7503f26cb610550b771009d5c5450a8f7b809dda2",
+    "gaz.txt": "0a121d136b434e3ae749d053db19dfbacbb56eebf30335cfa5031388803b4451",
+    "pres.csv": "9299583148f5f8264baf50b5d929c260699c46d915909b13ea3c3850918946f8",
+}
+PROVENANCE = {
+    name: {
+        "publisher": publisher,
+        "original_url": original_url,
+        "retrieval_url": SOURCES[name],
+        "retrieved_on": RETRIEVED_ON,
+        "sha256": CHECKSUMS[name],
+    }
+    for name, (publisher, original_url) in _ORIGINAL_SOURCES.items()
+}
+POP_PROVENANCE = {
+    "publisher": "U.S. Census Bureau, Population Estimates Program",
+    "original_url": "https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-detail.html",
+    "retrieval_url_template": "https://raw.githubusercontent.com/GreatTombProductions/county-population/"
+    f"{REVISIONS['GreatTombProductions/county-population']}/data/detail/{{shard}}.json",
+    "retrieved_on": RETRIEVED_ON,
+    "sha256": "9174f3ca5cc8c7b6ddc56e83dfc63dcc1046c1aac3a8d5b1496ed181785a1e33",
+    "checksum_method": "SHA-256 of sorted 'pop/<shard>.json <file-sha256>\\n' lines for all 256 shards",
+}
+
 
 # Columns each downstream analysis relies on; validated after parsing so a
 # reshaped upstream schema fails loudly instead of producing silent NaNs.
@@ -198,6 +248,15 @@ def fetch(name):
     return _fetch_to_cache(name, url, path, SOURCE_CHECKSUMS.get(name))
 
 
+def _pop_manifest_digest(directory):
+    digest = hashlib.sha256()
+    for i in range(256):
+        name = f"{i:02x}.json"
+        file_digest = _sha256(os.path.join(directory, name))
+        digest.update(f"pop/{name} {file_digest}\n".encode())
+    return digest.hexdigest()
+
+
 def fetch_pop_shards():
     d = os.path.join(CACHE, "pop")
     os.makedirs(d, exist_ok=True)
@@ -208,6 +267,10 @@ def fetch_pop_shards():
             print(f"  downloading population shard {i:02x}")
         url = source_url("GreatTombProductions/county-population", f"data/detail/{key}")
         _fetch_to_cache(f"population shard {i:02x}", url, p, POP_SHARD_CHECKSUMS[key])
+    actual = _pop_manifest_digest(d)
+    expected = POP_PROVENANCE["sha256"]
+    if actual != expected:
+        raise ValueError(f"Checksum mismatch for population shards: sha256={actual}, expected={expected}")
     return d
 
 
