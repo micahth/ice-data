@@ -10,16 +10,23 @@ import pandas as pd
 OPEN_STINT_START = pd.Timestamp("2025-01-01")  # open stints are only censored if booked in on/after this date
 
 
-def build_intervals(df, cutoff, open_from=OPEN_STINT_START):
-    """Return `df` with `start`, `end` and `status` columns.
+def build_intervals(df, cutoff, open_from=OPEN_STINT_START, *, open_policy="primary"):
+    """Return `df` with `start`, `end` and `interval_status` columns.
 
     end = book_out, else the stay's book-out, else (for stints booked in on/after `open_from`)
     the day after `cutoff` (right-censoring). Older open stints stay NaT and are excluded.
     Stints whose end is before their start are marked 'invalid_negative' and their end set to NaT.
+    Sensitivity policies `censor_all` and `exclude_all` override only the treatment of unknown ends.
     """
+    if open_policy not in {"primary", "censor_all", "exclude_all"}:
+        raise ValueError(f"Unknown open-record policy: {open_policy}")
     df = df.copy()
     end = df["book_out_date_time"].fillna(df["stay_book_out_date_time"])
     open_recent = end.isna() & (df["book_in_date_time"] >= open_from)
+    if open_policy == "censor_all":
+        open_recent = end.isna() & df["book_in_date_time"].notna()
+    elif open_policy == "exclude_all":
+        open_recent = pd.Series(False, index=df.index)
     end = end.mask(open_recent, cutoff + pd.Timedelta(days=1))
     start = df["book_in_date_time"]
     status = pd.Series("closed", index=df.index)
@@ -31,6 +38,28 @@ def build_intervals(df, cutoff, open_from=OPEN_STINT_START):
     end = end.mask(negative | start.isna())
     df["start"], df["end"], df["interval_status"] = start, end, status
     return df
+
+
+def censoring_sensitivity(df, cutoff, periods):
+    """National ADP under three unknown-end policies, holding all other rules fixed."""
+    dates = df[["book_in_date_time", "book_out_date_time", "stay_book_out_date_time"]]
+    rows = []
+    primary = {}
+    for specification in ["primary", "censor_all", "exclude_all"]:
+        intervals = build_intervals(dates, cutoff, open_policy=specification)
+        for period, (w0, w1) in periods.items():
+            population = adp(intervals, w0, w1)
+            if specification == "primary":
+                primary[period] = population
+            difference = population - primary[period]
+            rows.append({
+                "specification": specification, "period": period,
+                "days": window_days(w0, w1), "adp": population,
+                "adp_difference_from_primary": difference,
+                "pct_difference_from_primary": (
+                    difference / primary[period] * 100 if primary[period] else np.nan),
+            })
+    return pd.DataFrame(rows)
 
 
 def overlap_days(start, end, w0, w1):

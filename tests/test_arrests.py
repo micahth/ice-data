@@ -24,3 +24,5 @@ def test_monthly_output_retains_empty_months_and_marks_partial_month():
     assert monthly.partial_month.sum() == 1
     assert monthly.loc[monthly.partial_month, "month"].tolist() == ["2026-03"]
     assert monthly.loc[monthly.month == "2023-02", "arrests"].item() == 0
+    assert monthly.loc[monthly.month == "2024-02", "days_observed"].item() == 29
+    assert monthly.loc[monthly.month == "2026-03", "days_observed"].item() == 10

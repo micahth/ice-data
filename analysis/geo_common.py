@@ -10,6 +10,10 @@ External inputs (all public, fetched from GitHub raw/media URLs and cached):
   fbi_crime.csv              FBI state crime 2010-2024 (CatalinaBedoya1/PlotlyDashboard)
   rtci.csv                   Real-Time Crime Index sample, monthly through Jun 2026 (AH-Datalytics/rtci)
   acs.csv / gaz.txt / pres.csv  county ACS controls, land area, 2024 presidential vote (kmazurek95)
+
+Every download is pinned to a revision (REVISIONS) and verified against a sha256 +
+byte-size manifest (geo_checksums.json) before use; parsed frames are additionally
+checked for the columns the analyses depend on (REQUIRED_COLUMNS / require_columns).
 """
 import glob
 import hashlib
@@ -27,6 +31,13 @@ CACHE = os.environ.get("GEO_CACHE", os.path.join(HERE, ".cache"))
 RESULTS = os.path.join(HERE, "results")
 os.makedirs(CACHE, exist_ok=True)
 os.makedirs(RESULTS, exist_ok=True)
+
+# sha256 + byte size pinned to the revisions below, so a corrupt, truncated or
+# silently re-pointed upstream file is rejected instead of flowing into results.
+with open(os.path.join(HERE, "geo_checksums.json")) as _manifest:
+    _CHECKSUMS = json.load(_manifest)
+SOURCE_CHECKSUMS = _CHECKSUMS["sources"]
+POP_SHARD_CHECKSUMS = _CHECKSUMS["pop_shards"]
 
 RAW = "https://raw.githubusercontent.com"
 MEDIA = "https://media.githubusercontent.com/media"
@@ -66,13 +77,27 @@ def _write_checksum(path, digest):
             os.remove(temporary)
 
 
-def _fetch_to_cache(name, url, path):
+def _fetch_to_cache(name, url, path, expected=None):
     checksum = path + ".sha256"
-    if os.path.exists(path) and os.path.exists(checksum):
+    expected_checksum = None
+    if expected is not None:
+        expected_checksum = expected["sha256"]
+        if os.path.exists(path):
+            try:
+                _verify(path, expected)
+                cached_checksum = None
+                if os.path.exists(checksum):
+                    with open(checksum, encoding="ascii") as source:
+                        cached_checksum = source.read().strip()
+                if cached_checksum != expected_checksum:
+                    _write_checksum(path, expected_checksum)
+                return path
+            except ValueError:
+                print(f"  cached {name} failed SHA-256 verification; downloading again")
+    elif os.path.exists(path) and os.path.exists(checksum):
         with open(checksum, encoding="ascii") as source:
-            expected = source.read().strip()
-        actual = _sha256(path)
-        if expected == actual:
+            expected_checksum = source.read().strip()
+        if expected_checksum == _sha256(path):
             return path
         print(f"  cached {name} failed SHA-256 verification; downloading again")
     elif os.path.exists(path):
@@ -88,6 +113,8 @@ def _fetch_to_cache(name, url, path):
         if not os.path.exists(temporary) or os.path.getsize(temporary) == 0:
             raise ValueError(f"Download of {name} returned an empty file")
         digest = _sha256(temporary)
+        if expected is not None:
+            _verify(temporary, expected)
         os.replace(temporary, path)
         _write_checksum(path, digest)
         print(f"  verified {name}: sha256={digest}")
@@ -114,27 +141,73 @@ SOURCES = {
     "pres.csv": source_url("kmazurek95/us-election-county-swing", "data/raw/countypres_2000-2024.csv"),
 }
 
+# Columns each downstream analysis relies on; validated after parsing so a
+# reshaped upstream schema fails loudly instead of producing silent NaNs.
+REQUIRED_COLUMNS = {
+    "facilities_latest.parquet": ["detention_facility_code", "name", "city", "county", "county_fips_code", "state"],
+    "facilities_attributes.parquet": ["detention_facility_code", "type_detailed"],
+    "list1_2023.xlsx": ["CBSA Code", "CBSA Title", "Metropolitan/Micropolitan Statistical Area",
+                        "FIPS State Code", "FIPS County Code"],
+    "gdp.csv": ["GeoName", "Description", "2021", "2022", "2023", "2024", "2025"],
+    "laus_old.json": ["series_id", "year", "period", "value"],
+    "laus_new.csv": ["GeoID", "Year", "Unemployment Rate"],
+    "fbi_crime.csv": ["state", "year", "violent_crime_rate", "property_crime_rate"],
+    "rtci.csv": ["id", "size", "year", "month", "population", "violent_total", "property_total"],
+    "acs.csv": ["FIPS", "B01003_001E", "B01002_001E", "B19013_001E", "B15003_001E", "B15003_022E",
+               "B15003_023E", "B15003_024E", "B15003_025E", "B03002_001E", "B03002_012E", "B02001_003E"],
+    "gaz.txt": ["USPS", "GEOID", "ALAND_SQMI"],
+    "pres.csv": ["year", "state_po", "county_fips", "office", "candidate", "party", "candidatevotes",
+                "totalvotes", "mode"],
+}
+
+
+def require_columns(frame, name, extra=None):
+    """Raise unless `frame` exposes every column the analyses read from `name`."""
+    required = list(REQUIRED_COLUMNS.get(name, [])) + list(extra or [])
+    missing = [column for column in required if column not in frame.columns]
+    if missing:
+        raise ValueError(f"{name} is missing expected column(s): {missing}")
+    if len(frame) == 0:
+        raise ValueError(f"{name} contained no rows")
+    return frame
+
+
+def _verify(path, expected):
+    """Confirm an on-disk file matches the pinned sha256 and byte size."""
+    digest = hashlib.sha256()
+    size = 0
+    with open(path, "rb") as handle:
+        while chunk := handle.read(1024 * 1024):
+            digest.update(chunk)
+            size += len(chunk)
+    actual = digest.hexdigest()
+    if size != expected["size"] or actual != expected["sha256"]:
+        raise ValueError(
+            f"Checksum/size mismatch for {os.path.basename(path)}: "
+            f"{size} bytes, sha256={actual}")
+
 
 def fetch(name):
-    path = os.path.join(CACHE, name)
     try:
         url = SOURCES[name]
     except KeyError as error:
         raise ValueError(f"Unknown external data source: {name}") from error
+    path = os.path.join(CACHE, name)
     if not os.path.exists(path):
         print(f"  downloading {name}")
-    return _fetch_to_cache(name, url, path)
+    return _fetch_to_cache(name, url, path, SOURCE_CHECKSUMS.get(name))
 
 
 def fetch_pop_shards():
     d = os.path.join(CACHE, "pop")
     os.makedirs(d, exist_ok=True)
     for i in range(256):
-        p = os.path.join(d, f"{i:02x}.json")
-        url = source_url("GreatTombProductions/county-population", f"data/detail/{i:02x}.json")
+        key = f"{i:02x}.json"
+        p = os.path.join(d, key)
         if not os.path.exists(p):
             print(f"  downloading population shard {i:02x}")
-        _fetch_to_cache(f"population shard {i:02x}", url, p)
+        url = source_url("GreatTombProductions/county-population", f"data/detail/{key}")
+        _fetch_to_cache(f"population shard {i:02x}", url, p, POP_SHARD_CHECKSUMS[key])
     return d
 
 
@@ -244,15 +317,21 @@ def load_county_pop():
     rows = []
     for p in glob.glob(os.path.join(fetch_pop_shards(), "*.json")):
         for fips, v in json.load(open(p)).items():
+            if "s" not in v or "yr" not in v:
+                raise ValueError(f"{os.path.basename(p)} population shard missing 's'/'yr' keys for {fips}")
             for y, d in v["yr"].items():
                 rows.append((fips.zfill(5), v["s"], int(y), d["p"]))
     cp = pd.DataFrame(rows, columns=["fips", "state_name", "year", "pop"])
+    if cp.empty:
+        raise ValueError("County population shards produced no rows")
     cp["state"] = cp.state_name.map(STATE_ABBR)
     return cp
 
 
 def load_cbsa_delineation():
-    x = pd.read_excel(fetch("list1_2023.xlsx"), header=2, dtype=str).dropna(subset=["FIPS County Code"])
+    x = pd.read_excel(fetch("list1_2023.xlsx"), header=2, dtype=str)
+    require_columns(x, "list1_2023.xlsx")
+    x = x.dropna(subset=["FIPS County Code"])
     x = x[x["CBSA Code"].str.fullmatch(r"\d{5}", na=False)]
     x["fips"] = x["FIPS State Code"].str.zfill(2) + x["FIPS County Code"].str.zfill(3)
     x["cbsa_type"] = np.where(x["Metropolitan/Micropolitan Statistical Area"].str.startswith("Metro"),
