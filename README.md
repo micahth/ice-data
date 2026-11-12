@@ -1,61 +1,52 @@
-# ICE Detention & Arrests: A Geographic and Statistical Analysis (2023–2026)
+# ICE Enforcement Data: A Reproducible Analysis (2023–2026)
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+## ICE activity is changing—but what do administrative records actually show?
 
-## Executive summary
+I built an end-to-end analysis of ICE arrest and detention records from the Deportation Data Project, joining external population, economic, demographic, and crime data. The work turns messy records into reconciled measures, tests what can be inferred, and makes the aggregate results explorable.
 
-**Portfolio case study:** [five-minute overview](CASE_STUDY.md) · [Final Report](final_report.md)
+**Strongest result:** recorded arrests averaged **359 per day in 2023–2024 and 909 per day in 2025–March 10, 2026 (+153%)**. The comparison adjusts for window length, not seasonality. The convicted-criminal share of arrest records fell from **43.0% to 33.1%**. None of the four primary lagged-outcome arrest-rate tests survives Benjamini–Hochberg adjustment at *q* < .10.
 
-### Problem statement
+**My role:** I built the full workflow—from source reconciliation and data-quality rules through SQL, statistical validation, and communication.
 
-How did U.S. Immigration and Customs Enforcement (ICE) arrest and detention activity
-change between 2023 and March 2026, where is it concentrated, and are state arrest rates
-associated with later economic or crime outcomes? The analysis uses 2023–2026 records
-released by the [Deportation Data Project](https://deportationdata.org/) (administrative
-records, not unique-person counts), joined with population, economic, demographic and crime data.
+**Start here:** [Quick case study](CASE_STUDY.md) · [Final report](final_report.md) · [Explore the dashboard locally](#explore-the-dashboard)
 
-### Headline findings
+## Explore the dashboard
 
-- **Pace:** arrests per day rose from **359 to 909 (+153%)**, adjusting for unequal window lengths (not for seasonality).
-- **Composition:** the convicted-criminal share of arrest records fell from **43.0% to 33.1%**; pending-charge share rose from 17.4% to 29.0%.
-- **Geography:** facility average daily population per local resident rose in every region (where people are held, not a local-resident detention rate).
-- **Inference:** none of the four primary 2025 lagged-outcome arrest-rate tests survives Benjamini–Hochberg adjustment at q < .10. Results are exploratory, not causal.
+![Dashboard preview: recorded ICE apprehensions by geography](analysis/figures/dashboard_preview.png)
 
-### Tech stack
+Run the aggregate-only dashboard locally; it uses committed summary tables and **does not require downloading raw data**:
 
-| Layer | Tools |
-|---|---|
-| Data wrangling | Python 3.11/3.12, pandas, NumPy, PyArrow |
-| SQL | DuckDB (`analysis/sql/`), run directly over the source CSV/parquet |
-| Statistics | statsmodels (OLS, HC3/cluster-robust SEs, BH-FDR), SciPy |
-| Forecasting | log-AR(1), last-month and seasonal-naive baselines, expanding-window backtests |
-| Visualization | Matplotlib, seaborn, Streamlit dashboard |
-| Quality | pytest on synthetic fixtures, GitHub Actions CI, Git LFS for raw data |
+```bash
+python -m pip install -r requirements.txt
+streamlit run analysis/dashboard.py
+```
 
-## Key findings
+Choose state or ICE Area of Responsibility, compare observation windows, switch between totals, shares, and records per day, and download the displayed aggregate table.
 
-| Measure | 2023–2024 | Jan 2025–Mar 10, 2026 |
-|---|---:|---:|
-| Arrest records | 262,329 | 394,590 |
-| Days observed | 731 | 434 |
-| Arrests per day | 358.9 | 909.2 (+153%) |
-| Convicted-criminal share of arrest records | 43.0% | 33.1% |
-| Pending-charge share of arrest records | 17.4% | 29.0% |
-| Detention average daily population | 33.6k | 55.1k |
+## Who this is for / what it helps answer
 
-- **Geography:** Facility ADP per local resident rose in every region. This is where
-  people are held, not a local-resident detention rate.
-- **Criminality:** arrest-record classifications describe people at apprehension, and
-  are distinct from detention book-in categories.
-- **Statistical uncertainty:** none of the four primary 2025 lagged-outcome
-  arrest-rate tests survives Benjamini–Hochberg adjustment at q < .10. Other models
-  are unadjusted sensitivity analyses; intervals and detection limits appear in the report.
-- **Causality:** estimates are exploratory. Arrests are not completed removals, and
-  employment status is not observed.
-- **Annual timing:** economic comparisons use calendar-year outcomes, so the 2025
-  arrest period starts January 1 rather than January 20; it is not an inauguration-date design.
+For analysts, researchers, journalists, and decision-makers asking how recorded enforcement activity changed, where it was recorded, and whether state-level patterns merit further study. The analysis describes administrative activity; it is not an individual risk score, a measure of residents’ likelihood of detention, or evidence that enforcement caused later economic or crime outcomes.
+
+Read each measure by its denominator and location: arrest counts are records, not unique people or completed removals; apprehension geography is not residence; facility population per local resident describes where people are held, not local residents’ detention rates. Arrest records per day normalize unequal observation windows but do not adjust for seasonality.
+
+## Skills demonstrated
+
+- **Analyst applications:** reconcile source extracts and external datasets; define and validate cohorts; use DuckDB SQL and pandas with parity checks; surface data-quality limits; communicate results with clear denominators and uncertainty.
+- **Data-science applications:** specify exploratory inference, robust intervals, multiple-testing correction, holdout validation, and sensitivity checks; report null results and limits rather than overclaiming. The forecasting work is a **baseline comparison**, not a deployed-model example: log-AR(1) did not beat the last-month baseline on 14 held-out months.
+
+**Contact:** [GitHub profile](https://github.com/micahth).
+
+## Supplementary material
+
+- [Key outputs and source tables](outputs/README.md)
+- [SQL queries](analysis/sql/)
+- [Supplementary technical guide](analysis/MASTER_RESULTS.md)
+- [Supplementary notebooks](notebooks/)
+- [Archived original case study](Old%20Case%20Study/OLD_CASE_STUDY.md)
+- [Labor-market literature](analysis/LABOR_MARKET_LITERATURE.md) · [Facility activity notes](analysis/FACILITY_CHANGES.md) · [DDP codebook](data/codebook.txt)
+- [Data citation and license](#data-citation)
 
 ## Results & visualizations
 
@@ -104,16 +95,6 @@ result = model.fit(cov_type="HC3", use_t=True)          # robust SEs
 lower, upper = result.conf_int(alpha=0.05).loc[term]     # 95% CI
 q = multipletests(p_primary, method="fdr_bh")[1]         # BH-adjusted q-values
 ```
-
-## Read the analysis
-
-- **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
-- **[Key outputs](outputs/README.md):** the four main figures with their source tables.
-- **[Final Report](final_report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
-- **[Technical guide](analysis/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
-- **[Labor-market literature](analysis/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
-- **[Facility activity notes](analysis/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
-- **[DDP codebook](data/codebook.txt):** third-party source documentation.
 
 The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
