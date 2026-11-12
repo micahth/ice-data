@@ -266,9 +266,9 @@ def main():
                                                 stints=("n_stints", "sum")).reset_index()
     fac_summary.to_csv(os.path.join(RESULTS, "facility_counts_by_operator.csv"), index=False)
 
-  
+
     # 5. Quick console report
-  
+
     def show(name, cols, by, per=ERAS):
         """Print one table pivoted wide: rows are `by`, columns are metric x period."""
         t = tables[name]

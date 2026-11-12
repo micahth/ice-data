@@ -2,9 +2,20 @@
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+An analysis of ICE records from the [Deportation Data Project](https://deportationdata.org/),
+combining tested record-level transformations, geographic joins, and statistical inference.
 
 ## Executive summary
+
+**Transferable work:** explicit data-quality rules, exposure-adjusted metrics, SQL/pandas
+reconciliation, uncertainty reporting, and interactive communication. These techniques
+also arise in utilization and experimentation analytics; this project does **not**
+implement a churn model, retention analysis, or A/B-testing system.
+
+> **Development note:** I used AI-assisted development tools to accelerate implementation,
+> explore alternative approaches, and improve documentation and testing. I remained
+> responsible for defining analytical requirements, evaluating methodological choices,
+> validating outputs, and interpreting results.
 
 **Portfolio case study:** [five-minute overview](CASE_STUDY.md) · [Final Report](final_report.md)
 
@@ -108,15 +119,24 @@ q = multipletests(p_primary, method="fdr_bh")[1]         # BH-adjusted q-values
 ## Read the analysis
 
 - **[Case study](CASE_STUDY.md):** five-minute overview of the data problems, methods, and quality controls.
-- **[Key outputs](outputs/README.md):** the four main figures with their source tables.
+- **[Key outputs](outputs/README.md):** the four main figures with their source tables ([large-figure viewer](outputs/index.html)).
+- **[SQL views](sql/README.md):** selected result tables reproduced as declarative SQL and cross-checked against the pandas pipelines.
+- **[Interactive dashboard](dashboard/README.md):** a Streamlit app over the committed result tables (enforcement trend, geography, detention, model uncertainty).
+- **[Tableau companion](bi/README.md):** a downloadable workbook with an embedded annual state panel.
 - **[Final Report](final_report.md):** primary findings, hypothesis, estimates, intervals, and limitations.
 - **[Technical guide](analysis/MASTER_RESULTS.md):** cohorts, model specifications, provenance, and generated tables.
 - **[Labor-market literature](analysis/LABOR_MARKET_LITERATURE.md):** research motivating the question and distinguishing this descriptive analysis from causal studies.
 - **[Facility activity notes](analysis/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
 - **[DDP codebook](data/codebook.txt):** third-party source documentation.
 
-The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
+The seven ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
+
+## Research questions
+
+1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
+2. How did detention ADP and arrest pace change after normalizing for time and population?
+3. Are state arrest rates associated with changes in state economic or crime outcomes?
 
 ## Analytical pipeline
 
@@ -143,7 +163,7 @@ transitive lock file).
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt -r dashboard/requirements.txt
 python -m pytest -q
 python analysis/06_figures.py
 ```
@@ -152,16 +172,55 @@ Tests and chart generation use synthetic fixtures and committed result tables. T
 do not download raw LFS data or call external data services. CI runs the same test and
 syntax checks without hydrating the large raw inputs.
 
+The `sql/` folder reproduces selected result tables as declarative SQL (DuckDB) and
+`tests/test_sql.py` asserts the SQL output matches the pandas pipeline on the same input.
+
+Launch the interactive dashboard (reads the committed result tables, no raw data needed):
+
+```bash
+python -m pip install -r dashboard/requirements.txt
+streamlit run dashboard/app.py
+```
+
+For the standalone browser dashboard and full-size figure viewer:
+
+```bash
+python dashboard/build_site.py --output site
+python -m http.server 8000 --directory site
+```
+
+Open `http://localhost:8000`. Public hosting is **not yet enabled**: the current
+credential cannot change the Pages setting. A repository administrator must select
+**Settings > Pages > Source: GitHub Actions**. After this PR is merged, the
+`Publish dashboard` workflow builds and deploys the site. Its deployment URL is the
+source of truth; no live link is claimed before deployment succeeds.
+
+## Repository structure
+
+```text
+data/                     Raw FOIA exports (LFS) and third-party codebook
+analysis/                 Ordered analysis scripts, cached inputs, results, figures
+notebooks/                Supplementary research and release analyses
+sql/                      Declarative SQL reproductions of selected result tables
+dashboard/                Streamlit app over the committed result tables
+bi/                       Packaged Tableau workbook and reproducible builder
+outputs/                  Landing page and large-figure viewer for the four key figures
+tests/                    Synthetic tests for cohorts, intervals, models and outputs
+final_report.md           Reader-facing findings
+requirements.txt          Pinned direct dependencies
+LICENSE                   MIT license for the project code
+```
+
 ## Reproduction status
 
 | Item | Status |
 |---|---|
 | Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
-| Exact-file download | `download_data.py` defaults to the four published CSVs at an immutable repository revision, with SHA-256 and size verification |
-| Reproduction check | `reproduce.py` regenerates and compares all 30 committed CSV result tables, including headline statistics; full-data check passed |
-| Alternative download | `download_data.py --source alternative` fetches the pinned July 6, 2026 parquet revision; **not byte-identical** and not a reproduction source |
-| Runs without raw data | `pytest` and `06_figures.py` (synthetic fixtures and committed result tables) |
-| Needs raw data | Scripts `01`–`05`, which regenerate `analysis/results/` |
+| Exact-file download | `analysis/download_data.py` defaults to the four published CSVs at an immutable repository revision, with SHA-256 and size verification |
+| Reproduction check | `analysis/reproduce.py` regenerates and compares all 30 committed CSV result tables, including headline statistics; full-data check passed |
+| Alternative download | `analysis/download_data.py --source alternative` fetches the pinned July 6, 2026 parquet revision; **not byte-identical** and not a reproduction source |
+| Runs without raw data | `pytest`, `analysis/06_figures.py`, and both dashboards (synthetic fixtures and committed result tables) |
+| Needs raw data | Scripts `analysis/01`–`05`, which regenerate `analysis/results/` |
 
 ## Reproduce the full analysis
 
@@ -247,8 +306,9 @@ python analysis/forecast_arrests.py
 python analysis/forecast_adp.py
 ```
 
-The local dashboard switches state/AOR, observation window and count/share/daily-rate
-views, with CSV download; it reads only committed aggregates, not individual records.
+The analysis dashboard switches state/AOR, observation window and count/share/daily-rate
+views. The separate [`dashboard/`](dashboard/README.md) app adds enforcement trends,
+detention, model uncertainty and SQL views.
 The forecast example compares log-AR(1), last-month and seasonal-naive models with
 expanding-window, one-month-ahead backtesting. It excludes partial March throughout.
 Last-month forecasts outperform the fitted model on the 14 held-out months; this is
@@ -261,23 +321,6 @@ ADP computed from detention stints. No model beats last-month over the full publ
 again not evidence of deployment readiness. Refresh the published series with
 `python analysis/download_official_adp.py`; the record series needs the raw stints
 (`python analysis/07_monthly_adp.py`).
-
-## Repository structure
-
-```text
-data/                     Data sources: raw FOIA exports (Git LFS, not hand-edited) and codebook
-notebooks/                Supplemental vintage and release-outcome analyses
-analysis/                 Ordered pipeline scripts 01-07 and shared helpers
-analysis/sql/             Commented DuckDB queries for cleaning and aggregation
-analysis/results/         Generated summary tables (CSV)
-analysis/figures/         Exported PNG figures
-outputs/                  Landing page for the key figures and source tables
-tests/                    Synthetic tests for cohorts, intervals, models and outputs
-final_report.md           Reader-facing findings
-requirements.txt          Pinned direct dependencies
-LICENSE                   MIT license for the project code
-```
-
 ## Limitations
 
 This is descriptive and correlational, not causal: arrests are not completed

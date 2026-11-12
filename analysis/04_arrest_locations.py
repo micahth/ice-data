@@ -8,8 +8,7 @@ import os
 import argparse
 
 import pandas as pd
-# Shared arrest helpers: days covered by each era, cleaning, loading and monthly counts.
-from arrest_common import ARREST_DAYS, clean_arrests, load_arrests, monthly_arrests
+from arrest_common import ARREST_DAYS, clean_arrests, load_arrests, location_breakdown, monthly_arrests
 
 
 def main():
@@ -40,7 +39,7 @@ def main():
     print(f"rows: {len(arrests):,}")
     # Cleaning adds the date and era columns used below.
     arrests = clean_arrests(arrests)
-    # Number of days in each era, for per-day rates.
+    location_breakdown(arrests).to_csv(os.path.join(RES, "arrests_state_locations.csv"), index=False)
     days_by_era = ARREST_DAYS
     print("days per era:", days_by_era, "| last date:", arrests.date.max().date())
     # Prefer ICE's filled-in state, then the original state; otherwise "Unknown".

@@ -2,4 +2,5 @@ analysis/.cache/
 __pycache__/
 .pytest_cache/
 .venv/
+site/
 /data/raw/

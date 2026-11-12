@@ -2,6 +2,11 @@
 
 I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
+> **Development note:** I used AI-assisted development tools to accelerate implementation,
+> explore alternative approaches, and improve documentation and testing. I remained
+> responsible for defining analytical requirements, evaluating methodological choices,
+> validating outputs, and interpreting results.
+
 ## 1. The problem
 
 How did ICE arrest and detention activity change over time and geographically, and were state-level arrest rates associated with economic or crime outcomes?
@@ -36,8 +41,18 @@ The asymmetric treatment is a documented assumption: if old open records represe
 - DuckDB SQL for the same arrest cohort and aggregates, with a window-function share calculation and parity checks against pandas.
 - An aggregate-only Streamlit view of state/AOR shares and daily rates, with CSV download.
 - Descriptive comparisons and regressions with HC3 or clustered errors, 95% confidence intervals, and Benjamini–Hochberg adjustment.
+- Declarative SQL reproductions of selected tables (`sql/`), cross-checked against the pandas pipelines.
+- An interactive Streamlit dashboard over the committed result tables (`dashboard/`).
 - Monthly forecasts with expanding-window backtesting against last-month and seasonal-naive baselines.
 - Automated tests, committed result tables, and documented data provenance.
+
+> **What I decided vs. what the source provided.** The Deportation Data Project supplied
+> the raw record fields (dates, locations, criminality flags, duplicate markers). The
+> analytical choices are mine: the open-record censoring rule and its asymmetric
+> treatment, the January 1 era split, exposure-time denominators and per-capita
+> normalization, the regression specifications and robust/clustered inference, and the
+> Benjamini–Hochberg multiple-testing correction. Those judgment calls — and testing and
+> disclosing them — are the contribution.
 
 ## 5. What I found
 
@@ -71,18 +86,20 @@ The 153% daily-rate comparison normalizes window length but not seasonality. Thi
 
 ## 7. Skills demonstrated
 
-| Work | Skill |
-|---|---|
-| Excluding duplicates and invalid intervals | Data quality and validation |
-| Reconstructing detention intervals; handling open records | Record-level transformation, business rules |
-| Reconciling aggregates to source totals | Data integrity |
-| Joining external datasets | Data integration |
-| Conditional aggregation and window shares in DuckDB | SQL |
-| State/AOR dashboard and aggregate CSV downloads | Stakeholder communication |
-| Time-ordered backtesting against naive forecasts | Predictive modeling and leakage prevention |
-| Population-normalized rates | Metric construction |
-| Tests and CI | Quality assurance |
-| Documenting source revisions and limits | Auditability |
-| Models with uncertainty | Analytical reasoning |
+| Work | Skill | Where this appears in industry |
+|---|---|---|
+| Excluding duplicates and invalid intervals | Data quality and validation | Deduping events/orders; rejecting malformed records in a pipeline |
+| Reconstructing detention intervals; handling open records | Record-level transformation, business rules | Duration and utilization metrics with incomplete end dates; not a fitted churn/survival model |
+| Reconciling aggregates to source totals | Data integrity | Pipeline tie-outs; financial/reporting reconciliation |
+| Joining external datasets | Data integration | Enriching facts with dimensions from multiple systems |
+| Population-normalized rates | Metric construction | Per-user / per-capita KPIs instead of raw counts |
+| Average daily population from bed-days | Exposure-adjusted measures | Average active users, utilization and occupancy rates |
+| Declarative SQL matched to the pandas result | SQL / set-based thinking | Warehouse queries, dbt models, BI data sources |
+| Multiple-testing correction (Benjamini–Hochberg) | Inferential discipline | Managing false discoveries across multiple comparisons; not an A/B-test design or sequential guardrail |
+| Interactive dashboard over result tables | Stakeholder communication | Self-serve BI dashboards for non-technical partners |
+| Tests and CI | Quality assurance | Guarding analytics logic against regressions |
+| Documenting source revisions and limits | Auditability | Reproducible, defensible reporting |
+| Models with uncertainty | Analytical reasoning | Confidence intervals and honest effect-size reporting |
+| Time-ordered forecast backtesting | Predictive modeling and leakage prevention | Comparing forecasts with simple baselines before deployment |
 
-Tools: Python, SQL, DuckDB, Streamlit, pandas, NumPy, SciPy, statsmodels, matplotlib, pytest, Git/GitHub Actions, CSV/parquet.
+Tools: Python, pandas, NumPy, SciPy, statsmodels, matplotlib, SQL (DuckDB), Streamlit, pytest, Git/GitHub Actions, CSV/parquet.
