@@ -77,6 +77,10 @@ For scale, the interquartile range of 2025 state arrest rates is about **54 per 
 
 **Detection limits:** with only 44–50 states and one post-period year, approximate minimum detectable associations at 80% power and nominal two-sided alpha = .05 are **0.31 percentage points of GDP growth, 0.14 points of unemployment change, 4.66% violent-crime change and 3.23% property-crime change** across that arrest-rate IQR. These use `(t(.975, residual df) + z(.80)) × HC3 SE × IQR/10` ([generated table](analysis/results/arrest_mde.csv)). They are retrospective precision-based approximations conditional on the fitted design and variance, not a prospective power calculation or observed power; multiplicity would generally increase detection thresholds. Nonsignificance therefore does not rule out smaller associations, particularly for crime.
 
+### Detention-population forecast
+
+A one-month-ahead forecast of the average daily detained population (ADP) did not beat the last-month baseline over the full published sample (mean absolute error 1,950.5 for last-month vs 2,023.8 for the best fitted model, damped-trend ETS). ETS did better only in 2025 onward, over 18 forecasts. Record-level ADP is 3.29% below ICE's published ADP on average, so the two series are reported separately. Details are in the [technical guide](analysis/MASTER_RESULTS.md#portfolio-examples).
+
 ## Methods and limitations
 
 Arrest counts are deduplicated records, not unique people or completed removals; apprehension location need not be residence or workplace. The January 1, 2025 split is a calendar-year comparison, not an intervention-date design. March 2026 is partial, and regression models omit partial-year 2026.

@@ -94,3 +94,22 @@ All tables live in `results/` as ordinary Git CSVs. `pytest` checks synthetic co
 | Log-AR(1) | 14 | 4,472.8 | 5,015.3 |
 
 The fitted log-AR(1) model does **not** beat the last-month baseline. It fits an intercept and lagged log count by OLS using past months only; inverse-log predictions represent conditional medians, bounded at zero to respect count support. The short evaluation period spans a policy/regime shift, so these 14 origins are not independent validation replicates or evidence of deployment readiness. The March full-month projections (29,661 last-month; 18,640 seasonal; 29,730 log-AR(1)) are illustrative, not observed totals. No calibrated forecast intervals or causal interpretation are claimed. Tests perturb future and partial-month counts to ensure earlier predictions do not change.
+
+**Detention-population forecasting (ADP):** `python analysis/forecast_adp.py` forecasts the *average daily detained population* (ADP): person-days in ICE detention in a calendar month divided by days in the month. It is a stock, not a count of unique people or of book-ins, and it is separate from the arrest forecast. Design, audit and reconciliation notes are in [`ADP_DATA_AUDIT.md`](ADP_DATA_AUDIT.md); the staged plan is [`ADP_FORECAST_PLAN.md`](ADP_FORECAST_PLAN.md).
+
+- **Two sources, never combined.** *Published* ADP is ICE's detention-management statistics as parsed by the Deportation Data Project (94 months, October 2018–July 2026; `data/ice_published_adp_monthly.csv`, refreshed with `python analysis/download_official_adp.py`, pinned and checksum-verified). *Records* ADP is computed from detention stints (January 2023–February 2026 after burn-in; `monthly_adp_records.csv`, from `07_monthly_adp.py`). Every forecast row carries its `source`.
+- **Transfer-safe rule.** For the records series, each non-final stint ends no later than the next stint's book-in, the stay-end fallback applies only to the final stint, and overlapping intervals for one person are merged. The period ADP in `overall.csv` still uses the original rule. The Stage 1 audit finds the difference is small: clipping overlaps lowers monthly ADP by at most 0.0097%, 874 person-days across all months.
+- **Reconciliation.** Over the 38 common complete months, records ADP is below published ADP in every month, by a mean of 3.29% (about 1,550 ADP). The gap widens from about 2% in 2023 to about 5% from mid-2025, while month-over-month changes correlate at 0.998. The likely reasons (hold rooms and short stays, facility scope, snapshot timing, the open-stint policy, revisions) are not tested here.
+- **Design.** Baselines are last-month, seasonal-naive and a seasonal-naive-with-drift extra. Models, fixed before running, are log-AR(1), log-AR(1) with month dummies (36+ training months), damped-trend ETS on log ADP and, for records only, log-AR(1) with lagged log arrests. Each origin trains on past months only with an expanding window (36 initial months for published, 24 for records); partial months are excluded; a failed fit is kept as a row with a missing forecast and a `fit_status`. Nothing is tuned on backtest targets.
+- **Intervals.** 80% and 95% bounds are empirical quantiles of each model's earlier one-step log errors, with at least 12 prior errors; earlier rows have no bounds.
+
+| Published series, 57 forecasts (2021-10–2026-06) | MAE (ADP) | RMSE (ADP) | Mean error (ADP) |
+|---|---:|---:|---:|
+| Last month | 1,950.5 | 2,520.4 | −636.6 |
+| Seasonal naive | 9,432.5 | 12,321.9 | −9,238.7 |
+| Log-AR(1) | 2,080.7 | 2,642.7 | −935.0 |
+| Damped-trend ETS | 2,023.8 | 2,601.7 | −128.8 |
+
+No model beats last-month over the full published sample or in 2022–2024. Damped-trend ETS has lower MAE only from 2025 onward (2,232.4 vs 2,722.5 over 18 forecasts, MASE 0.82), and on the 14-forecast records sample (MAE 2,223.7 vs 2,479.4); the records result has only 2 forecasts with intervals. Last-month's 80% and 95% intervals cover 0.80 and 0.96 of published full-sample actuals. These forecasts come from few, serially dependent origins across a regime change, so they are not evidence of deployment readiness. The July 2026 published value is excluded as partial (the file was pulled July 11). Nothing here is causal. `adp_forecast_backtest.csv`, `adp_forecast_metrics.csv` (by source, model and period) and `adp_forecast_projection.csv` hold the outputs; `figures/monthly_adp_forecast.png` plots them.
+
+![Monthly ADP backtest](figures/monthly_adp_forecast.png)

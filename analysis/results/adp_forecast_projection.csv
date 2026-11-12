@@ -1,0 +1,15 @@
+source,month,train_start,train_end,n_train,model,forecast,fit_status
+published,2026-07,2018-10,2026-06,93,last_month,59425.3333,ok
+published,2026-07,2018-10,2026-06,93,seasonal_naive,58316.8065,ok
+published,2026-07,2018-10,2026-06,93,seasonal_naive_drift,60382.2734,ok
+published,2026-07,2018-10,2026-06,93,log_ar1,59208.7162,ok
+published,2026-07,2018-10,2026-06,93,log_ar1_seasonal,58704.2968,ok
+published,2026-07,2018-10,2026-06,93,ets_damped,59175.5058,ok
+published,2026-07,2018-10,2026-06,93,log_ar1_arrests,,not_applicable
+records,2026-03,2023-01,2026-02,38,last_month,64816.8842,ok
+records,2026-03,2023-01,2026-02,38,seasonal_naive,45442.8096,ok
+records,2026-03,2023-01,2026-02,38,seasonal_naive_drift,71735.7648,ok
+records,2026-03,2023-01,2026-02,38,log_ar1,65272.3545,ok
+records,2026-03,2023-01,2026-02,38,log_ar1_seasonal,65785.6605,ok
+records,2026-03,2023-01,2026-02,38,ets_damped,65829.4352,ok
+records,2026-03,2023-01,2026-02,38,log_ar1_arrests,65793.5104,ok

@@ -1,7 +1,8 @@
 # Plan: monthly ICE detention population (ADP) forecast
 
-Status: **plan only**. Nothing in this document is a result. Stages 1–7 below each end
-with a self-contained AI prompt that can be run in order.
+Status: **complete (Stages 1–7 executed)**. This is the historical plan; results and decisions are in
+[`ADP_DATA_AUDIT.md`](ADP_DATA_AUDIT.md) and [`MASTER_RESULTS.md`](MASTER_RESULTS.md#portfolio-examples).
+The optional Diebold-Mariano tests and the `log_ar1_arrests` link beyond the records series were not done.
 
 ## Design decisions
 

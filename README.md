@@ -169,6 +169,7 @@ not a claim of faster execution; queries are in [`analysis/sql/`](analysis/sql).
 python analysis/04_arrest_locations.py --engine duckdb --output-dir /tmp/ice-sql-results
 streamlit run analysis/dashboard.py --browser.gatherUsageStats=false
 python analysis/forecast_arrests.py
+python analysis/forecast_adp.py
 ```
 
 The local dashboard switches state/AOR, observation window and count/share/daily-rate
@@ -178,6 +179,13 @@ expanding-window, one-month-ahead backtesting. It excludes partial March through
 Last-month forecasts outperform the fitted model on the 14 held-out months; this is
 an honest baseline comparison, not evidence of deployment readiness. See the
 [technical guide](analysis/MASTER_RESULTS.md#portfolio-examples).
+
+A separate forecast covers the average daily detained population (ADP) from two sources that are
+compared but never combined: ICE's published monthly statistics (via the Deportation Data Project) and
+ADP computed from detention stints. No model beats last-month over the full published sample; this is
+again not evidence of deployment readiness. Refresh the published series with
+`python analysis/download_official_adp.py`; the record series needs the raw stints
+(`python analysis/07_monthly_adp.py`).
 
 ## Repository structure
 

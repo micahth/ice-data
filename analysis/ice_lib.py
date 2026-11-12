@@ -118,3 +118,47 @@ def interval_diagnostics(df):
     flagged = set(stay.loc[stay["flag"], "stay_ID"])
     out.loc[valid.index, "concurrent_stay"] = valid["stay_ID"].isin(flagged)
     return out
+
+
+def transfer_safe_intervals(df):
+    """Person-level, non-overlapping [start, end) intervals from the output of `build_intervals()`.
+
+    Within a stay each non-final stint ends no later than the next stint's book-in (an unknown end
+    becomes that book-in), so the stay-end fallback only governs the final stint. Remaining overlaps
+    for the same unique_identifier are merged; gaps between stints stay gaps. Rows without a usable
+    interval are dropped. Needs stay_ID, unique_identifier, start, end and interval_status.
+    """
+    d = df[df["start"].notna()].copy()
+    order = d.sort_values(["stay_ID", "start"], kind="stable")
+    nxt = order.groupby("stay_ID", sort=False)["start"].shift(-1).reindex(d.index)
+    has_next = nxt.notna() & (d["interval_status"] != "invalid_negative")
+    d["end"] = d["end"].where(~has_next, d["end"].where(d["end"] <= nxt, nxt))
+    d.loc[has_next & d["end"].isna(), "end"] = nxt
+    d = d[d["end"].notna() & (d["end"] > d["start"])]
+    person = d["unique_identifier"].where(d["unique_identifier"].notna(), pd.Series(d.index, index=d.index).map(
+        lambda i: f"__row{i}"))
+    d = d.assign(person=person.astype(str)).sort_values(["person", "start", "end"], kind="stable")
+    end_ns = d["end"].astype("int64")
+    prior_max = end_ns.groupby(d["person"], sort=False).cummax().groupby(d["person"], sort=False).shift()
+    new_block = prior_max.isna() | (d["start"].astype("int64") > prior_max)
+    block = new_block.cumsum()
+    return d.groupby(block, sort=False).agg(
+        unique_identifier=("person", "first"), start=("start", "min"), end=("end", "max")).reset_index(drop=True)
+
+
+def monthly_adp(intervals, first_month, last_month, cutoff):
+    """Monthly ADP over calendar-month windows [month start, next month start).
+
+    The window is cut at the day after `cutoff` (inclusive cutoff), so a month containing the cutoff
+    is `partial_month` and its ADP averages over the days observed only. Months after the cutoff are omitted.
+    """
+    observed_end = pd.Timestamp(cutoff) + pd.Timedelta(days=1)
+    rows = []
+    for m in pd.period_range(first_month, last_month, freq="M"):
+        w0, w1 = m.start_time, (m + 1).start_time
+        if w0 >= observed_end:
+            continue
+        w1_obs = min(w1, observed_end)
+        rows.append({"month": str(m), "adp": adp(intervals, w0, w1_obs), "days_in_month": m.days_in_month,
+                     "days_observed": window_days(w0, w1_obs), "partial_month": w1_obs < w1})
+    return pd.DataFrame(rows)

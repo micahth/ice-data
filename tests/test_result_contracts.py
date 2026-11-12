@@ -113,3 +113,26 @@ def test_confidence_intervals_and_model_metadata(name):
     assert (reg.n > reg.n_parameters).all()
     assert set(reg.loc[reg.era == "New", "cov_type"]) == {"HC3"}
     assert reg.q_bh.dropna().between(0, 1).all()
+
+
+def test_adp_forecast_outputs_are_internally_consistent():
+    backtest = pd.read_csv(RESULTS / "adp_forecast_backtest.csv")
+    metrics = pd.read_csv(RESULTS / "adp_forecast_metrics.csv")
+    projection = pd.read_csv(RESULTS / "adp_forecast_projection.csv")
+    assert set(backtest.source) == set(metrics.source) == set(projection.source) == {"published", "records"}
+    assert (pd.PeriodIndex(backtest.train_end, freq="M") < pd.PeriodIndex(backtest.month, freq="M")).all()
+    assert ((backtest.forecast - backtest.actual - backtest.error).abs().dropna() < 1e-3).all()
+    for (source, model), group in backtest.dropna(subset=["forecast"]).groupby(["source", "model"]):
+        row = metrics[(metrics.source == source) & (metrics.model == model) & (metrics.period == "full")].iloc[0]
+        assert row.n_forecasts == len(group)
+        assert row.mae == pytest.approx(group.error.abs().mean(), abs=1e-3)
+        assert row.mean_error == pytest.approx(group.error.mean(), abs=1e-3)
+    for source, group in projection.groupby("source"):
+        last = pd.Period(backtest[backtest.source == source].month.max(), "M")
+        assert pd.Period(group.month.iloc[0], "M") == last + 1
+        assert pd.Period(group.train_end.iloc[0], "M") == last
+    reconciliation = pd.read_csv(RESULTS / "adp_series_reconciliation.csv")
+    published = pd.read_csv(REPO / "analysis/data/ice_published_adp_monthly.csv")
+    records = pd.read_csv(RESULTS / "monthly_adp_records.csv")
+    assert set(reconciliation.month) <= set(records.month)
+    assert set(reconciliation.month) <= set(pd.to_datetime(published.month).dt.strftime("%Y-%m"))
