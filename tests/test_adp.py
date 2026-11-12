@@ -38,14 +38,25 @@ def test_fytd_derivation_is_exact():
 
 
 def test_fytd_check_and_revisions_report_without_raising():
-    s = frame(["2019-10-01", "2019-11-01"], [100.0, 160.0])
-    ytd = pd.DataFrame({"fiscal_year": [2020, 2020], "file_date": ["2019-11-30", "2019-12-31"],
+    s = frame(pd.date_range("2019-10-01", periods=12, freq="MS"), [100.0, 160.0] + [120.0] * 10)
+    ytd = pd.DataFrame({"fiscal_year": [2020, 2020], "file_date": ["2020-09-30", "2020-12-31"],
                         "adp_fy_ytd": [129.0, 140.0]})
     check = fytd_check(s, ytd, tolerance=0.01)
-    assert check.loc[0, "recomputed_ytd"] == pytest.approx((100 * 31 + 160 * 30) / 61)
+    assert check.loc[0, "months"] == 12
+    assert check.loc[0, "recomputed_ytd"] == pytest.approx((100 * 31 + 160 * 30 + 120 * 305) / 366)
+    assert check.loc[0, "published_ytd"] == 140.0
     assert not check.loc[0, "ok"]
     rev = fytd_revisions(ytd)
     assert rev.loc[0, "pct_revision"] == pytest.approx((140 / 129 - 1) * 100)
+
+
+def test_fytd_check_skips_incomplete_years_and_missing_published_values():
+    s = frame(pd.date_range("2019-10-01", periods=12, freq="MS"), [100.0] * 12)
+    ytd = pd.DataFrame({"fiscal_year": [2020], "file_date": ["2020-09-30"], "adp_fy_ytd": [100.0]})
+    assert fytd_check(s.iloc[:2], ytd).empty
+    assert fytd_check(s.drop(index=5), ytd).empty
+    assert fytd_check(s, ytd.iloc[:0]).empty
+    assert fytd_check(s, ytd).loc[0, "ok"]
 
 
 def test_committed_published_series_is_valid():
