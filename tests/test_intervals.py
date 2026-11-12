@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "analysis"))
-from ice_lib import adp, annualize, build_intervals, censoring_sensitivity, overlap_days, window_days  # noqa: E402
+from ice_lib import adp, annualize, build_intervals, censoring_sensitivity, interval_diagnostics, overlap_days, window_days  # noqa: E402
 
 T = pd.Timestamp
 CUTOFF = T("2026-03-11")
@@ -173,3 +173,33 @@ def test_annualization_uses_actual_days_in_each_window():
     assert annualize(100, T("2023-01-01"), T("2024-01-01")) == pytest.approx(100 * 365.25 / 365)
     assert annualize(100, T("2024-01-01"), T("2025-01-01")) == pytest.approx(100 * 365.25 / 366)
     assert annualize(70, T("2026-01-01"), T("2026-03-12")) == pytest.approx(365.25)
+
+
+def diag(rows):
+    df = pd.DataFrame(rows, columns=["stay_ID", "unique_identifier", "book_in_date_time", "book_out_date_time",
+                                     "stay_book_out_date_time"])
+    for c in df.columns[2:]:
+        df[c] = pd.to_datetime(df[c])
+    return interval_diagnostics(build_intervals(df, CUTOFF))
+
+
+def test_missing_middle_book_out_flags_exact_overlap():
+    d = diag([("s", "p", "2024-01-01", "2024-01-05", "2024-01-20"),
+              ("s", "p", "2024-01-05", None, "2024-01-20"),
+              ("s", "p", "2024-01-10", "2024-01-20", "2024-01-20")])
+    assert d["overlaps_next_stint"].tolist() == [False, True, False]
+    assert d["overlap_days"].tolist() == [0, 10, 0]
+    assert d["stay_end_fallback"].tolist() == [False, True, False]
+
+
+def test_clean_transfer_stay_has_no_overlap():
+    d = diag([("s", "p", "2024-01-01", "2024-01-05", "2024-01-10"),
+              ("s", "p", "2024-01-05", "2024-01-10", "2024-01-10")])
+    assert d["overlap_days"].sum() == 0 and not d["concurrent_stay"].any()
+
+
+def test_overlapping_stays_for_one_person_are_flagged():
+    d = diag([("a", "p", "2024-01-01", "2024-01-10", "2024-01-10"),
+              ("b", "p", "2024-01-05", "2024-01-15", "2024-01-15"),
+              ("c", "q", "2024-01-05", "2024-01-15", "2024-01-15")])
+    assert d["concurrent_stay"].tolist() == [True, True, False]

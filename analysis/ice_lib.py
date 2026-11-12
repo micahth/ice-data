@@ -87,3 +87,34 @@ def adp(df, w0, w1, keys=None):
 def annualize(count, w0, w1):
     """Scale a count observed in [w0, w1) to a 365.25-day year using the window's actual length."""
     return count / (window_days(w0, w1) / 365.25)
+
+
+def interval_diagnostics(df):
+    """Per-record transfer/overlap flags for the output of `build_intervals()`.
+
+    `df` needs stay_ID, unique_identifier, book_in_date_time, book_out_date_time, start, end.
+    Adds `stay_end_fallback`, `overlaps_next_stint`, `overlap_days` (this interval's end past the
+    next stint's start in the same stay) and `concurrent_stay` (another stay of the same person
+    overlaps this interval). Row order and index are preserved.
+    """
+    out = df.copy()
+    out["stay_end_fallback"] = out["book_out_date_time"].isna() & out["end"].notna() & (
+        out["interval_status"] == "closed")
+    order = out.sort_values(["stay_ID", "book_in_date_time"], kind="stable")
+    next_start = order.groupby("stay_ID", sort=False)["book_in_date_time"].shift(-1)
+    over = (order["end"] - next_start).dt.total_seconds() / 86400
+    over = over.where(order["end"].notna() & next_start.notna(), 0).clip(lower=0)
+    out["overlap_days"] = over.reindex(out.index)
+    out["overlaps_next_stint"] = out["overlap_days"] > 0
+
+    out["concurrent_stay"] = False
+    valid = out[out["end"].notna() & out["start"].notna()]
+    stay = valid.groupby(["unique_identifier", "stay_ID"], sort=False).agg(s=("start", "min"), e=("end", "max"))
+    stay = stay.reset_index().sort_values(["unique_identifier", "s"], kind="stable")
+    prev_max_end = stay.groupby("unique_identifier", sort=False)["e"].transform(
+        lambda x: x.shift().cummax())
+    next_start_s = stay.groupby("unique_identifier", sort=False)["s"].shift(-1)
+    stay["flag"] = (stay["s"] < prev_max_end) | (stay["e"] > next_start_s)
+    flagged = set(stay.loc[stay["flag"], "stay_ID"])
+    out.loc[valid.index, "concurrent_stay"] = valid["stay_ID"].isin(flagged)
+    return out
