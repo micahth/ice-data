@@ -64,6 +64,9 @@ jobs:
       - name: Check script syntax
         run: python -m compileall -q analysis tests
 
+      - name: Lint refactored and survival scripts
+        run: ruff check analysis/reproduce.py analysis/survival.py
+
       - name: Test helpers, synthetic data and result contracts
         run: python -m pytest -q
         env:

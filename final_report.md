@@ -1,4 +1,4 @@
-# ICE enforcement expanded; state-level outcome estimates remain uncertain
+# Convicted-criminal arrest records nearly doubled per day as their share fell
 
 Micah Holmquist | Deportation Data Project CSV exports dated July 24, 2026
 
@@ -15,6 +15,7 @@ The labor-market effects of enforcement are an empirical question, not a one-dir
 | Included arrest records | 262,329 | 394,590 |
 | Window length | 731 days | 434 days |
 | Arrests per day | 358.9 | 909.2 |
+| Convicted-criminal arrest records per day | 154.2 | 301.4 |
 | Convicted-criminal share of arrest records | 43.0% | 33.1% |
 | Pending-charge share of arrest records | 17.4% | 29.0% |
 

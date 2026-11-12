@@ -21,7 +21,7 @@ SCRIPTS = (
 )
 
 
-def compare_results(expected, actual):
+def compare_results(expected: str | Path, actual: str | Path) -> None:
     expected, actual = Path(expected), Path(actual)
     names = {path.name for path in expected.glob("*.csv")}
     actual_names = {path.name for path in actual.glob("*.csv")}
@@ -50,22 +50,26 @@ def compare_results(expected, actual):
     print(f"PASS: all {len(names)} result tables match (absolute numeric tolerance 1e-6).", flush=True)
 
 
-def reproduce(work_directory):
+def prepare_workspace(work_directory: str | Path) -> tuple[Path, Path, Path]:
     if os.environ.get("ICE_DATA_DIR"):
         raise ValueError("Unset ICE_DATA_DIR: published reproduction requires the July 24 CSVs")
     verify_published(REPO / "data")
-    work_directory = Path(work_directory).resolve()
-    if work_directory.is_relative_to(REPO / "analysis") or work_directory.is_relative_to(REPO / "data"):
+    workspace = Path(work_directory).resolve()
+    if workspace.is_relative_to(REPO / "analysis") or workspace.is_relative_to(REPO / "data"):
         raise ValueError("The reproduction workspace must be outside analysis/ and data/")
-    work_directory.mkdir(parents=True, exist_ok=False)
-    analysis = work_directory / "analysis"
+    workspace.mkdir(parents=True, exist_ok=False)
+    analysis = workspace / "analysis"
     shutil.copytree(REPO / "analysis", analysis, ignore=shutil.ignore_patterns(
         ".cache", "__pycache__", "results", "figures",
     ))
-    (work_directory / "data").symlink_to(REPO / "data", target_is_directory=True)
-    expected = work_directory / "expected"
+    (workspace / "data").symlink_to(REPO / "data", target_is_directory=True)
+    expected = workspace / "expected"
     expected.mkdir()
-    # Read the Git snapshot, not potentially edited working-tree expectations.
+    return workspace, analysis, expected
+
+
+def snapshot_results(expected: Path) -> str:
+    # Compare against the committed snapshot rather than potentially edited results.
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO, text=True).strip()
     paths = subprocess.check_output(
         ["git", "ls-tree", "-r", "--name-only", revision, "analysis/results/"], cwd=REPO, text=True,
@@ -75,19 +79,29 @@ def reproduce(work_directory):
             (expected / Path(path).name).write_bytes(subprocess.check_output(
                 ["git", "show", f"{revision}:{path}"], cwd=REPO,
             ))
+    return revision
+
+
+def run_scripts(workspace: Path, analysis: Path) -> None:
     env = os.environ | {"GEO_CACHE": str(analysis / ".cache"), "MPLBACKEND": "Agg"}
     for script in SCRIPTS:
-        print(f"Running {script}; log: {work_directory / (script + '.log')}", flush=True)
-        with (work_directory / (script + ".log")).open("w") as log:
+        print(f"Running {script}; log: {workspace / (script + '.log')}", flush=True)
+        with (workspace / (script + ".log")).open("w") as log:
             subprocess.run(
-                [sys.executable, str(analysis / script)], cwd=work_directory,
+                [sys.executable, str(analysis / script)], cwd=workspace,
                 env=env, stdout=log, stderr=subprocess.STDOUT, check=True,
             )
+
+
+def reproduce(work_directory: str | Path) -> None:
+    workspace, analysis, expected = prepare_workspace(work_directory)
+    revision = snapshot_results(expected)
+    run_scripts(workspace, analysis)
     compare_results(expected, analysis / "results")
     print(f"Published headline statistics and tables reproduced against {revision}.", flush=True)
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work-dir", required=True, type=Path, help="New directory for outputs, fresh cache and logs")
     args = parser.parse_args()

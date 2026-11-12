@@ -29,7 +29,7 @@ from regression_common import CONTROLS, coefficient, fit, primary_bh, require_co
 def main():
     # Widen console output so the tables print without wrapping.
     pd.set_option("display.width", 220, "display.max_columns", 40)
-    # State the pre-registered primary tests up front so the output can't be read as a fishing expedition.
+    # Identify the primary family separately from the sensitivity analyses.
     print("PRIMARY TESTING FAMILY: four 2025 (New), M0 + lagged-outcome arrest-rate coefficients; "
           "Benjamini–Hochberg correction is limited to these four tests.")
 

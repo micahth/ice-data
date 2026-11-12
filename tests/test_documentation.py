@@ -8,7 +8,7 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 def test_local_report_links_exist():
-    documents = [REPO / "README.md", REPO / "outputs/README.md", REPO / "CASE_STUDY.md", REPO / "final_report.md", *REPO.glob("analysis/*.md")]
+    documents = [REPO / "README.md", REPO / "outputs/README.md", REPO / "CASE_STUDY.md", REPO / "final_report.md", *REPO.glob("analysis/*.md"), *REPO.glob("docs/*.md"), REPO / "archive/README.md"]
     for document in documents:
         for link in re.findall(r"\]\(([^)]+)\)", document.read_text()):
             if "://" not in link and not link.startswith("#"):
@@ -22,6 +22,10 @@ def test_report_headline_and_intervals_match_generated_tables():
     for _, row in summary.iterrows():
         assert f"{int(row.arrests):,}" in report
         assert f"{row.arrests_per_day:.1f}" in report
+    counts = pd.read_csv(REPO / "analysis/results/arrest_criminality.csv").set_index("era")
+    for era in ("old", "new"):
+        rate = counts.loc[era, "1 Convicted Criminal"] / summary.loc[era, "days"]
+        assert f"{rate:.1f}" in report
     monthly = pd.read_csv(REPO / "analysis/results/monthly_arrests.csv")
     assert f"{monthly.loc[~monthly.partial_month, 'arrests'].max():,}" in report
     reg = pd.read_csv(REPO / "analysis/results/arrest_regressions.csv")
