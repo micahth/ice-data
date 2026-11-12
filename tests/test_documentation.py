@@ -100,3 +100,19 @@ def test_adp_forecast_documentation_matches_generated_tables():
     audit = pd.read_csv(REPO / "analysis/results/detention_interval_audit.csv")
     assert f"{audit.double_count_pct.max():.4f}%" in master
     assert f"{audit.overlap_person_days.sum():,.0f} person-days" in master
+
+
+def test_adp_dm_and_interval_claims_match_generated_tables():
+    master = (REPO / "analysis/MASTER_RESULTS.md").read_text()
+    dm = pd.read_csv(REPO / "analysis/results/adp_forecast_dm_tests.csv")
+    ab = dm[(dm.source == "published") & (dm.model == "ets_damped") & (dm["loss"] == "abs")].set_index("period")
+    assert f"mean absolute-error gain {ab.loc['2025_on', 'mean_loss_diff']:,.1f}, p = {ab.loc['2025_on', 'p_value']:.3f}" in master
+    assert f"p = {ab.loc['2022_2024', 'p_value']:.3f}" in master
+    arrests = dm[(dm.model == "log_ar1_arrests") & (dm["loss"] == "abs") & (dm.period == "full")].iloc[0]
+    assert f"p = {arrests.p_value:.3f}" in master
+    backtest = pd.read_csv(REPO / "analysis/results/adp_forecast_backtest.csv")
+    rec = backtest[(backtest.source == "records") & (backtest.model == "last_month")]
+    assert f"{rec.lower80.notna().sum()} of its {len(rec)} forecasts" in master
+    metrics = pd.read_csv(REPO / "analysis/results/adp_forecast_metrics.csv")
+    row = metrics[(metrics.source == "records") & (metrics.model == "last_month") & (metrics.period == "full")].iloc[0]
+    assert f"{row.cover80:.2f} and {row.cover95:.2f} for last-month" in master

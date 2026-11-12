@@ -2,7 +2,7 @@
 
 Status: **complete (Stages 1–7 executed)**. This is the historical plan; results and decisions are in
 [`ADP_DATA_AUDIT.md`](ADP_DATA_AUDIT.md) and [`MASTER_RESULTS.md`](MASTER_RESULTS.md#portfolio-examples).
-The optional Diebold-Mariano tests and the `log_ar1_arrests` link beyond the records series were not done.
+The optional Diebold-Mariano tests and the arrest-linked model were later added; see `ADP_DATA_AUDIT.md`.
 
 ## Design decisions
 

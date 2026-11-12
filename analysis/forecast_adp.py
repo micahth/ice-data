@@ -7,6 +7,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy import stats
 
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"
@@ -14,6 +15,9 @@ BASELINES = ("last_month", "seasonal_naive", "seasonal_naive_drift")  # drift is
 # Final model list, fixed before any backtest was run; settings are not tuned per origin.
 MODELS = BASELINES + ("log_ar1", "log_ar1_seasonal", "ets_damped", "log_ar1_arrests")
 MIN_TRAIN = {"published": 36, "records": 24}
+# Earlier log errors needed before an interval is shown. Records has only 14 forecasts, so it uses 6.
+MIN_ERRORS = {"published": 12, "records": 6}
+MIN_DM = 8  # fewest paired forecasts for a Diebold-Mariano test
 
 
 def complete_months(series):
@@ -165,23 +169,24 @@ PERIODS = {"full": (None, None), "pre_covid": (None, "2020-02"), "covid": ("2020
            "2022_2024": ("2022-01", "2024-12"), "2025_on": ("2025-01", None)}
 
 
-def prediction_intervals(predictions, levels=(0.8, 0.95), min_errors=12):
+def prediction_intervals(predictions, levels=(0.8, 0.95), min_errors=None):
     """Add `lower{pct}`/`upper{pct}` columns from empirical quantiles of earlier log errors.
 
     For each source and model, the interval for month m uses log(actual/forecast) from months strictly
-    before m only. Bounds are missing until `min_errors` earlier errors exist.
+    before m only. Bounds are missing until `min_errors` earlier errors exist (default `MIN_ERRORS` by source).
     """
     out = predictions.copy()
     for level in levels:
         out[f"lower{round(level * 100)}"] = np.nan
         out[f"upper{round(level * 100)}"] = np.nan
-    for _, group in out.groupby(["source", "model"], sort=False):
+    for (source, _), group in out.groupby(["source", "model"], sort=False):
+        needed = min_errors if min_errors is not None else MIN_ERRORS.get(source, 12)
         group = group.sort_values("month")
         log_error = np.log(group["actual"] / group["forecast"]).to_numpy()
         for position, index in enumerate(group.index):
             past = log_error[:position]
             past = past[np.isfinite(past)]
-            if len(past) < min_errors:
+            if len(past) < needed:
                 continue
             for level in levels:
                 low, high = np.quantile(past, [(1 - level) / 2, (1 + level) / 2])
@@ -237,6 +242,37 @@ def evaluate(predictions):
     return pd.DataFrame(rows)
 
 
+def diebold_mariano(predictions, baseline="last_month"):
+    """One-sided-free Diebold-Mariano tests of each model against `baseline` (one-step forecasts).
+
+    Loss differential d = loss(baseline) - loss(model), so a positive mean favours the model. With a
+    one-step horizon the variance is the plain sample variance of d; the Harvey-Leybourne-Newbold
+    small-sample correction and a t(n-1) reference are used. Two-sided p-values. Tested for absolute
+    and squared error; periods with fewer than `MIN_DM` paired forecasts get NaN. Descriptive only:
+    many models and periods are compared, and nothing is adjusted for multiplicity.
+    """
+    rows = []
+    for source, by_source in predictions.groupby("source", sort=False):
+        for period in PERIODS:
+            block = by_source[_in_period(by_source["month"], period)].dropna(subset=["forecast"])
+            base = block[block.model == baseline].set_index("month")["error"]
+            for model, g in block.groupby("model", sort=False):
+                if model == baseline:
+                    continue
+                err = g.set_index("month")["error"]
+                paired = pd.concat([base, err], axis=1, keys=["base", "model"]).dropna()
+                for loss, fn in (("abs", np.abs), ("squared", np.square)):
+                    d = (fn(paired["base"]) - fn(paired["model"])).to_numpy()
+                    n = len(d)
+                    stat = p = np.nan
+                    if n >= MIN_DM and d.std(ddof=1) > 0:
+                        stat = d.mean() / np.sqrt(d.var(ddof=1) / n) * np.sqrt((n - 1) / n)
+                        p = 2 * stats.t.sf(abs(stat), n - 1)
+                    rows.append({"source": source, "model": model, "period": period, "loss": loss, "n": n,
+                                 "mean_loss_diff": d.mean() if n else np.nan, "dm_stat": stat, "p_value": p})
+    return pd.DataFrame(rows)
+
+
 def beats_last_month(table):
     """For every source and period, the models whose MAE is below last_month's (descriptive only)."""
     rows = []
@@ -279,12 +315,20 @@ def main():
         projections.append(project(series, exog))
     predictions = prediction_intervals(pd.concat(backtests, ignore_index=True))
     table = evaluate(predictions)
+    dm = diebold_mariano(predictions)
     predictions.round(4).to_csv(RESULTS / "adp_forecast_backtest.csv", index=False)
     pd.concat(projections).round(4).to_csv(RESULTS / "adp_forecast_projection.csv", index=False)
     table.round(4).to_csv(RESULTS / "adp_forecast_metrics.csv", index=False)
+    dm.round(4).to_csv(RESULTS / "adp_forecast_dm_tests.csv", index=False)
     print("Models with lower MAE than last_month (descriptive; few, serially dependent origins):")
     for source, period, n, better in beats_last_month(table):
         print(f"  {source:9s} {period:10s} n={n:3d}: {', '.join(better) if better else 'none'}")
+    print("Diebold-Mariano vs last_month, absolute error, p < 0.10 (descriptive):")
+    sig = dm[(dm.loss == "abs") & (dm.p_value < 0.10)]
+    for r in sig.itertuples():
+        print(f"  {r.source:9s} {r.period:10s} {r.model}: mean MAE gain {r.mean_loss_diff:,.1f}, p={r.p_value:.3f}")
+    if sig.empty:
+        print("  none")
 
 
 if __name__ == "__main__":
