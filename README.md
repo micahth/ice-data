@@ -1,15 +1,11 @@
-# ICE Detention & Arrests: A Geographic and Statistical Analysis (2022–2026)
+# ICE Detention & Arrests: A Geographic and Statistical Analysis (2023–2026)
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
 An analysis of ICE records from the [Deportation Data Project](https://deportationdata.org/),
 combining tested record-level transformations, geographic joins, and statistical inference.
 
-> **Headline:** Daily arrests rose from about **359 to 909 (+153%)** between 2023–2024
-> and January 2025–March 10, 2026. The share of arrest records classified as convicted
-> criminal fell from **43.0% to 33.1%**. State-level models do not establish reliable
-> associations with economic or crime trends. Confidence intervals remain wide.
-> Arrests are not deportations, employment records, or residence locations.
+## Executive summary
 
 **Transferable work:** explicit data-quality rules, exposure-adjusted metrics, SQL/pandas
 reconciliation, uncertainty reporting, and interactive communication. These techniques
@@ -20,6 +16,34 @@ implement a churn model, retention analysis, or A/B-testing system.
 > explore alternative approaches, and improve documentation and testing. I remained
 > responsible for defining analytical requirements, evaluating methodological choices,
 > validating outputs, and interpreting results.
+
+**Portfolio case study:** [five-minute overview](CASE_STUDY.md) · [Final Report](final_report.md)
+
+### Problem statement
+
+How did U.S. Immigration and Customs Enforcement (ICE) arrest and detention activity
+change between 2023 and March 2026, where is it concentrated, and are state arrest rates
+associated with later economic or crime outcomes? The analysis uses 2023–2026 records
+released by the [Deportation Data Project](https://deportationdata.org/) (administrative
+records, not unique-person counts), joined with population, economic, demographic and crime data.
+
+### Headline findings
+
+- **Pace:** arrests per day rose from **359 to 909 (+153%)**, adjusting for unequal window lengths (not for seasonality).
+- **Composition:** the convicted-criminal share of arrest records fell from **43.0% to 33.1%**; pending-charge share rose from 17.4% to 29.0%.
+- **Geography:** facility average daily population per local resident rose in every region (where people are held, not a local-resident detention rate).
+- **Inference:** none of the four primary 2025 lagged-outcome arrest-rate tests survives Benjamini–Hochberg adjustment at q < .10. Results are exploratory, not causal.
+
+### Tech stack
+
+| Layer | Tools |
+|---|---|
+| Data wrangling | Python 3.11/3.12, pandas, NumPy, PyArrow |
+| SQL | DuckDB (`analysis/sql/`), run directly over the source CSV/parquet |
+| Statistics | statsmodels (OLS, HC3/cluster-robust SEs, BH-FDR), SciPy |
+| Forecasting | log-AR(1), last-month and seasonal-naive baselines, expanding-window backtests |
+| Visualization | Matplotlib, seaborn, Streamlit dashboard |
+| Quality | pytest on synthetic fixtures, GitHub Actions CI, Git LFS for raw data |
 
 ## Key findings
 
@@ -41,16 +65,56 @@ implement a churn model, retention analysis, or A/B-testing system.
   are unadjusted sensitivity analyses; intervals and detection limits appear in the report.
 - **Causality:** estimates are exploratory. Arrests are not completed removals, and
   employment status is not observed.
+- **Annual timing:** economic comparisons use calendar-year outcomes, so the 2025
+  arrest period starts January 1 rather than January 20; it is not an inauguration-date design.
 
-### Selected figures
+## Results & visualizations
 
-| Monthly arrests | Facility ADP per 100k by region |
+The 153% daily-rate comparison accounts for unequal window lengths; it does not adjust for seasonality. This calendar-month view places 2025–2026 alongside 2023–2024. March 2026 is partial and its rate uses 10 observed days.
+
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+
+| Monthly arrests over time | Facility ADP per 100k by region |
 |---|---|
 | ![Monthly arrests with partial March identified](analysis/figures/monthly_arrests.png) | ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) |
 
 | 2025 facility rates vs. outcomes | Arrest-rate model estimates and confidence intervals |
 |---|---|
 | ![Detention and outcome scatter plots, including Louisiana sensitivity](analysis/figures/fig5_scatter_2025.png) | ![Arrest-rate estimates and 95 percent confidence intervals](analysis/figures/fig6_arrest_coefficients.png) |
+
+| Facility ADP by operator | Top states |
+|---|---|
+| ![Facility ADP by operator](analysis/figures/fig3_operator_adp.png) | ![Top states](analysis/figures/fig4_top_states.png) |
+
+| Arrest geography | ADP forecast vs. baselines |
+|---|---|
+| ![Arrest geography](analysis/figures/fig7_arrest_geography.png) | ![Monthly ADP forecast](analysis/figures/monthly_adp_forecast.png) |
+
+All figures are regenerated by `python analysis/06_figures.py` from committed tables in
+[`analysis/results/`](analysis/results); see also [`outputs/README.md`](outputs/README.md).
+
+## Uncertainty-aware modeling
+
+Every reported estimate carries an interval, and multiplicity is controlled for the
+primary hypothesis family.
+
+1. **Robust intervals.** State-level OLS uses HC3 standard errors with t-based 95% intervals
+   (cluster-robust by state when states repeat), implemented in
+   [`analysis/regression_common.py`](analysis/regression_common.py):
+   `\hat\beta \pm t_{1-\alpha/2,\,df}\cdot \widehat{SE}_{HC3}(\hat\beta)`.
+2. **Multiple testing.** The four primary outcome p-values are adjusted with
+   Benjamini–Hochberg: `q_(i) = min_{j>=i} (m/j) p_(j)`, m = 4. Other models are labelled sensitivity analyses.
+3. **Detectability.** Minimum detectable effects (`analysis/results/arrest_mde.csv`) show which effect sizes the sample could detect, so null results are not over-read.
+4. **Influence diagnostics.** Cook's distance and leverage flag single-state drivers (e.g., Louisiana sensitivity).
+5. **Forecast uncertainty.** Expanding-window, one-month-ahead backtests compare models to naive baselines.
+6. **Data censoring.** Detention intervals are checked for censoring sensitivity (`analysis/results/detention_censoring_sensitivity.csv`).
+
+```python
+model = smf.ols(formula, data=data, missing="drop")
+result = model.fit(cov_type="HC3", use_t=True)          # robust SEs
+lower, upper = result.conf_int(alpha=0.05).loc[term]     # 95% CI
+q = multipletests(p_primary, method="fdr_bh")[1]         # BH-adjusted q-values
+```
 
 ## Read the analysis
 
@@ -65,7 +129,7 @@ implement a churn model, retention analysis, or A/B-testing system.
 - **[Facility activity notes](analysis/FACILITY_CHANGES.md):** recorded new/stopped activity is not evidence of ownership changes.
 - **[DDP codebook](data/codebook.txt):** third-party source documentation.
 
-The six ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
+The seven ordered scripts in `analysis/` form the main pipeline. `eda.py` is optional
 exploratory analysis.
 
 ## Research questions
@@ -73,6 +137,24 @@ exploratory analysis.
 1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
 2. How did detention ADP and arrest pace change after normalizing for time and population?
 3. Are state arrest rates associated with changes in state economic or crime outcomes?
+
+## Analytical pipeline
+
+```mermaid
+flowchart TD
+    sources["SOURCE DATA<br/>DDP FOIA records · Census · BEA · BLS · Crime data"]
+    cleaning["CLEANING AND TRANSFORMATION<br/>Deduplication · Interval construction · Geographic joins"]
+    implementations["ANALYTICAL IMPLEMENTATIONS<br/>Python: pandas and statistical models<br/>SQL: DuckDB and aggregations"]
+    outputs["ANALYTICAL OUTPUTS<br/>Regression · Forecasting · Geographic analysis"]
+    communication["COMMUNICATION<br/>Reports · Figures · Interactive dashboard"]
+
+    sources --> cleaning --> implementations --> outputs --> communication
+```
+
+The ordered scripts use shared helper modules in `analysis/`; SQL queries live in
+[`analysis/sql/`](analysis/sql), generated tables in
+[`analysis/results/`](analysis/results), and figures in
+[`analysis/figures/`](analysis/figures). The dashboard reads committed aggregates.
 
 ## Setup and tests
 
@@ -134,18 +216,53 @@ LICENSE                   MIT license for the project code
 | Item | Status |
 |---|---|
 | Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
-| Alternative download | `analysis/download_data.py` fetches a pinned July 6, 2026 parquet revision; **not byte-identical**, and exact reproduction of the published tables is not claimed or tested |
+| Exact-file download | `analysis/download_data.py` defaults to the four published CSVs at an immutable repository revision, with SHA-256 and size verification |
+| Reproduction check | `analysis/reproduce.py` regenerates and compares all 30 committed CSV result tables, including headline statistics; full-data check passed |
+| Alternative download | `analysis/download_data.py --source alternative` fetches the pinned July 6, 2026 parquet revision; **not byte-identical** and not a reproduction source |
 | Runs without raw data | `pytest`, `analysis/06_figures.py`, and both dashboards (synthetic fixtures and committed result tables) |
 | Needs raw data | Scripts `analysis/01`–`05`, which regenerate `analysis/results/` |
 
 ## Reproduce the full analysis
 
-Raw FOIA CSV exports dated July 24, 2026 live in `data/` under Git LFS. To reproduce
-the reported cohort from these exact exports:
+The published analysis uses exactly **four** July 24 CSVs: the arrest export and
+all three detention-stint parts (including the undated `detention_stints_part3.csv`).
+Individual filenames, SHA-256 checksums, sizes and the immutable source revision are
+in the [source manifest](analysis/published_inputs.json) and
+[technical guide](analysis/MASTER_RESULTS.md#exact-published-inputs).
+The other raw files are not inputs to the published pipeline.
+
+After setup, download these exact files (2.56 GB total) without needing Git LFS,
+then regenerate and check the published results:
+
+```bash
+python analysis/download_data.py
+unset ICE_DATA_DIR
+python analysis/reproduce.py --work-dir /tmp/ice-reproduction
+```
+
+The workspace path must not already exist. The check verifies every source checksum,
+uses a fresh secondary-input/cache directory, runs scripts `01`–`05` and the forecast,
+and compares **all 30 result CSVs** against the Git `HEAD` snapshot. This covers
+arrest counts, daily rates, criminality shares, detention ADP, panels and model
+tables—not just internal reconciliation. Missing/extra tables or changed text,
+counts or numeric values fail the command (absolute floating-point tolerance
+`1e-6`, no relative tolerance; row order is ignored). Logs and regenerated tables
+remain in the workspace; tracked outputs are never overwritten. The full check
+requires network access for pinned secondary inputs and more disk/memory than
+the lightweight tests; use at least 8 GB RAM and 8 GB free disk.
+
+Alternatively, hydrate the same objects using Git LFS and verify their identity:
 
 ```bash
 git lfs install
 git lfs pull --include="data/arrests_2026-07-24.csv,data/detention_stints*.csv" --exclude=""
+python analysis/download_data.py --verify-only
+```
+
+For manual execution (overwrites working-tree outputs), run:
+
+```bash
+unset ICE_DATA_DIR
 python analysis/01_geo_detention_analysis.py
 python analysis/02_geo_regressions.py
 python analysis/03_facility_changes.py
@@ -159,17 +276,18 @@ includes dates through March 10; detention analysis includes March 11. March 11 
 one arrest record and is excluded as a partial day; one stray September 2026 arrest
 record is excluded as well.
 
-Avoid downloading this repository's large LFS files by using the checksum-verified
-direct DDP parquet downloader:
+### Alternative source: July 6 parquet (not published-result reproduction)
+
+For exploratory analysis of a different source revision, use:
 
 ```bash
-python analysis/download_data.py
+python analysis/download_data.py --source alternative
 export ICE_DATA_DIR="$PWD/data/raw"
 ```
 
 It retrieves a pinned July 6, 2026 source revision; those data are **not byte-identical
 to the July 24 CSV extracts**, so do not assume report numbers reproduce from that
-alternative source. `--datasets arrests detention-stints detention-stays` also
+alternative source. Adding `--datasets arrests detention-stints detention-stays` also
 downloads stays for the optional EDA script. Secondary inputs are fetched at immutable
 revisions and cached under `analysis/.cache/`; see the technical guide for sources and
 refresh details.
@@ -185,6 +303,7 @@ not a claim of faster execution; queries are in [`analysis/sql/`](analysis/sql).
 python analysis/04_arrest_locations.py --engine duckdb --output-dir /tmp/ice-sql-results
 streamlit run analysis/dashboard.py --browser.gatherUsageStats=false
 python analysis/forecast_arrests.py
+python analysis/forecast_adp.py
 ```
 
 The analysis dashboard switches state/AOR, observation window and count/share/daily-rate
@@ -196,12 +315,18 @@ Last-month forecasts outperform the fitted model on the 14 held-out months; this
 an honest baseline comparison, not evidence of deployment readiness. See the
 [technical guide](analysis/MASTER_RESULTS.md#portfolio-examples).
 
+A separate forecast covers the average daily detained population (ADP) from two sources that are
+compared but never combined: ICE's published monthly statistics (via the Deportation Data Project) and
+ADP computed from detention stints. No model beats last-month over the full published sample; this is
+again not evidence of deployment readiness. Refresh the published series with
+`python analysis/download_official_adp.py`; the record series needs the raw stints
+(`python analysis/07_monthly_adp.py`).
 ## Limitations
 
 This is descriptive and correlational, not causal: arrests are not completed
 removals, and employment is unobserved. Apprehension locations and facility-
 population denominators do not measure where people live or residents' likelihood
-of detention. Small samples, confounding, incomplete outcomes and wide intervals
+of detention. Small samples, confounding, incomplete outcomes, and wide intervals
 limit conclusions; see the [Final Report](final_report.md) and
 [technical guide](analysis/MASTER_RESULTS.md).
 

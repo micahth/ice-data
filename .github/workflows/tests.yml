@@ -1,6 +1,9 @@
+# Runs the analysis test suite and a syntax check whenever analysis code,
+# tests, dependencies, or this workflow change.
 name: Test analysis
 
 on:
+  # Run on pushes to main, but only when relevant files change.
   push:
     branches:
       - main
@@ -13,8 +16,9 @@ on:
       - 'notebooks/**'
       - 'tests/**'
       - 'requirements.txt'
-      - '.github/workflows/tests.yml'
+      - '.github/workflows/tests.yml'   # Must match this file's actual name
       - '.gitattributes'
+  # Run on pull requests that touch the same files.
   pull_request:
     paths:
       - 'analysis/**'
@@ -27,23 +31,40 @@ on:
       - 'requirements.txt'
       - '.github/workflows/tests.yml'
       - '.gitattributes'
+  # Allow manual runs from the Actions tab.
   workflow_dispatch:
+
+# The job only reads the repository, so grant nothing more.
+permissions:
+  contents: read
+
+# If a newer commit arrives on the same branch or PR, cancel the older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Stop a hung run early instead of waiting for the 6-hour default.
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
+          # Manifest tests inspect the pinned historical revision.
+          fetch-depth: 0
+          # Default is already false; kept explicit as a reminder that
+          # tests must not depend on Git LFS files.
           lfs: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-
+          # Cache pip downloads, keyed on requirements.txt.
+          cache: 'pip'
 
       - name: Install dependencies
         run: python -m pip install -r requirements.txt -r dashboard/requirements.txt
@@ -51,9 +72,10 @@ jobs:
       - name: Test helpers, synthetic data and result contracts
         run: python -m pytest -q
         env:
+          # Non-interactive matplotlib backend for headless runners.
           MPLBACKEND: Agg
 
-      - name: Check script syntax
+      - name: Check all project scripts
         run: python -m compileall -q analysis notebooks dashboard bi tests
 
       - name: Build standalone dashboard and Tableau package

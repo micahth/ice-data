@@ -1,0 +1,23 @@
+{
+  "repository": "micahth/ice-data",
+  "revision": "567f05f1c5bcda7fb43163487a8bd6eb8c8067eb",
+  "export_date": "2026-07-24",
+  "files": {
+    "arrests_2026-07-24.csv": {
+      "sha256": "e0eb4fbba2e44967d5fb4c370e4405aee63d5e2f2635316b9f7d8add6d4d366c",
+      "size": 361988909
+    },
+    "detention_stints_2026-07-24_part1.csv": {
+      "sha256": "1db44db63f8373ecefa6e852e1d9f64a5eddd78b1e98c2d99e1f6364bb11014c",
+      "size": 821880386
+    },
+    "detention_stints_2026-07-24_part2.csv": {
+      "sha256": "27af5991b593953f34bddb8339fb2ab12500afaa4df0eafb9fb78f20e6027780",
+      "size": 863897721
+    },
+    "detention_stints_part3.csv": {
+      "sha256": "dc08d7ab26193f002b1d812338a199c771abfe1310a283258926c979e6ba8999",
+      "size": 514072292
+    }
+  }
+}
