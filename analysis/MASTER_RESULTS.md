@@ -48,8 +48,8 @@ Same-year arrests can respond to local economic deterioration or crime changes; 
 
 | Input | Publisher and coverage | Retrieval/processing |
 |---|---|---|
-| Arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; July 24, 2026 exports | Original LFS files in `data/`; documentation/license in [codebook](../data/codebook.txt); event dates filtered as above |
-| Optional parquet sources | [DDP ICE data catalog](https://deportationdata.org/data/ice.html), official `deportationdata/ice` repository | `download_data.py` pins July 6, 2026 commit `bfc8b3fa7602fbf810fb811e6d07ef603e528b78`, SHA-256 and byte size per dataset; not claimed identical to local CSV exports |
+| Arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; July 24, 2026 exports | Four exact July 24 exports below; `download_data.py` verifies them by default; documentation/license in [codebook](../data/codebook.txt); event dates filtered as above |
+| Optional parquet sources | [DDP ICE data catalog](https://deportationdata.org/data/ice.html), official `deportationdata/ice` repository | `download_data.py --source alternative` pins July 6, 2026 commit `bfc8b3fa7602fbf810fb811e6d07ef603e528b78`, SHA-256 and byte size per dataset; not identical to local CSV exports and not used for published reproduction |
 | Facility location/attributes | Original publisher: [DDP](https://deportationdata.org/data/ice.html); retrieval: [pinned facility-data repository](https://github.com/deportationdata/ice-detention-facilities/tree/a311796374555f100435ae7578cac2a945eea5b1/data) | `facilities_latest.parquet`, `facilities_attributes.parquet`; county FIPS and type; inferred operator rules in `geo_common.py`, no verified ownership history |
 | County population | Original publisher: [Census Population Estimates Program](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-detail.html); retrieval: [pinned mirror](https://github.com/GreatTombProductions/county-population/tree/7f0daa62f6de3adea11d6834a5a235d7d6ec98c1/data/detail) | 256 JSON shards; aggregate counties to state/region/CBSA |
 | CBSA delineation | Original publisher: [OMB July 2023 List 1](https://www2.census.gov/programs-surveys/metro-micro/geographies/reference-files/2023/delineation-files/list1_2023.xlsx); retrieval: [pinned copy](https://github.com/jenniferpeebles/omb_msas_historical_delineation/blob/d3a2e5f79b471318dfea91db0c384e5e02857863/data/raw/list1_2023.xlsx) | County-to-CBSA classification |
@@ -64,6 +64,41 @@ Same-year arrests can respond to local economic deterioration or crime changes; 
 
 `geo_common.PROVENANCE` records the original publisher/source URL, exact raw/media retrieval URL, retrieval date (2026-11-10), and SHA-256 for each single-file input. `POP_PROVENANCE` records the same source details and an aggregate SHA-256 over all 256 shard names and individual SHA-256 values. The checksummed byte-size manifest validates each input; downloads retry transient failures, report source-specific errors, and write SHA-256 sidecars for cache reuse. Secondary GitHub inputs use immutable revisions; no `main`/`HEAD` retrieval. The hosted copies are not guarantees of original-publisher accuracy, consistent revisions or comparable coverage. Checksum mismatches fail closed; when changing sources, use a fresh `GEO_CACHE`. The [DDP introductory paper](https://deportationdata.org/docs/ice/ice-data-preprint.pdf) describes the administrative records.
 
+### Exact published inputs
+
+The machine-readable [manifest](published_inputs.json) pins repository
+`micahth/ice-data` revision `279e6e6e809871cd180b6dcde6de3bb388db4a0e`.
+These SHA-256 values are the Git LFS object IDs of the CSV contents, not hashes
+of the small pointer files:
+
+| File in `data/` | Bytes | SHA-256 |
+|---|---:|---|
+| `arrests_2026-07-24.csv` | 361988909 | `e0eb4fbba2e44967d5fb4c370e4405aee63d5e2f2635316b9f7d8add6d4d366c` |
+| `detention_stints_2026-07-24_part1.csv` | 821880386 | `1db44db63f8373ecefa6e852e1d9f64a5eddd78b1e98c2d99e1f6364bb11014c` |
+| `detention_stints_2026-07-24_part2.csv` | 863897721 | `27af5991b593953f34bddb8339fb2ab12500afaa4df0eafb9fb78f20e6027780` |
+| `detention_stints_part3.csv` | 514072292 | `dc08d7ab26193f002b1d812338a199c771abfe1310a283258926c979e6ba8999` |
+
+`detention_stints_part3.csv` is part of the same published input set despite its
+undated filename. Stays, detainers and joined arrest/stay files elsewhere in
+`data/` are not consumed by scripts `01`–`05`; stays are used only by optional EDA.
+Exact bytes remain obtainable through this repository's Git LFS, or through
+`https://media.githubusercontent.com/media/micahth/ice-data/279e6e6e809871cd180b6dcde6de3bb388db4a0e/data/<filename>`.
+The default downloader uses that immutable URL and verifies size and SHA-256
+before atomically replacing each file. No conversion from July 6 parquet is involved.
+
+Follow the [full reproduction commands](../README.md#reproduce-the-full-analysis).
+`reproduce.py` rejects `ICE_DATA_DIR`, verifies all four CSVs, isolates generated
+files and all caches, and compares every regenerated table against the committed
+`HEAD` tables. A full-data run against revision
+`279e6e6e809871cd180b6dcde6de3bb388db4a0e` passed for all 30 tables.
+Comparisons require the same filenames, columns and rows, ignoring row order,
+with absolute numeric tolerance `1e-6` and no relative tolerance; this is below
+the four/five-decimal rounding used for most tables. Text and missingness must
+match, and integer counts cannot differ. Headline totals, daily rates and shares
+are covered by `arrest_summary`, `arrest_criminality` and `overall`, alongside
+the complete geographic/model tables. Synthetic tests exercise mismatch detection
+without downloading records; the full raw-data check is a separate command.
+
 ## Artifact map and execution order
 
 Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
@@ -77,7 +112,7 @@ Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts
 | `05_arrest_regressions.py` | `arrest_rate_panel`, `arrest_correlations`, `arrest_regressions`, `arrest_mde` |
 | `06_figures.py` | Monthly arrest chart, geography/operator charts, labeled detention scatter, arrest coefficient intervals |
 
-All tables live in `results/` as ordinary Git CSVs. `pytest` checks synthetic cohorts, boundary/censoring cases, covariance selection against statsmodels, confidence-interval arithmetic, download failure behavior, lightweight EDA/figure execution and aggregate reconciliation. CI never hydrates raw LFS or contacts data services.
+All tables live in `results/` as ordinary Git CSVs. `pytest` checks synthetic cohorts, boundary/censoring cases, covariance selection against statsmodels, confidence-interval arithmetic, download failure behavior, reproduction mismatch detection, lightweight EDA/figure execution and aggregate reconciliation. CI never hydrates raw LFS or contacts data services; use `reproduce.py` for the separate full-data check.
 
 ## Portfolio examples
 

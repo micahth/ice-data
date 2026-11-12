@@ -157,18 +157,53 @@ syntax checks without hydrating the large raw inputs.
 | Item | Status |
 |---|---|
 | Source of published results | DDP CSV exports dated July 24, 2026 (`data/`, Git LFS) |
-| Alternative download | `download_data.py` fetches a pinned July 6, 2026 parquet revision; **not byte-identical**, and exact reproduction of the published tables is not claimed or tested |
+| Exact-file download | `download_data.py` defaults to the four published CSVs at an immutable repository revision, with SHA-256 and size verification |
+| Reproduction check | `reproduce.py` regenerates and compares all 30 committed CSV result tables, including headline statistics; full-data check passed |
+| Alternative download | `download_data.py --source alternative` fetches the pinned July 6, 2026 parquet revision; **not byte-identical** and not a reproduction source |
 | Runs without raw data | `pytest` and `06_figures.py` (synthetic fixtures and committed result tables) |
 | Needs raw data | Scripts `01`–`05`, which regenerate `analysis/results/` |
 
 ## Reproduce the full analysis
 
-Raw FOIA CSV exports dated July 24, 2026 live in `data/` under Git LFS. To reproduce
-the reported cohort from these exact exports:
+The published analysis uses exactly **four** July 24 CSVs: the arrest export and
+all three detention-stint parts (including the undated `detention_stints_part3.csv`).
+Individual filenames, SHA-256 checksums, sizes and the immutable source revision are
+in the [source manifest](analysis/published_inputs.json) and
+[technical guide](analysis/MASTER_RESULTS.md#exact-published-inputs).
+The other raw files are not inputs to the published pipeline.
+
+After setup, download these exact files (2.56 GB total) without needing Git LFS,
+then regenerate and check the published results:
+
+```bash
+python analysis/download_data.py
+unset ICE_DATA_DIR
+python analysis/reproduce.py --work-dir /tmp/ice-reproduction
+```
+
+The workspace path must not already exist. The check verifies every source checksum,
+uses a fresh secondary-input/cache directory, runs scripts `01`–`05` and the forecast,
+and compares **all 30 result CSVs** against the Git `HEAD` snapshot. This covers
+arrest counts, daily rates, criminality shares, detention ADP, panels and model
+tables—not just internal reconciliation. Missing/extra tables or changed text,
+counts or numeric values fail the command (absolute floating-point tolerance
+`1e-6`, no relative tolerance; row order is ignored). Logs and regenerated tables
+remain in the workspace; tracked outputs are never overwritten. The full check
+requires network access for pinned secondary inputs and more disk/memory than
+the lightweight tests; use at least 8 GB RAM and 8 GB free disk.
+
+Alternatively, hydrate the same objects using Git LFS and verify their identity:
 
 ```bash
 git lfs install
 git lfs pull --include="data/arrests_2026-07-24.csv,data/detention_stints*.csv" --exclude=""
+python analysis/download_data.py --verify-only
+```
+
+For manual execution (overwrites working-tree outputs), run:
+
+```bash
+unset ICE_DATA_DIR
 python analysis/01_geo_detention_analysis.py
 python analysis/02_geo_regressions.py
 python analysis/03_facility_changes.py
@@ -182,17 +217,18 @@ includes dates through March 10; detention analysis includes March 11. March 11 
 one arrest record and is excluded as a partial day; one stray September 2026 arrest
 record is excluded as well.
 
-Avoid downloading this repository's large LFS files by using the checksum-verified
-direct DDP parquet downloader:
+### Alternative source: July 6 parquet (not published-result reproduction)
+
+For exploratory analysis of a different source revision, use:
 
 ```bash
-python analysis/download_data.py
+python analysis/download_data.py --source alternative
 export ICE_DATA_DIR="$PWD/data/raw"
 ```
 
 It retrieves a pinned July 6, 2026 source revision; those data are **not byte-identical
 to the July 24 CSV extracts**, so do not assume report numbers reproduce from that
-alternative source. `--datasets arrests detention-stints detention-stays` also
+alternative source. Adding `--datasets arrests detention-stints detention-stays` also
 downloads stays for the optional EDA script. Secondary inputs are fetched at immutable
 revisions and cached under `analysis/.cache/`; see the technical guide for sources and
 refresh details.
