@@ -2,32 +2,37 @@
 
 [![Tests](https://github.com/micahth/ice-data/actions/workflows/tests.yml/badge.svg)](https://github.com/micahth/ice-data/actions/workflows/tests.yml)
 
-The primary analysis covers 2023–2026 U.S. Immigration and Customs Enforcement (ICE)
-arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/).
-A supplemental vintage notebook also describes detainer records. The project combines
-record-level interval logic, geographic joins, population normalization, and state-level
-economic/crime associations.
+![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
 
-**Portfolio case study:** [Read the five-minute overview](CASE_STUDY.md) or go straight
-to the [Final Report](final_report.md).
+## Executive summary
 
-- **Question:** How did ICE arrest and detention activity change over time and
-  geographically, and were state arrest rates associated with economic or crime outcomes?
-- **Data:** ICE arrest and detention records from the [Deportation Data Project](https://deportationdata.org/),
-  joined with population, economic, demographic, and crime data. The analysis uses
-  administrative records, not unique-person counts.
-- **Findings:** Arrests per day rose from **359 to 909 (+153%)**, while the share of
-  arrest records classified as convicted criminal fell from **43.0% to 33.1%**.
-  Primary state-level tests did not establish reliable associations; results are
-  exploratory, not causal.
-- **Skills:** Python, SQL/DuckDB, data validation and integration, geographic analysis,
-  statistical modeling with uncertainty, forecasting/backtesting, and automated tests.
+**Portfolio case study:** [five-minute overview](CASE_STUDY.md) · [Final Report](final_report.md)
 
-## Research questions
+### Problem statement
 
-1. Where are ICE detention facilities and apprehensions concentrated, and how did the recorded activity change?
-2. How did detention, Average Daily Population of People Detained (ADP), and arrest pace change after normalizing for time and population?
-3. Are state arrest rates associated with changes in state economic or crime outcomes?
+How did U.S. Immigration and Customs Enforcement (ICE) arrest and detention activity
+change between 2023 and March 2026, where is it concentrated, and are state arrest rates
+associated with later economic or crime outcomes? The analysis uses 2023–2026 records
+released by the [Deportation Data Project](https://deportationdata.org/) (administrative
+records, not unique-person counts), joined with population, economic, demographic and crime data.
+
+### Headline findings
+
+- **Pace:** arrests per day rose from **359 to 909 (+153%)**, adjusting for unequal window lengths (not for seasonality).
+- **Composition:** the convicted-criminal share of arrest records fell from **43.0% to 33.1%**; pending-charge share rose from 17.4% to 29.0%.
+- **Geography:** facility average daily population per local resident rose in every region (where people are held, not a local-resident detention rate).
+- **Inference:** none of the four primary 2025 lagged-outcome arrest-rate tests survives Benjamini–Hochberg adjustment at q < .10. Results are exploratory, not causal.
+
+### Tech stack
+
+| Layer | Tools |
+|---|---|
+| Data wrangling | Python 3.11/3.12, pandas, NumPy, PyArrow |
+| SQL | DuckDB (`analysis/sql/`), run directly over the source CSV/parquet |
+| Statistics | statsmodels (OLS, HC3/cluster-robust SEs, BH-FDR), SciPy |
+| Forecasting | log-AR(1), last-month and seasonal-naive baselines, expanding-window backtests |
+| Visualization | Matplotlib, seaborn, Streamlit dashboard |
+| Quality | pytest on synthetic fixtures, GitHub Actions CI, Git LFS for raw data |
 
 ## Key findings
 
@@ -52,7 +57,7 @@ to the [Final Report](final_report.md).
 - **Annual timing:** economic comparisons use calendar-year outcomes, so the 2025
   arrest period starts January 1 rather than January 20; it is not an inauguration-date design.
 
-### Selected figures
+## Results & visualizations
 
 The 153% daily-rate comparison accounts for unequal window lengths; it does not adjust for seasonality. This calendar-month view places 2025–2026 alongside 2023–2024. March 2026 is partial and its rate uses 10 observed days.
 
@@ -65,6 +70,40 @@ The 153% daily-rate comparison accounts for unequal window lengths; it does not 
 | 2025 facility rates vs. outcomes | Arrest-rate model estimates and confidence intervals |
 |---|---|
 | ![Detention and outcome scatter plots, including Louisiana sensitivity](analysis/figures/fig5_scatter_2025.png) | ![Arrest-rate estimates and 95 percent confidence intervals](analysis/figures/fig6_arrest_coefficients.png) |
+
+| Facility ADP by operator | Top states |
+|---|---|
+| ![Facility ADP by operator](analysis/figures/fig3_operator_adp.png) | ![Top states](analysis/figures/fig4_top_states.png) |
+
+| Arrest geography | ADP forecast vs. baselines |
+|---|---|
+| ![Arrest geography](analysis/figures/fig7_arrest_geography.png) | ![Monthly ADP forecast](analysis/figures/monthly_adp_forecast.png) |
+
+All figures are regenerated by `python analysis/06_figures.py` from committed tables in
+[`analysis/results/`](analysis/results); see also [`outputs/README.md`](outputs/README.md).
+
+## Uncertainty-aware modeling
+
+Every reported estimate carries an interval, and multiplicity is controlled for the
+primary hypothesis family.
+
+1. **Robust intervals.** State-level OLS uses HC3 standard errors with t-based 95% intervals
+   (cluster-robust by state when states repeat), implemented in
+   [`analysis/regression_common.py`](analysis/regression_common.py):
+   `\hat\beta \pm t_{1-\alpha/2,\,df}\cdot \widehat{SE}_{HC3}(\hat\beta)`.
+2. **Multiple testing.** The four primary outcome p-values are adjusted with
+   Benjamini–Hochberg: `q_(i) = min_{j>=i} (m/j) p_(j)`, m = 4. Other models are labelled sensitivity analyses.
+3. **Detectability.** Minimum detectable effects (`analysis/results/arrest_mde.csv`) show which effect sizes the sample could detect, so null results are not over-read.
+4. **Influence diagnostics.** Cook's distance and leverage flag single-state drivers (e.g., Louisiana sensitivity).
+5. **Forecast uncertainty.** Expanding-window, one-month-ahead backtests compare models to naive baselines.
+6. **Data censoring.** Detention intervals are checked for censoring sensitivity (`analysis/results/detention_censoring_sensitivity.csv`).
+
+```python
+model = smf.ols(formula, data=data, missing="drop")
+result = model.fit(cov_type="HC3", use_t=True)          # robust SEs
+lower, upper = result.conf_int(alpha=0.05).loc[term]     # 95% CI
+q = multipletests(p_primary, method="fdr_bh")[1]         # BH-adjusted q-values
+```
 
 ## Read the analysis
 
@@ -190,9 +229,13 @@ again not evidence of deployment readiness. Refresh the published series with
 ## Repository structure
 
 ```text
-data/                     Raw FOIA exports (LFS) and third-party codebook
-analysis/                 Ordered scripts, SQL, dashboard, forecast, results, figures
-outputs/                  Landing page for the four key figures
+data/                     Data sources: raw FOIA exports (Git LFS, not hand-edited) and codebook
+notebooks/                Supplemental vintage and release-outcome analyses
+analysis/                 Ordered pipeline scripts 01-07 and shared helpers
+analysis/sql/             Commented DuckDB queries for cleaning and aggregation
+analysis/results/         Generated summary tables (CSV)
+analysis/figures/         Exported PNG figures
+outputs/                  Landing page for the key figures and source tables
 tests/                    Synthetic tests for cohorts, intervals, models and outputs
 final_report.md           Reader-facing findings
 requirements.txt          Pinned direct dependencies
