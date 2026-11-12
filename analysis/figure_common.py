@@ -71,3 +71,39 @@ def plot_calendar_month_arrests(monthly, path):
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(path, dpi=160)
     plt.close(fig)
+
+
+def plot_monthly_adp_forecast(published, records, predictions, path):
+    """Published and record-level ADP with last-month and ETS backtest forecasts and 80% intervals."""
+    set_style()
+    fig, ax = plt.subplots(figsize=(11, 5))
+    pub_dates = pd.to_datetime(published.month)
+    partial = pub_dates == pub_dates.max()
+    ax.plot(pub_dates[~partial], published.loc[~partial, "adp"], color=OLD_COLOR, linewidth=2,
+            label="Published ADP (ICE statistics via DDP)")
+    ax.scatter(pub_dates[partial], published.loc[partial, "adp"], facecolors="none", edgecolors=NEW_COLOR,
+               zorder=3, label="Partial July 2026 (file pulled July 11)")
+    rec = records[records.burn_in_ok & ~records.partial_month]
+    ax.plot(pd.to_datetime(rec.month), rec.adp, color="#2a7f62", linewidth=1.6, label="Record-level ADP (transfer-safe)")
+    pub = predictions[predictions.source == "published"]
+    last = pub[pub.model == "last_month"]
+    ets = pub[pub.model == "ets_damped"]
+    ax.plot(pd.to_datetime(last.month), last.forecast, color="#888888", linestyle=":", linewidth=1.5,
+            label="Last-month forecast")
+    ax.plot(pd.to_datetime(ets.month), ets.forecast, color=NEW_COLOR, linestyle="--", linewidth=1.5,
+            label="Damped-trend ETS forecast")
+    bands = last.dropna(subset=["lower80"])
+    ax.fill_between(pd.to_datetime(bands.month), bands.lower80, bands.upper80, color="#888888", alpha=0.2,
+                    label="80% interval (last-month)")
+    ax.axvspan(pd.Timestamp("2020-03-01"), pd.Timestamp("2021-12-31"), color="#cccccc", alpha=0.25)
+    ax.axvspan(pd.Timestamp("2025-01-01"), pub_dates.max(), color=NEW_COLOR, alpha=0.06)
+    ax.set(title="Average daily ICE detention population: one-month-ahead backtest",
+           ylabel="Average daily population (ADP)", xlabel="")
+    ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
+    ax.legend(loc="upper left", frameon=False, fontsize=8)
+    fig.text(0.01, 0.01, "Sources: ICE detention-management statistics and detention stints via Deportation Data "
+             "Project. Shading: 2020-03 to 2021-12 and 2025 onward. Series differ in level and are not combined.",
+             fontsize=7.5, color="#555555")
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.savefig(path, dpi=160)
+    plt.close(fig)

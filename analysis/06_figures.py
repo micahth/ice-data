@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from figure_common import (OLD_COLOR, NEW_COLOR, plot_calendar_month_arrests,
-                           plot_monthly_arrests, set_style)
+                           plot_monthly_adp_forecast, plot_monthly_arrests, set_style)
 
 
 def main():
@@ -75,6 +75,11 @@ def main():
     monthly = pd.read_csv(f"{R}/monthly_arrests.csv")
     plot_monthly_arrests(monthly, os.path.join(F, "monthly_arrests.png"))
     plot_calendar_month_arrests(monthly, os.path.join(F, "monthly_arrests_by_calendar_month.png"))
+
+    plot_monthly_adp_forecast(
+        pd.read_csv(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "ice_published_adp_monthly.csv")),
+        pd.read_csv(f"{R}/monthly_adp_records.csv"), pd.read_csv(f"{R}/adp_forecast_backtest.csv"),
+        os.path.join(F, "monthly_adp_forecast.png"))
 
     reg = pd.read_csv(f"{R}/arrest_regressions.csv")
     fig, axes = plt.subplots(2, 2, figsize=(12, 7))

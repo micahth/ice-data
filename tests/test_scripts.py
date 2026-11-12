@@ -41,6 +41,7 @@ def test_arrest_location_cli_runs_end_to_end_on_frozen_fixture(tmp_path):
 def test_publication_figures_run_from_small_committed_tables(tmp_path):
     env = os.environ | {"ICE_FIGURES_DIR": str(tmp_path), "MPLBACKEND": "Agg"}
     subprocess.run([sys.executable, str(REPO / "analysis/06_figures.py")], env=env, check=True, capture_output=True)
-    assert len(list(tmp_path.glob("*.png"))) == 9
+    assert len(list(tmp_path.glob("*.png"))) == 10
     assert (tmp_path / "fig6_arrest_coefficients.png").stat().st_size > 10000
     assert (tmp_path / "monthly_arrests_by_calendar_month.png").stat().st_size > 10000
+    assert (tmp_path / "monthly_adp_forecast.png").stat().st_size > 10000
