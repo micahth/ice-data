@@ -58,6 +58,51 @@ def test_facility_adp_reconciles_to_national_total(name):
     np.testing.assert_allclose(division, national, atol=0.1, rtol=0)
 
 
+def test_detention_censoring_sensitivity_reconciles_and_bounds_primary():
+    from geo_common import PERIODS
+    from ice_lib import window_days
+
+    table = pd.read_csv(RESULTS / "detention_censoring_sensitivity.csv")
+    assert len(table) == 3 * len(PERIODS)
+    assert not table.duplicated(["specification", "period"]).any()
+    assert set(table.period) == set(PERIODS)
+    assert set(table.specification) == {"primary", "censor_all", "exclude_all"}
+    expected_days = table.period.map({p: window_days(*w) for p, w in PERIODS.items()})
+    np.testing.assert_array_equal(table.days, expected_days)
+    populations = table.pivot(index="period", columns="specification", values="adp")
+    overall = pd.read_csv(RESULTS / "overall.csv").set_index("period").adp
+    np.testing.assert_allclose(populations.primary, overall.reindex(populations.index), atol=0.0001, rtol=0)
+    assert (populations.exclude_all <= populations.primary).all()
+    assert (populations.primary <= populations.censor_all).all()
+    assert (populations.exclude_all >= 0).all()
+    baseline = table.period.map(populations.primary)
+    np.testing.assert_allclose(table.adp_difference_from_primary, table.adp - baseline, atol=0.0002, rtol=0)
+    np.testing.assert_allclose(table.pct_difference_from_primary, (table.adp / baseline - 1) * 100,
+                               atol=0.0001, rtol=0)
+    for specification in populations:
+        for era, years in [
+            ("Old (2023-2024)", ["2023", "2024"]),
+            ("New (2025-Mar 2026)", ["2025", "2026 YTD (to Mar 11)"]),
+        ]:
+            bed_days = sum(populations.loc[y, specification] * window_days(*PERIODS[y]) for y in years)
+            assert populations.loc[era, specification] == pytest.approx(
+                bed_days / window_days(*PERIODS[era]), abs=0.0001)
+
+
+def test_duration_observation_counts_distinguish_stay_end_fallback():
+    duration = pd.read_csv(RESULTS / "duration_observation_counts.csv").set_index("period")
+    overall = pd.read_csv(RESULTS / "overall.csv").set_index("period")
+    for period in ["Old (2023-2024)", "New (2025-Mar 2026)"]:
+        assert duration.loc[period, "book_ins"] == overall.loc[period, "book_ins"]
+        assert duration.loc[period, "book_ins"] == (
+            duration.loc[period, "valid_stint_duration_observations"]
+            + duration.loc[period, "excluded_stay_end_only"]
+            + duration.loc[period, "other_missing_or_invalid_stint_duration"]
+        )
+    assert duration.loc["Old (2023-2024)", "excluded_stay_end_only"] == 0
+    assert duration.loc["New (2025-Mar 2026)", "excluded_stay_end_only"] == 1
+
+
 @pytest.mark.parametrize("name", ["arrest_regressions", "regressions"])
 def test_confidence_intervals_and_model_metadata(name):
     reg = pd.read_csv(RESULTS / f"{name}.csv")
@@ -68,3 +113,26 @@ def test_confidence_intervals_and_model_metadata(name):
     assert (reg.n > reg.n_parameters).all()
     assert set(reg.loc[reg.era == "New", "cov_type"]) == {"HC3"}
     assert reg.q_bh.dropna().between(0, 1).all()
+
+
+def test_adp_forecast_outputs_are_internally_consistent():
+    backtest = pd.read_csv(RESULTS / "adp_forecast_backtest.csv")
+    metrics = pd.read_csv(RESULTS / "adp_forecast_metrics.csv")
+    projection = pd.read_csv(RESULTS / "adp_forecast_projection.csv")
+    assert set(backtest.source) == set(metrics.source) == set(projection.source) == {"published", "records"}
+    assert (pd.PeriodIndex(backtest.train_end, freq="M") < pd.PeriodIndex(backtest.month, freq="M")).all()
+    assert ((backtest.forecast - backtest.actual - backtest.error).abs().dropna() < 1e-3).all()
+    for (source, model), group in backtest.dropna(subset=["forecast"]).groupby(["source", "model"]):
+        row = metrics[(metrics.source == source) & (metrics.model == model) & (metrics.period == "full")].iloc[0]
+        assert row.n_forecasts == len(group)
+        assert row.mae == pytest.approx(group.error.abs().mean(), abs=1e-3)
+        assert row.mean_error == pytest.approx(group.error.mean(), abs=1e-3)
+    for source, group in projection.groupby("source"):
+        last = pd.Period(backtest[backtest.source == source].month.max(), "M")
+        assert pd.Period(group.month.iloc[0], "M") == last + 1
+        assert pd.Period(group.train_end.iloc[0], "M") == last
+    reconciliation = pd.read_csv(RESULTS / "adp_series_reconciliation.csv")
+    published = pd.read_csv(REPO / "analysis/data/ice_published_adp_monthly.csv")
+    records = pd.read_csv(RESULTS / "monthly_adp_records.csv")
+    assert set(reconciliation.month) <= set(records.month)
+    assert set(reconciliation.month) <= set(pd.to_datetime(published.month).dt.strftime("%Y-%m"))

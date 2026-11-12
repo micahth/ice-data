@@ -1,0 +1,35 @@
+# Monthly, read-only check for newer published ICE ADP data from the Deportation Data Project.
+# It needs the network, so it is separate from tests.yml, which must stay offline.
+# It only reports in the run summary and fails when newer data exists; it never pushes or opens a PR.
+# To refresh by hand: update REF and the checksums in analysis/download_official_adp.py after reviewing the
+# upstream change, rerun the downloader, 07_monthly_adp.py and forecast_adp.py, then update the doc numbers.
+name: Check for new published ADP data
+
+on:
+  schedule:
+    - cron: '0 9 15 * *'   # 15th of each month, 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          lfs: false
+
+      - name: Compare pinned commit with upstream
+        run: |
+          pinned=$(grep -oP '^REF = "\K[0-9a-f]{40}' analysis/download_official_adp.py)
+          latest=$(curl -fsS https://api.github.com/repos/deportationdata/ice-detention-management/commits/HEAD | grep -oP '"sha":\s*"\K[0-9a-f]{40}' | head -n 1)
+          echo "pinned=$pinned" "latest=$latest"
+          if [ "$pinned" = "$latest" ]; then
+            echo "Published ADP data is up to date." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Newer upstream commit \`$latest\` (pinned \`$pinned\`). Run \`python analysis/download_official_adp.py --latest\` and review." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi

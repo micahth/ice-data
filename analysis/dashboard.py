@@ -4,8 +4,13 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
+from arrest_common import ARREST_DAYS
+
 RESULTS = Path(__file__).resolve().parent / "results"
-PERIODS = {"2023-2024 (731 days)": ("old", 731), "Jan 2025-Mar 10, 2026 (434 days)": ("new", 434)}
+PERIODS = {
+    f"2023-2024 ({ARREST_DAYS['old']} days)": ("old", ARREST_DAYS["old"]),
+    f"Jan 2025-Mar 10, 2026 ({ARREST_DAYS['new']} days)": ("new", ARREST_DAYS["new"]),
+}
 
 
 def location_view(table, location, era, days):
