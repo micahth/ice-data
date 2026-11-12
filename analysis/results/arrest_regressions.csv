@@ -1,387 +1,387 @@
-outcome,era,spec,term,n,coef,se,p,ci_low,ci_high,cov_type,n_states,df_resid,n_parameters,r2,adj_r2,inference_family,q_bh,max_cooks_distance,max_cooks_state,max_cooks_year,max_leverage,max_leverage_state,max_leverage_year
-Real GDP growth (%),Old,M0 + lagged outcome,arr_rate10,100,0.17137,0.09574,0.07965,-0.02103,0.36378,cluster,50,96.0,4,0.10812,0.08025,sensitivity,,0.36989,TX,2023,0.20078,TX,2023
-Real GDP growth (%),Old,M0 + lagged outcome,lag_gdp_pc,100,-1.48178,0.95937,0.12889,-3.4097,0.44615,cluster,50,96.0,4,0.10812,0.08025,control,,0.36989,TX,2023,0.20078,TX,2023
-Real GDP growth (%),Old,M1 bivariate,arr_rate10,100,0.17555,0.09175,0.06156,-0.00883,0.35994,cluster,50,97.0,3,0.08374,0.06485,sensitivity,,0.42876,TX,2023,0.19695,TX,2023
-Real GDP growth (%),Old,M2 + controls,arr_rate10,100,0.0611,0.07819,0.4383,-0.09602,0.21822,cluster,50,87.0,13,0.38646,0.30184,sensitivity,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,lag_gdp_pc,100,-1.23299,1.3952,0.38116,-4.03674,1.57077,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,ln_pop,100,0.00536,0.17386,0.97551,-0.34402,0.35474,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,ln_density,100,-0.52077,0.13935,0.00049,-0.80081,-0.24074,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,pop_growth,100,1.07464,0.32871,0.00198,0.41408,1.7352,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,ln_income,100,0.34413,2.50154,0.89114,-4.68289,5.37116,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,pct_bach,100,-0.06248,0.08743,0.47822,-0.23818,0.11322,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,pct_hisp,100,0.04168,0.02801,0.1432,-0.01462,0.09798,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,med_age,100,-0.036,0.08862,0.68631,-0.21409,0.14208,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,gop24,100,-0.02094,0.03694,0.57341,-0.09516,0.05329,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),Old,M2 + controls,lag_d_youth15_29_pp,100,-3.89213,2.11718,0.07208,-8.14677,0.36251,cluster,50,87.0,13,0.38646,0.30184,control,,0.3828,NM,2023,0.3507,NM,2024
-Real GDP growth (%),New,M0 + lagged outcome,arr_rate10,50,0.02141,0.01987,0.28653,-0.01855,0.06138,HC3,50,47.0,3,0.07631,0.03701,primary,0.57307,0.15791,ND,2025,0.38283,TX,2025
-Real GDP growth (%),New,M0 + lagged outcome,lag_gdp_pc,50,0.96976,0.57876,0.10046,-0.19456,2.13408,HC3,50,47.0,3,0.07631,0.03701,control,,0.15791,ND,2025,0.38283,TX,2025
-Real GDP growth (%),New,M1 bivariate,arr_rate10,50,0.0188,0.02165,0.38972,-0.02474,0.06233,HC3,50,48.0,2,0.01538,-0.00513,sensitivity,,0.12945,WY,2025,0.36344,TX,2025
-Real GDP growth (%),New,M2 + controls,arr_rate10,50,-0.03088,0.03596,0.39592,-0.10368,0.04192,HC3,50,38.0,12,0.32747,0.13279,sensitivity,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,lag_gdp_pc,50,0.17848,1.51824,0.90704,-2.89504,3.25199,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,ln_pop,50,0.17064,0.2077,0.41646,-0.24984,0.59111,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,ln_density,50,0.03003,0.20323,0.88332,-0.3814,0.44145,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,pop_growth,50,0.58223,0.30697,0.06549,-0.0392,1.20365,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,ln_income,50,0.19714,2.48574,0.9372,-4.83498,5.22927,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,pct_bach,50,-0.00036,0.06215,0.99538,-0.12618,0.12546,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,pct_hisp,50,0.01681,0.01736,0.33904,-0.01834,0.05197,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,med_age,50,-0.04129,0.09854,0.67756,-0.24077,0.15819,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,gop24,50,-4e-05,0.0277,0.99876,-0.05613,0.05604,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),New,M2 + controls,lag_d_youth15_29_pp,50,-1.12131,2.04831,0.58728,-5.26788,3.02527,HC3,50,38.0,12,0.32747,0.13279,control,,0.46665,AK,2025,0.5883,NM,2025
-Real GDP growth (%),Pooled,M0 + lagged outcome,arr_rate10,150,0.06779,0.03781,0.07914,-0.00819,0.14376,cluster,50,145.0,5,0.16714,0.14416,sensitivity,,0.18519,TX,2023,0.25825,TX,2025
-Real GDP growth (%),Pooled,M0 + lagged outcome,lag_gdp_pc,150,-0.69278,0.63976,0.28416,-1.97842,0.59286,cluster,50,145.0,5,0.16714,0.14416,control,,0.18519,TX,2023,0.25825,TX,2025
-Real GDP growth (%),Pooled,M1 bivariate,arr_rate10,150,0.06969,0.03546,0.05504,-0.00156,0.14094,cluster,50,146.0,4,0.1607,0.14345,sensitivity,,0.21511,TX,2023,0.25194,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,arr_rate10,150,-0.02043,0.04476,0.65008,-0.11037,0.06951,cluster,50,136.0,14,0.35828,0.29694,sensitivity,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,lag_gdp_pc,150,-0.94914,0.90064,0.29712,-2.75904,0.86077,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,ln_pop,150,0.04004,0.13453,0.76724,-0.23031,0.31039,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,ln_density,150,-0.3051,0.12702,0.02014,-0.56036,-0.04984,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,pop_growth,150,0.88474,0.25019,0.0009,0.38196,1.38752,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,ln_income,150,-0.05968,1.69561,0.97206,-3.46713,3.34777,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,pct_bach,150,-0.0205,0.05982,0.7333,-0.14072,0.09972,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,pct_hisp,150,0.04029,0.02128,0.06429,-0.00248,0.08306,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,med_age,150,-0.06311,0.06666,0.34841,-0.19707,0.07085,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,gop24,150,-0.00587,0.02578,0.82089,-0.05767,0.04594,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),Pooled,M2 + controls,lag_d_youth15_29_pp,150,-3.25034,1.87754,0.08971,-7.02341,0.52272,cluster,50,136.0,14,0.35828,0.29694,control,,0.3175,NM,2023,0.29806,TX,2025
-Real GDP growth (%),New,M0 excluding highest-rate state (TX),arr_rate10,49,0.01633,0.03052,0.59506,-0.04509,0.07776,HC3,49,46.0,3,0.05896,0.01805,sensitivity,,0.17366,WY,2025,0.13727,NM,2025
-Real GDP growth (%),New,M0 excluding highest-rate state (TX),lag_gdp_pc,49,0.93898,0.59646,0.12229,-0.26164,2.13959,HC3,49,46.0,3,0.05896,0.01805,control,,0.17366,WY,2025,0.13727,NM,2025
-Real GDP growth (%),Old,M5 first-difference,d_arr_rate10,50,0.01875,0.0967,0.8473,-0.17702,0.21451,HC3,50,38.0,12,0.52048,0.38167,sensitivity,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,lag_gdp_pc,50,-2.61839,1.55373,0.10014,-5.76374,0.52697,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,ln_pop,50,0.0564,0.22221,0.80102,-0.39344,0.50623,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,ln_density,50,-0.23095,0.19593,0.24583,-0.62758,0.16569,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,pop_growth,50,1.47628,0.48004,0.00388,0.50449,2.44807,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,ln_income,50,1.6313,2.71341,0.55128,-3.86171,7.1243,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,pct_bach,50,-0.15501,0.09436,0.10867,-0.34603,0.036,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,pct_hisp,50,0.00037,0.02478,0.98818,-0.0498,0.05054,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,med_age,50,0.01631,0.1105,0.88346,-0.20738,0.23999,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,gop24,50,-0.10437,0.03778,0.00879,-0.18086,-0.02789,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),Old,M5 first-difference,lag_d_youth15_29_pp,50,1.07697,2.68594,0.69069,-4.36043,6.51437,HC3,50,38.0,12,0.52048,0.38167,control,,0.22156,WV,2024,0.58729,NM,2024
-Real GDP growth (%),New,M5 first-difference,d_arr_rate10,50,-0.04034,0.04842,0.40994,-0.13836,0.05768,HC3,50,38.0,12,0.32706,0.13226,sensitivity,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,lag_gdp_pc,50,0.22738,1.5322,0.88281,-2.8744,3.32916,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,ln_pop,50,0.17588,0.19629,0.3759,-0.2215,0.57325,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,ln_density,50,0.02079,0.1961,0.91611,-0.37618,0.41777,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,pop_growth,50,0.5767,0.30947,0.07013,-0.0498,1.2032,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,ln_income,50,0.36932,2.39531,0.87828,-4.47973,5.21837,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,pct_bach,50,-0.00454,0.06049,0.94058,-0.12699,0.11791,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,pct_hisp,50,0.01694,0.01781,0.34754,-0.01912,0.053,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,med_age,50,-0.02892,0.09129,0.75314,-0.21373,0.15589,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,gop24,50,-0.00073,0.02746,0.9789,-0.05633,0.05487,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),New,M5 first-difference,lag_d_youth15_29_pp,50,-0.91678,1.97849,0.64574,-4.92202,3.08846,HC3,50,38.0,12,0.32706,0.13226,control,,0.47309,AK,2025,0.61931,NM,2025
-Real GDP growth (%),Pooled,M6 era interaction,arr_rate10,150,0.08855,0.06767,0.19679,-0.04743,0.22453,cluster,50,136.0,14,0.35738,0.29595,sensitivity,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,arr_rate10:new,150,-0.13195,0.063,0.04141,-0.25855,-0.00535,cluster,50,136.0,14,0.35738,0.29595,sensitivity,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,new,150,-0.17517,0.37491,0.6424,-0.92859,0.57824,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,lag_gdp_pc,150,-0.88758,0.93738,0.34835,-2.77132,0.99616,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,ln_pop,150,0.06336,0.14905,0.67263,-0.23617,0.36289,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,ln_density,150,-0.32307,0.1305,0.0168,-0.58532,-0.06083,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,pop_growth,150,0.77341,0.25022,0.00329,0.27057,1.27625,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,ln_income,150,0.30658,1.7997,0.86544,-3.31005,3.92321,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,pct_bach,150,-0.03082,0.063,0.62687,-0.15741,0.09578,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,pct_hisp,150,0.03851,0.02358,0.1089,-0.00888,0.08591,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,med_age,150,-0.05678,0.0726,0.43791,-0.20267,0.08911,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,gop24,150,-0.00343,0.02673,0.89851,-0.05713,0.05028,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,150,-4.10392,2.08439,0.05464,-8.29266,0.08482,cluster,50,136.0,14,0.35738,0.29595,control,,0.34555,NM,2023,0.39864,TX,2025
-Real GDP growth (%),Pooled,M7 + detention rate,arr_rate10,150,-0.03646,0.04552,0.42693,-0.12793,0.055,cluster,50,135.0,15,0.36479,0.29891,sensitivity,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,det_rate10,150,0.07078,0.02831,0.01581,0.01389,0.12766,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,lag_gdp_pc,150,-1.05002,0.8977,0.24779,-2.85402,0.75397,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,ln_pop,150,0.05092,0.12895,0.69463,-0.20822,0.31006,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,ln_density,150,-0.31771,0.12268,0.01261,-0.56424,-0.07117,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,pop_growth,150,0.95067,0.25052,0.00041,0.44724,1.45411,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,ln_income,150,0.60051,1.63952,0.71574,-2.69422,3.89524,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,pct_bach,150,-0.01921,0.05814,0.74254,-0.13605,0.09763,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,pct_hisp,150,0.03787,0.02028,0.06786,-0.00289,0.07863,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,med_age,150,-0.0399,0.06489,0.54149,-0.1703,0.0905,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,gop24,150,1e-05,0.02531,0.99974,-0.05085,0.05086,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Real GDP growth (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,150,-2.98501,1.88922,0.12054,-6.78155,0.81152,cluster,50,135.0,15,0.36479,0.29891,control,,0.29198,NM,2023,0.38663,LA,2025
-Unemployment change (pp),Old,M0 + lagged outcome,arr_rate10,100,0.01729,0.01254,0.1741,-0.0079,0.04249,cluster,50,96.0,4,0.38131,0.36197,sensitivity,,0.08889,TX,2024,0.20331,TX,2023
-Unemployment change (pp),Old,M0 + lagged outcome,lag_unemp,100,-0.04172,0.03938,0.29453,-0.12086,0.03741,cluster,50,96.0,4,0.38131,0.36197,control,,0.08889,TX,2024,0.20331,TX,2023
-Unemployment change (pp),Old,M1 bivariate,arr_rate10,100,0.01735,0.01298,0.18741,-0.00873,0.04342,cluster,50,97.0,3,0.37489,0.362,sensitivity,,0.12389,TX,2024,0.19695,TX,2023
-Unemployment change (pp),Old,M2 + controls,arr_rate10,100,0.00051,0.01829,0.97786,-0.03623,0.03726,cluster,50,87.0,13,0.43305,0.35485,sensitivity,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,lag_unemp,100,-0.07446,0.05691,0.19681,-0.18882,0.0399,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,ln_pop,100,0.06363,0.06609,0.34041,-0.06919,0.19644,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,ln_density,100,-0.00181,0.0507,0.9716,-0.10369,0.10007,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,pop_growth,100,-0.00997,0.07054,0.88822,-0.15173,0.1318,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,ln_income,100,-0.04879,0.43383,0.91091,-0.92062,0.82303,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,pct_bach,100,0.00315,0.0183,0.86407,-0.03362,0.03992,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,pct_hisp,100,0.00145,0.00442,0.74348,-0.00743,0.01034,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,med_age,100,-0.03332,0.01869,0.08076,-0.07087,0.00423,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,gop24,100,0.00346,0.00723,0.63389,-0.01106,0.01799,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),Old,M2 + controls,lag_d_youth15_29_pp,100,-0.39667,0.38093,0.30283,-1.16217,0.36882,cluster,50,87.0,13,0.43305,0.35485,control,,0.24122,RI,2024,0.35835,NM,2024
-Unemployment change (pp),New,M0 + lagged outcome,arr_rate10,50,2e-05,0.00913,0.99814,-0.01834,0.01839,HC3,50,47.0,3,0.10249,0.0643,primary,0.99814,0.14936,HI,2025,0.36367,TX,2025
-Unemployment change (pp),New,M0 + lagged outcome,lag_unemp,50,-0.15453,0.06396,0.01962,-0.2832,-0.02587,HC3,50,47.0,3,0.10249,0.0643,control,,0.14936,HI,2025,0.36367,TX,2025
-Unemployment change (pp),New,M1 bivariate,arr_rate10,50,-0.00274,0.00915,0.76575,-0.02114,0.01566,HC3,50,48.0,2,0.00106,-0.01976,sensitivity,,0.12734,HI,2025,0.36344,TX,2025
-Unemployment change (pp),New,M2 + controls,arr_rate10,50,0.0159,0.01654,0.34241,-0.01758,0.04937,HC3,50,38.0,12,0.29002,0.08451,sensitivity,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,lag_unemp,50,-0.14389,0.13521,0.29395,-0.41759,0.12982,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,ln_pop,50,0.05112,0.08683,0.55953,-0.12466,0.2269,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,ln_density,50,-0.0132,0.08541,0.87802,-0.18611,0.15971,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,pop_growth,50,0.12678,0.16913,0.4581,-0.2156,0.46916,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,ln_income,50,0.37052,1.32069,0.78058,-2.30307,3.04412,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,pct_bach,50,-0.00116,0.05253,0.98254,-0.1075,0.10518,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,pct_hisp,50,-0.00734,0.00936,0.43786,-0.0263,0.01161,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,med_age,50,0.06486,0.03572,0.0773,-0.00745,0.13716,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,gop24,50,-0.01338,0.01711,0.43882,-0.04801,0.02125,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),New,M2 + controls,lag_d_youth15_29_pp,50,1.23392,0.96732,0.20984,-0.72432,3.19215,HC3,50,38.0,12,0.29002,0.08451,control,,0.53695,HI,2025,0.59142,NM,2025
-Unemployment change (pp),Pooled,M0 + lagged outcome,arr_rate10,150,0.00477,0.00741,0.52284,-0.01012,0.01965,cluster,50,145.0,5,0.27652,0.25657,sensitivity,,0.06816,HI,2025,0.25243,TX,2025
-Unemployment change (pp),Pooled,M0 + lagged outcome,lag_unemp,150,-0.0847,0.03348,0.01467,-0.15198,-0.01742,cluster,50,145.0,5,0.27652,0.25657,control,,0.06816,HI,2025,0.25243,TX,2025
-Unemployment change (pp),Pooled,M1 bivariate,arr_rate10,150,0.00378,0.0076,0.62112,-0.01149,0.01905,cluster,50,146.0,4,0.2489,0.23347,sensitivity,,0.06317,HI,2025,0.25194,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,arr_rate10,150,-0.00309,0.00804,0.70254,-0.01925,0.01307,cluster,50,136.0,14,0.30654,0.24026,sensitivity,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,lag_unemp,150,-0.12667,0.05543,0.02666,-0.23805,-0.01529,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,ln_pop,150,0.05497,0.04192,0.19587,-0.02927,0.1392,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,ln_density,150,0.00636,0.0347,0.85527,-0.06337,0.07609,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,pop_growth,150,0.01578,0.05314,0.76776,-0.09101,0.12257,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,ln_income,150,0.05549,0.45315,0.90303,-0.85514,0.96613,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,pct_bach,150,0.00052,0.01881,0.97809,-0.03729,0.03833,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,pct_hisp,150,0.00136,0.00281,0.63099,-0.00428,0.007,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,med_age,150,-0.00731,0.01121,0.51735,-0.02984,0.01522,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,gop24,150,-0.00033,0.00633,0.95821,-0.01305,0.01239,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),Pooled,M2 + controls,lag_d_youth15_29_pp,150,0.00333,0.35197,0.99248,-0.70397,0.71064,cluster,50,136.0,14,0.30654,0.24026,control,,0.10767,RI,2024,0.29264,TX,2025
-Unemployment change (pp),New,M0 excluding highest-rate state (TX),arr_rate10,49,0.00253,0.01334,0.85033,-0.02432,0.02938,HC3,49,46.0,3,0.10124,0.06216,sensitivity,,0.16975,HI,2025,0.13979,NM,2025
-Unemployment change (pp),New,M0 excluding highest-rate state (TX),lag_unemp,49,-0.15416,0.06424,0.02051,-0.28347,-0.02485,HC3,49,46.0,3,0.10124,0.06216,control,,0.16975,HI,2025,0.13979,NM,2025
-Unemployment change (pp),Old,M5 first-difference,d_arr_rate10,50,-0.02691,0.0413,0.5186,-0.11051,0.05669,HC3,50,38.0,12,0.15726,-0.08669,sensitivity,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,lag_unemp,50,0.03312,0.11168,0.7684,-0.19296,0.25921,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,ln_pop,50,-0.04187,0.13934,0.76546,-0.32394,0.24021,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,ln_density,50,0.0641,0.09864,0.51967,-0.13557,0.26378,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,pop_growth,50,-0.08034,0.19881,0.68842,-0.48281,0.32214,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,ln_income,50,-1.0449,0.70035,0.14396,-2.46267,0.37288,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,pct_bach,50,0.02608,0.02782,0.35447,-0.03024,0.0824,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,pct_hisp,50,0.00108,0.00794,0.89258,-0.01499,0.01715,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,med_age,50,-0.06756,0.04813,0.16846,-0.16499,0.02986,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,gop24,50,0.00342,0.01177,0.77305,-0.02041,0.02725,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),Old,M5 first-difference,lag_d_youth15_29_pp,50,-1.38641,1.04717,0.19343,-3.5063,0.73347,HC3,50,38.0,12,0.15726,-0.08669,control,,0.36387,RI,2024,0.59121,NM,2024
-Unemployment change (pp),New,M5 first-difference,d_arr_rate10,50,0.01735,0.0225,0.44536,-0.0282,0.0629,HC3,50,38.0,12,0.2865,0.07996,sensitivity,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,lag_unemp,50,-0.15029,0.13433,0.27025,-0.42223,0.12165,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,ln_pop,50,0.04947,0.08727,0.57413,-0.1272,0.22615,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,ln_density,50,-0.00606,0.08449,0.94322,-0.1771,0.16499,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,pop_growth,50,0.12992,0.17196,0.45461,-0.2182,0.47804,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,ln_income,50,0.265,1.34473,0.84482,-2.45726,2.98726,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,pct_bach,50,0.00049,0.05273,0.99258,-0.10626,0.10724,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,pct_hisp,50,-0.00647,0.00974,0.51057,-0.02618,0.01324,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,med_age,50,0.05831,0.03514,0.10529,-0.01283,0.12945,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,gop24,50,-0.01261,0.01735,0.47204,-0.04774,0.02253,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),New,M5 first-difference,lag_d_youth15_29_pp,50,1.13212,0.98003,0.25523,-0.85185,3.1161,HC3,50,38.0,12,0.2865,0.07996,control,,0.53621,HI,2025,0.61859,NM,2025
-Unemployment change (pp),Pooled,M6 era interaction,arr_rate10,150,-0.0238,0.01659,0.15777,-0.05714,0.00954,cluster,50,136.0,14,0.11621,0.03173,sensitivity,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,arr_rate10:new,150,0.01216,0.01842,0.51238,-0.02486,0.04918,cluster,50,136.0,14,0.11621,0.03173,sensitivity,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,new,150,0.12564,0.12602,0.32365,-0.1276,0.37888,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,lag_unemp,150,-0.13917,0.06196,0.02925,-0.26369,-0.01465,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,ln_pop,150,0.04466,0.0476,0.35281,-0.05101,0.14032,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,ln_density,150,0.01588,0.04167,0.70479,-0.06786,0.09961,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,pop_growth,150,0.06573,0.06189,0.29342,-0.05864,0.1901,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,ln_income,150,-0.01728,0.49577,0.97233,-1.01357,0.97901,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,pct_bach,150,-0.00156,0.02032,0.93896,-0.04239,0.03927,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,pct_hisp,150,0.00188,0.00353,0.59619,-0.00521,0.00898,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,med_age,150,-0.00099,0.01366,0.94236,-0.02844,0.02646,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,gop24,150,-0.00399,0.00675,0.5573,-0.01756,0.00958,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M6 era interaction,lag_d_youth15_29_pp,150,0.81609,0.37405,0.03395,0.0644,1.56778,cluster,50,136.0,14,0.11621,0.03173,control,,0.11659,RI,2024,0.3957,TX,2025
-Unemployment change (pp),Pooled,M7 + detention rate,arr_rate10,150,-0.00194,0.00861,0.82223,-0.01924,0.01536,cluster,50,135.0,15,0.30708,0.23522,sensitivity,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,det_rate10,150,-0.00506,0.01084,0.64239,-0.02684,0.01671,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,lag_unemp,150,-0.12611,0.05571,0.02804,-0.23806,-0.01417,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,ln_pop,150,0.05415,0.04145,0.19745,-0.02914,0.13745,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,ln_density,150,0.00719,0.03442,0.83543,-0.06198,0.07636,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,pop_growth,150,0.01109,0.05349,0.83659,-0.0964,0.11858,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,ln_income,150,0.01337,0.47239,0.97754,-0.93593,0.96266,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,pct_bach,150,0.00051,0.01887,0.9784,-0.03741,0.03844,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,pct_hisp,150,0.00153,0.00276,0.58285,-0.00402,0.00707,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,med_age,150,-0.009,0.01147,0.43651,-0.03205,0.01405,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,gop24,150,-0.00073,0.00647,0.91011,-0.01374,0.01227,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Unemployment change (pp),Pooled,M7 + detention rate,lag_d_youth15_29_pp,150,-0.01362,0.35332,0.96941,-0.72364,0.6964,cluster,50,135.0,15,0.30708,0.23522,control,,0.10061,RI,2024,0.39105,LA,2025
-Violent crime rate change (%),Old,M0 + lagged outcome,arr_rate10,90,0.8709,0.52337,0.10321,-0.18387,1.92568,cluster,45,86.0,4,0.05786,0.025,sensitivity,,0.38348,MS,2024,0.20731,TX,2023
-Violent crime rate change (%),Old,M0 + lagged outcome,lag_violent,90,0.00148,0.00387,0.7036,-0.00631,0.00928,cluster,45,86.0,4,0.05786,0.025,control,,0.38348,MS,2024,0.20731,TX,2023
-Violent crime rate change (%),Old,M1 bivariate,arr_rate10,90,0.86722,0.52096,0.10309,-0.1827,1.91713,cluster,45,87.0,3,0.05656,0.03488,sensitivity,,0.35081,MS,2024,0.20685,TX,2023
-Violent crime rate change (%),Old,M2 + controls,arr_rate10,90,1.16895,0.51193,0.02729,0.13722,2.20067,cluster,45,77.0,13,0.26654,0.15224,sensitivity,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,lag_violent,90,-0.00368,0.00453,0.42016,-0.0128,0.00544,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,ln_pop,90,0.09108,1.07393,0.93279,-2.07328,2.25545,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,ln_density,90,2.02611,0.86507,0.02376,0.28268,3.76955,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,pop_growth,90,-6.75119,2.03632,0.00184,-10.85512,-2.64725,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,ln_income,90,-34.59887,13.77562,0.01576,-62.36181,-6.83593,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,pct_bach,90,0.74017,0.37642,0.05559,-0.01845,1.49879,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,pct_hisp,90,-0.12819,0.14575,0.38391,-0.42194,0.16556,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,med_age,90,-0.62332,0.55733,0.26946,-1.74655,0.49991,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,gop24,90,0.03251,0.21976,0.88308,-0.41039,0.4754,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),Old,M2 + controls,lag_d_youth15_29_pp,90,16.08466,12.31259,0.19822,-8.72974,40.89906,cluster,45,77.0,13,0.26654,0.15224,control,,0.41458,MS,2024,0.36363,NM,2024
-Violent crime rate change (%),New,M0 + lagged outcome,arr_rate10,45,-0.44351,0.30081,0.14782,-1.05056,0.16353,HC3,45,42.0,3,0.05318,0.00809,primary,0.57307,0.28469,NM,2025,0.38704,TX,2025
-Violent crime rate change (%),New,M0 + lagged outcome,lag_violent,45,0.00145,0.00772,0.85192,-0.01413,0.01703,HC3,45,42.0,3,0.05318,0.00809,control,,0.28469,NM,2025,0.38704,TX,2025
-Violent crime rate change (%),New,M1 bivariate,arr_rate10,45,-0.45397,0.30427,0.143,-1.06759,0.15965,HC3,45,43.0,2,0.05204,0.03,sensitivity,,0.22568,NM,2025,0.37849,TX,2025
-Violent crime rate change (%),New,M2 + controls,arr_rate10,45,0.12284,0.40574,0.76397,-0.70264,0.94832,HC3,45,33.0,12,0.32774,0.10366,sensitivity,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,lag_violent,45,-0.00384,0.01356,0.77901,-0.03142,0.02375,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,ln_pop,45,2.16086,2.77506,0.44172,-3.48504,7.80675,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,ln_density,45,-2.52206,1.53334,0.1095,-5.64166,0.59755,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,pop_growth,45,-3.2974,4.03851,0.42008,-11.5138,4.91901,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,ln_income,45,12.86939,21.93103,0.56132,-31.74963,57.48841,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,pct_bach,45,0.50939,0.73532,0.49332,-0.98664,2.00541,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,pct_hisp,45,-0.45459,0.29322,0.13059,-1.05115,0.14196,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,med_age,45,-1.25359,1.26558,0.32912,-3.82842,1.32124,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,gop24,45,0.24572,0.35726,0.49639,-0.48113,0.97258,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),New,M2 + controls,lag_d_youth15_29_pp,45,-41.9347,33.36333,0.21761,-109.8129,25.9435,HC3,45,33.0,12,0.32774,0.10366,control,,0.24589,AL,2025,0.61059,NM,2025
-Violent crime rate change (%),Pooled,M0 + lagged outcome,arr_rate10,135,-0.01464,0.2069,0.94392,-0.43163,0.40235,cluster,45,130.0,5,0.11141,0.08407,sensitivity,,0.23189,MS,2024,0.26438,TX,2025
-Violent crime rate change (%),Pooled,M0 + lagged outcome,lag_violent,135,0.00177,0.00366,0.63156,-0.00561,0.00914,cluster,45,130.0,5,0.11141,0.08407,control,,0.23189,MS,2024,0.26438,TX,2025
-Violent crime rate change (%),Pooled,M1 bivariate,arr_rate10,135,-0.02466,0.21589,0.90957,-0.45976,0.41043,cluster,45,131.0,4,0.1098,0.08941,sensitivity,,0.21068,MS,2024,0.26272,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,arr_rate10,135,0.15275,0.24977,0.54398,-0.35063,0.65613,cluster,45,121.0,14,0.21342,0.12892,sensitivity,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,lag_violent,135,-0.00275,0.00452,0.54608,-0.01186,0.00636,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,ln_pop,135,0.74109,1.04817,0.48328,-1.37137,2.85355,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,ln_density,135,0.55903,0.68505,0.41887,-0.82161,1.93967,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,pop_growth,135,-4.15677,1.71245,0.01937,-7.60798,-0.70556,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,ln_income,135,-20.20352,10.18862,0.05364,-40.73733,0.33029,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,pct_bach,135,0.69084,0.2212,0.00316,0.24504,1.13664,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,pct_hisp,135,-0.1935,0.12031,0.1149,-0.43596,0.04896,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,med_age,135,-1.01668,0.39692,0.01393,-1.81662,-0.21673,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,gop24,135,0.09591,0.15449,0.53792,-0.21544,0.40726,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),Pooled,M2 + controls,lag_d_youth15_29_pp,135,-3.96297,8.41971,0.6402,-20.93179,13.00584,cluster,45,121.0,14,0.21342,0.12892,control,,0.26819,MS,2024,0.30407,TX,2025
-Violent crime rate change (%),New,M0 excluding highest-rate state (TX),arr_rate10,44,-0.59123,0.43246,0.17903,-1.46461,0.28214,HC3,44,41.0,3,0.05891,0.013,sensitivity,,0.33595,NM,2025,0.21158,AR,2025
-Violent crime rate change (%),New,M0 excluding highest-rate state (TX),lag_violent,44,0.00097,0.00747,0.89769,-0.01413,0.01606,HC3,44,41.0,3,0.05891,0.013,control,,0.33595,NM,2025,0.21158,AR,2025
-Violent crime rate change (%),Old,M5 first-difference,d_arr_rate10,45,-0.79852,1.51819,0.60243,-3.8873,2.29026,HC3,45,33.0,12,0.3594,0.14587,sensitivity,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,lag_violent,45,-0.01612,0.01254,0.20767,-0.04163,0.0094,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,ln_pop,45,0.9425,2.57141,0.71631,-4.28908,6.17407,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,ln_density,45,1.72781,2.1049,0.41762,-2.55464,6.01026,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,pop_growth,45,-8.1387,5.14846,0.12346,-18.61333,2.33592,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,ln_income,45,-60.94316,38.1028,0.11925,-138.46389,16.57756,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,pct_bach,45,0.83162,0.91535,0.37019,-1.03067,2.69391,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,pct_hisp,45,-0.15682,0.44037,0.72402,-1.05277,0.73913,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,med_age,45,-1.66243,1.46754,0.26546,-4.64816,1.32331,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,gop24,45,-0.22565,0.473,0.63646,-1.18798,0.73668,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),Old,M5 first-difference,lag_d_youth15_29_pp,45,11.75018,35.83302,0.74505,-61.15266,84.65301,HC3,45,33.0,12,0.3594,0.14587,control,,0.58415,NM,2024,0.60351,NM,2024
-Violent crime rate change (%),New,M5 first-difference,d_arr_rate10,45,0.1863,0.72911,0.7999,-1.29708,1.66968,HC3,45,33.0,12,0.32814,0.10419,sensitivity,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,lag_violent,45,-0.00367,0.01367,0.78996,-0.03148,0.02414,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,ln_pop,45,2.11517,2.80039,0.45542,-3.58225,7.8126,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,ln_density,45,-2.48713,1.53739,0.11523,-5.61498,0.64071,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,pop_growth,45,-3.29012,4.06495,0.42409,-11.56033,4.98009,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,ln_income,45,12.18064,22.52463,0.5923,-33.64607,58.00735,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,pct_bach,45,0.52047,0.73069,0.48128,-0.96613,2.00707,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,pct_hisp,45,-0.45999,0.31809,0.15758,-1.10714,0.18716,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,med_age,45,-1.2957,1.28283,0.31983,-3.90564,1.31424,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,gop24,45,0.24544,0.37717,0.51973,-0.52193,1.0128,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),New,M5 first-difference,lag_d_youth15_29_pp,45,-42.83932,34.87023,0.22794,-113.78334,28.1047,HC3,45,33.0,12,0.32814,0.10419,control,,0.23758,GA,2025,0.64376,NM,2025
-Violent crime rate change (%),Pooled,M6 era interaction,arr_rate10,135,1.00689,0.45625,0.03259,0.08737,1.9264,cluster,45,121.0,14,0.24035,0.15873,sensitivity,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,arr_rate10:new,135,-1.27389,0.54216,0.02334,-2.36655,-0.18123,cluster,45,121.0,14,0.24035,0.15873,sensitivity,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,new,135,-2.51459,3.2164,0.43852,-8.99682,3.96763,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,lag_violent,135,-0.00366,0.0045,0.42036,-0.01272,0.0054,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,ln_pop,135,0.84462,1.0247,0.41424,-1.22053,2.90978,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,ln_density,135,0.50365,0.70006,0.47567,-0.90722,1.91452,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,pop_growth,135,-4.37089,1.52763,0.00643,-7.44963,-1.29215,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,ln_income,135,-17.83866,9.13968,0.05735,-36.25847,0.58115,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,pct_bach,135,0.56924,0.20742,0.00874,0.15121,0.98726,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,pct_hisp,135,-0.22075,0.11535,0.06218,-0.45323,0.01173,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,med_age,135,-0.74339,0.37505,0.05374,-1.49925,0.01248,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,gop24,135,0.05376,0.14904,0.72007,-0.24662,0.35413,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,135,3.78083,9.41844,0.69005,-15.20078,22.76244,cluster,45,121.0,14,0.24035,0.15873,control,,0.25533,MS,2024,0.41672,TX,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,arr_rate10,135,0.01255,0.26894,0.96299,-0.52947,0.55457,cluster,45,120.0,15,0.22715,0.13698,sensitivity,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,det_rate10,135,0.62223,0.32373,0.06108,-0.0302,1.27466,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,lag_violent,135,-0.00204,0.00419,0.62841,-0.01048,0.0064,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,ln_pop,135,0.73804,1.07349,0.49537,-1.42544,2.90152,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,ln_density,135,0.45954,0.71044,0.5211,-0.97227,1.89135,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,pop_growth,135,-3.44201,1.74015,0.05421,-6.94906,0.06504,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,ln_income,135,-15.28885,11.10459,0.17554,-37.66868,7.09099,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,pct_bach,135,0.70223,0.22165,0.00279,0.25553,1.14893,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,pct_hisp,135,-0.21089,0.123,0.09346,-0.45877,0.037,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,med_age,135,-0.81595,0.38712,0.04079,-1.59613,-0.03576,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,gop24,135,0.14071,0.15875,0.38023,-0.17923,0.46065,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Violent crime rate change (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,135,-2.02221,8.53206,0.81375,-19.21744,15.17301,cluster,45,120.0,15,0.22715,0.13698,control,,0.25254,MS,2024,0.39893,LA,2025
-Property (nonviolent) crime rate change (%),Old,M0 + lagged outcome,arr_rate10,88,-0.30234,0.38741,0.43943,-1.08364,0.47895,cluster,44,84.0,4,0.15504,0.12487,sensitivity,,0.325,VT,2023,0.20767,TX,2023
-Property (nonviolent) crime rate change (%),Old,M0 + lagged outcome,lag_property,88,-0.00201,0.00082,0.01879,-0.00367,-0.00035,cluster,44,84.0,4,0.15504,0.12487,control,,0.325,VT,2023,0.20767,TX,2023
-Property (nonviolent) crime rate change (%),Old,M1 bivariate,arr_rate10,88,-0.28545,0.40685,0.4867,-1.10595,0.53505,cluster,44,85.0,3,0.11613,0.09533,sensitivity,,0.11892,MD,2023,0.20765,TX,2023
-Property (nonviolent) crime rate change (%),Old,M2 + controls,arr_rate10,88,-0.7385,0.46119,0.11664,-1.66859,0.19159,cluster,44,75.0,13,0.27439,0.15829,sensitivity,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,lag_property,88,-0.00114,0.00109,0.30285,-0.00335,0.00107,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_pop,88,2.42672,1.64468,0.14737,-0.8901,5.74354,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_density,88,0.46152,1.41686,0.74621,-2.39585,3.31889,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,pop_growth,88,0.38702,1.97059,0.84523,-3.58707,4.3611,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_income,88,-21.35366,17.58962,0.23138,-56.82651,14.1192,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,pct_bach,88,0.94055,0.45512,0.04483,0.02272,1.85839,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,pct_hisp,88,0.10018,0.16915,0.55677,-0.24094,0.4413,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,med_age,88,-0.78503,0.91141,0.39383,-2.62306,1.053,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,gop24,88,0.18547,0.22321,0.41062,-0.26469,0.63562,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),Old,M2 + controls,lag_d_youth15_29_pp,88,-30.88576,16.87654,0.07417,-64.92055,3.14902,cluster,44,75.0,13,0.27439,0.15829,control,,0.37229,VT,2023,0.35255,VT,2024
-Property (nonviolent) crime rate change (%),New,M0 + lagged outcome,arr_rate10,44,-0.15143,0.20851,0.47181,-0.57253,0.26967,HC3,44,41.0,3,0.08133,0.03652,primary,0.62908,0.19935,TX,2025,0.4271,TX,2025
-Property (nonviolent) crime rate change (%),New,M0 + lagged outcome,lag_property,44,0.00166,0.00113,0.15019,-0.00062,0.00393,HC3,44,41.0,3,0.08133,0.03652,control,,0.19935,TX,2025,0.4271,TX,2025
-Property (nonviolent) crime rate change (%),New,M1 bivariate,arr_rate10,44,-0.2029,0.22894,0.38052,-0.66493,0.25912,HC3,44,42.0,2,0.02587,0.00267,sensitivity,,0.43123,TX,2025,0.41341,TX,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,arr_rate10,44,-0.01564,0.3716,0.96669,-0.77257,0.74129,HC3,44,32.0,12,0.36223,0.143,sensitivity,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,lag_property,44,0.00148,0.00146,0.31989,-0.0015,0.00446,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,ln_pop,44,1.87697,1.3773,0.18246,-0.9285,4.68245,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,ln_density,44,-0.15743,1.23714,0.89953,-2.67741,2.36254,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,pop_growth,44,-4.19119,2.76762,0.13975,-9.82864,1.44626,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,ln_income,44,-1.89906,17.70038,0.91523,-37.95355,34.15543,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,pct_bach,44,0.64366,0.56845,0.26591,-0.51423,1.80155,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,pct_hisp,44,-0.23133,0.16481,0.17005,-0.56703,0.10437,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,med_age,44,-0.4455,0.71485,0.53756,-1.9016,1.0106,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,gop24,44,0.19749,0.26821,0.46689,-0.34883,0.74381,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),New,M2 + controls,lag_d_youth15_29_pp,44,7.24909,20.26291,0.72288,-34.02511,48.52328,HC3,44,32.0,12,0.36223,0.143,control,,0.1766,TX,2025,0.55311,VT,2025
-Property (nonviolent) crime rate change (%),Pooled,M0 + lagged outcome,arr_rate10,132,-0.25789,0.22347,0.25486,-0.70855,0.19277,cluster,44,127.0,5,0.25392,0.23042,sensitivity,,0.28254,VT,2024,0.28261,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M0 + lagged outcome,lag_property,132,-0.00115,0.0007,0.10598,-0.00256,0.00025,cluster,44,127.0,5,0.25392,0.23042,control,,0.28254,VT,2024,0.28261,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M1 bivariate,arr_rate10,132,-0.23094,0.2135,0.28542,-0.66151,0.19963,cluster,44,128.0,4,0.24154,0.22376,sensitivity,,0.10526,MD,2023,0.28071,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,arr_rate10,132,-0.41412,0.28167,0.14879,-0.98216,0.15393,cluster,44,118.0,14,0.33456,0.26125,sensitivity,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,lag_property,132,-0.00065,0.00088,0.45885,-0.00242,0.00111,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_pop,132,2.21278,1.19159,0.07017,-0.19029,4.61585,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_density,132,0.3326,1.08141,0.7599,-1.84828,2.51348,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pop_growth,132,-0.14462,1.32264,0.91344,-2.81198,2.52274,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_income,132,-14.69532,13.56225,0.2846,-42.0462,12.65556,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pct_bach,132,0.81414,0.33948,0.02089,0.1295,1.49877,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pct_hisp,132,-0.02904,0.12417,0.81619,-0.27945,0.22137,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,med_age,132,-0.64367,0.68282,0.35112,-2.02071,0.73336,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,gop24,132,0.17658,0.17337,0.31411,-0.17304,0.52621,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M2 + controls,lag_d_youth15_29_pp,132,-17.04859,12.4123,0.17671,-42.08037,7.9832,cluster,44,118.0,14,0.33456,0.26125,control,,0.28388,VT,2023,0.3187,TX,2025
-Property (nonviolent) crime rate change (%),New,M0 excluding highest-rate state (TX),arr_rate10,43,-0.29564,0.26562,0.27235,-0.83248,0.2412,HC3,43,40.0,3,0.09856,0.05349,sensitivity,,0.16044,NY,2025,0.18562,VT,2025
-Property (nonviolent) crime rate change (%),New,M0 excluding highest-rate state (TX),lag_property,43,0.00151,0.00114,0.19427,-0.0008,0.00382,HC3,43,40.0,3,0.09856,0.05349,control,,0.16044,NY,2025,0.18562,VT,2025
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,d_arr_rate10,44,0.15688,1.17767,0.89486,-2.24195,2.55572,HC3,44,32.0,12,0.41948,0.21993,sensitivity,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,lag_property,44,-0.00311,0.00228,0.18262,-0.00775,0.00154,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_pop,44,3.06734,2.20254,0.17333,-1.41908,7.55377,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_density,44,-0.26886,1.37956,0.84671,-3.07893,2.54121,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,pop_growth,44,0.04161,4.25018,0.99225,-8.61573,8.69895,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_income,44,19.79748,35.32108,0.57904,-52.14921,91.74418,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,pct_bach,44,0.14753,1.04429,0.88854,-1.97961,2.27468,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,pct_hisp,44,-0.0939,0.22963,0.68531,-0.56164,0.37383,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,med_age,44,0.728,1.34526,0.59215,-2.01222,3.46821,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,gop24,44,0.28882,0.29373,0.33283,-0.30948,0.88712,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),Old,M5 first-difference,lag_d_youth15_29_pp,44,-0.86026,20.59664,0.96694,-42.81424,41.09372,HC3,44,32.0,12,0.41948,0.21993,control,,0.70182,VT,2024,0.66951,VT,2024
-Property (nonviolent) crime rate change (%),New,M5 first-difference,d_arr_rate10,44,-0.21201,0.47785,0.66026,-1.18536,0.76134,HC3,44,32.0,12,0.36795,0.15069,sensitivity,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,lag_property,44,0.0015,0.00145,0.3074,-0.00145,0.00445,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_pop,44,1.95922,1.32514,0.14905,-0.73999,4.65843,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_density,44,-0.05971,1.20926,0.96092,-2.52289,2.40347,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,pop_growth,44,-4.08643,2.76365,0.14901,-9.7158,1.54293,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_income,44,-1.21743,16.99185,0.94333,-35.8287,33.39384,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,pct_bach,44,0.65289,0.55793,0.25056,-0.48358,1.78936,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,pct_hisp,44,-0.19679,0.1543,0.21135,-0.51108,0.1175,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,med_age,44,-0.47233,0.71641,0.51441,-1.9316,0.98694,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,gop24,44,0.23921,0.26116,0.36655,-0.29276,0.77117,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),New,M5 first-difference,lag_d_youth15_29_pp,44,7.40667,20.57207,0.72119,-34.49726,49.3106,HC3,44,32.0,12,0.36795,0.15069,control,,0.16358,CO,2025,0.54027,VT,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,arr_rate10,132,-0.07302,0.41673,0.86173,-0.91343,0.7674,cluster,44,118.0,14,0.27292,0.19282,sensitivity,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,arr_rate10:new,132,-0.24226,0.31501,0.44606,-0.87755,0.39302,cluster,44,118.0,14,0.27292,0.19282,sensitivity,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,new,132,-6.04191,2.1573,0.00761,-10.39252,-1.6913,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,lag_property,132,-0.00081,0.00098,0.41464,-0.00278,0.00117,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_pop,132,2.72383,1.17971,0.02582,0.34472,5.10294,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_density,132,-0.07081,1.09193,0.94859,-2.27291,2.13128,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pop_growth,132,-1.08988,1.23215,0.38133,-3.57475,1.39499,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_income,132,-11.03102,14.98021,0.4655,-41.24149,19.17946,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pct_bach,132,0.7993,0.37286,0.03776,0.04735,1.55124,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pct_hisp,132,-0.06004,0.13766,0.66492,-0.33767,0.21758,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,med_age,132,-0.78093,0.66838,0.24908,-2.12884,0.56698,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,gop24,132,0.23033,0.17442,0.19363,-0.12142,0.58207,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,132,-29.96585,12.60921,0.022,-55.39474,-4.53696,cluster,44,118.0,14,0.27292,0.19282,control,,0.30356,VT,2024,0.44711,TX,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,arr_rate10,132,-0.37038,0.29218,0.21175,-0.95962,0.21886,cluster,44,117.0,15,0.3355,0.25598,sensitivity,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,det_rate10,132,-0.16654,0.34371,0.63046,-0.8597,0.52662,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,lag_property,132,-0.00068,0.00091,0.46334,-0.00252,0.00117,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_pop,132,2.21142,1.21365,0.0754,-0.23613,4.65897,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_density,132,0.35157,1.0961,0.74996,-1.85892,2.56206,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pop_growth,132,-0.30028,1.35716,0.82594,-3.03725,2.4367,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_income,132,-15.68246,13.47055,0.25076,-42.84841,11.48348,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pct_bach,132,0.80523,0.3364,0.02111,0.12682,1.48364,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pct_hisp,132,-0.0286,0.12461,0.81959,-0.2799,0.22271,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,med_age,132,-0.69541,0.69949,0.3257,-2.10607,0.71525,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,gop24,132,0.16394,0.17406,0.35152,-0.18709,0.51498,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,132,-17.66014,12.95901,0.18005,-43.79448,8.4742,cluster,44,117.0,15,0.3355,0.25598,control,,0.27738,VT,2024,0.40087,LA,2025
-"Violent crime change, FBI (%)",Old,M1 bivariate,arr_rate10,100,-0.08757,0.22242,0.6955,-0.53453,0.3594,cluster,50,97.0,3,0.00261,-0.01795,sensitivity,,0.23267,HI,2023,0.19695,TX,2023
-"Violent crime change, FBI (%)",Old,M2 + controls,arr_rate10,100,-0.26344,0.26924,0.33266,-0.80451,0.27763,cluster,50,88.0,12,0.04214,-0.0776,sensitivity,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,ln_pop,100,0.41911,0.52522,0.42874,-0.63636,1.47459,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,ln_density,100,-0.26136,0.42606,0.54243,-1.11755,0.59484,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,pop_growth,100,0.1906,1.26644,0.88099,-2.35441,2.73561,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,ln_income,100,-1.5261,5.8527,0.79538,-13.28755,10.23534,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,pct_bach,100,0.36632,0.17737,0.04421,0.00988,0.72276,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,pct_hisp,100,0.05916,0.0468,0.21214,-0.03488,0.15321,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,med_age,100,0.27786,0.30251,0.36285,-0.33005,0.88577,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,gop24,100,0.14436,0.09433,0.13238,-0.04522,0.33393,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Violent crime change, FBI (%)",Old,M2 + controls,lag_d_youth15_29_pp,100,0.49546,7.37954,0.94674,-14.33428,15.3252,cluster,50,88.0,12,0.04214,-0.0776,control,,0.22486,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M1 bivariate,arr_rate10,100,-0.42108,0.26869,0.12351,-0.96104,0.11888,cluster,50,97.0,3,0.09955,0.08098,sensitivity,,0.21947,HI,2023,0.19695,TX,2023
-"Property crime change, FBI (%)",Old,M2 + controls,arr_rate10,100,-0.38272,0.25836,0.14492,-0.9019,0.13647,cluster,50,88.0,12,0.19505,0.09443,sensitivity,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,ln_pop,100,1.2149,0.94783,0.20596,-0.68983,3.11963,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,ln_density,100,0.13657,0.9135,0.88177,-1.69918,1.97233,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,pop_growth,100,-0.86763,1.12307,0.4435,-3.12451,1.38926,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,ln_income,100,-3.52734,7.49928,0.64019,-18.5977,11.54302,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,pct_bach,100,0.34224,0.25157,0.17992,-0.16331,0.84778,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,pct_hisp,100,0.05441,0.07325,0.46116,-0.0928,0.20162,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,med_age,100,0.02955,0.39341,0.94043,-0.76103,0.82013,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,gop24,100,0.07426,0.13398,0.58195,-0.19499,0.34351,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
-"Property crime change, FBI (%)",Old,M2 + controls,lag_d_youth15_29_pp,100,-19.87914,11.72098,0.09623,-43.43333,3.67506,cluster,50,88.0,12,0.19505,0.09443,control,,0.29035,HI,2023,0.35067,NM,2024
+outcome,era,spec,term,n,coef,se,p,ci_low,ci_high,cov_type,n_states,df_resid,n_parameters,r2,adj_r2,inference_family,q_bh,q_bh_all_exposure,max_cooks_distance,max_cooks_state,max_cooks_year,max_leverage,max_leverage_state,max_leverage_year
+Real GDP growth (%),Old,M0 + lagged outcome,arr_rate10,100,0.17137,0.09574,0.07965,-0.02103,0.36378,cluster,50,96.0,4,0.10812,0.08025,sensitivity,,0.59396,0.36989,TX,2023,0.20078,TX,2023
+Real GDP growth (%),Old,M0 + lagged outcome,lag_gdp_pc,100,-1.48178,0.95937,0.12889,-3.4097,0.44615,cluster,50,96.0,4,0.10812,0.08025,control,,,0.36989,TX,2023,0.20078,TX,2023
+Real GDP growth (%),Old,M1 bivariate,arr_rate10,100,0.17555,0.09175,0.06156,-0.00883,0.35994,cluster,50,97.0,3,0.08374,0.06485,sensitivity,,0.59396,0.42876,TX,2023,0.19695,TX,2023
+Real GDP growth (%),Old,M2 + controls,arr_rate10,100,0.0611,0.07819,0.4383,-0.09602,0.21822,cluster,50,87.0,13,0.38646,0.30184,sensitivity,,0.77156,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,lag_gdp_pc,100,-1.23299,1.3952,0.38116,-4.03674,1.57077,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,ln_pop,100,0.00536,0.17386,0.97551,-0.34402,0.35474,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,ln_density,100,-0.52077,0.13935,0.00049,-0.80081,-0.24074,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,pop_growth,100,1.07464,0.32871,0.00198,0.41408,1.7352,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,ln_income,100,0.34413,2.50154,0.89114,-4.68289,5.37116,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,pct_bach,100,-0.06248,0.08743,0.47822,-0.23818,0.11322,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,pct_hisp,100,0.04168,0.02801,0.1432,-0.01462,0.09798,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,med_age,100,-0.036,0.08862,0.68631,-0.21409,0.14208,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,gop24,100,-0.02094,0.03694,0.57341,-0.09516,0.05329,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),Old,M2 + controls,lag_d_youth15_29_pp,100,-3.89213,2.11718,0.07208,-8.14677,0.36251,cluster,50,87.0,13,0.38646,0.30184,control,,,0.3828,NM,2023,0.3507,NM,2024
+Real GDP growth (%),New,M0 + lagged outcome,arr_rate10,50,0.02141,0.01987,0.28653,-0.01855,0.06138,HC3,50,47.0,3,0.07631,0.03701,primary,0.57307,0.7053,0.15791,ND,2025,0.38283,TX,2025
+Real GDP growth (%),New,M0 + lagged outcome,lag_gdp_pc,50,0.96976,0.57876,0.10046,-0.19456,2.13408,HC3,50,47.0,3,0.07631,0.03701,control,,,0.15791,ND,2025,0.38283,TX,2025
+Real GDP growth (%),New,M1 bivariate,arr_rate10,50,0.0188,0.02165,0.38972,-0.02474,0.06233,HC3,50,48.0,2,0.01538,-0.00513,sensitivity,,0.77156,0.12945,WY,2025,0.36344,TX,2025
+Real GDP growth (%),New,M2 + controls,arr_rate10,50,-0.03088,0.03596,0.39592,-0.10368,0.04192,HC3,50,38.0,12,0.32747,0.13279,sensitivity,,0.77156,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,lag_gdp_pc,50,0.17848,1.51824,0.90704,-2.89504,3.25199,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,ln_pop,50,0.17064,0.2077,0.41646,-0.24984,0.59111,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,ln_density,50,0.03003,0.20323,0.88332,-0.3814,0.44145,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,pop_growth,50,0.58223,0.30697,0.06549,-0.0392,1.20365,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,ln_income,50,0.19714,2.48574,0.9372,-4.83498,5.22927,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,pct_bach,50,-0.00036,0.06215,0.99538,-0.12618,0.12546,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,pct_hisp,50,0.01681,0.01736,0.33904,-0.01834,0.05197,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,med_age,50,-0.04129,0.09854,0.67756,-0.24077,0.15819,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,gop24,50,-4e-05,0.0277,0.99876,-0.05613,0.05604,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),New,M2 + controls,lag_d_youth15_29_pp,50,-1.12131,2.04831,0.58728,-5.26788,3.02527,HC3,50,38.0,12,0.32747,0.13279,control,,,0.46665,AK,2025,0.5883,NM,2025
+Real GDP growth (%),Pooled,M0 + lagged outcome,arr_rate10,150,0.06779,0.03781,0.07914,-0.00819,0.14376,cluster,50,145.0,5,0.16714,0.14416,sensitivity,,0.59396,0.18519,TX,2023,0.25825,TX,2025
+Real GDP growth (%),Pooled,M0 + lagged outcome,lag_gdp_pc,150,-0.69278,0.63976,0.28416,-1.97842,0.59286,cluster,50,145.0,5,0.16714,0.14416,control,,,0.18519,TX,2023,0.25825,TX,2025
+Real GDP growth (%),Pooled,M1 bivariate,arr_rate10,150,0.06969,0.03546,0.05504,-0.00156,0.14094,cluster,50,146.0,4,0.1607,0.14345,sensitivity,,0.59396,0.21511,TX,2023,0.25194,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,arr_rate10,150,-0.02043,0.04476,0.65008,-0.11037,0.06951,cluster,50,136.0,14,0.35828,0.29694,sensitivity,,0.88035,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,lag_gdp_pc,150,-0.94914,0.90064,0.29712,-2.75904,0.86077,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,ln_pop,150,0.04004,0.13453,0.76724,-0.23031,0.31039,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,ln_density,150,-0.3051,0.12702,0.02014,-0.56036,-0.04984,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,pop_growth,150,0.88474,0.25019,0.0009,0.38196,1.38752,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,ln_income,150,-0.05968,1.69561,0.97206,-3.46713,3.34777,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,pct_bach,150,-0.0205,0.05982,0.7333,-0.14072,0.09972,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,pct_hisp,150,0.04029,0.02128,0.06429,-0.00248,0.08306,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,med_age,150,-0.06311,0.06666,0.34841,-0.19707,0.07085,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,gop24,150,-0.00587,0.02578,0.82089,-0.05767,0.04594,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),Pooled,M2 + controls,lag_d_youth15_29_pp,150,-3.25034,1.87754,0.08971,-7.02341,0.52272,cluster,50,136.0,14,0.35828,0.29694,control,,,0.3175,NM,2023,0.29806,TX,2025
+Real GDP growth (%),New,M0 excluding highest-rate state (TX),arr_rate10,49,0.01633,0.03052,0.59506,-0.04509,0.07776,HC3,49,46.0,3,0.05896,0.01805,sensitivity,,0.85679,0.17366,WY,2025,0.13727,NM,2025
+Real GDP growth (%),New,M0 excluding highest-rate state (TX),lag_gdp_pc,49,0.93898,0.59646,0.12229,-0.26164,2.13959,HC3,49,46.0,3,0.05896,0.01805,control,,,0.17366,WY,2025,0.13727,NM,2025
+Real GDP growth (%),Old,M5 first-difference,d_arr_rate10,50,0.01875,0.0967,0.8473,-0.17702,0.21451,HC3,50,38.0,12,0.52048,0.38167,sensitivity,,0.96756,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,lag_gdp_pc,50,-2.61839,1.55373,0.10014,-5.76374,0.52697,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,ln_pop,50,0.0564,0.22221,0.80102,-0.39344,0.50623,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,ln_density,50,-0.23095,0.19593,0.24583,-0.62758,0.16569,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,pop_growth,50,1.47628,0.48004,0.00388,0.50449,2.44807,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,ln_income,50,1.6313,2.71341,0.55128,-3.86171,7.1243,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,pct_bach,50,-0.15501,0.09436,0.10867,-0.34603,0.036,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,pct_hisp,50,0.00037,0.02478,0.98818,-0.0498,0.05054,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,med_age,50,0.01631,0.1105,0.88346,-0.20738,0.23999,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,gop24,50,-0.10437,0.03778,0.00879,-0.18086,-0.02789,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),Old,M5 first-difference,lag_d_youth15_29_pp,50,1.07697,2.68594,0.69069,-4.36043,6.51437,HC3,50,38.0,12,0.52048,0.38167,control,,,0.22156,WV,2024,0.58729,NM,2024
+Real GDP growth (%),New,M5 first-difference,d_arr_rate10,50,-0.04034,0.04842,0.40994,-0.13836,0.05768,HC3,50,38.0,12,0.32706,0.13226,sensitivity,,0.77156,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,lag_gdp_pc,50,0.22738,1.5322,0.88281,-2.8744,3.32916,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,ln_pop,50,0.17588,0.19629,0.3759,-0.2215,0.57325,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,ln_density,50,0.02079,0.1961,0.91611,-0.37618,0.41777,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,pop_growth,50,0.5767,0.30947,0.07013,-0.0498,1.2032,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,ln_income,50,0.36932,2.39531,0.87828,-4.47973,5.21837,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,pct_bach,50,-0.00454,0.06049,0.94058,-0.12699,0.11791,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,pct_hisp,50,0.01694,0.01781,0.34754,-0.01912,0.053,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,med_age,50,-0.02892,0.09129,0.75314,-0.21373,0.15589,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,gop24,50,-0.00073,0.02746,0.9789,-0.05633,0.05487,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),New,M5 first-difference,lag_d_youth15_29_pp,50,-0.91678,1.97849,0.64574,-4.92202,3.08846,HC3,50,38.0,12,0.32706,0.13226,control,,,0.47309,AK,2025,0.61931,NM,2025
+Real GDP growth (%),Pooled,M6 era interaction,arr_rate10,150,0.08855,0.06767,0.19679,-0.04743,0.22453,cluster,50,136.0,14,0.35738,0.29595,sensitivity,,0.59974,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,arr_rate10:new,150,-0.13195,0.063,0.04141,-0.25855,-0.00535,cluster,50,136.0,14,0.35738,0.29595,sensitivity,,0.59396,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,new,150,-0.17517,0.37491,0.6424,-0.92859,0.57824,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,lag_gdp_pc,150,-0.88758,0.93738,0.34835,-2.77132,0.99616,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,ln_pop,150,0.06336,0.14905,0.67263,-0.23617,0.36289,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,ln_density,150,-0.32307,0.1305,0.0168,-0.58532,-0.06083,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,pop_growth,150,0.77341,0.25022,0.00329,0.27057,1.27625,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,ln_income,150,0.30658,1.7997,0.86544,-3.31005,3.92321,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,pct_bach,150,-0.03082,0.063,0.62687,-0.15741,0.09578,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,pct_hisp,150,0.03851,0.02358,0.1089,-0.00888,0.08591,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,med_age,150,-0.05678,0.0726,0.43791,-0.20267,0.08911,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,gop24,150,-0.00343,0.02673,0.89851,-0.05713,0.05028,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,150,-4.10392,2.08439,0.05464,-8.29266,0.08482,cluster,50,136.0,14,0.35738,0.29595,control,,,0.34555,NM,2023,0.39864,TX,2025
+Real GDP growth (%),Pooled,M7 + detention rate,arr_rate10,150,-0.03646,0.04552,0.42693,-0.12793,0.055,cluster,50,135.0,15,0.36479,0.29891,sensitivity,,0.77156,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,det_rate10,150,0.07078,0.02831,0.01581,0.01389,0.12766,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,lag_gdp_pc,150,-1.05002,0.8977,0.24779,-2.85402,0.75397,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,ln_pop,150,0.05092,0.12895,0.69463,-0.20822,0.31006,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,ln_density,150,-0.31771,0.12268,0.01261,-0.56424,-0.07117,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,pop_growth,150,0.95067,0.25052,0.00041,0.44724,1.45411,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,ln_income,150,0.60051,1.63952,0.71574,-2.69422,3.89524,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,pct_bach,150,-0.01921,0.05814,0.74254,-0.13605,0.09763,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,pct_hisp,150,0.03787,0.02028,0.06786,-0.00289,0.07863,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,med_age,150,-0.0399,0.06489,0.54149,-0.1703,0.0905,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,gop24,150,1e-05,0.02531,0.99974,-0.05085,0.05086,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Real GDP growth (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,150,-2.98501,1.88922,0.12054,-6.78155,0.81152,cluster,50,135.0,15,0.36479,0.29891,control,,,0.29198,NM,2023,0.38663,LA,2025
+Unemployment change (pp),Old,M0 + lagged outcome,arr_rate10,100,0.01729,0.01254,0.1741,-0.0079,0.04249,cluster,50,96.0,4,0.38131,0.36197,sensitivity,,0.59971,0.08889,TX,2024,0.20331,TX,2023
+Unemployment change (pp),Old,M0 + lagged outcome,lag_unemp,100,-0.04172,0.03938,0.29453,-0.12086,0.03741,cluster,50,96.0,4,0.38131,0.36197,control,,,0.08889,TX,2024,0.20331,TX,2023
+Unemployment change (pp),Old,M1 bivariate,arr_rate10,100,0.01735,0.01298,0.18741,-0.00873,0.04342,cluster,50,97.0,3,0.37489,0.362,sensitivity,,0.59971,0.12389,TX,2024,0.19695,TX,2023
+Unemployment change (pp),Old,M2 + controls,arr_rate10,100,0.00051,0.01829,0.97786,-0.03623,0.03726,cluster,50,87.0,13,0.43305,0.35485,sensitivity,,0.99338,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,lag_unemp,100,-0.07446,0.05691,0.19681,-0.18882,0.0399,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,ln_pop,100,0.06363,0.06609,0.34041,-0.06919,0.19644,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,ln_density,100,-0.00181,0.0507,0.9716,-0.10369,0.10007,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,pop_growth,100,-0.00997,0.07054,0.88822,-0.15173,0.1318,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,ln_income,100,-0.04879,0.43383,0.91091,-0.92062,0.82303,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,pct_bach,100,0.00315,0.0183,0.86407,-0.03362,0.03992,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,pct_hisp,100,0.00145,0.00442,0.74348,-0.00743,0.01034,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,med_age,100,-0.03332,0.01869,0.08076,-0.07087,0.00423,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,gop24,100,0.00346,0.00723,0.63389,-0.01106,0.01799,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),Old,M2 + controls,lag_d_youth15_29_pp,100,-0.39667,0.38093,0.30283,-1.16217,0.36882,cluster,50,87.0,13,0.43305,0.35485,control,,,0.24122,RI,2024,0.35835,NM,2024
+Unemployment change (pp),New,M0 + lagged outcome,arr_rate10,50,2e-05,0.00913,0.99814,-0.01834,0.01839,HC3,50,47.0,3,0.10249,0.0643,primary,0.99814,0.99814,0.14936,HI,2025,0.36367,TX,2025
+Unemployment change (pp),New,M0 + lagged outcome,lag_unemp,50,-0.15453,0.06396,0.01962,-0.2832,-0.02587,HC3,50,47.0,3,0.10249,0.0643,control,,,0.14936,HI,2025,0.36367,TX,2025
+Unemployment change (pp),New,M1 bivariate,arr_rate10,50,-0.00274,0.00915,0.76575,-0.02114,0.01566,HC3,50,48.0,2,0.00106,-0.01976,sensitivity,,0.94246,0.12734,HI,2025,0.36344,TX,2025
+Unemployment change (pp),New,M2 + controls,arr_rate10,50,0.0159,0.01654,0.34241,-0.01758,0.04937,HC3,50,38.0,12,0.29002,0.08451,sensitivity,,0.77156,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,lag_unemp,50,-0.14389,0.13521,0.29395,-0.41759,0.12982,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,ln_pop,50,0.05112,0.08683,0.55953,-0.12466,0.2269,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,ln_density,50,-0.0132,0.08541,0.87802,-0.18611,0.15971,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,pop_growth,50,0.12678,0.16913,0.4581,-0.2156,0.46916,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,ln_income,50,0.37052,1.32069,0.78058,-2.30307,3.04412,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,pct_bach,50,-0.00116,0.05253,0.98254,-0.1075,0.10518,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,pct_hisp,50,-0.00734,0.00936,0.43786,-0.0263,0.01161,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,med_age,50,0.06486,0.03572,0.0773,-0.00745,0.13716,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,gop24,50,-0.01338,0.01711,0.43882,-0.04801,0.02125,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),New,M2 + controls,lag_d_youth15_29_pp,50,1.23392,0.96732,0.20984,-0.72432,3.19215,HC3,50,38.0,12,0.29002,0.08451,control,,,0.53695,HI,2025,0.59142,NM,2025
+Unemployment change (pp),Pooled,M0 + lagged outcome,arr_rate10,150,0.00477,0.00741,0.52284,-0.01012,0.01965,cluster,50,145.0,5,0.27652,0.25657,sensitivity,,0.79671,0.06816,HI,2025,0.25243,TX,2025
+Unemployment change (pp),Pooled,M0 + lagged outcome,lag_unemp,150,-0.0847,0.03348,0.01467,-0.15198,-0.01742,cluster,50,145.0,5,0.27652,0.25657,control,,,0.06816,HI,2025,0.25243,TX,2025
+Unemployment change (pp),Pooled,M1 bivariate,arr_rate10,150,0.00378,0.0076,0.62112,-0.01149,0.01905,cluster,50,146.0,4,0.2489,0.23347,sensitivity,,0.86417,0.06317,HI,2025,0.25194,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,arr_rate10,150,-0.00309,0.00804,0.70254,-0.01925,0.01307,cluster,50,136.0,14,0.30654,0.24026,sensitivity,,0.89925,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,lag_unemp,150,-0.12667,0.05543,0.02666,-0.23805,-0.01529,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,ln_pop,150,0.05497,0.04192,0.19587,-0.02927,0.1392,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,ln_density,150,0.00636,0.0347,0.85527,-0.06337,0.07609,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,pop_growth,150,0.01578,0.05314,0.76776,-0.09101,0.12257,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,ln_income,150,0.05549,0.45315,0.90303,-0.85514,0.96613,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,pct_bach,150,0.00052,0.01881,0.97809,-0.03729,0.03833,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,pct_hisp,150,0.00136,0.00281,0.63099,-0.00428,0.007,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,med_age,150,-0.00731,0.01121,0.51735,-0.02984,0.01522,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,gop24,150,-0.00033,0.00633,0.95821,-0.01305,0.01239,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),Pooled,M2 + controls,lag_d_youth15_29_pp,150,0.00333,0.35197,0.99248,-0.70397,0.71064,cluster,50,136.0,14,0.30654,0.24026,control,,,0.10767,RI,2024,0.29264,TX,2025
+Unemployment change (pp),New,M0 excluding highest-rate state (TX),arr_rate10,49,0.00253,0.01334,0.85033,-0.02432,0.02938,HC3,49,46.0,3,0.10124,0.06216,sensitivity,,0.96756,0.16975,HI,2025,0.13979,NM,2025
+Unemployment change (pp),New,M0 excluding highest-rate state (TX),lag_unemp,49,-0.15416,0.06424,0.02051,-0.28347,-0.02485,HC3,49,46.0,3,0.10124,0.06216,control,,,0.16975,HI,2025,0.13979,NM,2025
+Unemployment change (pp),Old,M5 first-difference,d_arr_rate10,50,-0.02691,0.0413,0.5186,-0.11051,0.05669,HC3,50,38.0,12,0.15726,-0.08669,sensitivity,,0.79671,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,lag_unemp,50,0.03312,0.11168,0.7684,-0.19296,0.25921,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,ln_pop,50,-0.04187,0.13934,0.76546,-0.32394,0.24021,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,ln_density,50,0.0641,0.09864,0.51967,-0.13557,0.26378,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,pop_growth,50,-0.08034,0.19881,0.68842,-0.48281,0.32214,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,ln_income,50,-1.0449,0.70035,0.14396,-2.46267,0.37288,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,pct_bach,50,0.02608,0.02782,0.35447,-0.03024,0.0824,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,pct_hisp,50,0.00108,0.00794,0.89258,-0.01499,0.01715,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,med_age,50,-0.06756,0.04813,0.16846,-0.16499,0.02986,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,gop24,50,0.00342,0.01177,0.77305,-0.02041,0.02725,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),Old,M5 first-difference,lag_d_youth15_29_pp,50,-1.38641,1.04717,0.19343,-3.5063,0.73347,HC3,50,38.0,12,0.15726,-0.08669,control,,,0.36387,RI,2024,0.59121,NM,2024
+Unemployment change (pp),New,M5 first-difference,d_arr_rate10,50,0.01735,0.0225,0.44536,-0.0282,0.0629,HC3,50,38.0,12,0.2865,0.07996,sensitivity,,0.77156,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,lag_unemp,50,-0.15029,0.13433,0.27025,-0.42223,0.12165,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,ln_pop,50,0.04947,0.08727,0.57413,-0.1272,0.22615,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,ln_density,50,-0.00606,0.08449,0.94322,-0.1771,0.16499,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,pop_growth,50,0.12992,0.17196,0.45461,-0.2182,0.47804,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,ln_income,50,0.265,1.34473,0.84482,-2.45726,2.98726,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,pct_bach,50,0.00049,0.05273,0.99258,-0.10626,0.10724,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,pct_hisp,50,-0.00647,0.00974,0.51057,-0.02618,0.01324,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,med_age,50,0.05831,0.03514,0.10529,-0.01283,0.12945,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,gop24,50,-0.01261,0.01735,0.47204,-0.04774,0.02253,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),New,M5 first-difference,lag_d_youth15_29_pp,50,1.13212,0.98003,0.25523,-0.85185,3.1161,HC3,50,38.0,12,0.2865,0.07996,control,,,0.53621,HI,2025,0.61859,NM,2025
+Unemployment change (pp),Pooled,M6 era interaction,arr_rate10,150,-0.0238,0.01659,0.15777,-0.05714,0.00954,cluster,50,136.0,14,0.11621,0.03173,sensitivity,,0.59396,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,arr_rate10:new,150,0.01216,0.01842,0.51238,-0.02486,0.04918,cluster,50,136.0,14,0.11621,0.03173,sensitivity,,0.79671,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,new,150,0.12564,0.12602,0.32365,-0.1276,0.37888,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,lag_unemp,150,-0.13917,0.06196,0.02925,-0.26369,-0.01465,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,ln_pop,150,0.04466,0.0476,0.35281,-0.05101,0.14032,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,ln_density,150,0.01588,0.04167,0.70479,-0.06786,0.09961,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,pop_growth,150,0.06573,0.06189,0.29342,-0.05864,0.1901,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,ln_income,150,-0.01728,0.49577,0.97233,-1.01357,0.97901,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,pct_bach,150,-0.00156,0.02032,0.93896,-0.04239,0.03927,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,pct_hisp,150,0.00188,0.00353,0.59619,-0.00521,0.00898,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,med_age,150,-0.00099,0.01366,0.94236,-0.02844,0.02646,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,gop24,150,-0.00399,0.00675,0.5573,-0.01756,0.00958,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M6 era interaction,lag_d_youth15_29_pp,150,0.81609,0.37405,0.03395,0.0644,1.56778,cluster,50,136.0,14,0.11621,0.03173,control,,,0.11659,RI,2024,0.3957,TX,2025
+Unemployment change (pp),Pooled,M7 + detention rate,arr_rate10,150,-0.00194,0.00861,0.82223,-0.01924,0.01536,cluster,50,135.0,15,0.30708,0.23522,sensitivity,,0.96756,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,det_rate10,150,-0.00506,0.01084,0.64239,-0.02684,0.01671,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,lag_unemp,150,-0.12611,0.05571,0.02804,-0.23806,-0.01417,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,ln_pop,150,0.05415,0.04145,0.19745,-0.02914,0.13745,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,ln_density,150,0.00719,0.03442,0.83543,-0.06198,0.07636,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,pop_growth,150,0.01109,0.05349,0.83659,-0.0964,0.11858,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,ln_income,150,0.01337,0.47239,0.97754,-0.93593,0.96266,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,pct_bach,150,0.00051,0.01887,0.9784,-0.03741,0.03844,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,pct_hisp,150,0.00153,0.00276,0.58285,-0.00402,0.00707,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,med_age,150,-0.009,0.01147,0.43651,-0.03205,0.01405,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,gop24,150,-0.00073,0.00647,0.91011,-0.01374,0.01227,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Unemployment change (pp),Pooled,M7 + detention rate,lag_d_youth15_29_pp,150,-0.01362,0.35332,0.96941,-0.72364,0.6964,cluster,50,135.0,15,0.30708,0.23522,control,,,0.10061,RI,2024,0.39105,LA,2025
+Violent crime rate change (%),Old,M0 + lagged outcome,arr_rate10,90,0.8709,0.52337,0.10321,-0.18387,1.92568,cluster,45,86.0,4,0.05786,0.025,sensitivity,,0.59396,0.38348,MS,2024,0.20731,TX,2023
+Violent crime rate change (%),Old,M0 + lagged outcome,lag_violent,90,0.00148,0.00387,0.7036,-0.00631,0.00928,cluster,45,86.0,4,0.05786,0.025,control,,,0.38348,MS,2024,0.20731,TX,2023
+Violent crime rate change (%),Old,M1 bivariate,arr_rate10,90,0.86722,0.52096,0.10309,-0.1827,1.91713,cluster,45,87.0,3,0.05656,0.03488,sensitivity,,0.59396,0.35081,MS,2024,0.20685,TX,2023
+Violent crime rate change (%),Old,M2 + controls,arr_rate10,90,1.16895,0.51193,0.02729,0.13722,2.20067,cluster,45,77.0,13,0.26654,0.15224,sensitivity,,0.59396,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,lag_violent,90,-0.00368,0.00453,0.42016,-0.0128,0.00544,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,ln_pop,90,0.09108,1.07393,0.93279,-2.07328,2.25545,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,ln_density,90,2.02611,0.86507,0.02376,0.28268,3.76955,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,pop_growth,90,-6.75119,2.03632,0.00184,-10.85512,-2.64725,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,ln_income,90,-34.59887,13.77562,0.01576,-62.36181,-6.83593,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,pct_bach,90,0.74017,0.37642,0.05559,-0.01845,1.49879,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,pct_hisp,90,-0.12819,0.14575,0.38391,-0.42194,0.16556,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,med_age,90,-0.62332,0.55733,0.26946,-1.74655,0.49991,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,gop24,90,0.03251,0.21976,0.88308,-0.41039,0.4754,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),Old,M2 + controls,lag_d_youth15_29_pp,90,16.08466,12.31259,0.19822,-8.72974,40.89906,cluster,45,77.0,13,0.26654,0.15224,control,,,0.41458,MS,2024,0.36363,NM,2024
+Violent crime rate change (%),New,M0 + lagged outcome,arr_rate10,45,-0.44351,0.30081,0.14782,-1.05056,0.16353,HC3,45,42.0,3,0.05318,0.00809,primary,0.57307,0.59396,0.28469,NM,2025,0.38704,TX,2025
+Violent crime rate change (%),New,M0 + lagged outcome,lag_violent,45,0.00145,0.00772,0.85192,-0.01413,0.01703,HC3,45,42.0,3,0.05318,0.00809,control,,,0.28469,NM,2025,0.38704,TX,2025
+Violent crime rate change (%),New,M1 bivariate,arr_rate10,45,-0.45397,0.30427,0.143,-1.06759,0.15965,HC3,45,43.0,2,0.05204,0.03,sensitivity,,0.59396,0.22568,NM,2025,0.37849,TX,2025
+Violent crime rate change (%),New,M2 + controls,arr_rate10,45,0.12284,0.40574,0.76397,-0.70264,0.94832,HC3,45,33.0,12,0.32774,0.10366,sensitivity,,0.94246,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,lag_violent,45,-0.00384,0.01356,0.77901,-0.03142,0.02375,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,ln_pop,45,2.16086,2.77506,0.44172,-3.48504,7.80675,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,ln_density,45,-2.52206,1.53334,0.1095,-5.64166,0.59755,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,pop_growth,45,-3.2974,4.03851,0.42008,-11.5138,4.91901,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,ln_income,45,12.86939,21.93103,0.56132,-31.74963,57.48841,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,pct_bach,45,0.50939,0.73532,0.49332,-0.98664,2.00541,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,pct_hisp,45,-0.45459,0.29322,0.13059,-1.05115,0.14196,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,med_age,45,-1.25359,1.26558,0.32912,-3.82842,1.32124,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,gop24,45,0.24572,0.35726,0.49639,-0.48113,0.97258,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),New,M2 + controls,lag_d_youth15_29_pp,45,-41.9347,33.36333,0.21761,-109.8129,25.9435,HC3,45,33.0,12,0.32774,0.10366,control,,,0.24589,AL,2025,0.61059,NM,2025
+Violent crime rate change (%),Pooled,M0 + lagged outcome,arr_rate10,135,-0.01464,0.2069,0.94392,-0.43163,0.40235,cluster,45,130.0,5,0.11141,0.08407,sensitivity,,0.99338,0.23189,MS,2024,0.26438,TX,2025
+Violent crime rate change (%),Pooled,M0 + lagged outcome,lag_violent,135,0.00177,0.00366,0.63156,-0.00561,0.00914,cluster,45,130.0,5,0.11141,0.08407,control,,,0.23189,MS,2024,0.26438,TX,2025
+Violent crime rate change (%),Pooled,M1 bivariate,arr_rate10,135,-0.02466,0.21589,0.90957,-0.45976,0.41043,cluster,45,131.0,4,0.1098,0.08941,sensitivity,,0.98665,0.21068,MS,2024,0.26272,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,arr_rate10,135,0.15275,0.24977,0.54398,-0.35063,0.65613,cluster,45,121.0,14,0.21342,0.12892,sensitivity,,0.80964,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,lag_violent,135,-0.00275,0.00452,0.54608,-0.01186,0.00636,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,ln_pop,135,0.74109,1.04817,0.48328,-1.37137,2.85355,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,ln_density,135,0.55903,0.68505,0.41887,-0.82161,1.93967,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,pop_growth,135,-4.15677,1.71245,0.01937,-7.60798,-0.70556,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,ln_income,135,-20.20352,10.18862,0.05364,-40.73733,0.33029,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,pct_bach,135,0.69084,0.2212,0.00316,0.24504,1.13664,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,pct_hisp,135,-0.1935,0.12031,0.1149,-0.43596,0.04896,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,med_age,135,-1.01668,0.39692,0.01393,-1.81662,-0.21673,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,gop24,135,0.09591,0.15449,0.53792,-0.21544,0.40726,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),Pooled,M2 + controls,lag_d_youth15_29_pp,135,-3.96297,8.41971,0.6402,-20.93179,13.00584,cluster,45,121.0,14,0.21342,0.12892,control,,,0.26819,MS,2024,0.30407,TX,2025
+Violent crime rate change (%),New,M0 excluding highest-rate state (TX),arr_rate10,44,-0.59123,0.43246,0.17903,-1.46461,0.28214,HC3,44,41.0,3,0.05891,0.013,sensitivity,,0.59971,0.33595,NM,2025,0.21158,AR,2025
+Violent crime rate change (%),New,M0 excluding highest-rate state (TX),lag_violent,44,0.00097,0.00747,0.89769,-0.01413,0.01606,HC3,44,41.0,3,0.05891,0.013,control,,,0.33595,NM,2025,0.21158,AR,2025
+Violent crime rate change (%),Old,M5 first-difference,d_arr_rate10,45,-0.79852,1.51819,0.60243,-3.8873,2.29026,HC3,45,33.0,12,0.3594,0.14587,sensitivity,,0.85679,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,lag_violent,45,-0.01612,0.01254,0.20767,-0.04163,0.0094,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,ln_pop,45,0.9425,2.57141,0.71631,-4.28908,6.17407,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,ln_density,45,1.72781,2.1049,0.41762,-2.55464,6.01026,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,pop_growth,45,-8.1387,5.14846,0.12346,-18.61333,2.33592,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,ln_income,45,-60.94316,38.1028,0.11925,-138.46389,16.57756,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,pct_bach,45,0.83162,0.91535,0.37019,-1.03067,2.69391,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,pct_hisp,45,-0.15682,0.44037,0.72402,-1.05277,0.73913,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,med_age,45,-1.66243,1.46754,0.26546,-4.64816,1.32331,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,gop24,45,-0.22565,0.473,0.63646,-1.18798,0.73668,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),Old,M5 first-difference,lag_d_youth15_29_pp,45,11.75018,35.83302,0.74505,-61.15266,84.65301,HC3,45,33.0,12,0.3594,0.14587,control,,,0.58415,NM,2024,0.60351,NM,2024
+Violent crime rate change (%),New,M5 first-difference,d_arr_rate10,45,0.1863,0.72911,0.7999,-1.29708,1.66968,HC3,45,33.0,12,0.32814,0.10419,sensitivity,,0.96592,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,lag_violent,45,-0.00367,0.01367,0.78996,-0.03148,0.02414,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,ln_pop,45,2.11517,2.80039,0.45542,-3.58225,7.8126,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,ln_density,45,-2.48713,1.53739,0.11523,-5.61498,0.64071,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,pop_growth,45,-3.29012,4.06495,0.42409,-11.56033,4.98009,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,ln_income,45,12.18064,22.52463,0.5923,-33.64607,58.00735,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,pct_bach,45,0.52047,0.73069,0.48128,-0.96613,2.00707,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,pct_hisp,45,-0.45999,0.31809,0.15758,-1.10714,0.18716,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,med_age,45,-1.2957,1.28283,0.31983,-3.90564,1.31424,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,gop24,45,0.24544,0.37717,0.51973,-0.52193,1.0128,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),New,M5 first-difference,lag_d_youth15_29_pp,45,-42.83932,34.87023,0.22794,-113.78334,28.1047,HC3,45,33.0,12,0.32814,0.10419,control,,,0.23758,GA,2025,0.64376,NM,2025
+Violent crime rate change (%),Pooled,M6 era interaction,arr_rate10,135,1.00689,0.45625,0.03259,0.08737,1.9264,cluster,45,121.0,14,0.24035,0.15873,sensitivity,,0.59396,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,arr_rate10:new,135,-1.27389,0.54216,0.02334,-2.36655,-0.18123,cluster,45,121.0,14,0.24035,0.15873,sensitivity,,0.59396,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,new,135,-2.51459,3.2164,0.43852,-8.99682,3.96763,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,lag_violent,135,-0.00366,0.0045,0.42036,-0.01272,0.0054,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,ln_pop,135,0.84462,1.0247,0.41424,-1.22053,2.90978,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,ln_density,135,0.50365,0.70006,0.47567,-0.90722,1.91452,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,pop_growth,135,-4.37089,1.52763,0.00643,-7.44963,-1.29215,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,ln_income,135,-17.83866,9.13968,0.05735,-36.25847,0.58115,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,pct_bach,135,0.56924,0.20742,0.00874,0.15121,0.98726,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,pct_hisp,135,-0.22075,0.11535,0.06218,-0.45323,0.01173,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,med_age,135,-0.74339,0.37505,0.05374,-1.49925,0.01248,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,gop24,135,0.05376,0.14904,0.72007,-0.24662,0.35413,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,135,3.78083,9.41844,0.69005,-15.20078,22.76244,cluster,45,121.0,14,0.24035,0.15873,control,,,0.25533,MS,2024,0.41672,TX,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,arr_rate10,135,0.01255,0.26894,0.96299,-0.52947,0.55457,cluster,45,120.0,15,0.22715,0.13698,sensitivity,,0.99338,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,det_rate10,135,0.62223,0.32373,0.06108,-0.0302,1.27466,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,lag_violent,135,-0.00204,0.00419,0.62841,-0.01048,0.0064,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,ln_pop,135,0.73804,1.07349,0.49537,-1.42544,2.90152,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,ln_density,135,0.45954,0.71044,0.5211,-0.97227,1.89135,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,pop_growth,135,-3.44201,1.74015,0.05421,-6.94906,0.06504,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,ln_income,135,-15.28885,11.10459,0.17554,-37.66868,7.09099,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,pct_bach,135,0.70223,0.22165,0.00279,0.25553,1.14893,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,pct_hisp,135,-0.21089,0.123,0.09346,-0.45877,0.037,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,med_age,135,-0.81595,0.38712,0.04079,-1.59613,-0.03576,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,gop24,135,0.14071,0.15875,0.38023,-0.17923,0.46065,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Violent crime rate change (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,135,-2.02221,8.53206,0.81375,-19.21744,15.17301,cluster,45,120.0,15,0.22715,0.13698,control,,,0.25254,MS,2024,0.39893,LA,2025
+Property (nonviolent) crime rate change (%),Old,M0 + lagged outcome,arr_rate10,88,-0.30234,0.38741,0.43943,-1.08364,0.47895,cluster,44,84.0,4,0.15504,0.12487,sensitivity,,0.77156,0.325,VT,2023,0.20767,TX,2023
+Property (nonviolent) crime rate change (%),Old,M0 + lagged outcome,lag_property,88,-0.00201,0.00082,0.01879,-0.00367,-0.00035,cluster,44,84.0,4,0.15504,0.12487,control,,,0.325,VT,2023,0.20767,TX,2023
+Property (nonviolent) crime rate change (%),Old,M1 bivariate,arr_rate10,88,-0.28545,0.40685,0.4867,-1.10595,0.53505,cluster,44,85.0,3,0.11613,0.09533,sensitivity,,0.79671,0.11892,MD,2023,0.20765,TX,2023
+Property (nonviolent) crime rate change (%),Old,M2 + controls,arr_rate10,88,-0.7385,0.46119,0.11664,-1.66859,0.19159,cluster,44,75.0,13,0.27439,0.15829,sensitivity,,0.59396,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,lag_property,88,-0.00114,0.00109,0.30285,-0.00335,0.00107,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_pop,88,2.42672,1.64468,0.14737,-0.8901,5.74354,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_density,88,0.46152,1.41686,0.74621,-2.39585,3.31889,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,pop_growth,88,0.38702,1.97059,0.84523,-3.58707,4.3611,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,ln_income,88,-21.35366,17.58962,0.23138,-56.82651,14.1192,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,pct_bach,88,0.94055,0.45512,0.04483,0.02272,1.85839,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,pct_hisp,88,0.10018,0.16915,0.55677,-0.24094,0.4413,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,med_age,88,-0.78503,0.91141,0.39383,-2.62306,1.053,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,gop24,88,0.18547,0.22321,0.41062,-0.26469,0.63562,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),Old,M2 + controls,lag_d_youth15_29_pp,88,-30.88576,16.87654,0.07417,-64.92055,3.14902,cluster,44,75.0,13,0.27439,0.15829,control,,,0.37229,VT,2023,0.35255,VT,2024
+Property (nonviolent) crime rate change (%),New,M0 + lagged outcome,arr_rate10,44,-0.15143,0.20851,0.47181,-0.57253,0.26967,HC3,44,41.0,3,0.08133,0.03652,primary,0.62908,0.79463,0.19935,TX,2025,0.4271,TX,2025
+Property (nonviolent) crime rate change (%),New,M0 + lagged outcome,lag_property,44,0.00166,0.00113,0.15019,-0.00062,0.00393,HC3,44,41.0,3,0.08133,0.03652,control,,,0.19935,TX,2025,0.4271,TX,2025
+Property (nonviolent) crime rate change (%),New,M1 bivariate,arr_rate10,44,-0.2029,0.22894,0.38052,-0.66493,0.25912,HC3,44,42.0,2,0.02587,0.00267,sensitivity,,0.77156,0.43123,TX,2025,0.41341,TX,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,arr_rate10,44,-0.01564,0.3716,0.96669,-0.77257,0.74129,HC3,44,32.0,12,0.36223,0.143,sensitivity,,0.99338,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,lag_property,44,0.00148,0.00146,0.31989,-0.0015,0.00446,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,ln_pop,44,1.87697,1.3773,0.18246,-0.9285,4.68245,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,ln_density,44,-0.15743,1.23714,0.89953,-2.67741,2.36254,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,pop_growth,44,-4.19119,2.76762,0.13975,-9.82864,1.44626,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,ln_income,44,-1.89906,17.70038,0.91523,-37.95355,34.15543,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,pct_bach,44,0.64366,0.56845,0.26591,-0.51423,1.80155,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,pct_hisp,44,-0.23133,0.16481,0.17005,-0.56703,0.10437,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,med_age,44,-0.4455,0.71485,0.53756,-1.9016,1.0106,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,gop24,44,0.19749,0.26821,0.46689,-0.34883,0.74381,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),New,M2 + controls,lag_d_youth15_29_pp,44,7.24909,20.26291,0.72288,-34.02511,48.52328,HC3,44,32.0,12,0.36223,0.143,control,,,0.1766,TX,2025,0.55311,VT,2025
+Property (nonviolent) crime rate change (%),Pooled,M0 + lagged outcome,arr_rate10,132,-0.25789,0.22347,0.25486,-0.70855,0.19277,cluster,44,127.0,5,0.25392,0.23042,sensitivity,,0.7053,0.28254,VT,2024,0.28261,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M0 + lagged outcome,lag_property,132,-0.00115,0.0007,0.10598,-0.00256,0.00025,cluster,44,127.0,5,0.25392,0.23042,control,,,0.28254,VT,2024,0.28261,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M1 bivariate,arr_rate10,132,-0.23094,0.2135,0.28542,-0.66151,0.19963,cluster,44,128.0,4,0.24154,0.22376,sensitivity,,0.7053,0.10526,MD,2023,0.28071,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,arr_rate10,132,-0.41412,0.28167,0.14879,-0.98216,0.15393,cluster,44,118.0,14,0.33456,0.26125,sensitivity,,0.59396,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,lag_property,132,-0.00065,0.00088,0.45885,-0.00242,0.00111,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_pop,132,2.21278,1.19159,0.07017,-0.19029,4.61585,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_density,132,0.3326,1.08141,0.7599,-1.84828,2.51348,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pop_growth,132,-0.14462,1.32264,0.91344,-2.81198,2.52274,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,ln_income,132,-14.69532,13.56225,0.2846,-42.0462,12.65556,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pct_bach,132,0.81414,0.33948,0.02089,0.1295,1.49877,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,pct_hisp,132,-0.02904,0.12417,0.81619,-0.27945,0.22137,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,med_age,132,-0.64367,0.68282,0.35112,-2.02071,0.73336,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,gop24,132,0.17658,0.17337,0.31411,-0.17304,0.52621,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M2 + controls,lag_d_youth15_29_pp,132,-17.04859,12.4123,0.17671,-42.08037,7.9832,cluster,44,118.0,14,0.33456,0.26125,control,,,0.28388,VT,2023,0.3187,TX,2025
+Property (nonviolent) crime rate change (%),New,M0 excluding highest-rate state (TX),arr_rate10,43,-0.29564,0.26562,0.27235,-0.83248,0.2412,HC3,43,40.0,3,0.09856,0.05349,sensitivity,,0.7053,0.16044,NY,2025,0.18562,VT,2025
+Property (nonviolent) crime rate change (%),New,M0 excluding highest-rate state (TX),lag_property,43,0.00151,0.00114,0.19427,-0.0008,0.00382,HC3,43,40.0,3,0.09856,0.05349,control,,,0.16044,NY,2025,0.18562,VT,2025
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,d_arr_rate10,44,0.15688,1.17767,0.89486,-2.24195,2.55572,HC3,44,32.0,12,0.41948,0.21993,sensitivity,,0.98665,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,lag_property,44,-0.00311,0.00228,0.18262,-0.00775,0.00154,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_pop,44,3.06734,2.20254,0.17333,-1.41908,7.55377,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_density,44,-0.26886,1.37956,0.84671,-3.07893,2.54121,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,pop_growth,44,0.04161,4.25018,0.99225,-8.61573,8.69895,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,ln_income,44,19.79748,35.32108,0.57904,-52.14921,91.74418,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,pct_bach,44,0.14753,1.04429,0.88854,-1.97961,2.27468,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,pct_hisp,44,-0.0939,0.22963,0.68531,-0.56164,0.37383,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,med_age,44,0.728,1.34526,0.59215,-2.01222,3.46821,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,gop24,44,0.28882,0.29373,0.33283,-0.30948,0.88712,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),Old,M5 first-difference,lag_d_youth15_29_pp,44,-0.86026,20.59664,0.96694,-42.81424,41.09372,HC3,44,32.0,12,0.41948,0.21993,control,,,0.70182,VT,2024,0.66951,VT,2024
+Property (nonviolent) crime rate change (%),New,M5 first-difference,d_arr_rate10,44,-0.21201,0.47785,0.66026,-1.18536,0.76134,HC3,44,32.0,12,0.36795,0.15069,sensitivity,,0.88035,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,lag_property,44,0.0015,0.00145,0.3074,-0.00145,0.00445,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_pop,44,1.95922,1.32514,0.14905,-0.73999,4.65843,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_density,44,-0.05971,1.20926,0.96092,-2.52289,2.40347,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,pop_growth,44,-4.08643,2.76365,0.14901,-9.7158,1.54293,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,ln_income,44,-1.21743,16.99185,0.94333,-35.8287,33.39384,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,pct_bach,44,0.65289,0.55793,0.25056,-0.48358,1.78936,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,pct_hisp,44,-0.19679,0.1543,0.21135,-0.51108,0.1175,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,med_age,44,-0.47233,0.71641,0.51441,-1.9316,0.98694,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,gop24,44,0.23921,0.26116,0.36655,-0.29276,0.77117,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),New,M5 first-difference,lag_d_youth15_29_pp,44,7.40667,20.57207,0.72119,-34.49726,49.3106,HC3,44,32.0,12,0.36795,0.15069,control,,,0.16358,CO,2025,0.54027,VT,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,arr_rate10,132,-0.07302,0.41673,0.86173,-0.91343,0.7674,cluster,44,118.0,14,0.27292,0.19282,sensitivity,,0.96756,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,arr_rate10:new,132,-0.24226,0.31501,0.44606,-0.87755,0.39302,cluster,44,118.0,14,0.27292,0.19282,sensitivity,,0.77156,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,new,132,-6.04191,2.1573,0.00761,-10.39252,-1.6913,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,lag_property,132,-0.00081,0.00098,0.41464,-0.00278,0.00117,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_pop,132,2.72383,1.17971,0.02582,0.34472,5.10294,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_density,132,-0.07081,1.09193,0.94859,-2.27291,2.13128,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pop_growth,132,-1.08988,1.23215,0.38133,-3.57475,1.39499,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,ln_income,132,-11.03102,14.98021,0.4655,-41.24149,19.17946,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pct_bach,132,0.7993,0.37286,0.03776,0.04735,1.55124,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,pct_hisp,132,-0.06004,0.13766,0.66492,-0.33767,0.21758,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,med_age,132,-0.78093,0.66838,0.24908,-2.12884,0.56698,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,gop24,132,0.23033,0.17442,0.19363,-0.12142,0.58207,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M6 era interaction,lag_d_youth15_29_pp,132,-29.96585,12.60921,0.022,-55.39474,-4.53696,cluster,44,118.0,14,0.27292,0.19282,control,,,0.30356,VT,2024,0.44711,TX,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,arr_rate10,132,-0.37038,0.29218,0.21175,-0.95962,0.21886,cluster,44,117.0,15,0.3355,0.25598,sensitivity,,0.616,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,det_rate10,132,-0.16654,0.34371,0.63046,-0.8597,0.52662,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,lag_property,132,-0.00068,0.00091,0.46334,-0.00252,0.00117,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_pop,132,2.21142,1.21365,0.0754,-0.23613,4.65897,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_density,132,0.35157,1.0961,0.74996,-1.85892,2.56206,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pop_growth,132,-0.30028,1.35716,0.82594,-3.03725,2.4367,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,ln_income,132,-15.68246,13.47055,0.25076,-42.84841,11.48348,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pct_bach,132,0.80523,0.3364,0.02111,0.12682,1.48364,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,pct_hisp,132,-0.0286,0.12461,0.81959,-0.2799,0.22271,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,med_age,132,-0.69541,0.69949,0.3257,-2.10607,0.71525,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,gop24,132,0.16394,0.17406,0.35152,-0.18709,0.51498,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+Property (nonviolent) crime rate change (%),Pooled,M7 + detention rate,lag_d_youth15_29_pp,132,-17.66014,12.95901,0.18005,-43.79448,8.4742,cluster,44,117.0,15,0.3355,0.25598,control,,,0.27738,VT,2024,0.40087,LA,2025
+"Violent crime change, FBI (%)",Old,M1 bivariate,arr_rate10,100,-0.08757,0.22242,0.6955,-0.53453,0.3594,cluster,50,97.0,3,0.00261,-0.01795,sensitivity,,0.89925,0.23267,HI,2023,0.19695,TX,2023
+"Violent crime change, FBI (%)",Old,M2 + controls,arr_rate10,100,-0.26344,0.26924,0.33266,-0.80451,0.27763,cluster,50,88.0,12,0.04214,-0.0776,sensitivity,,0.77156,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,ln_pop,100,0.41911,0.52522,0.42874,-0.63636,1.47459,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,ln_density,100,-0.26136,0.42606,0.54243,-1.11755,0.59484,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,pop_growth,100,0.1906,1.26644,0.88099,-2.35441,2.73561,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,ln_income,100,-1.5261,5.8527,0.79538,-13.28755,10.23534,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,pct_bach,100,0.36632,0.17737,0.04421,0.00988,0.72276,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,pct_hisp,100,0.05916,0.0468,0.21214,-0.03488,0.15321,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,med_age,100,0.27786,0.30251,0.36285,-0.33005,0.88577,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,gop24,100,0.14436,0.09433,0.13238,-0.04522,0.33393,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Violent crime change, FBI (%)",Old,M2 + controls,lag_d_youth15_29_pp,100,0.49546,7.37954,0.94674,-14.33428,15.3252,cluster,50,88.0,12,0.04214,-0.0776,control,,,0.22486,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M1 bivariate,arr_rate10,100,-0.42108,0.26869,0.12351,-0.96104,0.11888,cluster,50,97.0,3,0.09955,0.08098,sensitivity,,0.59396,0.21947,HI,2023,0.19695,TX,2023
+"Property crime change, FBI (%)",Old,M2 + controls,arr_rate10,100,-0.38272,0.25836,0.14492,-0.9019,0.13647,cluster,50,88.0,12,0.19505,0.09443,sensitivity,,0.59396,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,ln_pop,100,1.2149,0.94783,0.20596,-0.68983,3.11963,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,ln_density,100,0.13657,0.9135,0.88177,-1.69918,1.97233,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,pop_growth,100,-0.86763,1.12307,0.4435,-3.12451,1.38926,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,ln_income,100,-3.52734,7.49928,0.64019,-18.5977,11.54302,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,pct_bach,100,0.34224,0.25157,0.17992,-0.16331,0.84778,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,pct_hisp,100,0.05441,0.07325,0.46116,-0.0928,0.20162,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,med_age,100,0.02955,0.39341,0.94043,-0.76103,0.82013,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,gop24,100,0.07426,0.13398,0.58195,-0.19499,0.34351,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024
+"Property crime change, FBI (%)",Old,M2 + controls,lag_d_youth15_29_pp,100,-19.87914,11.72098,0.09623,-43.43333,3.67506,cluster,50,88.0,12,0.19505,0.09443,control,,,0.29035,HI,2023,0.35067,NM,2024

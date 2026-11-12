@@ -38,6 +38,10 @@ def test_report_headline_and_intervals_match_generated_tables():
     assert "Across the four primary arrest-rate tests" in report
     assert (primary.q_bh >= 0.1).all()
     assert reg.loc[reg.inference_family == "sensitivity", "q_bh"].isna().all()
+    all_exposure = reg.loc[reg.q_bh_all_exposure.notna()]
+    assert (all_exposure.q_bh_all_exposure >= 0.1).all()
+    assert f"all {len(all_exposure)} arrest exposure coefficients" in report
+    assert f"{all_exposure.q_bh_all_exposure.min():.2f}".lstrip("0") in report
     mde = pd.read_csv(REPO / "analysis/results/arrest_mde.csv")
     for value in mde.mde_across_iqr:
         assert f"{value:.2f}" in report

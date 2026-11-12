@@ -8,7 +8,8 @@ Unit: state x year (2023, 2024, 2025; 2026 is a partial year and excluded). Old 
 Key regressor: ICE arrests (by apprehension state) per 100,000 residents, scaled per +10 (arr_rate10).
 Same outcomes and controls as 02. Parsimonious lagged-outcome models are primary; full controls and
 exclusion of the highest-rate state are sensitivity checks. Repeated-state models use clustered SEs;
-single-year models use HC3. BH q-values cover only the four 2025 lagged-outcome exposure tests.
+single-year models use HC3. BH q-values (`q_bh`) cover only the four 2025 lagged-outcome exposure tests;
+`q_bh_all_exposure` adds a sensitivity BH across all arrest exposure coefficients (none reach q<.10).
 Includes lagged change in youth share (ages 15-29) as an additional control from Census state age data.
 """
 import os
