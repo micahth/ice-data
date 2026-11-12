@@ -118,8 +118,10 @@ descriptive, not a claim of deployment readiness.
 
 `analysis/results/adp_forecast_metrics.csv` has one row per source, model and period (full, pre_covid,
 covid, 2022_2024, 2025_on); `adp_forecast_backtest.csv` now carries 80% and 95% bounds. Intervals are
-empirical quantiles of earlier one-step log errors, with at least 12 prior errors. Diebold-Mariano
-tests were not run. The published backtest starts in 2021-10, so `pre_covid` has no forecasts and `covid`
+empirical quantiles of earlier one-step log errors, with at least 12 prior errors (published) or 6 (records,
+which has only 14 forecasts). Diebold-Mariano tests against `last_month` are in
+`adp_forecast_dm_tests.csv` (absolute and squared error; Harvey-Leybourne-Newbold correction; two-sided
+p-values; at least 8 paired forecasts; no multiplicity adjustment). The published backtest starts in 2021-10, so `pre_covid` has no forecasts and `covid`
 has only 3.
 
 Models with lower MAE than `last_month` (descriptive; few, serially dependent origins):
@@ -137,7 +139,29 @@ Models with lower MAE than `last_month` (descriptive; few, serially dependent or
 - Coverage, published full sample (about 45 forecasts with intervals): last_month 80% interval covers
   0.80 and 95% covers 0.956; mean 95% width is about 13,300 ADP. 2025 onward has
   coverage of 0.89 and 1.00 for last_month, but only 18 origins.
-- Records: only 2 of 14 forecasts have intervals (12 prior errors are required), so the reported
-  coverage of 0.5 or 0.0 is meaningless.
+- Records: 8 of 14 forecasts have intervals (6 prior errors are required); last_month covers 0.75 and 0.75.
+  With 8 forecasts this is too noisy to judge calibration.
+- Diebold-Mariano (absolute error, vs last_month): the `ets_damped` gain from 2025 on is not significant
+  (mean gain 490.1, p = 0.130; records p = 0.315). In 2022-2024 `ets_damped` is significantly worse
+  (p = 0.047). `log_ar1_arrests` (records only) is indistinguishable from last_month (p = 0.989).
+  `seasonal_naive` is significantly worse everywhere.
 - The gain of `ets_damped` appears only in the 2025 policy regime and is not a consistent advantage; no
   model reliably beats last_month. These results are not evidence of deployment readiness.
+
+## Follow-up: why records ADP is below published ADP
+
+Checked from the existing CSVs (`monthly_adp_records.csv`, `ice_published_adp_monthly.csv`); this explains
+part of the gap, not all of it.
+
+- **Not an ICE-vs-CBP mix-up.** Records ADP tracks the published *Total* (ICE plus CBP), not the ICE-only
+  component: records / Total is 0.95 to 0.98, while records / ICE-only ranges from 1.1 to 3.7.
+- **Not transfers.** Stage 1 found transfer double counting is at most 0.0097% of monthly ADP.
+- **The gap is not constant.** Records / published is about 0.974 to 0.981 from 2023-01 to mid-2024, falls
+  to about 0.955 by 2025-01, and sits at 0.950 to 0.951 from 2025-10 to 2026-02.
+- **Open-record handling matters.** Censoring every open stint (`adp_censor_all`) raises the ratio to about
+  0.965 to 0.982, which shrinks but does not close the gap. Excluding every open stint widens it.
+- **Not tested.** Whether published ADP counts partial days as whole days, and whether it counts stays that
+  the extract omits. Both need row-level work on the raw extract that was not run.
+
+Consequence: keep the two series separate. Published stays the primary target, and records is used to
+check direction and month-to-month changes (correlation 0.998), not level.

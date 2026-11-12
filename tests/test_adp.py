@@ -253,3 +253,20 @@ def test_metrics_match_hand_computation():
     assert row.cover95 == 0.5 and row.width95 == pytest.approx(35.0)
     # Winkler: row 1 = 30 (covered); row 2 = 40 + (2 / 0.05) * 10 = 440; mean 235
     assert row.interval_score95 == pytest.approx(235.0)
+
+
+def test_diebold_mariano_detects_a_clearly_better_model_and_skips_short_samples():
+    import forecast_adp as fa
+    months = [str(p) for p in pd.period_range("2022-01", periods=20, freq="M")]
+    rng = np.random.default_rng(0)
+    rows = []
+    for source, n in [("s", 20), ("short", 5)]:
+        for model, scale in [("last_month", 10.0), ("good", 1.0)]:
+            for m in months[:n]:
+                e = rng.normal(0, scale)
+                rows.append({"source": source, "month": m, "model": model, "actual": 100 + e, "forecast": 100.0,
+                             "error": e})
+    dm = fa.diebold_mariano(pd.DataFrame(rows))
+    full = dm[(dm.period == "full") & (dm["loss"] == "abs")].set_index("source")
+    assert full.loc["s", "mean_loss_diff"] > 0 and full.loc["s", "p_value"] < 0.01
+    assert np.isnan(full.loc["short", "p_value"]) and full.loc["short", "n"] == 5
