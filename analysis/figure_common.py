@@ -5,6 +5,8 @@ from matplotlib.ticker import StrMethodFormatter
 import pandas as pd
 
 OLD_COLOR, NEW_COLOR = "#476a89", "#bc5a36"
+YEAR_STYLES = [("#476a89", "-"), ("#2a7f62", "--"),
+               ("#bc5a36", "-"), ("#824fa0", "--")]
 
 
 def set_style():
@@ -48,20 +50,20 @@ def plot_calendar_month_arrests(monthly, path):
     dates = pd.to_datetime(monthly.month)
     daily = monthly.arrests / monthly.days_observed
     fig, ax = plt.subplots(figsize=(9, 4.5))
-    for year in sorted(dates.dt.year.unique()):
+    for index, year in enumerate(sorted(dates.dt.year.unique())):
         mask = dates.dt.year == year
         partial_months = dates[mask & monthly.partial_month]
         label = f"{year} ({partial_months.iloc[-1]:%b} partial)" if not partial_months.empty else str(year)
         ax.plot(dates[mask].dt.month, daily[mask], marker="o", linewidth=2,
-                color=NEW_COLOR if year >= 2025 else OLD_COLOR,
-                alpha=1 if year >= 2025 else 0.65,
+                color=YEAR_STYLES[index % len(YEAR_STYLES)][0],
+                linestyle=YEAR_STYLES[index % len(YEAR_STYLES)][1],
                 label=label)
     ax.set(title="Monthly arrest pace by calendar month",
            ylabel="Arrest records per observed day", xlabel="Calendar month")
     ax.set_xticks(range(1, 13), ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
     ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
-    ax.legend(loc="upper left", frameon=False, ncol=2)
+    ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.01), frameon=False, ncol=4)
     partial = monthly.loc[monthly.partial_month]
     note = "Monthly rates account for days observed."
     if not partial.empty:

@@ -1,5 +1,9 @@
 # ICE Enforcement Data: From Administrative Records to Reproducible Analysis
 
+**The rate of arrest records classified as convicted-criminal nearly doubled,
+from 154.2 to 301.4 per day, even as their share fell from 43.0% to 33.1%.**
+The two windows differ in length and are not seasonally adjusted.
+
 I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
 ## 1. The problem
