@@ -99,10 +99,9 @@ rule differ; see its documentation.
 
 ## AI use
 
-Copilot assisted with code, tests, and documentation in this revision. It chose
-the survival cohort and censoring assumptions documented above, refactored the
-reproduction runner, and revised the presentation. Those choices and the
-interpretation of results need human review; this note does not attribute
-unverified decisions to the project author.
+Copilot assisted with code, tests, and documentation. While AI did make 
+recommendations that were considered, the final responsibility for any decisions 
+or errors belongs to Micah Holmquist.
+
 
 Code is [MIT licensed](../LICENSE); third-party data retain their own terms.
