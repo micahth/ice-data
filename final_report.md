@@ -1,6 +1,6 @@
 # Convicted-criminal arrest records nearly doubled per day as their share fell
 
-Micah Holmquist | Deportation Data Project CSV exports dated July 24, 2026
+Micah Holmquist | Deportation Data Project CSV exports dated `2026-07-24`
 
 ## Question and motivation
 

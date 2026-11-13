@@ -10,7 +10,7 @@ The [Final Report](../final_report.md) is the findings narrative. This guide def
 | Detention descriptions | [2023-01-01, 2025-01-01): 731 days | [2025-01-01, 2026-03-12): 435 days | Facility stint/overlapped bed-day |
 | State regressions | Calendar 2023 and 2024 | Calendar 2025 only | State-year, 50 states |
 
-The exports are dated July 24, 2026; that is not their event cutoff. Arrests on March 11 (one record) and September 17 (one stray record) are excluded. Detention includes March 11. The calendar split aligns complete outcome years; it does not isolate the January 20 inauguration. Annual models omit 2026 rather than treating its partial year as complete.
+The exports are dated `2026-07-24`; that is not their event cutoff. Arrests on March 11 (one record) and September 17 (one stray record) are excluded. Detention includes March 11. The calendar split aligns complete outcome years; it does not isolate the January 20 inauguration. Annual models omit 2026 rather than treating its partial year as complete.
 
 Arrest counts are not unique people, detention counts or completed removals. `arrest_criminality.csv` measures criminality **at arrest**. `overall.csv` measures criminality **at facility book-in**, counting transfers as additional stints: its convicted-category share is 30.9% → 32.6%, a different population and denominator from the arrest share of 43.0% → 33.1%. Neither describes a residence-level conviction rate.
 
@@ -50,7 +50,7 @@ Same-year arrests can respond to local economic deterioration or crime changes; 
 
 | Input | Publisher and coverage | Retrieval/processing |
 |---|---|---|
-| Arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; July 24, 2026 exports | Four exact July 24 exports below; `download_data.py` verifies them by default; documentation/license in [codebook](../data/codebook.txt); event dates filtered as above |
+| Arrest/stay/stint CSVs | Deportation Data Project, ICE FOIA; `2026-07-24` exports | Four exact `2026-07-24` exports below; `download_data.py` verifies them by default; [source documentation](https://deportationdata.org/docs/ice.html) does not specify reuse terms; event dates filtered as above |
 | Optional parquet sources | [DDP ICE data catalog](https://deportationdata.org/data/ice.html), official `deportationdata/ice` repository | `download_data.py --source alternative` pins July 6, 2026 commit `bfc8b3fa7602fbf810fb811e6d07ef603e528b78`, SHA-256 and byte size per dataset; not identical to local CSV exports and not used for published reproduction |
 | Facility location/attributes | Original publisher: [DDP](https://deportationdata.org/data/ice.html); retrieval: [pinned facility-data repository](https://github.com/deportationdata/ice-detention-facilities/tree/a311796374555f100435ae7578cac2a945eea5b1/data) | `facilities_latest.parquet`, `facilities_attributes.parquet`; county FIPS and type; inferred operator rules in `geo_common.py`, no verified ownership history |
 | County population | Original publisher: [Census Population Estimates Program](https://www.census.gov/data/datasets/time-series/demo/popest/2020s-counties-detail.html); retrieval: [pinned mirror](https://github.com/GreatTombProductions/county-population/tree/7f0daa62f6de3adea11d6834a5a235d7d6ec98c1/data/detail) | 256 JSON shards; aggregate counties to state/region/CBSA |
@@ -78,11 +78,11 @@ of the small pointer files:
 | `arrests_2026-07-24.csv` | 361988909 | `e0eb4fbba2e44967d5fb4c370e4405aee63d5e2f2635316b9f7d8add6d4d366c` |
 | `detention_stints_2026-07-24_part1.csv` | 821880386 | `1db44db63f8373ecefa6e852e1d9f64a5eddd78b1e98c2d99e1f6364bb11014c` |
 | `detention_stints_2026-07-24_part2.csv` | 863897721 | `27af5991b593953f34bddb8339fb2ab12500afaa4df0eafb9fb78f20e6027780` |
-| `detention_stints_part3.csv` | 514072292 | `dc08d7ab26193f002b1d812338a199c771abfe1310a283258926c979e6ba8999` |
+| `detention_stints_2026-07-24_part3.csv` | 514072292 | `dc08d7ab26193f002b1d812338a199c771abfe1310a283258926c979e6ba8999` |
 
-`detention_stints_part3.csv` is part of the same published input set despite its
-undated filename. Stays, detainers and joined arrest/stay files elsewhere in
-`data/` are not consumed by scripts `01`–`05`; stays are used only by optional EDA.
+All four listed files are from the same `2026-07-24` snapshot. Stays, detainers
+and joined arrest/stay files elsewhere in `data/` are not consumed by scripts
+`01`–`05`; stays are used only by optional EDA.
 Exact bytes remain obtainable through this repository's Git LFS, or through
 `https://media.githubusercontent.com/media/micahth/ice-data/279e6e6e809871cd180b6dcde6de3bb388db4a0e/data/<filename>`.
 The default downloader uses that immutable URL and verifies size and SHA-256

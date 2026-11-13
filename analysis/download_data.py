@@ -46,8 +46,9 @@ def download_published(directory):
             verify_file(target, metadata["sha256"], metadata["size"])
             print(f"Verified existing {target}", flush=True)
             continue
+        source_name = metadata.get("source_filename", name)
         url = (f"https://media.githubusercontent.com/media/{manifest['repository']}/"
-               f"{manifest['revision']}/data/{name}")
+               f"{manifest['revision']}/data/{source_name}")
         temporary = target.with_suffix(".csv.part")
         print(f"Downloading published input {name}", flush=True)
         try:

@@ -15,7 +15,8 @@
       "sha256": "27af5991b593953f34bddb8339fb2ab12500afaa4df0eafb9fb78f20e6027780",
       "size": 863897721
     },
-    "detention_stints_part3.csv": {
+    "detention_stints_2026-07-24_part3.csv": {
+      "source_filename": "detention_stints_part3.csv",
       "sha256": "dc08d7ab26193f002b1d812338a199c771abfe1310a283258926c979e6ba8999",
       "size": 514072292
     }
