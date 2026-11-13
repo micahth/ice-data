@@ -86,7 +86,7 @@ deployment has been verified.
 See [survival analysis](survival.md) for the cohort, censoring rule, model,
 diagnostics, and command. This is separate from the published results.
 
-## Interview notes
+## Design rationale
 
 The single-year state regressions use HC3 because heteroskedasticity and
 high-leverage states can distort ordinary OLS standard errors in a small sample.
