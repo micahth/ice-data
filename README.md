@@ -1,5 +1,9 @@
 # ICE arrests and detention, 2023–2026
 
+Reproducible analysis of ICE arrest, detainer, and detention records (Deportation Data Project).
+
+**Topics:** `ice`, `immigration`, `detention`, `data-analysis`, `python`, `reproducible-research`
+
 **Arrests classified as involving convicted criminals nearly doubled per day**, from
 154 to 301, even as their share fell from 43.0% to 33.1%. These are arrest
 records, not unique people or completed removals; the comparison adjusts for
