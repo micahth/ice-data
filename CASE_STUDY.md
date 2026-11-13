@@ -69,7 +69,7 @@ The 153% daily-rate comparison normalizes window length but not seasonality. Thi
 - `pytest` covers interval boundaries and censoring, cohort definitions, covariance selection against statsmodels, confidence-interval arithmetic, download failure handling, aggregate reconciliation, and figure generation.
 - Tests check that numbers in the report match the generated result tables, and that local links resolve.
 - A source-wide election-mode filter silently lost eight states. Selecting TOTAL rows per state and retaining unsplit rows where totals are absent restored the full-control economic samples from 42 to 50. Both regression scripts now reject missing controls across every state-year; crime coverage gaps remain explicit.
-- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. The isolated reproduction check regenerated and matched all 30 committed result tables. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduction status](README.md#reproduction-status).
+- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. The isolated reproduction check regenerated and matched all 30 committed result tables. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduce published results](docs/reproduction.md#reproduce-published-results).
 - Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
 - Annual economic outcomes are calendar-year measures: the 2025 arrest period begins January 1, not January 20, and is not an inauguration-date comparison.
 
