@@ -9,7 +9,8 @@ CSV_INPUTS = {
     "arrests": ["arrests_2026-07-24.csv"],
     "detention-stays": ["detention_stays_2026-07-24_part1.csv", "detention_stays_2026-07-24_part2.csv"],
     "detention-stints": ["detention_stints_2026-07-24_part1.csv",
-                        "detention_stints_2026-07-24_part2.csv", "detention_stints_part3.csv"],
+                        "detention_stints_2026-07-24_part2.csv",
+                        "detention_stints_2026-07-24_part3.csv"],
 }
 
 

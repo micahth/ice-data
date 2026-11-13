@@ -18,8 +18,9 @@ def test_manifest_covers_exact_pipeline_inputs_and_matches_pinned_lfs_objects():
     assert set(manifest["files"]) == set(CSV_INPUTS["arrests"] + CSV_INPUTS["detention-stints"])
     guide = (REPO / "analysis/MASTER_RESULTS.md").read_text()
     for name, metadata in manifest["files"].items():
+        source_name = metadata.get("source_filename", name)
         pointer = subprocess.check_output(
-            ["git", "show", f"{manifest['revision']}:data/{name}"], cwd=REPO, text=True,
+            ["git", "show", f"{manifest['revision']}:data/{source_name}"], cwd=REPO, text=True,
         )
         assert f"oid sha256:{metadata['sha256']}\n" in pointer
         assert f"size {metadata['size']}\n" in pointer
@@ -32,7 +33,11 @@ def published_payload(monkeypatch):
     manifest = {
         "repository": "micahth/ice-data",
         "revision": "fixed-revision",
-        "files": {"example.csv": {"sha256": hashlib.sha256(payload).hexdigest(), "size": len(payload)}},
+        "files": {"example.csv": {
+            "source_filename": "source-example.csv",
+            "sha256": hashlib.sha256(payload).hexdigest(),
+            "size": len(payload),
+        }},
     }
     monkeypatch.setattr(download_data, "published_manifest", lambda: manifest)
     return payload
@@ -50,7 +55,7 @@ def test_published_download_verifies_and_replaces_pointer(tmp_path, monkeypatch,
     download_data.download_published(tmp_path)
     download_data.verify_published(tmp_path)
     assert (tmp_path / "example.csv").read_bytes() == published_payload
-    assert urls == ["https://media.githubusercontent.com/media/micahth/ice-data/fixed-revision/data/example.csv"]
+    assert urls == ["https://media.githubusercontent.com/media/micahth/ice-data/fixed-revision/data/source-example.csv"]
     assert not (tmp_path / "example.csv.part").exists()
     download_data.download_published(tmp_path)
     assert len(urls) == 1

@@ -38,7 +38,7 @@ def plot_monthly_arrests(monthly, path):
     ax.xaxis.set_major_locator(mdates.MonthLocator(interval=6))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%b %Y"))
     ax.legend(loc="upper left", frameon=False, fontsize=9)
-    fig.text(0.01, 0.01, "Source: Deportation Data Project, July 24, 2026 exports. Apprehension location, not residence.",
+    fig.text(0.01, 0.01, "Source: Deportation Data Project, 2026-07-24 exports. Apprehension location, not residence.",
              fontsize=8, color="#555555")
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(path, dpi=160)

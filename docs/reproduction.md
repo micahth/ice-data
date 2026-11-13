@@ -2,7 +2,7 @@
 
 ## Setup
 
-Use Python 3.11 or 3.12. Direct dependencies are pinned, but transitive
+Requires Python 3.11 or 3.12. Direct dependencies are pinned, but transitive
 dependencies are not locked.
 
 ```bash
@@ -19,7 +19,7 @@ for sources, model specifications, tables, and limitations.
 
 ## Reproduce published results
 
-The published analysis uses the four July 24, 2026 CSVs listed with hashes,
+The published analysis uses the four `2026-07-24` CSVs listed with hashes,
 sizes and an immutable source revision in the
 [input manifest](../analysis/published_inputs.json). The download is 2.56 GB.
 Use at least 8 GB RAM and 8 GB free disk; secondary inputs also require network
@@ -104,4 +104,8 @@ recommendations that were considered, the final responsibility for any decisions
 or errors belongs to Micah Holmquist.
 
 
-Code is [MIT licensed](../LICENSE); third-party data retain their own terms.
+The project’s original code is licensed under the [MIT License](../LICENSE).
+This does not grant rights to source data. The [Deportation Data Project’s ICE
+documentation](https://deportationdata.org/docs/ice.html) does not specify reuse
+or redistribution terms for these files, so those terms are unclear; check with
+the source before redistributing the data.
