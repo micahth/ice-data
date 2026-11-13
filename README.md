@@ -7,7 +7,8 @@ window length, not seasonality.
 
 ![Daily arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
 
-- Overall arrests rose from 359 to 909 per day (+153%).
+- Overall arrests rose from 359 per day in 2023–2024 to 909 per day in 2025–March 2026 (+153%).
+- The regression analysis covers 2023–2025 because of limited data; the daily-arrest comparison also includes data through March 2026.
 - Facility average daily population per local resident rose in every region; this measures where people are held, not where they live.
 - None of four primary 2025 arrest-rate tests survived BH adjustment at q < .10; associations are exploratory, not causal.
 
