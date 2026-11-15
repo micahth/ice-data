@@ -86,6 +86,56 @@ deployment has been verified.
 See [survival analysis](survival.md) for the cohort, censoring rule, model,
 diagnostics, and command. This is separate from the published results.
 
+## Detention stay prediction
+
+`analysis/predict_stay_outcome.py` is an exploratory scikit-learn logistic
+regression predicting whether a stay has a **recorded book-out within 30 days**
+of admission, including book-outs exactly at 30 days. A stay spans transfers;
+book-out can be removal or another outcome, not necessarily community release.
+The only predictors are admission date and the first recorded facility code;
+the latter is reconstructed from the stay record and may be corrected later.
+One-hot encoding, date scaling, and the model are fitted on training data only;
+unseen facilities receive no facility-specific coefficient. The comparator
+always predicts the training-set event rate.
+
+The incident cohort starts January 1, 2025. The training period ends before
+November 1, 2025 and excludes admissions whose 30-day horizon extends past that
+split; the test period starts November 1 and includes admissions through
+February 10, 2026 at 00:00 UTC, with follow-up through March 12 at 00:00 UTC.
+Admissions without a full 30-day horizon, with invalid dates, or without a
+person ID are excluded. Missing book-outs are treated as no recorded book-out
+within the horizon, not proof that the person remained detained; recording gaps and
+administrative censoring can bias results. The 30-day target differs from the
+survival analysis and the historical Analysis #5 completed-stay summaries.
+
+For the pinned **July 6 alternative parquet**, 254,291 training and 125,231
+test stays remain. Test event prevalence is 53.7%; 4,026 test stays belong to
+people also seen in training. The split evaluates later stays, not unseen
+people, so observations are not independent. No personal identifier is used
+as a feature or written to the output.
+
+| Model | Accuracy | Brier score | Log loss | ROC AUC |
+|---|---:|---:|---:|---:|
+| Training prevalence | 0.537 | 0.249 | 0.692 | 0.500 |
+| Logistic regression | 0.583 | 0.239 | 0.671 | 0.629 |
+
+These are retrospective, single-split results without calibration or subgroup
+evaluation, confidence intervals, external validation, or tuning. Performance
+can change with policy, data quality, and facility mix. The model is not
+suitable for decisions about individuals or for deployment.
+
+```bash
+python analysis/download_data.py --source alternative --datasets detention-stays
+ICE_DATA_DIR="$PWD/data/raw" python analysis/predict_stay_outcome.py --output-dir /tmp/ice-stay-prediction
+```
+
+The checksum-verified alternative source is a different vintage from the
+published CSV pipeline; it is not interchangeable. Output consists only of
+aggregate cohort counts and metrics. The committed examples are
+[`stay_prediction_cohort_counts.csv`](../analysis/results/stay_prediction_cohort_counts.csv)
+and [`stay_prediction_metrics.csv`](../analysis/results/stay_prediction_metrics.csv).
+The main reproduction runner does not check this separate analysis.
+
 ## Design rationale
 
 The single-year state regressions use HC3 because heteroskedasticity and

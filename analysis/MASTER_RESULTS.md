@@ -88,7 +88,7 @@ Exact bytes remain obtainable through this repository's Git LFS, or through
 The default downloader uses that immutable URL and verifies size and SHA-256
 before atomically replacing each file. No conversion from July 6 parquet is involved.
 
-Follow the [full reproduction commands](../README.md#reproduce-the-full-analysis).
+Follow the [full reproduction commands](../docs/reproduction.md#reproduce-published-results).
 `reproduce.py` rejects `ICE_DATA_DIR`, verifies all four CSVs, isolates generated
 files and all caches, and compares every regenerated table against the committed
 `HEAD` tables. A full-data run against revision
@@ -103,7 +103,7 @@ without downloading records; the full raw-data check is a separate command.
 
 ## Artifact map and execution order
 
-Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
+Use the [manual reproduction commands](../docs/reproduction.md#reproduce-published-results): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
 
 | Script | Generated tables |
 |---|---|

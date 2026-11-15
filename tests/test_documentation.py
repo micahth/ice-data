@@ -16,6 +16,21 @@ def test_local_report_links_exist():
                 assert target.exists(), f"{document.name}: {link}"
 
 
+def test_stay_prediction_claims_match_metrics():
+    readme = (REPO / "README.md").read_text()
+    methods = (REPO / "docs/reproduction.md").read_text()
+    metrics = pd.read_csv(REPO / "analysis/results/stay_prediction_metrics.csv").set_index("model")
+    for model, label in [("training_prevalence", "Training prevalence"),
+                         ("logistic_regression", "Logistic regression")]:
+        row = metrics.loc[model]
+        assert f"| {label} | {row.accuracy:.3f} | {row.brier:.3f} | {row.log_loss:.3f} | {row.roc_auc:.3f} |" in methods
+    fitted = metrics.loc["logistic_regression"]
+    assert f"{int(fitted.test_stays):,}" in readme
+    assert f"{fitted.roc_auc:.3f}" in readme
+    assert f"{fitted.brier:.3f}" in readme
+    assert f"{metrics.loc['training_prevalence', 'brier']:.3f}" in readme
+
+
 def test_report_headline_and_intervals_match_generated_tables():
     report = (REPO / "final_report.md").read_text()
     summary = pd.read_csv(REPO / "analysis/results/arrest_summary.csv").set_index("era")
