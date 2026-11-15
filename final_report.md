@@ -1,4 +1,4 @@
-# Convicted-criminal arrest records nearly doubled per day as their share fell
+# Arrest records fell in 2024, then rose sharply in 2025
 
 Micah Holmquist | Deportation Data Project CSV exports dated July 24, 2026
 
@@ -9,6 +9,19 @@ How did ICE arrest and detention activity change, and did states with higher arr
 The labor-market effects of enforcement are an empirical question, not a one-direction prediction. East et al. find that Secure Communities reduced employment among likely undocumented immigrants and U.S.-born workers, illustrating how labor-market responses can differ from a simple competition story ([Journal of Labor Economics, 2023](https://doi.org/10.1086/721152)). This project asks a narrower descriptive question: whether **state arrest intensity is associated with annual state outcome changes**. Arrests do not identify workers removed from employment.
 
 ## Main findings
+
+| Calendar period | Arrest records | Observed days | Records per day |
+|---|---:|---:|---:|
+| 2023 | 152,221 | 365 | 417.0 |
+| 2024 | 110,108 | 366 | 300.8 |
+| 2025 | 317,032 | 365 | 868.6 |
+| 2026 through March 10 (partial) | 77,558 | 69 | 1,124.0 |
+
+The 2025 daily pace was 188.7% above 2024, after a 27.9% decline in 2024
+from 2023. The partial 2026 pace is not directly comparable to a full year
+without accounting for seasonality; these are records, not unique people.
+
+The following longer-window comparison provides criminality and geography context:
 
 | Measure | 2023–2024 | Jan 2025–Mar 10, 2026 |
 |---|---:|---:|
