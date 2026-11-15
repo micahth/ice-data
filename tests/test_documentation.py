@@ -47,6 +47,19 @@ def test_report_headline_and_intervals_match_generated_tables():
         assert f"{value:.2f}" in report
 
 
+def test_annual_headline_matches_monthly_series():
+    monthly = pd.read_csv(REPO / "analysis/results/monthly_arrests.csv")
+    annual = monthly.assign(year=monthly.month.str[:4]).groupby("year")[["arrests", "days_observed"]].sum()
+    report = (REPO / "final_report.md").read_text()
+    for year, row in annual.iterrows():
+        assert f"{int(row.arrests):,}" in report
+        assert f"{row.arrests / row.days_observed:,.1f}" in report
+    for path in ["README.md", "CASE_STUDY.md", "outputs/README.md"]:
+        text = (REPO / path).read_text()
+        for year in ("2023", "2024", "2025"):
+            assert f"{int(annual.loc[year, 'arrests']):,}" in text
+
+
 def test_facility_counts_are_supported_by_activity_table():
     changes = pd.read_csv(REPO / "analysis/results/facility_changes.csv")
     document = (REPO / "analysis/FACILITY_CHANGES.md").read_text()

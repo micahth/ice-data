@@ -6,7 +6,7 @@ Figures that summarize the analysis, with the table behind each. Figures are reg
 
 ![Monthly arrests](../analysis/figures/monthly_arrests.png)
 
-Monthly deduplicated arrest records peaked at 39,829 in December 2025; March 2026 is partial. Daily arrests rose from about 359 to 909. Records, not unique people.
+Annual deduplicated arrest records fell from 152,221 in 2023 to 110,108 in 2024, then rose to 317,032 in 2025. Monthly records peaked at 39,829 in December 2025; March 2026 is partial. Records are not unique people.
 Data: [`monthly_arrests.csv`](../analysis/results/monthly_arrests.csv), [`arrest_summary.csv`](../analysis/results/arrest_summary.csv)
 
 ### Calendar-month pattern

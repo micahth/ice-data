@@ -69,7 +69,7 @@ Same-year arrests can respond to local economic deterioration or crime changes; 
 ### Exact published inputs
 
 The machine-readable [manifest](published_inputs.json) pins repository
-`micahth/ice-data` revision `279e6e6e809871cd180b6dcde6de3bb388db4a0e`.
+`micahth/ice-data` revision `567f05f1c5bcda7fb43163487a8bd6eb8c8067eb`.
 These SHA-256 values are the Git LFS object IDs of the CSV contents, not hashes
 of the small pointer files:
 
@@ -84,15 +84,17 @@ of the small pointer files:
 undated filename. Stays, detainers and joined arrest/stay files elsewhere in
 `data/` are not consumed by scripts `01`–`05`; stays are used only by optional EDA.
 Exact bytes remain obtainable through this repository's Git LFS, or through
-`https://media.githubusercontent.com/media/micahth/ice-data/279e6e6e809871cd180b6dcde6de3bb388db4a0e/data/<filename>`.
+`https://media.githubusercontent.com/media/micahth/ice-data/567f05f1c5bcda7fb43163487a8bd6eb8c8067eb/data/<filename>`.
 The default downloader uses that immutable URL and verifies size and SHA-256
 before atomically replacing each file. No conversion from July 6 parquet is involved.
 
-Follow the [full reproduction commands](../README.md#reproduce-the-full-analysis).
+Follow the [full reproduction commands](../docs/reproduction.md#reproduce-published-results).
 `reproduce.py` rejects `ICE_DATA_DIR`, verifies all four CSVs, isolates generated
-files and all caches, and compares every regenerated table against the committed
+files and all caches, and compares regenerated tables against the committed
 `HEAD` tables. A full-data run against revision
-`279e6e6e809871cd180b6dcde6de3bb388db4a0e` passed for all 30 tables.
+`279e6e6e809871cd180b6dcde6de3bb388db4a0e` passed for the 30 tables present
+then. The runner has not been updated to generate the subsequently added ADP
+audit and forecast tables, so its current all-table comparison fails.
 Comparisons require the same filenames, columns and rows, ignoring row order,
 with absolute numeric tolerance `1e-6` and no relative tolerance; this is below
 the four/five-decimal rounding used for most tables. Text and missingness must
@@ -103,7 +105,7 @@ without downloading records; the full raw-data check is a separate command.
 
 ## Artifact map and execution order
 
-Use the [README commands](../README.md#reproduce-the-full-analysis): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
+Use the [reproduction commands](../docs/reproduction.md#reproduce-published-results): run scripts `01`–`06` in order. `01` supplies inputs to `02` and `03`; `02` supplies the panel for `05`; `04` and `05` supply arrest tables for `06`. Each numbered script has a guarded `main()` entry point. `eda.py` is optional descriptive exploration of all stays sheets and the same arrest cohort, not a report generator.
 
 | Script | Generated tables |
 |---|---|

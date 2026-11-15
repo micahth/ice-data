@@ -32,10 +32,11 @@ python analysis/reproduce.py --work-dir /tmp/ice-reproduction
 ```
 
 The workspace must not already exist. The runner verifies checksums, uses a
-fresh secondary-input cache, runs scripts 01–05 and the arrest forecast, and
-compares all 30 published result tables to Git HEAD. It ignores row order and
-uses absolute numeric tolerance 1e-6. Logs and regenerated tables stay in the
-workspace; tracked results are not overwritten.
+fresh secondary-input cache, and runs scripts 01–05 and the arrest forecast.
+**The full comparison currently fails:** it compares every CSV in Git HEAD,
+but does not regenerate the newer detention ADP audit and forecast tables.
+It ignores row order and uses absolute numeric tolerance 1e-6. Logs and
+regenerated tables stay in the workspace; tracked results are not overwritten.
 
 Alternatively, hydrate and verify the same LFS objects:
 

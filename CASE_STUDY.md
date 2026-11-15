@@ -1,8 +1,8 @@
 # ICE Enforcement Data: From Administrative Records to Reproducible Analysis
 
-**The rate of arrest records classified as convicted-criminal nearly doubled,
-from 154.2 to 301.4 per day, even as their share fell from 43.0% to 33.1%.**
-The two windows differ in length and are not seasonally adjusted.
+**Recorded arrests fell from 152,221 in 2023 to 110,108 in 2024, then rose to
+317,032 in 2025.** In the partial 2026 window through March 10, 77,558 records
+averaged 1,124.0 per day; the partial-year pace is not seasonally adjusted.
 
 I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
@@ -37,10 +37,8 @@ The asymmetric treatment is a documented assumption: if old open records represe
 - Cleaning, validation, and detention-interval/average-daily-population calculations (`ice_lib.py`, `data_common.py`).
 - Geographic classification (region, CBSA, state) and population-normalized measures.
 - A state-year panel combining enforcement and external data.
-- DuckDB SQL for the same arrest cohort and aggregates, with a window-function share calculation and parity checks against pandas.
-- An aggregate-only Streamlit view of state/AOR shares and daily rates, with CSV download.
 - Descriptive comparisons and regressions with HC3 or clustered errors, 95% confidence intervals, and Benjamini–Hochberg adjustment.
-- Monthly forecasts with expanding-window backtesting against last-month and seasonal-naive baselines.
+- A detention-population forecast with expanding-window backtesting against last-month and seasonal-naive baselines.
 - Automated tests, committed result tables, and documented data provenance.
 
 ## 5. What I found
@@ -49,7 +47,7 @@ The asymmetric treatment is a documented assumption: if old open records represe
 - The convicted-criminal share of arrest records fell from 43.0% to 33.1%.
 - Apprehensions shifted geographically (for example, Texas's share fell from 27.3% to 25.7% while Florida's rose from 7.4% to 10.1%); see the [Final Report](final_report.md).
 - None of the four primary 2025 lagged-outcome arrest-rate tests survived BH adjustment; the other 60 exposure terms are unadjusted sensitivity analyses. Detection limits, not nonsignificance alone, frame the uncertainty.
-- The log-AR(1) forecaster did not beat the last-month baseline on 14 held-out months. I report that comparison rather than presenting a fitted model as an improvement.
+- The detention-population forecast did not beat the last-month baseline over the full published sample; see the [forecast](analysis/MASTER_RESULTS.md#portfolio-examples).
 - The results do not establish causality.
 
 | Arrests over time | Geography of apprehensions |
@@ -69,7 +67,7 @@ The 153% daily-rate comparison normalizes window length but not seasonality. Thi
 - `pytest` covers interval boundaries and censoring, cohort definitions, covariance selection against statsmodels, confidence-interval arithmetic, download failure handling, aggregate reconciliation, and figure generation.
 - Tests check that numbers in the report match the generated result tables, and that local links resolve.
 - A source-wide election-mode filter silently lost eight states. Selecting TOTAL rows per state and retaining unsplit rows where totals are absent restored the full-control economic samples from 42 to 50. Both regression scripts now reject missing controls across every state-year; crime coverage gaps remain explicit.
-- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. The isolated reproduction check regenerated and matched all 30 committed result tables. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduce published results](docs/reproduction.md#reproduce-published-results).
+- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. An earlier isolated run matched the 30 tables then present, but the current runner does not regenerate the newer ADP tables and its full comparison fails. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduce published results](docs/reproduction.md#reproduce-published-results).
 - Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
 - Annual economic outcomes are calendar-year measures: the 2025 arrest period begins January 1, not January 20, and is not an inauguration-date comparison.
 
@@ -81,12 +79,10 @@ The 153% daily-rate comparison normalizes window length but not seasonality. Thi
 | Reconstructing detention intervals; handling open records | Record-level transformation, business rules |
 | Reconciling aggregates to source totals | Data integrity |
 | Joining external datasets | Data integration |
-| Conditional aggregation and window shares in DuckDB | SQL |
-| State/AOR dashboard and aggregate CSV downloads | Stakeholder communication |
 | Time-ordered backtesting against naive forecasts | Predictive modeling and leakage prevention |
 | Population-normalized rates | Metric construction |
 | Tests and CI | Quality assurance |
 | Documenting source revisions and limits | Auditability |
 | Models with uncertainty | Analytical reasoning |
 
-Tools: Python, SQL, DuckDB, Streamlit, pandas, NumPy, SciPy, statsmodels, matplotlib, pytest, Git/GitHub Actions, CSV/parquet.
+Tools: Python, pandas, NumPy, SciPy, statsmodels, matplotlib, pytest, Git/GitHub Actions, CSV/parquet.
