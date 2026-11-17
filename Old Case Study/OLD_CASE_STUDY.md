@@ -1,6 +1,6 @@
 # ICE Enforcement Data: From Administrative Records to Reproducible Analysis
 
-I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](analysis/MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
+I built an end-to-end analysis of arrest and detention records released by the [Deportation Data Project](https://deportationdata.org/) (DDP), for this project. The analysis includes 656,919 deduplicated arrest records (262,329 in 2023–2024 and 394,590 from January 2025 to March 10, 2026), plus detention stint records, joined with nine external input groups (the non-DDP-record rows of the [source inventory](../analysis/, plus ](final_report.md)MASTER_RESULTS.md#sources-and-frozen-retrieval): DDP facility data, Census population, OMB CBSA delineations, BEA GDP, BLS unemployment, two crime sources, Census/election controls, and Census youth population). These are records, not unique people. The goal was to turn them into defensible measures and to report clearly what those measures can and cannot show.
 
 ## 1. The problem
 
@@ -50,22 +50,22 @@ The asymmetric treatment is a documented assumption: if old open records represe
 
 | Arrests over time | Geography of apprehensions |
 |---|---|
-| ![Monthly arrests](analysis/figures/monthly_arrests.png) | ![Arrest geography](analysis/figures/fig7_arrest_geography.png) |
+| ![Monthly arrests](../analysis/, plus ](final_report.md)figures/monthly_arrests.png) | ![Arrest geography](../analysis/, plus ](final_report.md)figures/fig7_arrest_geography.png) |
 
 The 153% daily-rate comparison normalizes window length but not seasonality. This calendar-month view shows the historical pattern alongside 2025–2026; March 2026 is partial and uses its 10 observed days.
 
-![Monthly arrest pace by calendar month and year](analysis/figures/monthly_arrests_by_calendar_month.png)
+![Monthly arrest pace by calendar month and year](../analysis/, plus ](final_report.md)figures/monthly_arrests_by_calendar_month.png)
 
 | Detention geography | Regression estimates with confidence intervals |
 |---|---|
-| ![Facility ADP per 100k by region](analysis/figures/fig1_region_per_capita.png) | ![Arrest-rate coefficients](analysis/figures/fig6_arrest_coefficients.png) |
+| ![Facility ADP per 100k by region](../analysis/, plus ](final_report.md)figures/fig1_region_per_capita.png) | ![Arrest-rate coefficients](../analysis/, plus ](final_report.md)figures/fig6_arrest_coefficients.png) |
 
 ## 6. Quality assurance and limitations
 
 - `pytest` covers interval boundaries and censoring, cohort definitions, covariance selection against statsmodels, confidence-interval arithmetic, download failure handling, aggregate reconciliation, and figure generation.
 - Tests check that numbers in the report match the generated result tables, and that local links resolve.
 - A source-wide election-mode filter silently lost eight states. Selecting TOTAL rows per state and retaining unsplit rows where totals are absent restored the full-control economic samples from 42 to 50. Both regression scripts now reject missing controls across every state-year; crime coverage gaps remain explicit.
-- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. The isolated reproduction check regenerated and matched all 30 committed result tables. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduction status](README.md#reproduction-status).
+- Published results use four checksum-identified July 24, 2026 CSVs, available through the default downloader or Git LFS. The isolated reproduction check regenerated and matched all 30 committed result tables. The explicitly selected July 6 parquet alternative is not a reproduction source. See [Reproduction status]](../README.md#reproduction-status).
 - Limitations: arrests are not people or removals; locations are not residences; small samples and wide intervals limit inference.
 - Annual economic outcomes are calendar-year measures: the 2025 arrest period begins January 1, not January 20, and is not an inauguration-date comparison.
 
